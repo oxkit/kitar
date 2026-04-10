@@ -470,8 +470,6 @@
         <tr style="border-bottom:1px solid #374151;">
           <th style="text-align:left; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
           <th style="text-align:right; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Net P&amp;L</th>
-          <th style="text-align:right; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
-          <th style="text-align:right; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Funding</th>
         </tr>
       </thead>
       <tbody id="hl-records-tbody"></tbody>
@@ -483,11 +481,12 @@
 // AMP balance: static display
 
 // HyperLiquid dynamic records system
-const HL_SEED_BALANCE = 539.26;
+const HL_SEED_BALANCE = 500.00;
 const HL_DEPOSITS = 500.00;
 
 let hlRecords = [
-  {date:'08/04/2026', closedPnl:20.80, fee:0.19, funding:-0.43, net:20.18}
+  {date:'23/03/2026', closedPnl:39.26, fee:0, funding:0, net:39.26},
+  {date:'8/04/2026', closedPnl:20.80, fee:0.19, funding:-0.43, net:20.18}
 ];
 
 function hlRenderStats() {
@@ -504,7 +503,6 @@ function hlRenderStats() {
   document.getElementById('hl-cur-bal-display').textContent = '$' + currentBalance.toFixed(2);
   document.getElementById('hl-cur-bal-display').style.color = currentBalance >= HL_SEED_BALANCE ? '#34d399' : '#f87171';
   document.getElementById('hl-stats-grid').innerHTML = `
-    <div class="amp-stat"><div class="amp-stat-label">Seed Balance</div><div class="amp-stat-value" style="color:#60a5fa">$${HL_SEED_BALANCE.toFixed(2)}</div></div>
     <div class="amp-stat"><div class="amp-stat-label">Cash Deposited</div><div class="amp-stat-value" style="color:#60a5fa">$${HL_DEPOSITS.toFixed(2)}</div></div>
     <div class="amp-stat"><div class="amp-stat-label">Recorded Gains</div><div class="amp-stat-value positive">$${totalGains.toFixed(2)}</div></div>
     <div class="amp-stat"><div class="amp-stat-label">Recorded Losses</div><div class="amp-stat-value ${losses.length > 0 ? 'negative' : ''}" style="${losses.length === 0 ? 'color:#475569;' : ''}">$${totalLosses.toFixed(2)}</div></div>
@@ -521,8 +519,6 @@ function showHlRecords() {
     <tr style="border-bottom:1px solid #1e293b;">
       <td style="padding:9px 10px; color:#e2e8f0;">${r.date}</td>
       <td style="padding:9px 10px; text-align:right; color:${r.net >= 0 ? '#34d399' : '#f87171'}; font-weight:600;">${r.net >= 0 ? '+' : ''}$${r.net.toFixed(2)}</td>
-      <td style="padding:9px 10px; text-align:right; color:#f87171;">-$${r.fee.toFixed(2)}</td>
-      <td style="padding:9px 10px; text-align:right; color:${r.funding >= 0 ? '#34d399' : '#f87171'};">${r.funding >= 0 ? '+' : ''}$${r.funding.toFixed(2)}</td>
     </tr>
   `).join('');
   document.getElementById('hl-records-modal').style.display = 'flex';
@@ -556,40 +552,31 @@ hlRenderStats();
     </div>
 
         <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
-      <div style="font-size:11px; color:#64748b; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:14px; font-weight:600;">Update Account State</div>
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:14px;">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:14px;">
         <div>
           <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Current Account Balance</label>
           <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
-            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
-            <input id="inp-balance" type="number" value="150000" step="0.01"
-              style="background:none; border:none; outline:none; color:#e2e8f0; font-size:14px; font-weight:600; width:100%;"
-              onchange="lucidCalc()" oninput="lucidCalc()">
+            <input id="inp-balance" type="hidden" value="150000">
+            <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$150,000.00</span>
           </div>
         </div>
         <div>
           <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Highest Balance Reached (EOD)</label>
           <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
-            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
-            <input id="inp-peak" type="number" value="150000" step="0.01"
-              style="background:none; border:none; outline:none; color:#e2e8f0; font-size:14px; font-weight:600; width:100%;"
-              onchange="lucidCalc()" oninput="lucidCalc()">
+            <input id="inp-peak" type="hidden" value="150000">
+            <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$150,000.00</span>
           </div>
         </div>
         <div>
           <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Qualifying Days Completed</label>
           <div style="display:flex; align-items:center; gap:10px; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
-            <button onclick="adjustQD(-1)" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">−</button>
-            <span id="disp-qd" style="font-size:18px; font-weight:700; color:#e2e8f0; flex:1; text-align:center;">0</span>
-            <button onclick="adjustQD(1)" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">+</button>
+            <span id="disp-qd" style="font-size:18px; font-weight:700; color:#e2e8f0;">0</span>
           </div>
         </div>
         <div>
           <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Payouts Received</label>
           <div style="display:flex; align-items:center; gap:10px; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
-            <button onclick="adjustPO(-1)" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">−</button>
-            <span id="disp-po" style="font-size:18px; font-weight:700; color:#e2e8f0; flex:1; text-align:center;">0</span>
-            <button onclick="adjustPO(1)" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">+</button>
+            <span id="disp-po" style="font-size:18px; font-weight:700; color:#e2e8f0;">0</span>
           </div>
         </div>
       </div>
@@ -767,41 +754,26 @@ lucidCalc();
     </div>
 
         <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
-      <div style="font-size:11px; color:#64748b; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:14px; font-weight:600;">Update Account State</div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
         <div>
           <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Current Balance</label>
-          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
-            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
-            <input id="tpt-balance" type="number" value="25774" step="0.01"
-              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
-              oninput="tptCalc()">
-          </div>
+          <input id="tpt-balance" type="hidden" value="25774">
+          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$25,774.00</span>
         </div>
         <div>
           <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Highest EOD Balance</label>
-          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
-            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
-            <input id="tpt-peak" type="number" value="25815.50" step="0.01"
-              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
-              oninput="tptCalc()">
-          </div>
+          <input id="tpt-peak" type="hidden" value="25815.50">
+          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$25,815.50</span>
         </div>
         <div>
           <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Best Single Day Profit</label>
-          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
-            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
-            <input id="tpt-bestday" type="number" value="750" step="0.01"
-              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
-              oninput="tptCalc()">
-          </div>
+          <input id="tpt-bestday" type="hidden" value="750">
+          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$750.00</span>
         </div>
         <div>
           <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Trading Days Completed</label>
           <div style="display:flex; align-items:center; gap:10px; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
-            <button onclick="tptAdjDay(-1)" style="background:none;border:none;color:#64748b;font-size:18px;cursor:pointer;line-height:1;">−</button>
-            <span id="tpt-days-disp" style="font-size:18px;font-weight:700;color:#e2e8f0;flex:1;text-align:center;">9</span>
-            <button onclick="tptAdjDay(1)" style="background:none;border:none;color:#64748b;font-size:18px;cursor:pointer;line-height:1;">+</button>
+            <span id="tpt-days-disp" style="font-size:18px;font-weight:700;color:#e2e8f0;">9</span>
           </div>
         </div>
       </div>
@@ -1001,35 +973,21 @@ tptCalc();
     </div>
 
     <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
-      <div style="font-size:11px; color:#64748b; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:14px; font-weight:600;">Update Account State</div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
         <div>
           <label style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">Current Balance</label>
-          <div style="display:flex;align-items:center;background:#141820;border:1px solid #374151;border-radius:8px;padding:8px 12px;">
-            <span style="color:#64748b;margin-right:6px;font-size:13px;">$</span>
-            <input id="ts-balance" type="number" value="51689.74" step="0.01"
-              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
-              oninput="tsCalc()">
-          </div>
+          <input id="ts-balance" type="hidden" value="51689.74">
+          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$51,689.74</span>
         </div>
         <div>
           <label style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">Highest EOD Balance</label>
-          <div style="display:flex;align-items:center;background:#141820;border:1px solid #374151;border-radius:8px;padding:8px 12px;">
-            <span style="color:#64748b;margin-right:6px;font-size:13px;">$</span>
-            <input id="ts-peak" type="number" value="51689.74" step="0.01"
-              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
-              oninput="tsCalc()">
-          </div>
+          <input id="ts-peak" type="hidden" value="51689.74">
+          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$51,689.74</span>
         </div>
         <div>
           <label style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">Best Single Day Profit</label>
-          <div style="display:flex;align-items:center;background:#141820;border:1px solid #374151;border-radius:8px;padding:8px 12px;">
-            <span style="color:#64748b;margin-right:6px;font-size:13px;">$</span>
-            <input id="ts-bestday" type="number" value="1500" step="0.01"
-              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
-              oninput="tsCalc()">
-          </div>
-          <div style="font-size:10px; color:#ef4444; margin-top:5px; padding: 0 4px;">⚠️ Hard cap: must stay below $1,500</div>
+          <input id="ts-bestday" type="hidden" value="1500">
+          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$1,500.00</span>
         </div>
       </div>
     </div>
@@ -1096,7 +1054,7 @@ function tsCalc() {
   const ddPct = Math.min(100, (ddUsed / TS_DD) * 100);
   const totalProfit = bal - TS_START;
   const isBreach = bal <= floor;
-  const consViolated = bestDay >= TS_CONSISTENCY_CAP;
+  const consViolated = bestDay > TS_CONSISTENCY_CAP;
   const consPct = Math.min(100, (bestDay / TS_CONSISTENCY_CAP) * 100);
   const profitPct = Math.min(100, Math.max(0, (totalProfit / TS_TARGET) * 100));
   const profitNeeded = Math.max(0, TS_TARGET - totalProfit);
@@ -1115,7 +1073,7 @@ function tsCalc() {
   document.getElementById('ts-cons-bar').style.background = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
   document.getElementById('ts-cons-lbl').style.color = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
   document.getElementById('ts-cons-lbl').textContent = bestDay > 0 ? '$' + bestDay.toFixed(0) + ' / $' + TS_CONSISTENCY_CAP.toLocaleString() + ' cap' : 'Enter best day';
-  document.getElementById('ts-cons-note').textContent = consViolated ? '🔴 Consistency violated — best day $' + bestDay.toFixed(0) + ' meets or exceeds $1,500 cap' : bestDay > 0 ? (consPct > 80 ? '⚠️ ' : '✅ ') + 'Best day $' + bestDay.toFixed(0) + ' is ' + consPct.toFixed(0) + '% of the $1,500 cap' : 'Best single day must stay below $1,500 (50% of $3,000 target)';
+  document.getElementById('ts-cons-note').textContent = consViolated ? '🔴 Consistency violated — best day $' + bestDay.toFixed(0) + ' exceeds $1,500 cap' : bestDay > 0 ? (consPct > 80 ? '⚠️ ' : '✅ ') + 'Best day $' + bestDay.toFixed(0) + ' is ' + consPct.toFixed(0) + '% of the $1,500 cap' : 'Best single day must stay below $1,500 (50% of $3,000 target)';
 
   document.getElementById('ts-floor-example').textContent = 'Current: balance $' + bal.toFixed(2) + ', highest EOD $' + effPeak.toFixed(2) + ' → floor locked at $' + floor.toFixed(2);
 
@@ -1168,35 +1126,21 @@ tsCalc();
     </div>
 
     <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
-      <div style="font-size:11px; color:#64748b; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:14px; font-weight:600;">Update Account State</div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
         <div>
           <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Current Balance</label>
-          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
-            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
-            <input id="bsk-balance" type="number" value="50433" step="0.01"
-              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
-              oninput="bskCalc()">
-          </div>
+          <input id="bsk-balance" type="hidden" value="50433">
+          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$50,433.00</span>
         </div>
         <div>
           <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Highest EOD Balance</label>
-          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
-            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
-            <input id="bsk-peak" type="number" value="50433" step="0.01"
-              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
-              oninput="bskCalc()">
-          </div>
+          <input id="bsk-peak" type="hidden" value="50433">
+          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$50,433.00</span>
         </div>
         <div>
           <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Best Single Day Profit</label>
-          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
-            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
-            <input id="bsk-bestday" type="number" value="900" step="0.01"
-              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
-              oninput="bskCalc()">
-          </div>
-          <div style="font-size:10px; color:#ef4444; margin-top:5px; padding: 0 4px;">⚠️ Must stay below $900 (30% of $3,000 target)</div>
+          <input id="bsk-bestday" type="hidden" value="900">
+          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$900.00</span>
         </div>
       </div>
     </div>
@@ -1282,7 +1226,7 @@ function bskCalc() {
   const totalProfit = bal - BSK_START;
   const isBreach = bal <= floor;
   const consCap = BSK_TARGET * BSK_CONS_PCT; // $900
-  const consViolated = bestDay >= consCap;
+  const consViolated = bestDay > consCap;
   const consPct = Math.min(100, (bestDay / consCap) * 100);
   const profitPct = Math.min(100, Math.max(0, (totalProfit / BSK_TARGET) * 100));
   const profitNeeded = Math.max(0, BSK_TARGET - totalProfit);
@@ -1301,7 +1245,7 @@ function bskCalc() {
   document.getElementById('bsk-cons-bar').style.background = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
   document.getElementById('bsk-cons-lbl').style.color = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
   document.getElementById('bsk-cons-lbl').textContent = bestDay > 0 ? '$' + bestDay.toFixed(0) + ' / $' + consCap.toFixed(0) + ' cap' : 'Enter best day';
-  document.getElementById('bsk-cons-note').textContent = consViolated ? '🔴 Consistency violated — best day meets or exceeds $' + consCap.toFixed(0) + ' cap' : bestDay > 0 ? (consPct > 80 ? '⚠️ ' : '✅ ') + 'Best day is ' + consPct.toFixed(0) + '% of $' + consCap.toFixed(0) + ' cap' : 'Best single day must stay below 30% of $3,000 profit target ($900)';
+  document.getElementById('bsk-cons-note').textContent = consViolated ? '🔴 Consistency violated — best day exceeds $' + consCap.toFixed(0) + ' cap' : bestDay > 0 ? (consPct > 80 ? '⚠️ ' : '✅ ') + 'Best day is ' + consPct.toFixed(0) + '% of $' + consCap.toFixed(0) + ' cap' : 'Best single day must stay below 30% of $3,000 profit target ($900)';
 
   document.getElementById('bsk-floor-example').textContent = 'Balance $' + bal.toFixed(2) + ', highest EOD $' + effPeak.toFixed(2) + ' → floor $' + floor.toFixed(2);
 
