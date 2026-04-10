@@ -398,17 +398,10 @@
     <div class="table-header" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
       <div class="section-title" style="margin-bottom:0; border:none; padding:0">
         AMP — Personal Live Account
-        <span class="badge badge-red">$-1,296.09 net from records</span>
       </div>
       <div style="display:flex; align-items:center; gap:8px;">
         <span style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.5px;">Current Balance</span>
-        <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:6px 10px;">
-          <span style="color:#64748b; margin-right:5px; font-size:13px;">$</span>
-          <input id="amp-cur-bal" type="number" value="0" placeholder="Enter balance"
-            style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:110px;"
-            oninput="updateAmpBal()">
-        </div>
-        <span id="amp-bal-pnl" style="font-size:12px; font-weight:600; color:#64748b;"></span>
+        <span style="font-size:20px; font-weight:700; color:#f87171;">$0.00</span>
       </div>
     </div>
     <div style="padding: 16px 20px;">
@@ -453,13 +446,11 @@
     <div class="table-header" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
       <div class="section-title" style="margin-bottom:0; border:none; padding:0">
         HyperLiquid — Personal Live Account
-        <span id="hl-net-badge" class="badge badge-green"></span>
       </div>
       <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
         <span style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.5px;">Current Balance</span>
         <span id="hl-cur-bal-display" style="font-size:20px; font-weight:700; color:#34d399;"></span>
         <button onclick="showHlRecords()" style="background:#1a1f2e; border:1px solid #374151; color:#94a3b8; padding:5px 12px; border-radius:6px; font-size:12px; cursor:pointer; font-weight:600;">Records</button>
-        <button onclick="showHlLogTrade()" style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.3); color:#34d399; padding:5px 12px; border-radius:6px; font-size:12px; cursor:pointer; font-weight:600;">+ Log Trade</button>
       </div>
     </div>
     <div style="padding: 16px 20px;">
@@ -488,58 +479,8 @@
   </div>
 </div>
 
-<!-- HL Log Trade Modal -->
-<div id="hl-logtrade-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:1000; align-items:center; justify-content:center;">
-  <div style="background:#1a1f2e; border:1px solid #374151; border-radius:14px; padding:28px; max-width:420px; width:92%;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-      <div style="font-size:16px; font-weight:700; color:#e2e8f0;">Log HyperLiquid Trade</div>
-      <button onclick="closeHlModals()" style="background:none; border:none; color:#64748b; font-size:20px; cursor:pointer; line-height:1;">✕</button>
-    </div>
-    <div style="display:grid; gap:14px;">
-      <div>
-        <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Date (D/M/YYYY)</label>
-        <input id="hl-log-date" type="text" placeholder="08/04/2026" style="background:#141820; border:1px solid #374151; color:#e2e8f0; padding:8px 12px; border-radius:8px; font-size:14px; width:100%; box-sizing:border-box;">
-      </div>
-      <div>
-        <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Closed PNL ($)</label>
-        <input id="hl-log-cpnl" type="number" step="0.01" placeholder="0.00" oninput="hlCalcNet()" style="background:#141820; border:1px solid #374151; color:#e2e8f0; padding:8px 12px; border-radius:8px; font-size:14px; width:100%; box-sizing:border-box;">
-      </div>
-      <div>
-        <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Open Fee ($)</label>
-        <input id="hl-log-fee" type="number" step="0.01" placeholder="0.00" oninput="hlCalcNet()" style="background:#141820; border:1px solid #374151; color:#e2e8f0; padding:8px 12px; border-radius:8px; font-size:14px; width:100%; box-sizing:border-box;">
-      </div>
-      <div>
-        <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Funding (negative = paid)</label>
-        <input id="hl-log-funding" type="number" step="0.01" placeholder="0.00" oninput="hlCalcNet()" style="background:#141820; border:1px solid #374151; color:#e2e8f0; padding:8px 12px; border-radius:8px; font-size:14px; width:100%; box-sizing:border-box;">
-      </div>
-      <div style="background:#141820; border-radius:8px; padding:12px 16px; display:flex; justify-content:space-between; align-items:center;">
-        <span style="font-size:12px; color:#64748b; text-transform:uppercase; letter-spacing:0.5px;">Net P&amp;L</span>
-        <span id="hl-log-net" style="font-size:18px; font-weight:700; color:#94a3b8;">—</span>
-      </div>
-      <div style="display:flex; gap:10px;">
-        <button onclick="hlLogTrade()" style="flex:1; background:rgba(52,211,153,0.15); border:1px solid rgba(52,211,153,0.4); color:#34d399; padding:10px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer;">Log Trade</button>
-        <button onclick="closeHlModals()" style="flex:1; background:#141820; border:1px solid #374151; color:#94a3b8; padding:10px; border-radius:8px; font-size:14px; cursor:pointer;">Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
-// AMP balance tracker
-function updateAmpBal() {
-  const val = parseFloat(document.getElementById('amp-cur-bal').value);
-  const lbl = document.getElementById('amp-bal-pnl');
-  const netDeployed = 2730.00 - 1433.91;
-  if (!isNaN(val) && val >= 0) {
-    const unrealisedPnl = val - netDeployed;
-    const sign = unrealisedPnl >= 0 ? '+' : '';
-    lbl.textContent = sign + '$' + unrealisedPnl.toFixed(2) + ' vs net deployed';
-    lbl.style.color = unrealisedPnl >= 0 ? '#34d399' : '#f87171';
-  } else {
-    lbl.textContent = '';
-  }
-}
-updateAmpBal();
+// AMP balance: static display
 
 // HyperLiquid dynamic records system
 const HL_SEED_BALANCE = 539.26;
@@ -560,8 +501,6 @@ function hlRenderStats() {
   const avgWin = gains.length > 0 ? totalGains / gains.length : 0;
   const avgLoss = losses.length > 0 ? totalLosses / losses.length : 0;
   const sign = totalNet >= 0 ? '+' : '';
-  document.getElementById('hl-net-badge').textContent = '$' + sign + totalNet.toFixed(2) + ' net from records';
-  document.getElementById('hl-net-badge').className = 'badge ' + (totalNet >= 0 ? 'badge-green' : 'badge-red');
   document.getElementById('hl-cur-bal-display').textContent = '$' + currentBalance.toFixed(2);
   document.getElementById('hl-cur-bal-display').style.color = currentBalance >= HL_SEED_BALANCE ? '#34d399' : '#f87171';
   document.getElementById('hl-stats-grid').innerHTML = `
@@ -589,42 +528,11 @@ function showHlRecords() {
   document.getElementById('hl-records-modal').style.display = 'flex';
 }
 
-function showHlLogTrade() {
-  document.getElementById('hl-log-date').value = '';
-  document.getElementById('hl-log-cpnl').value = '';
-  document.getElementById('hl-log-fee').value = '';
-  document.getElementById('hl-log-funding').value = '';
-  document.getElementById('hl-log-net').textContent = '—';
-  document.getElementById('hl-log-net').style.color = '#94a3b8';
-  document.getElementById('hl-logtrade-modal').style.display = 'flex';
-}
-
 function closeHlModals() {
   document.getElementById('hl-records-modal').style.display = 'none';
   document.getElementById('hl-logtrade-modal').style.display = 'none';
 }
 
-function hlCalcNet() {
-  const cpnl = parseFloat(document.getElementById('hl-log-cpnl').value) || 0;
-  const fee = parseFloat(document.getElementById('hl-log-fee').value) || 0;
-  const funding = parseFloat(document.getElementById('hl-log-funding').value) || 0;
-  const net = cpnl - fee + funding;
-  const el = document.getElementById('hl-log-net');
-  el.textContent = (net >= 0 ? '+' : '') + '$' + net.toFixed(2);
-  el.style.color = net >= 0 ? '#34d399' : '#f87171';
-}
-
-function hlLogTrade() {
-  const date = document.getElementById('hl-log-date').value.trim();
-  const cpnl = parseFloat(document.getElementById('hl-log-cpnl').value) || 0;
-  const fee = parseFloat(document.getElementById('hl-log-fee').value) || 0;
-  const funding = parseFloat(document.getElementById('hl-log-funding').value) || 0;
-  if (!date) { alert('Please enter a date.'); return; }
-  const net = cpnl - fee + funding;
-  hlRecords.push({date, closedPnl: cpnl, fee, funding, net});
-  closeHlModals();
-  hlRenderStats();
-}
 
 hlRenderStats();
 </script>
@@ -797,14 +705,14 @@ function lucidCalc() {
   document.getElementById('po-bar').style.width = poPct + '%';
   document.getElementById('po-label').textContent = poValue + ' / ' + PO_TARGET;
   document.getElementById('po-note').textContent = poValue >= PO_TARGET
-    ? '🎉 Live account unlocked\!'
+    ? '🎉 Live account unlocked!'
     : (PO_TARGET - poValue) + ' more payout(s) to go live';
 
   // Next payout
   document.getElementById('np-label').textContent = '$' + (nextPayout > 0 ? nextPayout.toFixed(2) : '0.00');
-  if (\!canPayout && qdValue < QD_TARGET) {
+  if (!canPayout && qdValue < QD_TARGET) {
     document.getElementById('np-detail').textContent = 'Need ' + (QD_TARGET - qdValue) + ' more qualifying day(s) before first payout request';
-  } else if (\!canPayout && totalProfit <= 0) {
+  } else if (!canPayout && totalProfit <= 0) {
     document.getElementById('np-detail').textContent = 'Account not yet in profit — no payout available';
   } else {
     document.getElementById('np-detail').textContent =
@@ -833,7 +741,7 @@ function lucidCalc() {
     <div style="background:#141820; border-radius:8px; padding:14px; text-align:center;">
       <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Account Status</div>
       <div style="font-size:14px; font-weight:700; color:${isBreach ? '#f87171' : poValue >= PO_TARGET ? '#34d399' : '#fbbf24'};">
-        ${isBreach ? '🔴 Breached' : poValue >= PO_TARGET ? '🎉 Go Live\!' : canPayout ? '✅ Payout Ready' : '🟡 In Progress'}
+        ${isBreach ? '🔴 Breached' : poValue >= PO_TARGET ? '🎉 Go Live!' : canPayout ? '✅ Payout Ready' : '🟡 In Progress'}
       </div>
     </div>
   `;
@@ -1006,14 +914,14 @@ function tptCalc() {
   const renewalPct = Math.max(0, Math.min(100, ((totalWindow - daysLeft) / totalWindow) * 100));
 
   // Status
-  const passed = totalProfit >= effectiveTarget && daysMet && \!isBreach;
+  const passed = totalProfit >= effectiveTarget && daysMet && !isBreach;
   const failed = isBreach;
 
   // Profit bar
   document.getElementById('tpt-profit-bar').style.width = profitPct + '%';
   document.getElementById('tpt-profit-lbl').textContent = '$' + Math.max(0,totalProfit).toFixed(2) + ' / $' + effectiveTarget.toFixed(0);
   document.getElementById('tpt-profit-note').textContent = passed
-    ? '✅ Profit target met\!'
+    ? '✅ Profit target met!'
     : profitNeeded > 0
       ? '$' + profitNeeded.toFixed(2) + ' still needed' + (consistencyViolated ? ' (consistency-adjusted)' : '')
       : 'Target reached — check days & consistency';
@@ -1443,199 +1351,129 @@ bskCalc();
           </thead>
           <tbody>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">30/11/24</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">TopStep</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$10,144.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">30/11/24</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">TFT</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,592.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">4/12/24</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,703.14</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">6/12/24</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,756.92</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">11/12/24</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,530.32</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">13/12/24</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$326.92</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">16/12/24</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$206.74</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">23/12/24</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$3,207.24</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">24/12/24</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$3,285.96</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">26/12/24</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$91.80</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">27/12/24</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$193.66</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">6/1/25</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$5,414.80</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">7/1/25</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,919.74</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">12/11/25</td>
+        <td style="padding:9px 14px; color:#94a3b8;">2/4/26</td>
         <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,818.00</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,850.00</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">25/11/25</td>
+        <td style="padding:9px 14px; color:#94a3b8;">18/3/26</td>
         <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$5,073.00</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,000.00</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">12/12/25</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$3,225.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">20/12/25</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$6,000.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">3/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,002.11</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">3/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,187.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">6/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$260.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">6/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$516.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">8/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">15/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">15/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Lucid</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$710.05</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">16/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,476.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">16/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$6,000.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">17/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$270.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">19/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,200.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">20/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$249.30</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">21/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$972.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">27/1/26</td>
+        <td style="padding:9px 14px; color:#94a3b8;">12/3/26</td>
         <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$250.00</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">27/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$507.04</td>
+        <td style="padding:9px 14px; color:#94a3b8;">11/3/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">28/1/26</td>
+        <td style="padding:9px 14px; color:#94a3b8;">10/3/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">9/3/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$513.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">5/3/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$477.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">4/3/26</td>
         <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
         <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$270.00</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">28/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$763.34</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">29/1/26</td>
+        <td style="padding:9px 14px; color:#94a3b8;">3/3/26</td>
         <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$360.00</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$270.00</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">29/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$800.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">29/1/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$756.40</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">30/1/26</td>
+        <td style="padding:9px 14px; color:#94a3b8;">2/3/26</td>
         <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
         <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$225.00</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">30/1/26</td>
+        <td style="padding:9px 14px; color:#94a3b8;">24/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$405.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">20/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">19/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$270.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">18/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$250.20</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">17/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$380.70</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">13/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$250.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">13/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,000.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">10/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$250.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">9/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$249.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">6/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$265.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">5/2/26</td>
         <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Lucid</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,085.00</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$557.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">4/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$464.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">4/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$667.40</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">3/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$7,647.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">3/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$239.00</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
         <td style="padding:9px 14px; color:#94a3b8;">2/2/26</td>
@@ -1653,129 +1491,199 @@ bskCalc();
         <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$525.35</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">3/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$7,647.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">3/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$239.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">4/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$464.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">4/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$667.40</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">5/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Lucid</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$557.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">6/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$265.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">9/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$249.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">10/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$250.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">13/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$250.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">13/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,000.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">17/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$380.70</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">18/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$250.20</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">19/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$270.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">20/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">24/2/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$405.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">2/3/26</td>
+        <td style="padding:9px 14px; color:#94a3b8;">30/1/26</td>
         <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
         <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$225.00</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">3/3/26</td>
+        <td style="padding:9px 14px; color:#94a3b8;">30/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Lucid</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,085.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">29/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$360.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">29/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$800.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">29/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$756.40</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">28/1/26</td>
         <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
         <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$270.00</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">4/3/26</td>
+        <td style="padding:9px 14px; color:#94a3b8;">28/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$763.34</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">27/1/26</td>
         <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$250.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">27/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$507.04</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">21/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$972.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">20/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$249.30</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">19/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,200.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">17/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
         <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$270.00</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">5/3/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$477.00</td>
+        <td style="padding:9px 14px; color:#94a3b8;">16/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,476.00</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">9/3/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$513.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">10/3/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">11/3/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">12/3/26</td>
-        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
-      </tr>
-      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">18/3/26</td>
+        <td style="padding:9px 14px; color:#94a3b8;">16/1/26</td>
         <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,000.00</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$6,000.00</td>
       </tr>
       <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
-        <td style="padding:9px 14px; color:#94a3b8;">2/4/26</td>
+        <td style="padding:9px 14px; color:#94a3b8;">15/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">15/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Lucid</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$710.05</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">8/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">6/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$260.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">6/1/26</td>
         <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
-        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,850.00</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$516.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">3/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,002.11</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">3/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,187.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">20/12/25</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$6,000.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">12/12/25</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$3,225.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">25/11/25</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$5,073.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">12/11/25</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,818.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">7/1/25</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,919.74</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">6/1/25</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$5,414.80</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">27/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$193.66</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">26/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$91.80</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">24/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$3,285.96</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">23/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$3,207.24</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">16/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$206.74</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">13/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$326.92</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">11/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,530.32</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">6/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,756.92</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">4/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,703.14</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">30/11/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">TopStep</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$10,144.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">30/11/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">TFT</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,592.00</td>
       </tr>
           <tr style="border-top:2px solid #374151; background:#141820;">
             <td colspan="2" style="padding:11px 14px; color:#94a3b8; font-weight:600; text-transform:uppercase; font-size:11px; letter-spacing:0.5px;">Total</td>
@@ -1814,126 +1722,36 @@ const chartDefaults = {
   plugins: {
     legend: { labels: { color: '#94a3b8', font: { size: 11 } } },
     tooltip: {
-      backgroundColor: '#1e2537',
-      borderColor: '#374151',
+      backgroundColor: pieColors.slice(0, firmNames.length),
       borderWidth: 1,
-      titleColor: '#e2e8f0',
-      bodyColor: '#94a3b8',
-      callbacks: {
-        label: function(ctx) {
-          return ' $' + ctx.parsed.y.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
-        }
-      }
-    }
-  },
-  scales: {
-    x: {
-      ticks: { color: '#475569', font: { size: 10 } },
-      grid: { color: 'rgba(255,255,255,0.04)' }
-    },
-    y: {
-      ticks: {
-        color: '#475569', font: { size: 10 },
-        callback: v => '$' + (v>=1000||v<=-1000 ? (v/1000).toFixed(0)+'k' : v)
-      },
-      grid: { color: 'rgba(255,255,255,0.04)' }
-    }
-  }
-};
-
-// Monthly Net P&L bar
-new Chart(document.getElementById('monthlyNetChart'), {
-  type: 'bar',
-  data: {
-    labels: monthLabels,
-    datasets: [{
-      label: 'Net P&L',
-      data: netMonthly,
-      backgroundColor: netMonthlyColors,
-      borderRadius: 4,
-      borderSkipped: false,
+      borderColor: '#0f1117',
     }]
   },
-  options: { ...chartDefaults }
-});
-
-// Cumulative line chart
-new Chart(document.getElementById('cumulativeChart'), {
-  type: 'line',
-  data: {
-    labels: monthLabels,
-    datasets: [
-      {
-        label: 'Prop Firm Net',
-        data: cumNet,
-        borderColor: '#60a5fa',
-        backgroundColor: 'rgba(96,165,250,0.1)',
-        fill: true,
-        tension: 0.3,
-        pointRadius: 3,
-        pointBackgroundColor: '#60a5fa',
-      },
-      {
-        label: 'Overall (incl. Personal Live)',
-        data: cumOverall,
-        borderColor: '#a78bfa',
-        backgroundColor: 'rgba(167,139,250,0.05)',
-        fill: false,
-        tension: 0.3,
-        pointRadius: 3,
-        borderDash: [4,3],
-        pointBackgroundColor: '#a78bfa',
-      }
-    ]
-  },
-  options: { ...chartDefaults }
-});
-
-// Fees vs Payouts grouped bar
-new Chart(document.getElementById('feesPayoutsChart'), {
-  type: 'bar',
-  data: {
-    labels: monthLabels,
-    datasets: [
-      {
-        label: 'Payouts',
-        data: payoutsData,
-        backgroundColor: 'rgba(52,211,153,0.7)',
-        borderRadius: 3,
-      },
-      {
-        label: 'Fees Paid',
-        data: feesData.map(v => -v),
-        backgroundColor: 'rgba(248,113,113,0.7)',
-        borderRadius: 3,
-      }
-    ]
-  },
   options: {
-    ...chartDefaults,
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
-      ...chartDefaults.plugins,
+      legend: {
+        position: 'right',
+        labels: { color: '#94a3b8', font: { size: 11 }, padding: 12 }
+      },
       tooltip: {
-        ...chartDefaults.plugins.tooltip,
+        backgroundColor: '#1e2537',
+        borderColor: '#374151',
+        borderWidth: 1,
+        titleColor: '#e2e8f0',
+        bodyColor: '#94a3b8',
         callbacks: {
           label: function(ctx) {
-            return ' $' + Math.abs(ctx.parsed.y).toLocaleString('en-US', {minimumFractionDigits:2});
+            const total = ctx.dataset.data.reduce((a,b) => a+b, 0);
+            const pct = ((ctx.parsed / total) * 100).toFixed(1);
+            return ' $' + ctx.parsed.toLocaleString('en-US', {minimumFractionDigits:2}) + ' (' + pct + '%)';
           }
         }
       }
     }
   }
 });
-
-// Firm pie chart (positive P&L firms only)
-const firmNames = ["APEX", "MFFU", "Tradeify", "TopStep", "Blusky", "Lucid"];
-const firmPnls = [36849.4, 18203.32, 7959.13, 7264.85, 7167.4, 1915.55];
-const pieColors = ['#3b82f6','#10b981','#8b5cf6','#f59e0b','#06b6d4','#ec4899','#84cc16','#f97316','#6366f1'];
-
-new Chart(document.getElementById('firmPieChart'), {
-  type: 'doughnut',
-  data: {
-    labels: firmNames,
-    datasets: [{
-      data: firmPnls,
-      backg
+</script>
+</body>
+</html>
