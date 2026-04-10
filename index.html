@@ -1,1 +1,1939 @@
-hi
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kitaR by oxkit</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0f1117;
+    color: #e2e8f0;
+    min-height: 100vh;
+  }
+  .header {
+    background: linear-gradient(135deg, #1a1f2e 0%, #16213e 100%);
+    border-bottom: 1px solid #2d3748;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .header-icon {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .header h1 {
+    font-size: 22px; font-weight: 700;
+    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .header .subtitle {
+    font-size: 12px; color: #64748b; margin-top: 2px;
+  }
+  .container { padding: 24px 32px; max-width: 1400px; margin: 0 auto; }
+
+  /* Summary Cards */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .card {
+    background: #1a1f2e;
+    border: 1px solid #2d3748;
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .card.green::before { background: linear-gradient(90deg, #10b981, #34d399); }
+  .card.red::before { background: linear-gradient(90deg, #ef4444, #f87171); }
+  .card.blue::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+  .card.purple::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+  .card.amber::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+  .card-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+  .card-value { font-size: 26px; font-weight: 700; }
+  .card-value.green { color: #34d399; }
+  .card-value.red { color: #f87171; }
+  .card-value.blue { color: #60a5fa; }
+  .card-value.purple { color: #a78bfa; }
+  .card-value.amber { color: #fbbf24; }
+  .card-sub { font-size: 11px; color: #4a5568; margin-top: 4px; }
+
+  /* Charts */
+  .charts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+  .chart-card {
+    background: #1a1f2e;
+    border: 1px solid #2d3748;
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .chart-card.full { grid-column: 1 / -1; }
+  .chart-title {
+    font-size: 13px; font-weight: 600; color: #94a3b8;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    margin-bottom: 16px;
+  }
+  .chart-wrap { position: relative; height: 240px; }
+  .chart-wrap.tall { height: 300px; }
+
+  /* Section titles */
+  .section-title {
+    font-size: 14px; font-weight: 600; color: #94a3b8;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2d3748;
+  }
+
+  /* Table */
+  .table-card {
+    background: #1a1f2e;
+    border: 1px solid #2d3748;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .table-header { padding: 16px 20px; border-bottom: 1px solid #2d3748; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th {
+    padding: 11px 14px;
+    text-align: right;
+    font-size: 10px; font-weight: 600; color: #475569;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    background: #141820;
+    border-bottom: 1px solid #2d3748;
+  }
+  thead th:first-child { text-align: left; }
+  tbody td { padding: 11px 14px; text-align: right; border-bottom: 1px solid #1e2537; }
+  tbody td:first-child { text-align: left; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #1e2537; }
+  .firm-name { font-weight: 600; color: #e2e8f0; }
+  .positive { color: #34d399; }
+  .negative { color: #f87171; }
+
+  /* AMP section */
+  .amp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-top: 14px;
+  }
+  .amp-stat {
+    background: #141820;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .amp-stat-label { font-size: 10px; color: #475569; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; }
+  .amp-stat-value { font-size: 18px; font-weight: 700; }
+
+  .footer { text-align: center; padding: 20px; color: #2d3748; font-size: 11px; }
+  .badge {
+    display: inline-block; padding: 2px 8px;
+    border-radius: 4px; font-size: 10px; font-weight: 600;
+    margin-left: 8px; vertical-align: middle;
+  }
+  .badge-green { background: rgba(52,211,153,0.15); color: #34d399; }
+  .badge-red { background: rgba(248,113,113,0.15); color: #f87171; }
+
+  /* ── Tab navigation ───────────────────────────────────── */
+  .tab-nav {
+    display: flex;
+    gap: 4px;
+    padding: 16px 32px 0;
+    background: linear-gradient(135deg, #1a1f2e 0%, #16213e 100%);
+    border-bottom: 1px solid #2d3748;
+  }
+  .tab-btn {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px 8px 0 0;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    background: transparent;
+    color: #475569;
+    letter-spacing: 0.4px;
+    transition: color 0.2s, background 0.2s;
+    position: relative;
+    bottom: -1px;
+  }
+  .tab-btn:hover { color: #94a3b8; }
+  .tab-btn.active {
+    background: #0f1117;
+    color: #e2e8f0;
+    border: 1px solid #2d3748;
+    border-bottom-color: #0f1117;
+  }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+</style>
+</head>
+<body>
+
+<div class="header" style="display:flex; align-items:center; justify-content:space-between;">
+  <div>
+    <h1 style="margin:0; font-size:26px; font-weight:700; letter-spacing:-0.5px;">kita<em style="font-style:italic;">R</em></h1>
+    <div style="margin-top:10px; max-width:560px; line-height:1.65; color:#64748b; font-size:12px;">
+      <p style="margin:0 0 8px;">trading is like the deep sea. anyone can see the surface, but the prizes are found in the depths.</p>
+      <p style="margin:0 0 8px;">kita<em>R</em> is my personal trading kit, eventually a blueprint designed to turn human observation into systematic discipline. it is the synergy of intuition and math that I call <span style="color:#94a3b8; font-weight:600;">co-quant</span>.</p>
+      <p style="margin:0 0 8px;">this is how i manage my R. this is how you can build your own.</p>
+      <p style="margin:0; color:#475569; font-style:italic;">"the ocean doesn't care if you're right."</p>
+    </div>
+  </div>
+  <div style="display:flex; align-items:center; gap:18px;">
+    <a href="https://x.com/oxkitng" target="_blank" style="color:#94a3b8; text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px; transition:color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      @oxkitng
+    </a>
+    <a href="https://kita.co" target="_blank" style="color:#94a3b8; text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px; transition:color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      Shop
+    </a>
+  </div>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('stat', this)">📊 Stats</button>
+  <button class="tab-btn" onclick="switchTab('tracker', this)">🎯 Tracker</button>
+  <button class="tab-btn" onclick="switchTab('payout', this)">💰 Payout</button>
+</div>
+
+<div class="container">
+  <div id="pane-stat" class="tab-pane active">
+
+    <div class="cards-grid">
+    <div class="card green">
+      <div class="card-label">Total Payouts Received</div>
+      <div class="card-value green">$91,223.95</div>
+      <div class="card-sub">Money confirmed in bank</div>
+    </div>
+    <div class="card red">
+      <div class="card-label">Total Fees Paid</div>
+      <div class="card-value red">-$20,099.30</div>
+      <div class="card-sub">Challenge costs (all firms)</div>
+    </div>
+    <div class="card blue">
+      <div class="card-label">Net Prop Firm P&L</div>
+      <div class="card-value blue">$71,124.65</div>
+      <div class="card-sub">Payouts minus all fees</div>
+    </div>
+    <div class="card red">
+      <div class="card-label">Personal Live P&L</div>
+      <div class="card-value red">$-1,236.65</div>
+      <div class="card-sub">AMP + HyperLiquid combined</div>
+    </div>
+    <div class="card purple">
+      <div class="card-label">Overall Net P&L</div>
+      <div class="card-value purple">$69,888.00</div>
+      <div class="card-sub">Prop + Personal Live</div>
+    </div>
+    <div class="card amber">
+      <div class="card-label">ROI on Fees</div>
+      <div class="card-value amber">354%</div>
+      <div class="card-sub">4.5x return on fees paid</div>
+    </div>
+  </div>
+
+    <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Monthly Net P&L (Payouts − Fees)</div>
+      <div class="chart-wrap">
+        <canvas id="monthlyNetChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Cumulative Net P&L</div>
+      <div class="chart-wrap">
+        <canvas id="cumulativeChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+    <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Monthly Fees vs Payouts</div>
+      <div class="chart-wrap">
+        <canvas id="feesPayoutsChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Firm P&L Breakdown</div>
+      <div class="chart-wrap">
+        <canvas id="firmPieChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+    <div class="table-card">
+    <div class="table-header">
+      <div class="section-title" style="margin-bottom:0; border:none; padding:0">Prop Firm Breakdown</div>
+    </div>
+    <table>
+      <thead>
+                <tr>
+          <th>Firm</th>
+          <th>Net P&L</th>
+          <th>Total Payouts</th>
+          <th>Total Costs</th>
+          <th>ROI</th>
+          <th>Cost Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td class="firm-name">APEX</td>
+          <td class="positive">+$36,849.40</td>
+          <td class="positive">$39,508.00</td>
+          <td class="negative">-$2,658.60</td>
+          <td class="positive">+1386%</td>
+          <td style="color:#475569; font-size:11px;">Challenge Fee</td>
+        </tr>
+        <tr>
+          <td class="firm-name">MFFU</td>
+          <td class="positive">+$18,203.32</td>
+          <td class="positive">$23,439.35</td>
+          <td class="negative">-$5,236.03</td>
+          <td class="positive">+348%</td>
+          <td style="color:#475569; font-size:11px;">Challenge Fee</td>
+        </tr>
+        <tr>
+          <td class="firm-name">Tradeify</td>
+          <td class="positive">+$7,959.13</td>
+          <td class="positive">$8,761.83</td>
+          <td class="negative">-$802.70</td>
+          <td class="positive">+992%</td>
+          <td style="color:#475569; font-size:11px;">Challenge Fee</td>
+        </tr>
+        <tr>
+          <td class="firm-name">TopStep</td>
+          <td class="positive">+$7,264.85</td>
+          <td class="positive">$10,144.00</td>
+          <td class="negative">-$2,879.15</td>
+          <td class="positive">+252%</td>
+          <td style="color:#475569; font-size:11px;">Challenge Fee</td>
+        </tr>
+        <tr>
+          <td class="firm-name">Blusky</td>
+          <td class="positive">+$7,167.40</td>
+          <td class="positive">$7,952.90</td>
+          <td class="negative">-$785.50</td>
+          <td class="positive">+912%</td>
+          <td style="color:#475569; font-size:11px;">Challenge Fee</td>
+        </tr>
+        <tr>
+          <td class="firm-name">Lucid</td>
+          <td class="positive">+$1,915.55</td>
+          <td class="positive">$2,352.05</td>
+          <td class="negative">-$436.50</td>
+          <td class="positive">+439%</td>
+          <td style="color:#475569; font-size:11px;">Challenge Fee</td>
+        </tr>
+        <tr>
+          <td class="firm-name">GFF</td>
+          <td class="negative">-$35.00</td>
+          <td class="positive">$0.00</td>
+          <td class="negative">-$35.00</td>
+          <td class="negative">-100%</td>
+          <td style="color:#475569; font-size:11px;">Challenge Fee</td>
+        </tr>
+        <tr>
+          <td class="firm-name">Earn2Trade</td>
+          <td class="negative">-$120.00</td>
+          <td class="positive">$0.00</td>
+          <td class="negative">-$120.00</td>
+          <td class="negative">-100%</td>
+          <td style="color:#475569; font-size:11px;">Challenge Fee</td>
+        </tr>
+        <tr>
+          <td class="firm-name">Raen</td>
+          <td class="negative">-$389.00</td>
+          <td class="positive">$0.00</td>
+          <td class="negative">-$389.00</td>
+          <td class="negative">-100%</td>
+          <td style="color:#475569; font-size:11px;">Challenge Fee</td>
+        </tr>
+        <tr>
+          <td class="firm-name">TPT</td>
+          <td class="negative">-$569.00</td>
+          <td class="positive">$0.00</td>
+          <td class="negative">-$569.00</td>
+          <td class="negative">-100%</td>
+          <td style="color:#475569; font-size:11px;">Challenge Fee</td>
+        </tr>
+        <tr>
+          <td class="firm-name">TFT</td>
+          <td class="negative">-$7,418.00</td>
+          <td class="positive">$1,592.00</td>
+          <td class="negative">-$9,010.00</td>
+          <td class="negative">-82%</td>
+          <td style="color:#475569; font-size:11px;">Challenge Fee</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+    <div class="table-card">
+    <div class="table-header" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+      <div class="section-title" style="margin-bottom:0; border:none; padding:0">
+        AMP — Personal Live Account
+        <span class="badge badge-red">$-1,296.09 net from records</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.5px;">Current Balance</span>
+        <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:6px 10px;">
+          <span style="color:#64748b; margin-right:5px; font-size:13px;">$</span>
+          <input id="amp-cur-bal" type="number" value="0" placeholder="Enter balance"
+            style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:110px;"
+            oninput="updateAmpBal()">
+        </div>
+        <span id="amp-bal-pnl" style="font-size:12px; font-weight:600; color:#64748b;"></span>
+      </div>
+    </div>
+    <div style="padding: 16px 20px;">
+      <div class="amp-grid">
+        <div class="amp-stat">
+          <div class="amp-stat-label">Total Deposits</div>
+          <div class="amp-stat-value" style="color:#60a5fa">$2,730.00</div>
+        </div>
+        <div class="amp-stat">
+          <div class="amp-stat-label">Total Withdrawals</div>
+          <div class="amp-stat-value" style="color:#a78bfa">$1,433.91</div>
+        </div>
+        <div class="amp-stat">
+          <div class="amp-stat-label">Trading Gains</div>
+          <div class="amp-stat-value positive">$3,495.90</div>
+        </div>
+        <div class="amp-stat">
+          <div class="amp-stat-label">Trading Losses</div>
+          <div class="amp-stat-value negative">-$4,791.99</div>
+        </div>
+        <div class="amp-stat">
+          <div class="amp-stat-label">Win / Loss</div>
+          <div class="amp-stat-value" style="color:#e2e8f0">30 / 29</div>
+        </div>
+        <div class="amp-stat">
+          <div class="amp-stat-label">Win Rate</div>
+          <div class="amp-stat-value" style="color:#fbbf24">51%</div>
+        </div>
+        <div class="amp-stat">
+          <div class="amp-stat-label">Avg Win</div>
+          <div class="amp-stat-value positive">$116.53</div>
+        </div>
+        <div class="amp-stat">
+          <div class="amp-stat-label">Avg Loss</div>
+          <div class="amp-stat-value negative">-$165.24</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="table-card">
+    <div class="table-header" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+      <div class="section-title" style="margin-bottom:0; border:none; padding:0">
+        HyperLiquid — Personal Live Account
+        <span id="hl-net-badge" class="badge badge-green"></span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+        <span style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.5px;">Current Balance</span>
+        <span id="hl-cur-bal-display" style="font-size:20px; font-weight:700; color:#34d399;"></span>
+        <button onclick="showHlRecords()" style="background:#1a1f2e; border:1px solid #374151; color:#94a3b8; padding:5px 12px; border-radius:6px; font-size:12px; cursor:pointer; font-weight:600;">Records</button>
+        <button onclick="showHlLogTrade()" style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.3); color:#34d399; padding:5px 12px; border-radius:6px; font-size:12px; cursor:pointer; font-weight:600;">+ Log Trade</button>
+      </div>
+    </div>
+    <div style="padding: 16px 20px;">
+      <div class="amp-grid" id="hl-stats-grid"></div>
+    </div>
+  </div>
+
+<!-- HL Records Modal -->
+<div id="hl-records-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:1000; align-items:center; justify-content:center;">
+  <div style="background:#1a1f2e; border:1px solid #374151; border-radius:14px; padding:28px; max-width:640px; width:92%; max-height:80vh; overflow-y:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <div style="font-size:16px; font-weight:700; color:#e2e8f0;">HyperLiquid Trade Records</div>
+      <button onclick="closeHlModals()" style="background:none; border:none; color:#64748b; font-size:20px; cursor:pointer; line-height:1;">✕</button>
+    </div>
+    <table style="width:100%; border-collapse:collapse; font-size:13px;">
+      <thead>
+        <tr style="border-bottom:1px solid #374151;">
+          <th style="text-align:left; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
+          <th style="text-align:right; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Net P&amp;L</th>
+          <th style="text-align:right; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
+          <th style="text-align:right; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Funding</th>
+        </tr>
+      </thead>
+      <tbody id="hl-records-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- HL Log Trade Modal -->
+<div id="hl-logtrade-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:1000; align-items:center; justify-content:center;">
+  <div style="background:#1a1f2e; border:1px solid #374151; border-radius:14px; padding:28px; max-width:420px; width:92%;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <div style="font-size:16px; font-weight:700; color:#e2e8f0;">Log HyperLiquid Trade</div>
+      <button onclick="closeHlModals()" style="background:none; border:none; color:#64748b; font-size:20px; cursor:pointer; line-height:1;">✕</button>
+    </div>
+    <div style="display:grid; gap:14px;">
+      <div>
+        <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Date (D/M/YYYY)</label>
+        <input id="hl-log-date" type="text" placeholder="08/04/2026" style="background:#141820; border:1px solid #374151; color:#e2e8f0; padding:8px 12px; border-radius:8px; font-size:14px; width:100%; box-sizing:border-box;">
+      </div>
+      <div>
+        <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Closed PNL ($)</label>
+        <input id="hl-log-cpnl" type="number" step="0.01" placeholder="0.00" oninput="hlCalcNet()" style="background:#141820; border:1px solid #374151; color:#e2e8f0; padding:8px 12px; border-radius:8px; font-size:14px; width:100%; box-sizing:border-box;">
+      </div>
+      <div>
+        <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Open Fee ($)</label>
+        <input id="hl-log-fee" type="number" step="0.01" placeholder="0.00" oninput="hlCalcNet()" style="background:#141820; border:1px solid #374151; color:#e2e8f0; padding:8px 12px; border-radius:8px; font-size:14px; width:100%; box-sizing:border-box;">
+      </div>
+      <div>
+        <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Funding (negative = paid)</label>
+        <input id="hl-log-funding" type="number" step="0.01" placeholder="0.00" oninput="hlCalcNet()" style="background:#141820; border:1px solid #374151; color:#e2e8f0; padding:8px 12px; border-radius:8px; font-size:14px; width:100%; box-sizing:border-box;">
+      </div>
+      <div style="background:#141820; border-radius:8px; padding:12px 16px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:12px; color:#64748b; text-transform:uppercase; letter-spacing:0.5px;">Net P&amp;L</span>
+        <span id="hl-log-net" style="font-size:18px; font-weight:700; color:#94a3b8;">—</span>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <button onclick="hlLogTrade()" style="flex:1; background:rgba(52,211,153,0.15); border:1px solid rgba(52,211,153,0.4); color:#34d399; padding:10px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer;">Log Trade</button>
+        <button onclick="closeHlModals()" style="flex:1; background:#141820; border:1px solid #374151; color:#94a3b8; padding:10px; border-radius:8px; font-size:14px; cursor:pointer;">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// AMP balance tracker
+function updateAmpBal() {
+  const val = parseFloat(document.getElementById('amp-cur-bal').value);
+  const lbl = document.getElementById('amp-bal-pnl');
+  const netDeployed = 2730.00 - 1433.91;
+  if (!isNaN(val) && val >= 0) {
+    const unrealisedPnl = val - netDeployed;
+    const sign = unrealisedPnl >= 0 ? '+' : '';
+    lbl.textContent = sign + '$' + unrealisedPnl.toFixed(2) + ' vs net deployed';
+    lbl.style.color = unrealisedPnl >= 0 ? '#34d399' : '#f87171';
+  } else {
+    lbl.textContent = '';
+  }
+}
+updateAmpBal();
+
+// HyperLiquid dynamic records system
+const HL_SEED_BALANCE = 539.26;
+const HL_DEPOSITS = 500.00;
+
+let hlRecords = [
+  {date:'08/04/2026', closedPnl:20.80, fee:0.19, funding:-0.43, net:20.18}
+];
+
+function hlRenderStats() {
+  const totalNet = hlRecords.reduce((s,r) => s + r.net, 0);
+  const currentBalance = HL_SEED_BALANCE + totalNet;
+  const gains = hlRecords.filter(r => r.net > 0);
+  const losses = hlRecords.filter(r => r.net < 0);
+  const totalGains = gains.reduce((s,r) => s + r.net, 0);
+  const totalLosses = losses.reduce((s,r) => s + r.net, 0);
+  const winRate = hlRecords.length > 0 ? Math.round(gains.length / hlRecords.length * 100) : 0;
+  const avgWin = gains.length > 0 ? totalGains / gains.length : 0;
+  const avgLoss = losses.length > 0 ? totalLosses / losses.length : 0;
+  const sign = totalNet >= 0 ? '+' : '';
+  document.getElementById('hl-net-badge').textContent = '$' + sign + totalNet.toFixed(2) + ' net from records';
+  document.getElementById('hl-net-badge').className = 'badge ' + (totalNet >= 0 ? 'badge-green' : 'badge-red');
+  document.getElementById('hl-cur-bal-display').textContent = '$' + currentBalance.toFixed(2);
+  document.getElementById('hl-cur-bal-display').style.color = currentBalance >= HL_SEED_BALANCE ? '#34d399' : '#f87171';
+  document.getElementById('hl-stats-grid').innerHTML = `
+    <div class="amp-stat"><div class="amp-stat-label">Seed Balance</div><div class="amp-stat-value" style="color:#60a5fa">$${HL_SEED_BALANCE.toFixed(2)}</div></div>
+    <div class="amp-stat"><div class="amp-stat-label">Cash Deposited</div><div class="amp-stat-value" style="color:#60a5fa">$${HL_DEPOSITS.toFixed(2)}</div></div>
+    <div class="amp-stat"><div class="amp-stat-label">Recorded Gains</div><div class="amp-stat-value positive">$${totalGains.toFixed(2)}</div></div>
+    <div class="amp-stat"><div class="amp-stat-label">Recorded Losses</div><div class="amp-stat-value ${losses.length > 0 ? 'negative' : ''}" style="${losses.length === 0 ? 'color:#475569;' : ''}">$${totalLosses.toFixed(2)}</div></div>
+    <div class="amp-stat"><div class="amp-stat-label">Win / Loss</div><div class="amp-stat-value" style="color:#e2e8f0">${gains.length} / ${losses.length}</div></div>
+    <div class="amp-stat"><div class="amp-stat-label">Win Rate</div><div class="amp-stat-value" style="color:#fbbf24">${winRate}%</div></div>
+    <div class="amp-stat"><div class="amp-stat-label">Avg Win</div><div class="amp-stat-value ${gains.length > 0 ? 'positive' : ''}" style="${gains.length === 0 ? 'color:#475569;' : ''}">${gains.length > 0 ? '$' + avgWin.toFixed(2) : '—'}</div></div>
+    <div class="amp-stat"><div class="amp-stat-label">Avg Loss</div><div class="amp-stat-value ${losses.length > 0 ? 'negative' : ''}" style="${losses.length === 0 ? 'color:#475569;' : ''}">${losses.length > 0 ? '$' + avgLoss.toFixed(2) : '—'}</div></div>
+  `;
+}
+
+function showHlRecords() {
+  const tbody = document.getElementById('hl-records-tbody');
+  tbody.innerHTML = hlRecords.map(r => `
+    <tr style="border-bottom:1px solid #1e293b;">
+      <td style="padding:9px 10px; color:#e2e8f0;">${r.date}</td>
+      <td style="padding:9px 10px; text-align:right; color:${r.net >= 0 ? '#34d399' : '#f87171'}; font-weight:600;">${r.net >= 0 ? '+' : ''}$${r.net.toFixed(2)}</td>
+      <td style="padding:9px 10px; text-align:right; color:#f87171;">-$${r.fee.toFixed(2)}</td>
+      <td style="padding:9px 10px; text-align:right; color:${r.funding >= 0 ? '#34d399' : '#f87171'};">${r.funding >= 0 ? '+' : ''}$${r.funding.toFixed(2)}</td>
+    </tr>
+  `).join('');
+  document.getElementById('hl-records-modal').style.display = 'flex';
+}
+
+function showHlLogTrade() {
+  document.getElementById('hl-log-date').value = '';
+  document.getElementById('hl-log-cpnl').value = '';
+  document.getElementById('hl-log-fee').value = '';
+  document.getElementById('hl-log-funding').value = '';
+  document.getElementById('hl-log-net').textContent = '—';
+  document.getElementById('hl-log-net').style.color = '#94a3b8';
+  document.getElementById('hl-logtrade-modal').style.display = 'flex';
+}
+
+function closeHlModals() {
+  document.getElementById('hl-records-modal').style.display = 'none';
+  document.getElementById('hl-logtrade-modal').style.display = 'none';
+}
+
+function hlCalcNet() {
+  const cpnl = parseFloat(document.getElementById('hl-log-cpnl').value) || 0;
+  const fee = parseFloat(document.getElementById('hl-log-fee').value) || 0;
+  const funding = parseFloat(document.getElementById('hl-log-funding').value) || 0;
+  const net = cpnl - fee + funding;
+  const el = document.getElementById('hl-log-net');
+  el.textContent = (net >= 0 ? '+' : '') + '$' + net.toFixed(2);
+  el.style.color = net >= 0 ? '#34d399' : '#f87171';
+}
+
+function hlLogTrade() {
+  const date = document.getElementById('hl-log-date').value.trim();
+  const cpnl = parseFloat(document.getElementById('hl-log-cpnl').value) || 0;
+  const fee = parseFloat(document.getElementById('hl-log-fee').value) || 0;
+  const funding = parseFloat(document.getElementById('hl-log-funding').value) || 0;
+  if (!date) { alert('Please enter a date.'); return; }
+  const net = cpnl - fee + funding;
+  hlRecords.push({date, closedPnl: cpnl, fee, funding, net});
+  closeHlModals();
+  hlRenderStats();
+}
+
+hlRenderStats();
+</script>
+
+
+  </div>
+  <div id="pane-tracker" class="tab-pane">
+    <div style="margin-bottom: 28px;">
+    <div class="section-title" style="margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #2d3748; font-size:14px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px;">
+      🟢 Active Account Tracker &mdash; Lucid 150k Sim Funded
+    </div>
+
+        <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:20px; align-items:center;">
+      <div style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>
+      <div class="rule-badge" style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown</div>
+      <div class="rule-badge" style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max Loss $4,500</div>
+      <div class="rule-badge" style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">5 Days × $250+ to Qualify</div>
+      <div class="rule-badge" style="background:rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.25); color:#60a5fa; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Payout: 50% of Total Profit</div>
+      <div class="rule-badge" style="background:rgba(167,139,250,0.12); border:1px solid rgba(167,139,250,0.25); color:#a78bfa; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">5 Payouts → Go Live</div>
+      <div class="rule-badge" style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">No Consistency Rule</div>
+    </div>
+
+        <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
+      <div style="font-size:11px; color:#64748b; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:14px; font-weight:600;">Update Account State</div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:14px;">
+        <div>
+          <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Current Account Balance</label>
+          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
+            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
+            <input id="inp-balance" type="number" value="150000" step="0.01"
+              style="background:none; border:none; outline:none; color:#e2e8f0; font-size:14px; font-weight:600; width:100%;"
+              onchange="lucidCalc()" oninput="lucidCalc()">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Highest Balance Reached (EOD)</label>
+          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
+            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
+            <input id="inp-peak" type="number" value="150000" step="0.01"
+              style="background:none; border:none; outline:none; color:#e2e8f0; font-size:14px; font-weight:600; width:100%;"
+              onchange="lucidCalc()" oninput="lucidCalc()">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Qualifying Days Completed</label>
+          <div style="display:flex; align-items:center; gap:10px; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
+            <button onclick="adjustQD(-1)" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">−</button>
+            <span id="disp-qd" style="font-size:18px; font-weight:700; color:#e2e8f0; flex:1; text-align:center;">0</span>
+            <button onclick="adjustQD(1)" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">+</button>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Payouts Received</label>
+          <div style="display:flex; align-items:center; gap:10px; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
+            <button onclick="adjustPO(-1)" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">−</button>
+            <span id="disp-po" style="font-size:18px; font-weight:700; color:#e2e8f0; flex:1; text-align:center;">0</span>
+            <button onclick="adjustPO(1)" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div id="lucid-stats" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap:14px; margin-bottom:16px;"></div>
+
+        <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+                <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span style="font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Drawdown Used</span>
+            <span id="dd-label" style="font-size:11px; color:#f87171; font-weight:600;">$0 / $4,500</span>
+          </div>
+          <div style="background:#141820; border-radius:6px; height:10px; overflow:hidden;">
+            <div id="dd-bar" style="height:100%; border-radius:6px; transition:width 0.4s, background 0.4s; width:0%; background:#34d399;"></div>
+          </div>
+          <div id="dd-note" style="font-size:10px; color:#475569; margin-top:6px;">$4,500 remaining before breach</div>
+        </div>
+                <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span style="font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Qualifying Days</span>
+            <span id="qd-label" style="font-size:11px; color:#fbbf24; font-weight:600;">0 / 5</span>
+          </div>
+          <div style="background:#141820; border-radius:6px; height:10px; overflow:hidden;">
+            <div id="qd-bar" style="height:100%; border-radius:6px; transition:width 0.4s; width:0%; background:#fbbf24;"></div>
+          </div>
+          <div id="qd-note" style="font-size:10px; color:#475569; margin-top:6px;">5 days of $250+ profit needed to request payout</div>
+        </div>
+                <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span style="font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Payouts → Go Live</span>
+            <span id="po-label" style="font-size:11px; color:#a78bfa; font-weight:600;">0 / 5</span>
+          </div>
+          <div style="background:#141820; border-radius:6px; height:10px; overflow:hidden;">
+            <div id="po-bar" style="height:100%; border-radius:6px; transition:width 0.4s; width:0%; background:#a78bfa;"></div>
+          </div>
+          <div id="po-note" style="font-size:10px; color:#475569; margin-top:6px;">5 successful payouts to unlock live account</div>
+        </div>
+                <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span style="font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Next Payout Estimate</span>
+            <span id="np-label" style="font-size:11px; color:#34d399; font-weight:600;">$0.00</span>
+          </div>
+          <div style="background:#141820; border-radius:6px; padding:10px 12px; margin-top:2px;">
+            <div id="np-detail" style="font-size:11px; color:#475569;">Enter your balance and peak to calculate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+let qdValue = 0;
+let poValue = 0;
+const STARTING_BALANCE = 150000;
+const MAX_LOSS = 4500;
+const QD_TARGET = 5;
+const PO_TARGET = 5;
+const QD_MIN_PROFIT = 250;
+const PAYOUT_SPLIT = 0.5;
+
+function adjustQD(delta) {
+  qdValue = Math.max(0, Math.min(QD_TARGET, qdValue + delta));
+  document.getElementById('disp-qd').textContent = qdValue;
+  lucidCalc();
+}
+function adjustPO(delta) {
+  poValue = Math.max(0, Math.min(PO_TARGET, poValue + delta));
+  document.getElementById('disp-po').textContent = poValue;
+  lucidCalc();
+}
+
+function lucidCalc() {
+  const balance = parseFloat(document.getElementById('inp-balance').value) || STARTING_BALANCE;
+  const peak = parseFloat(document.getElementById('inp-peak').value) || balance;
+  const effectivePeak = Math.max(peak, balance);
+
+  // Drawdown floor = peak - max_loss
+  const ddFloor = effectivePeak - MAX_LOSS;
+  const ddUsed = Math.max(0, effectivePeak - balance);
+  const ddRemaining = Math.max(0, balance - ddFloor);
+  const ddPct = Math.min(100, (ddUsed / MAX_LOSS) * 100);
+
+  // Total profit so far
+  const totalProfit = balance - STARTING_BALANCE;
+  // Next payout = 50% of total profit (if positive and QD met)
+  const nextPayout = (totalProfit > 0 && qdValue >= QD_TARGET) ? totalProfit * PAYOUT_SPLIT : 0;
+  const canPayout = qdValue >= QD_TARGET && totalProfit > 0;
+
+  // Status
+  const isBreach = balance <= ddFloor;
+
+  // Update drawdown bar
+  const ddBar = document.getElementById('dd-bar');
+  ddBar.style.width = ddPct + '%';
+  ddBar.style.background = ddPct < 50 ? '#34d399' : ddPct < 75 ? '#fbbf24' : '#f87171';
+  document.getElementById('dd-label').textContent = '$' + ddUsed.toFixed(0) + ' / $' + MAX_LOSS.toLocaleString();
+  document.getElementById('dd-note').textContent = isBreach
+    ? '⚠️ Account breached — drawdown limit hit'
+    : '$' + ddRemaining.toFixed(0) + ' buffer remaining (floor: $' + ddFloor.toLocaleString() + ')';
+
+  // QD bar
+  const qdPct = (qdValue / QD_TARGET) * 100;
+  document.getElementById('qd-bar').style.width = qdPct + '%';
+  document.getElementById('qd-label').textContent = qdValue + ' / ' + QD_TARGET;
+  document.getElementById('qd-note').textContent = qdValue >= QD_TARGET
+    ? '✅ Qualifying days complete — payout eligible'
+    : (QD_TARGET - qdValue) + ' more qualifying day(s) of $' + QD_MIN_PROFIT + '+ profit needed';
+
+  // Payouts bar
+  const poPct = (poValue / PO_TARGET) * 100;
+  document.getElementById('po-bar').style.width = poPct + '%';
+  document.getElementById('po-label').textContent = poValue + ' / ' + PO_TARGET;
+  document.getElementById('po-note').textContent = poValue >= PO_TARGET
+    ? '🎉 Live account unlocked\!'
+    : (PO_TARGET - poValue) + ' more payout(s) to go live';
+
+  // Next payout
+  document.getElementById('np-label').textContent = '$' + (nextPayout > 0 ? nextPayout.toFixed(2) : '0.00');
+  if (\!canPayout && qdValue < QD_TARGET) {
+    document.getElementById('np-detail').textContent = 'Need ' + (QD_TARGET - qdValue) + ' more qualifying day(s) before first payout request';
+  } else if (\!canPayout && totalProfit <= 0) {
+    document.getElementById('np-detail').textContent = 'Account not yet in profit — no payout available';
+  } else {
+    document.getElementById('np-detail').textContent =
+      '50% of $' + totalProfit.toFixed(2) + ' total profit = $' + nextPayout.toFixed(2) + ' payout';
+  }
+
+  // Stats grid
+  const profitColor = totalProfit >= 0 ? '#34d399' : '#f87171';
+  document.getElementById('lucid-stats').innerHTML = `
+    <div style="background:#141820; border-radius:8px; padding:14px; text-align:center;">
+      <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Total Profit</div>
+      <div style="font-size:20px; font-weight:700; color:${profitColor};">${totalProfit >= 0 ? '+' : ''}$${totalProfit.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820; border-radius:8px; padding:14px; text-align:center;">
+      <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Drawdown Floor</div>
+      <div style="font-size:20px; font-weight:700; color:#f87171;">$${ddFloor.toLocaleString()}</div>
+    </div>
+    <div style="background:#141820; border-radius:8px; padding:14px; text-align:center;">
+      <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Buffer Remaining</div>
+      <div style="font-size:20px; font-weight:700; color:${ddPct < 50 ? '#34d399' : ddPct < 75 ? '#fbbf24' : '#f87171'};">$${ddRemaining.toFixed(0)}</div>
+    </div>
+    <div style="background:#141820; border-radius:8px; padding:14px; text-align:center;">
+      <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Next Payout</div>
+      <div style="font-size:20px; font-weight:700; color:#34d399;">$${nextPayout.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820; border-radius:8px; padding:14px; text-align:center;">
+      <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Account Status</div>
+      <div style="font-size:14px; font-weight:700; color:${isBreach ? '#f87171' : poValue >= PO_TARGET ? '#34d399' : '#fbbf24'};">
+        ${isBreach ? '🔴 Breached' : poValue >= PO_TARGET ? '🎉 Go Live\!' : canPayout ? '✅ Payout Ready' : '🟡 In Progress'}
+      </div>
+    </div>
+  `;
+}
+
+// Init
+lucidCalc();
+</script>
+
+    <div style="margin-bottom: 28px;">
+    <div style="font-size:14px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #2d3748;">
+      🟡 Challenge Tracker &mdash; Take Profit Trader (TPT) 25k
+    </div>
+    <div style="font-size:11px; color:#475569; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#94a3b8; font-weight:600; font-family:monospace; letter-spacing:0.3px;">TPT2658347</span></div>
+
+        <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+      <div style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>
+      <div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $1,500</div>
+      <div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $1,500</div>
+      <div style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Min 5 Trading Days</div>
+      <div style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#fca5a5; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Consistency: Best Day &lt; 50% of Total Profit</div>
+      <div style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); color:#fde68a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600; margin-left:auto;">⏰ Renews 25 Apr 2026</div>
+    </div>
+
+        <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
+      <div style="font-size:11px; color:#64748b; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:14px; font-weight:600;">Update Account State</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
+        <div>
+          <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Current Balance</label>
+          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
+            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
+            <input id="tpt-balance" type="number" value="25774" step="0.01"
+              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
+              oninput="tptCalc()">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Highest EOD Balance</label>
+          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
+            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
+            <input id="tpt-peak" type="number" value="25815.50" step="0.01"
+              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
+              oninput="tptCalc()">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Best Single Day Profit</label>
+          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
+            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
+            <input id="tpt-bestday" type="number" value="750" step="0.01"
+              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
+              oninput="tptCalc()">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Trading Days Completed</label>
+          <div style="display:flex; align-items:center; gap:10px; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
+            <button onclick="tptAdjDay(-1)" style="background:none;border:none;color:#64748b;font-size:18px;cursor:pointer;line-height:1;">−</button>
+            <span id="tpt-days-disp" style="font-size:18px;font-weight:700;color:#e2e8f0;flex:1;text-align:center;">9</span>
+            <button onclick="tptAdjDay(1)" style="background:none;border:none;color:#64748b;font-size:18px;cursor:pointer;line-height:1;">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div id="tpt-stats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:16px;"></div>
+
+        <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Profit Progress</span>
+            <span id="tpt-profit-lbl" style="font-size:11px;color:#34d399;font-weight:600;"></span>
+          </div>
+          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
+            <div id="tpt-profit-bar" style="height:100%;border-radius:6px;transition:width 0.4s;background:linear-gradient(90deg,#10b981,#34d399);width:0%;"></div>
+          </div>
+          <div id="tpt-profit-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Drawdown Used</span>
+            <span id="tpt-dd-lbl" style="font-size:11px;color:#f87171;font-weight:600;"></span>
+          </div>
+          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
+            <div id="tpt-dd-bar" style="height:100%;border-radius:6px;transition:width 0.4s,background 0.4s;width:0%;"></div>
+          </div>
+          <div id="tpt-dd-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Consistency Check</span>
+            <span id="tpt-cons-lbl" style="font-size:11px;font-weight:600;"></span>
+          </div>
+          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
+            <div id="tpt-cons-bar" style="height:100%;border-radius:6px;transition:width 0.4s,background 0.4s;width:0%;"></div>
+          </div>
+          <div id="tpt-cons-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Renewal Countdown</span>
+            <span id="tpt-renewal-lbl" style="font-size:11px;color:#fbbf24;font-weight:600;"></span>
+          </div>
+          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
+            <div id="tpt-renewal-bar" style="height:100%;border-radius:6px;transition:width 0.4s;background:#f59e0b;width:0%;"></div>
+          </div>
+          <div id="tpt-renewal-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+let tptDays = 9;
+const TPT_START = 25000;
+const TPT_TARGET = 1500;
+const TPT_DD = 1500;
+const TPT_MIN_DAYS = 5;
+const TPT_RENEWAL = new Date('2026-04-25');
+
+function tptAdjDay(d) {
+  tptDays = Math.max(0, tptDays + d);
+  document.getElementById('tpt-days-disp').textContent = tptDays;
+  tptCalc();
+}
+
+function tptCalc() {
+  const bal = parseFloat(document.getElementById('tpt-balance').value) || TPT_START;
+  const peak = parseFloat(document.getElementById('tpt-peak').value) || bal;
+  const bestDay = parseFloat(document.getElementById('tpt-bestday').value) || 0;
+  const effPeak = Math.max(peak, bal);
+
+  const floor = effPeak - TPT_DD;
+  const ddUsed = Math.max(0, effPeak - bal);
+  const ddRemaining = Math.max(0, bal - floor);
+  const ddPct = Math.min(100, (ddUsed / TPT_DD) * 100);
+  const totalProfit = bal - TPT_START;
+  const isBreach = bal <= floor;
+
+  // Effective profit target considering consistency
+  // If bestDay > 50% of total profit, effective target = bestDay * 2
+  let effectiveTarget = TPT_TARGET;
+  let consistencyViolated = false;
+  let consPct = 0;
+  let adjTargetMsg = '';
+  if (totalProfit > 0 && bestDay > 0) {
+    consPct = (bestDay / totalProfit) * 100;
+    if (bestDay > totalProfit * 0.5) {
+      consistencyViolated = true;
+      effectiveTarget = Math.max(TPT_TARGET, bestDay * 2);
+      adjTargetMsg = 'Best day $' + bestDay.toFixed(0) + ' = ' + consPct.toFixed(0) + '% of profit → target raised to $' + effectiveTarget.toFixed(0);
+    }
+  } else if (bestDay > 0 && totalProfit <= 0) {
+    consPct = 100;
+    consistencyViolated = true;
+    effectiveTarget = bestDay * 2;
+    adjTargetMsg = 'No net profit yet — effective target = $' + effectiveTarget.toFixed(0);
+  }
+
+  const profitPct = Math.min(100, Math.max(0, (totalProfit / effectiveTarget) * 100));
+  const profitNeeded = Math.max(0, effectiveTarget - totalProfit);
+  const daysMet = tptDays >= TPT_MIN_DAYS;
+
+  // Renewal countdown
+  const today = new Date();
+  const msLeft = TPT_RENEWAL - today;
+  const daysLeft = Math.ceil(msLeft / (1000 * 60 * 60 * 24));
+  const totalWindow = 30; // approx subscription window
+  const renewalPct = Math.max(0, Math.min(100, ((totalWindow - daysLeft) / totalWindow) * 100));
+
+  // Status
+  const passed = totalProfit >= effectiveTarget && daysMet && \!isBreach;
+  const failed = isBreach;
+
+  // Profit bar
+  document.getElementById('tpt-profit-bar').style.width = profitPct + '%';
+  document.getElementById('tpt-profit-lbl').textContent = '$' + Math.max(0,totalProfit).toFixed(2) + ' / $' + effectiveTarget.toFixed(0);
+  document.getElementById('tpt-profit-note').textContent = passed
+    ? '✅ Profit target met\!'
+    : profitNeeded > 0
+      ? '$' + profitNeeded.toFixed(2) + ' still needed' + (consistencyViolated ? ' (consistency-adjusted)' : '')
+      : 'Target reached — check days & consistency';
+
+  // DD bar
+  document.getElementById('tpt-dd-bar').style.width = ddPct + '%';
+  document.getElementById('tpt-dd-bar').style.background = ddPct < 50 ? '#34d399' : ddPct < 75 ? '#fbbf24' : '#f87171';
+  document.getElementById('tpt-dd-lbl').textContent = '$' + ddUsed.toFixed(0) + ' / $' + TPT_DD.toLocaleString();
+  document.getElementById('tpt-dd-note').textContent = isBreach
+    ? '🔴 Account breached — drawdown limit hit'
+    : 'Floor $' + floor.toFixed(2) + ' · $' + ddRemaining.toFixed(2) + ' buffer left';
+
+  // Consistency bar
+  const cBarVal = Math.min(100, bestDay > 0 && totalProfit > 0 ? consPct : 0);
+  document.getElementById('tpt-cons-bar').style.width = cBarVal + '%';
+  document.getElementById('tpt-cons-bar').style.background = consistencyViolated ? '#f87171' : '#34d399';
+  document.getElementById('tpt-cons-lbl').textContent = bestDay > 0
+    ? consPct.toFixed(0) + '% (limit 50%)'
+    : 'Enter best day';
+  document.getElementById('tpt-cons-lbl').style.color = consistencyViolated ? '#f87171' : '#34d399';
+  document.getElementById('tpt-cons-note').textContent = consistencyViolated
+    ? adjTargetMsg
+    : bestDay > 0
+      ? '✅ OK — best day $' + bestDay.toFixed(0) + ' is ' + consPct.toFixed(0) + '% of profit'
+      : 'No single day may exceed 50% of total net profit';
+
+  // Renewal
+  document.getElementById('tpt-renewal-bar').style.width = renewalPct + '%';
+  document.getElementById('tpt-renewal-bar').style.background = daysLeft <= 5 ? '#f87171' : daysLeft <= 10 ? '#fbbf24' : '#f59e0b';
+  document.getElementById('tpt-renewal-lbl').textContent = daysLeft > 0 ? daysLeft + ' days left' : 'Expired';
+  document.getElementById('tpt-renewal-lbl').style.color = daysLeft <= 5 ? '#f87171' : '#fbbf24';
+  document.getElementById('tpt-renewal-note').textContent = 'Renews 25 Apr 2026 — pass or fail before then';
+
+  // Stats
+  document.getElementById('tpt-stats').innerHTML = `
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Total Profit</div>
+      <div style="font-size:20px;font-weight:700;color:${totalProfit>=0?'#34d399':'#f87171'};">${totalProfit>=0?'+':''}$${totalProfit.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Effective Target</div>
+      <div style="font-size:20px;font-weight:700;color:${consistencyViolated?'#f87171':'#60a5fa'};">$${effectiveTarget.toFixed(0)}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Buffer Remaining</div>
+      <div style="font-size:20px;font-weight:700;color:${ddPct<50?'#34d399':ddPct<75?'#fbbf24':'#f87171'};">$${ddRemaining.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Trading Days</div>
+      <div style="font-size:20px;font-weight:700;color:${daysMet?'#34d399':'#fbbf24'};">${tptDays} <span style="font-size:12px;color:#475569;">/ ${TPT_MIN_DAYS} min</span></div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Status</div>
+      <div style="font-size:13px;font-weight:700;color:${failed?'#f87171':passed?'#34d399':'#fbbf24'};">
+        ${failed?'🔴 Failed':passed?'✅ Passed':'🟡 In Progress'}
+      </div>
+    </div>
+  `;
+}
+tptCalc();
+</script>
+
+
+    <div style="margin-bottom: 28px;">
+    <div style="font-size:14px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #2d3748;">
+      🔵 Challenge Tracker &mdash; TopStep 50k Trading Combine
+    </div>
+    <div style="font-size:11px; color:#475569; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#94a3b8; font-weight:600; font-family:monospace; letter-spacing:0.3px;">50KTC-V2-45281-25364619</span></div>
+
+    <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+      <div style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>
+      <div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $2,000</div>
+      <div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $3,000</div>
+      <div style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#fca5a5; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Consistency: Best Day &lt; $1,500 (50% of target)</div>
+      <div style="background:rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.25); color:#60a5fa; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Floor Trails Highest EOD Balance</div>
+      <div style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); color:#fde68a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600; margin-left:auto;">⏰ Renews 1 May 2026</div>
+    </div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
+      <div style="font-size:11px; color:#64748b; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:14px; font-weight:600;">Update Account State</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
+        <div>
+          <label style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">Current Balance</label>
+          <div style="display:flex;align-items:center;background:#141820;border:1px solid #374151;border-radius:8px;padding:8px 12px;">
+            <span style="color:#64748b;margin-right:6px;font-size:13px;">$</span>
+            <input id="ts-balance" type="number" value="51689.74" step="0.01"
+              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
+              oninput="tsCalc()">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">Highest EOD Balance</label>
+          <div style="display:flex;align-items:center;background:#141820;border:1px solid #374151;border-radius:8px;padding:8px 12px;">
+            <span style="color:#64748b;margin-right:6px;font-size:13px;">$</span>
+            <input id="ts-peak" type="number" value="51689.74" step="0.01"
+              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
+              oninput="tsCalc()">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">Best Single Day Profit</label>
+          <div style="display:flex;align-items:center;background:#141820;border:1px solid #374151;border-radius:8px;padding:8px 12px;">
+            <span style="color:#64748b;margin-right:6px;font-size:13px;">$</span>
+            <input id="ts-bestday" type="number" value="1500" step="0.01"
+              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
+              oninput="tsCalc()">
+          </div>
+          <div style="font-size:10px; color:#ef4444; margin-top:5px; padding: 0 4px;">⚠️ Hard cap: must stay below $1,500</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ts-stats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:16px;"></div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Profit Progress</span>
+            <span id="ts-profit-lbl" style="font-size:11px;color:#34d399;font-weight:600;"></span>
+          </div>
+          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
+            <div id="ts-profit-bar" style="height:100%;border-radius:6px;transition:width 0.4s;background:linear-gradient(90deg,#10b981,#34d399);width:0%;"></div>
+          </div>
+          <div id="ts-profit-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Drawdown Used</span>
+            <span id="ts-dd-lbl" style="font-size:11px;color:#f87171;font-weight:600;"></span>
+          </div>
+          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
+            <div id="ts-dd-bar" style="height:100%;border-radius:6px;transition:width 0.4s,background 0.4s;width:0%;"></div>
+          </div>
+          <div id="ts-dd-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Consistency Check</span>
+            <span id="ts-cons-lbl" style="font-size:11px;font-weight:600;"></span>
+          </div>
+          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
+            <div id="ts-cons-bar" style="height:100%;border-radius:6px;transition:width 0.4s,background 0.4s;width:0%;"></div>
+          </div>
+          <div id="ts-cons-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
+        </div>
+        <div style="background:#141820; border-radius:8px; padding:16px;">
+          <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;font-weight:600;">EOD Trailing Drawdown — How It Works</div>
+          <div style="font-size:11px;color:#64748b;line-height:1.6;">
+            The floor only moves <strong style="color:#94a3b8;">up</strong> — it locks to your highest EOD balance minus $2,000.<br><br>
+            <span id="ts-floor-example" style="color:#60a5fa;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const TS_START = 50000;
+const TS_TARGET = 3000;
+const TS_DD = 2000;
+const TS_CONSISTENCY_CAP = 1500;
+
+function tsCalc() {
+  const bal = parseFloat(document.getElementById('ts-balance').value) || TS_START;
+  const peak = parseFloat(document.getElementById('ts-peak').value) || bal;
+  const bestDay = parseFloat(document.getElementById('ts-bestday').value) || 0;
+  const effPeak = Math.max(peak, bal);
+  const floor = effPeak - TS_DD;
+  const ddUsed = Math.max(0, effPeak - bal);
+  const ddRemaining = Math.max(0, bal - floor);
+  const ddPct = Math.min(100, (ddUsed / TS_DD) * 100);
+  const totalProfit = bal - TS_START;
+  const isBreach = bal <= floor;
+  const consViolated = bestDay >= TS_CONSISTENCY_CAP;
+  const consPct = Math.min(100, (bestDay / TS_CONSISTENCY_CAP) * 100);
+  const profitPct = Math.min(100, Math.max(0, (totalProfit / TS_TARGET) * 100));
+  const profitNeeded = Math.max(0, TS_TARGET - totalProfit);
+  const passed = totalProfit >= TS_TARGET && !isBreach && !consViolated;
+
+  document.getElementById('ts-profit-bar').style.width = profitPct + '%';
+  document.getElementById('ts-profit-lbl').textContent = '$' + Math.max(0, totalProfit).toFixed(2) + ' / $' + TS_TARGET.toLocaleString();
+  document.getElementById('ts-profit-note').textContent = passed ? '✅ Profit target met!' : profitNeeded > 0 ? '$' + profitNeeded.toFixed(2) + ' still needed to reach $' + TS_TARGET.toLocaleString() + ' target' : 'Target reached';
+
+  document.getElementById('ts-dd-bar').style.width = ddPct + '%';
+  document.getElementById('ts-dd-bar').style.background = ddPct < 50 ? '#34d399' : ddPct < 75 ? '#fbbf24' : '#f87171';
+  document.getElementById('ts-dd-lbl').textContent = '$' + ddUsed.toFixed(0) + ' / $' + TS_DD.toLocaleString();
+  document.getElementById('ts-dd-note').textContent = isBreach ? '🔴 Account breached' : 'Floor $' + floor.toFixed(2) + ' · $' + ddRemaining.toFixed(2) + ' buffer · trailing from $' + effPeak.toFixed(2);
+
+  document.getElementById('ts-cons-bar').style.width = consPct + '%';
+  document.getElementById('ts-cons-bar').style.background = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
+  document.getElementById('ts-cons-lbl').style.color = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
+  document.getElementById('ts-cons-lbl').textContent = bestDay > 0 ? '$' + bestDay.toFixed(0) + ' / $' + TS_CONSISTENCY_CAP.toLocaleString() + ' cap' : 'Enter best day';
+  document.getElementById('ts-cons-note').textContent = consViolated ? '🔴 Consistency violated — best day $' + bestDay.toFixed(0) + ' meets or exceeds $1,500 cap' : bestDay > 0 ? (consPct > 80 ? '⚠️ ' : '✅ ') + 'Best day $' + bestDay.toFixed(0) + ' is ' + consPct.toFixed(0) + '% of the $1,500 cap' : 'Best single day must stay below $1,500 (50% of $3,000 target)';
+
+  document.getElementById('ts-floor-example').textContent = 'Current: balance $' + bal.toFixed(2) + ', highest EOD $' + effPeak.toFixed(2) + ' → floor locked at $' + floor.toFixed(2);
+
+  document.getElementById('ts-stats').innerHTML = `
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Total Profit</div>
+      <div style="font-size:20px;font-weight:700;color:${totalProfit>=0?'#34d399':'#f87171'};">${totalProfit>=0?'+':''}$${totalProfit.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Needed to Pass</div>
+      <div style="font-size:20px;font-weight:700;color:#60a5fa;">$${profitNeeded.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Buffer Remaining</div>
+      <div style="font-size:20px;font-weight:700;color:${ddPct<50?'#34d399':ddPct<75?'#fbbf24':'#f87171'};">$${ddRemaining.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Drawdown Floor</div>
+      <div style="font-size:20px;font-weight:700;color:#f87171;">$${floor.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Status</div>
+      <div style="font-size:13px;font-weight:700;color:${isBreach?'#f87171':consViolated?'#ef4444':passed?'#34d399':'#fbbf24'};">
+        ${isBreach?'🔴 Breached':consViolated?'🔴 Consistency Fail':passed?'✅ Ready to Pass':'🟡 In Progress'}
+      </div>
+    </div>
+  `;
+}
+tsCalc();
+</script>
+
+    <div style="margin-bottom: 28px;">
+    <div style="font-size:14px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #2d3748;">
+      🟣 Challenge Tracker &mdash; BluSky PROPEL 50K
+    </div>
+    <div style="font-size:11px; color:#475569; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#94a3b8; font-weight:600; font-family:monospace; letter-spacing:0.3px;">BSKEPREMIUMYEE12937</span></div>
+
+    <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:12px 16px; margin-bottom:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+      <span style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Phase:</span>
+      <button id="bsk-phase-eval" onclick="bskSetPhase('eval')" style="padding:5px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; background:rgba(167,139,250,0.2); border:1px solid rgba(167,139,250,0.5); color:#a78bfa;">Evaluation</button>
+      <button id="bsk-phase-buf" onclick="bskSetPhase('buf')" style="padding:5px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; background:none; border:1px solid #374151; color:#64748b;">Buffer</button>
+      <span id="bsk-phase-label" style="font-size:11px; color:#a78bfa; font-weight:600; margin-left:4px;">Evaluation Phase</span>
+    </div>
+
+    <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+      <div style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>
+      <div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $2,000</div>
+      <div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $3,000</div>
+      <div style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#fca5a5; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Consistency: Best Day &lt; 30% of Profit ($900 cap)</div>
+    </div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
+      <div style="font-size:11px; color:#64748b; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:14px; font-weight:600;">Update Account State</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
+        <div>
+          <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Current Balance</label>
+          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
+            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
+            <input id="bsk-balance" type="number" value="50433" step="0.01"
+              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
+              oninput="bskCalc()">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Highest EOD Balance</label>
+          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
+            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
+            <input id="bsk-peak" type="number" value="50433" step="0.01"
+              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
+              oninput="bskCalc()">
+          </div>
+        </div>
+        <div>
+          <label style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; display:block; margin-bottom:6px;">Best Single Day Profit</label>
+          <div style="display:flex; align-items:center; background:#141820; border:1px solid #374151; border-radius:8px; padding:8px 12px;">
+            <span style="color:#64748b; margin-right:6px; font-size:13px;">$</span>
+            <input id="bsk-bestday" type="number" value="900" step="0.01"
+              style="background:none;border:none;outline:none;color:#e2e8f0;font-size:14px;font-weight:600;width:100%;"
+              oninput="bskCalc()">
+          </div>
+          <div style="font-size:10px; color:#ef4444; margin-top:5px; padding: 0 4px;">⚠️ Must stay below $900 (30% of $3,000 target)</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bsk-stats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:16px;"></div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Profit Progress</span>
+            <span id="bsk-profit-lbl" style="font-size:11px;color:#34d399;font-weight:600;"></span>
+          </div>
+          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
+            <div id="bsk-profit-bar" style="height:100%;border-radius:6px;transition:width 0.4s;background:linear-gradient(90deg,#10b981,#34d399);width:0%;"></div>
+          </div>
+          <div id="bsk-profit-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Drawdown Used</span>
+            <span id="bsk-dd-lbl" style="font-size:11px;color:#f87171;font-weight:600;"></span>
+          </div>
+          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
+            <div id="bsk-dd-bar" style="height:100%;border-radius:6px;transition:width 0.4s,background 0.4s;width:0%;"></div>
+          </div>
+          <div id="bsk-dd-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Consistency Check</span>
+            <span id="bsk-cons-lbl" style="font-size:11px;font-weight:600;"></span>
+          </div>
+          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
+            <div id="bsk-cons-bar" style="height:100%;border-radius:6px;transition:width 0.4s,background 0.4s;width:0%;"></div>
+          </div>
+          <div id="bsk-cons-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
+        </div>
+        <div style="background:#141820; border-radius:8px; padding:16px;">
+          <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;font-weight:600;">EOD Trailing — How It Works</div>
+          <div style="font-size:11px;color:#64748b;line-height:1.6;">
+            Floor only moves <strong style="color:#94a3b8;">up</strong> — locks to highest EOD balance minus $2,000.<br><br>
+            <span id="bsk-floor-example" style="color:#a78bfa;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+let bskPhase = 'eval';
+const BSK_START = 50000;
+const BSK_TARGET = 3000;
+const BSK_DD = 2000;
+const BSK_CONS_PCT = 0.30; // 30%
+
+function bskSetPhase(phase) {
+  bskPhase = phase;
+  const evalBtn = document.getElementById('bsk-phase-eval');
+  const bufBtn = document.getElementById('bsk-phase-buf');
+  const label = document.getElementById('bsk-phase-label');
+  if (phase === 'eval') {
+    evalBtn.style.background = 'rgba(167,139,250,0.2)'; evalBtn.style.border = '1px solid rgba(167,139,250,0.5)'; evalBtn.style.color = '#a78bfa';
+    bufBtn.style.background = 'none'; bufBtn.style.border = '1px solid #374151'; bufBtn.style.color = '#64748b';
+    label.textContent = 'Evaluation Phase'; label.style.color = '#a78bfa';
+  } else {
+    bufBtn.style.background = 'rgba(167,139,250,0.2)'; bufBtn.style.border = '1px solid rgba(167,139,250,0.5)'; bufBtn.style.color = '#a78bfa';
+    evalBtn.style.background = 'none'; evalBtn.style.border = '1px solid #374151'; evalBtn.style.color = '#64748b';
+    label.textContent = 'Buffer Phase'; label.style.color = '#a78bfa';
+  }
+  bskCalc();
+}
+
+function bskCalc() {
+  const bal = parseFloat(document.getElementById('bsk-balance').value) || BSK_START;
+  const peak = parseFloat(document.getElementById('bsk-peak').value) || bal;
+  const bestDay = parseFloat(document.getElementById('bsk-bestday').value) || 0;
+  const effPeak = Math.max(peak, bal);
+  const floor = effPeak - BSK_DD;
+  const ddUsed = Math.max(0, effPeak - bal);
+  const ddRemaining = Math.max(0, bal - floor);
+  const ddPct = Math.min(100, (ddUsed / BSK_DD) * 100);
+  const totalProfit = bal - BSK_START;
+  const isBreach = bal <= floor;
+  const consCap = BSK_TARGET * BSK_CONS_PCT; // $900
+  const consViolated = bestDay >= consCap;
+  const consPct = Math.min(100, (bestDay / consCap) * 100);
+  const profitPct = Math.min(100, Math.max(0, (totalProfit / BSK_TARGET) * 100));
+  const profitNeeded = Math.max(0, BSK_TARGET - totalProfit);
+  const passed = totalProfit >= BSK_TARGET && !isBreach && !consViolated;
+
+  document.getElementById('bsk-profit-bar').style.width = profitPct + '%';
+  document.getElementById('bsk-profit-lbl').textContent = '$' + Math.max(0, totalProfit).toFixed(2) + ' / $' + BSK_TARGET.toLocaleString();
+  document.getElementById('bsk-profit-note').textContent = passed ? '✅ Profit target met!' : profitNeeded > 0 ? '$' + profitNeeded.toFixed(2) + ' still needed' : 'Target reached';
+
+  document.getElementById('bsk-dd-bar').style.width = ddPct + '%';
+  document.getElementById('bsk-dd-bar').style.background = ddPct < 50 ? '#34d399' : ddPct < 75 ? '#fbbf24' : '#f87171';
+  document.getElementById('bsk-dd-lbl').textContent = '$' + ddUsed.toFixed(0) + ' / $' + BSK_DD.toLocaleString();
+  document.getElementById('bsk-dd-note').textContent = isBreach ? '🔴 Account breached' : 'Floor $' + floor.toFixed(2) + ' · $' + ddRemaining.toFixed(2) + ' buffer';
+
+  document.getElementById('bsk-cons-bar').style.width = consPct + '%';
+  document.getElementById('bsk-cons-bar').style.background = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
+  document.getElementById('bsk-cons-lbl').style.color = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
+  document.getElementById('bsk-cons-lbl').textContent = bestDay > 0 ? '$' + bestDay.toFixed(0) + ' / $' + consCap.toFixed(0) + ' cap' : 'Enter best day';
+  document.getElementById('bsk-cons-note').textContent = consViolated ? '🔴 Consistency violated — best day meets or exceeds $' + consCap.toFixed(0) + ' cap' : bestDay > 0 ? (consPct > 80 ? '⚠️ ' : '✅ ') + 'Best day is ' + consPct.toFixed(0) + '% of $' + consCap.toFixed(0) + ' cap' : 'Best single day must stay below 30% of $3,000 profit target ($900)';
+
+  document.getElementById('bsk-floor-example').textContent = 'Balance $' + bal.toFixed(2) + ', highest EOD $' + effPeak.toFixed(2) + ' → floor $' + floor.toFixed(2);
+
+  document.getElementById('bsk-stats').innerHTML = `
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Total Profit</div>
+      <div style="font-size:20px;font-weight:700;color:${totalProfit>=0?'#34d399':'#f87171'};">${totalProfit>=0?'+':''}$${totalProfit.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Needed to Pass</div>
+      <div style="font-size:20px;font-weight:700;color:#60a5fa;">$${profitNeeded.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Buffer Remaining</div>
+      <div style="font-size:20px;font-weight:700;color:${ddPct<50?'#34d399':ddPct<75?'#fbbf24':'#f87171'};">$${ddRemaining.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Drawdown Floor</div>
+      <div style="font-size:20px;font-weight:700;color:#f87171;">$${floor.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Status</div>
+      <div style="font-size:13px;font-weight:700;color:${isBreach?'#f87171':consViolated?'#ef4444':passed?'#34d399':'#fbbf24'};">
+        ${isBreach?'🔴 Breached':consViolated?'🔴 Consistency Fail':passed?'✅ Ready to Pass':'🟡 In Progress'}
+      </div>
+    </div>
+  `;
+}
+bskCalc();
+</script>
+
+  </div>
+  <div id="pane-payout" class="tab-pane">
+    <div class="table-card">
+      <div class="table-header">
+        <div class="section-title" style="margin-bottom:0; border:none; padding:0">💰 Payout History</div>
+        <div style="font-size:13px; color:#34d399; font-weight:700;">67 payouts · $93,750.13 total</div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse; font-size:14px;">
+          <thead>
+            <tr style="border-bottom:2px solid #2d3748;">
+              <th style="text-align:left; padding:10px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px;">Date</th>
+              <th style="text-align:left; padding:10px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px;">Firm</th>
+              <th style="text-align:right; padding:10px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px;">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">30/11/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">TopStep</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$10,144.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">30/11/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">TFT</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,592.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">4/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,703.14</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">6/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,756.92</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">11/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,530.32</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">13/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$326.92</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">16/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$206.74</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">23/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$3,207.24</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">24/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$3,285.96</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">26/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$91.80</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">27/12/24</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$193.66</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">6/1/25</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$5,414.80</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">7/1/25</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,919.74</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">12/11/25</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,818.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">25/11/25</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$5,073.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">12/12/25</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$3,225.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">20/12/25</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$6,000.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">3/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,002.11</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">3/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,187.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">6/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$260.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">6/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$516.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">8/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">15/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">15/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Lucid</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$710.05</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">16/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,476.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">16/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$6,000.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">17/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$270.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">19/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,200.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">20/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$249.30</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">21/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$972.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">27/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$250.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">27/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$507.04</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">28/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$270.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">28/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$763.34</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">29/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$360.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">29/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">MFFU</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$800.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">29/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$756.40</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">30/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$225.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">30/1/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Lucid</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,085.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">2/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$1,407.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">2/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$270.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">2/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$525.35</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">3/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$7,647.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">3/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$239.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">4/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$464.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">4/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Tradeify</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$667.40</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">5/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Lucid</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$557.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">6/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$265.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">9/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$249.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">10/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$250.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">13/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$250.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">13/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,000.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">17/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$380.70</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">18/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$250.20</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">19/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$270.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">20/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">24/2/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$405.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">2/3/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$225.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">3/3/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$270.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">4/3/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$270.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">5/3/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$477.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">9/3/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$513.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">10/3/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">11/3/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">12/3/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">Blusky</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$450.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">18/3/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,000.00</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a1f2e'" onmouseout="this.style.background='transparent'">
+        <td style="padding:9px 14px; color:#94a3b8;">2/4/26</td>
+        <td style="padding:9px 14px; color:#e2e8f0; font-weight:500;">APEX</td>
+        <td style="padding:9px 14px; text-align:right; color:#34d399; font-weight:600;">$2,850.00</td>
+      </tr>
+          <tr style="border-top:2px solid #374151; background:#141820;">
+            <td colspan="2" style="padding:11px 14px; color:#94a3b8; font-weight:600; text-transform:uppercase; font-size:11px; letter-spacing:0.5px;">Total</td>
+            <td style="padding:11px 14px; text-align:right; color:#34d399; font-size:18px; font-weight:700;">$93,750.13</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('pane-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+<div class="footer">Last updated: 10 Apr 2026</div>
+
+<script>
+const monthLabels = ["Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26", "Feb 26", "Mar 26", "Apr 26"];
+const feesData = [10135.0, 337.7, 546.9, 626.6, 590.8, 426.65, 943.6, 386.9, 332.7, 923.2, 610.2, 719.35, 518.6, 1080.1, 288.5, 1112.5, 338.0, 182.0];
+const payoutsData = [11736.0, 12778.66, 6332.4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6891.0, 9225.0, 19759.24, 16546.65, 5105.0, 2850.0];
+const netMonthly = [1601.0, 12440.96, 5785.5, -626.6, -590.8, -426.65, -943.6, -386.9, -332.7, -923.2, -610.2, -719.35, 6372.4, 8144.9, 19470.74, 15434.15, 4767.0, 2668.0];
+const netMonthlyColors = ["rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)"];
+const cumNet = [1601.0, 14041.96, 19827.46, 19200.86, 18610.06, 18183.41, 17239.81, 16852.91, 16520.21, 15597.01, 14986.81, 14267.46, 20639.86, 28784.76, 48255.5, 63689.65, 68456.65, 71124.65];
+const cumOverall = [1601.0, 13946.56, 20821.06, 19023.06, 17816.06, 17183.71, 16240.11, 15853.21, 15520.51, 14597.31, 13987.11, 14275.46, 19589.23, 27375.13, 47095.87, 62393.56, 67160.56, 69828.56];
+
+const chartDefaults = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: { labels: { color: '#94a3b8', font: { size: 11 } } },
+    tooltip: {
+      backgroundColor: '#1e2537',
+      borderColor: '#374151',
+      borderWidth: 1,
+      titleColor: '#e2e8f0',
+      bodyColor: '#94a3b8',
+      callbacks: {
+        label: function(ctx) {
+          return ' $' + ctx.parsed.y.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+        }
+      }
+    }
+  },
+  scales: {
+    x: {
+      ticks: { color: '#475569', font: { size: 10 } },
+      grid: { color: 'rgba(255,255,255,0.04)' }
+    },
+    y: {
+      ticks: {
+        color: '#475569', font: { size: 10 },
+        callback: v => '$' + (v>=1000||v<=-1000 ? (v/1000).toFixed(0)+'k' : v)
+      },
+      grid: { color: 'rgba(255,255,255,0.04)' }
+    }
+  }
+};
+
+// Monthly Net P&L bar
+new Chart(document.getElementById('monthlyNetChart'), {
+  type: 'bar',
+  data: {
+    labels: monthLabels,
+    datasets: [{
+      label: 'Net P&L',
+      data: netMonthly,
+      backgroundColor: netMonthlyColors,
+      borderRadius: 4,
+      borderSkipped: false,
+    }]
+  },
+  options: { ...chartDefaults }
+});
+
+// Cumulative line chart
+new Chart(document.getElementById('cumulativeChart'), {
+  type: 'line',
+  data: {
+    labels: monthLabels,
+    datasets: [
+      {
+        label: 'Prop Firm Net',
+        data: cumNet,
+        borderColor: '#60a5fa',
+        backgroundColor: 'rgba(96,165,250,0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 3,
+        pointBackgroundColor: '#60a5fa',
+      },
+      {
+        label: 'Overall (incl. Personal Live)',
+        data: cumOverall,
+        borderColor: '#a78bfa',
+        backgroundColor: 'rgba(167,139,250,0.05)',
+        fill: false,
+        tension: 0.3,
+        pointRadius: 3,
+        borderDash: [4,3],
+        pointBackgroundColor: '#a78bfa',
+      }
+    ]
+  },
+  options: { ...chartDefaults }
+});
+
+// Fees vs Payouts grouped bar
+new Chart(document.getElementById('feesPayoutsChart'), {
+  type: 'bar',
+  data: {
+    labels: monthLabels,
+    datasets: [
+      {
+        label: 'Payouts',
+        data: payoutsData,
+        backgroundColor: 'rgba(52,211,153,0.7)',
+        borderRadius: 3,
+      },
+      {
+        label: 'Fees Paid',
+        data: feesData.map(v => -v),
+        backgroundColor: 'rgba(248,113,113,0.7)',
+        borderRadius: 3,
+      }
+    ]
+  },
+  options: {
+    ...chartDefaults,
+    plugins: {
+      ...chartDefaults.plugins,
+      tooltip: {
+        ...chartDefaults.plugins.tooltip,
+        callbacks: {
+          label: function(ctx) {
+            return ' $' + Math.abs(ctx.parsed.y).toLocaleString('en-US', {minimumFractionDigits:2});
+          }
+        }
+      }
+    }
+  }
+});
+
+// Firm pie chart (positive P&L firms only)
+const firmNames = ["APEX", "MFFU", "Tradeify", "TopStep", "Blusky", "Lucid"];
+const firmPnls = [36849.4, 18203.32, 7959.13, 7264.85, 7167.4, 1915.55];
+const pieColors = ['#3b82f6','#10b981','#8b5cf6','#f59e0b','#06b6d4','#ec4899','#84cc16','#f97316','#6366f1'];
+
+new Chart(document.getElementById('firmPieChart'), {
+  type: 'doughnut',
+  data: {
+    labels: firmNames,
+    datasets: [{
+      data: firmPnls,
+      backg
