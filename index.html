@@ -86,6 +86,10 @@
     padding: 20px;
   }
   .chart-card.full { grid-column: 1 / -1; }
+  @media (max-width: 640px) {
+    .charts-grid { grid-template-columns: 1fr; }
+    .chart-card.full { grid-column: 1; }
+  }
   .chart-title {
     font-size: 13px; font-weight: 600; color: #94a3b8;
     text-transform: uppercase; letter-spacing: 0.6px;
@@ -289,6 +293,7 @@
     <div class="table-header">
       <div class="section-title" style="margin-bottom:0; border:none; padding:0">Prop Firm Breakdown</div>
     </div>
+    <div style="overflow-x:auto;">
     <table>
       <thead>
                 <tr>
@@ -392,6 +397,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
   </div>
 
     <div class="table-card">
