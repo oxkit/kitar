@@ -1708,13 +1708,13 @@ function switchTab(name, btn) {
 <div class="footer">Last updated: 10 Apr 2026</div>
 
 <script>
-const monthLabels = ["Nov 24", "Dec 24", "Jan 25", "Feb 25", "Mar 25", "Apr 25", "May 25", "Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26", "Feb 26", "Mar 26", "Apr 26"];
-const feesData = [10135.0, 337.7, 546.9, 626.6, 590.8, 426.65, 943.6, 386.9, 332.7, 923.2, 610.2, 719.35, 518.6, 1080.1, 288.5, 1112.5, 338.0, 182.0];
-const payoutsData = [11736.0, 12778.66, 6332.4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6891.0, 9225.0, 19759.24, 16546.65, 5105.0, 2850.0];
-const netMonthly = [1601.0, 12440.96, 5785.5, -626.6, -590.8, -426.65, -943.6, -386.9, -332.7, -923.2, -610.2, -719.35, 6372.4, 8144.9, 19470.74, 15434.15, 4767.0, 2668.0];
-const netMonthlyColors = ["rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(248, 113, 113, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)", "rgba(52, 211, 153, 0.8)"];
-const cumNet = [1601.0, 14041.96, 19827.46, 19200.86, 18610.06, 18183.41, 17239.81, 16852.91, 16520.21, 15597.01, 14986.81, 14267.46, 20639.86, 28784.76, 48255.5, 63689.65, 68456.65, 71124.65];
-const cumOverall = [1601.0, 13946.56, 20821.06, 19023.06, 17816.06, 17183.71, 16240.11, 15853.21, 15520.51, 14597.31, 13987.11, 14275.46, 19589.23, 27375.13, 47095.87, 62393.56, 67160.56, 69828.56];
+const monthLabels = ["Nov 24","Dec 24","Jan 25","Feb 25","Mar 25","Apr 25","May 25","Jun 25","Jul 25","Aug 25","Sep 25","Oct 25","Nov 25","Dec 25","Jan 26","Feb 26","Mar 26","Apr 26"];
+const feesData = [10135.0,337.7,546.9,626.6,590.8,426.65,943.6,386.9,332.7,923.2,610.2,719.35,518.6,1080.1,288.5,1112.5,338.0,182.0];
+const payoutsData = [11736.0,12778.66,6332.4,0,0,0,0,0,0,0,0,0,6891.0,9225.0,19759.24,16546.65,5105.0,2850.0];
+const netMonthly = [1601.0,12440.96,5785.5,-626.6,-590.8,-426.65,-943.6,-386.9,-332.7,-923.2,-610.2,-719.35,6372.4,8144.9,19470.74,15434.15,4767.0,2668.0];
+const netMonthlyColors = ["rgba(52,211,153,0.8)","rgba(52,211,153,0.8)","rgba(52,211,153,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(52,211,153,0.8)","rgba(52,211,153,0.8)","rgba(52,211,153,0.8)","rgba(52,211,153,0.8)","rgba(52,211,153,0.8)","rgba(52,211,153,0.8)"];
+const cumNet = [1601.0,14041.96,19827.46,19200.86,18610.06,18183.41,17239.81,16852.91,16520.21,15597.01,14986.81,14267.46,20639.86,28784.76,48255.5,63689.65,68456.65,71124.65];
+const cumOverall = [1601.0,13946.56,20821.06,19023.06,17816.06,17183.71,16240.11,15853.21,15520.51,14597.31,13987.11,14275.46,19589.23,27375.13,47095.87,62393.56,67160.56,69828.56];
 
 const chartDefaults = {
   responsive: true,
@@ -1722,9 +1722,127 @@ const chartDefaults = {
   plugins: {
     legend: { labels: { color: '#94a3b8', font: { size: 11 } } },
     tooltip: {
+      backgroundColor: '#1e2537',
+      borderColor: '#374151',
+      borderWidth: 1,
+      titleColor: '#e2e8f0',
+      bodyColor: '#94a3b8',
+      callbacks: {
+        label: function(ctx) {
+          return ' $' + ctx.parsed.y.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+        }
+      }
+    }
+  },
+  scales: {
+    x: {
+      ticks: { color: '#475569', font: { size: 10 } },
+      grid: { color: 'rgba(255,255,255,0.04)' }
+    },
+    y: {
+      ticks: {
+        color: '#475569', font: { size: 10 },
+        callback: v => '$' + (v >= 1000 || v <= -1000 ? (v/1000).toFixed(0) + 'k' : v)
+      },
+      grid: { color: 'rgba(255,255,255,0.04)' }
+    }
+  }
+};
+
+new Chart(document.getElementById('monthlyNetChart'), {
+  type: 'bar',
+  data: {
+    labels: monthLabels,
+    datasets: [{
+      label: 'Net P&L',
+      data: netMonthly,
+      backgroundColor: netMonthlyColors,
+      borderRadius: 4,
+      borderSkipped: false
+    }]
+  },
+  options: { ...chartDefaults }
+});
+
+new Chart(document.getElementById('cumulativeChart'), {
+  type: 'line',
+  data: {
+    labels: monthLabels,
+    datasets: [
+      {
+        label: 'Prop Firm Net',
+        data: cumNet,
+        borderColor: '#60a5fa',
+        backgroundColor: 'rgba(96,165,250,0.1)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 3,
+        pointBackgroundColor: '#60a5fa'
+      },
+      {
+        label: 'Overall (incl. Personal Live)',
+        data: cumOverall,
+        borderColor: '#a78bfa',
+        backgroundColor: 'rgba(167,139,250,0.05)',
+        fill: false,
+        tension: 0.3,
+        pointRadius: 3,
+        borderDash: [4, 3],
+        pointBackgroundColor: '#a78bfa'
+      }
+    ]
+  },
+  options: { ...chartDefaults }
+});
+
+new Chart(document.getElementById('feesPayoutsChart'), {
+  type: 'bar',
+  data: {
+    labels: monthLabels,
+    datasets: [
+      {
+        label: 'Payouts',
+        data: payoutsData,
+        backgroundColor: 'rgba(52,211,153,0.7)',
+        borderRadius: 3
+      },
+      {
+        label: 'Fees Paid',
+        data: feesData.map(v => -v),
+        backgroundColor: 'rgba(248,113,113,0.7)',
+        borderRadius: 3
+      }
+    ]
+  },
+  options: {
+    ...chartDefaults,
+    plugins: {
+      ...chartDefaults.plugins,
+      tooltip: {
+        ...chartDefaults.plugins.tooltip,
+        callbacks: {
+          label: function(ctx) {
+            return ' $' + Math.abs(ctx.parsed.y).toLocaleString('en-US', {minimumFractionDigits:2});
+          }
+        }
+      }
+    }
+  }
+});
+
+const firmNames = ["APEX","MFFU","Tradeify","TopStep","Blusky","Lucid"];
+const firmPnls = [36849.4,18203.32,7959.13,7264.85,7167.4,1915.55];
+const pieColors = ['#3b82f6','#10b981','#8b5cf6','#f59e0b','#06b6d4','#ec4899','#84cc16','#f97316','#6366f1'];
+
+new Chart(document.getElementById('firmPieChart'), {
+  type: 'doughnut',
+  data: {
+    labels: firmNames,
+    datasets: [{
+      data: firmPnls,
       backgroundColor: pieColors.slice(0, firmNames.length),
       borderWidth: 1,
-      borderColor: '#0f1117',
+      borderColor: '#0f1117'
     }]
   },
   options: {
@@ -1743,7 +1861,7 @@ const chartDefaults = {
         bodyColor: '#94a3b8',
         callbacks: {
           label: function(ctx) {
-            const total = ctx.dataset.data.reduce((a,b) => a+b, 0);
+            const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
             const pct = ((ctx.parsed / total) * 100).toFixed(1);
             return ' $' + ctx.parsed.toLocaleString('en-US', {minimumFractionDigits:2}) + ' (' + pct + '%)';
           }
