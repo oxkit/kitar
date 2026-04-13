@@ -89,6 +89,7 @@
   @media (max-width: 640px) {
     .charts-grid { grid-template-columns: 1fr; }
     .chart-card.full { grid-column: 1; }
+    .daily-two-col { grid-template-columns: 1fr \!important; }
   }
   .chart-title {
     font-size: 13px; font-weight: 600; color: #94a3b8;
@@ -218,13 +219,168 @@
 </div>
 
 <div class="tab-nav">
-  <button class="tab-btn active" onclick="switchTab('stat', this)">📊 Stats</button>
+  <button class="tab-btn active" onclick="switchTab('daily', this)">📅 Daily</button>
+  <button class="tab-btn" onclick="switchTab('stat', this)">📊 Stats</button>
   <button class="tab-btn" onclick="switchTab('tracker', this)">🎯 Tracker</button>
   <button class="tab-btn" onclick="switchTab('payout', this)">💰 Payout</button>
 </div>
 
 <div class="container">
-  <div id="pane-stat" class="tab-pane active">
+  <div id="pane-daily" class="tab-pane active">
+    <div style="max-width:860px;">
+
+      <\!-- Header -->
+      <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:24px;">
+        <div>
+          <div style="font-size:11px; font-weight:600; color:#60a5fa; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:6px;">Daily Economic Briefing</div>
+          <h2 style="margin:0; font-size:20px; font-weight:700; color:#e2e8f0;">Monday, 13 April 2026</h2>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <span style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 12px; border-radius:6px; font-size:11px; font-weight:600;">MOVE 72.15 ✓</span>
+          <span style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 12px; border-radius:6px; font-size:11px; font-weight:600;">NFCI -0.433 Loose</span>
+          <span style="background:rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.3); color:#f87171; padding:4px 12px; border-radius:6px; font-size:11px; font-weight:600;">🚨 Hormuz Blockade</span>
+        </div>
+      </div>
+
+      <\!-- Liquidity & Stress Metrics -->
+      <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:20px;">
+        <div style="font-size:11px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:14px;">📊 Liquidity &amp; Stress Metrics — The "Gnosis" Pulse</div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%; border-collapse:collapse; font-size:13px;">
+            <thead>
+              <tr style="border-bottom:1px solid #2d3748;">
+                <th style="text-align:left; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Metric</th>
+                <th style="text-align:right; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Value</th>
+                <th style="text-align:left; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Interpretation</th>
+                <th style="text-align:center; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:10px 12px; color:#e2e8f0; font-weight:500;">MOVE Index</td>
+                <td style="padding:10px 12px; text-align:right; color:#34d399; font-weight:700;">72.15</td>
+                <td style="padding:10px 12px; color:#94a3b8;">Calm bond markets. Stable policy expectations.</td>
+                <td style="padding:10px 12px; text-align:center;"><span style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600;">Healthy</span></td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:10px 12px; color:#e2e8f0; font-weight:500;">SOFR (Repo Rate)</td>
+                <td style="padding:10px 12px; text-align:right; color:#34d399; font-weight:700;">3.57%</td>
+                <td style="padding:10px 12px; color:#94a3b8;">Healthy plumbing. Trading near Fed target; no repo stress.</td>
+                <td style="padding:10px 12px; text-align:center;"><span style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600;">Normal</span></td>
+              </tr>
+              <tr>
+                <td style="padding:10px 12px; color:#e2e8f0; font-weight:500;">NFCI (Financial Conditions)</td>
+                <td style="padding:10px 12px; text-align:right; color:#34d399; font-weight:700;">-0.433</td>
+                <td style="padding:10px 12px; color:#94a3b8;">Loose liquidity. Financial conditions are looser than average.</td>
+                <td style="padding:10px 12px; text-align:center;"><span style="background:rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.25); color:#60a5fa; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600;">Supportive</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:14px; padding:12px 14px; background:rgba(96,165,250,0.06); border-left:3px solid #60a5fa; border-radius:0 6px 6px 0;">
+          <span style="font-size:11px; font-weight:600; color:#60a5fa; text-transform:uppercase; letter-spacing:0.5px;">Gnosis Interpretation</span>
+          <p style="margin:6px 0 0; font-size:13px; color:#94a3b8; line-height:1.6;">The "Train" remains on the tracks. Despite hawkish Fed rhetoric, negative NFCI and a calm MOVE index suggest that liquidity is still flowing effectively into the system, supporting asset prices.</p>
+        </div>
+      </div>
+
+      <\!-- Economic Calendar -->
+      <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:20px;">
+        <div style="font-size:11px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:14px;">📅 Economic Calendar — Dual-Timezone Schedule</div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%; border-collapse:collapse; font-size:13px;">
+            <thead>
+              <tr style="border-bottom:1px solid #2d3748;">
+                <th style="text-align:left; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Event</th>
+                <th style="text-align:center; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">EST (US)</th>
+                <th style="text-align:center; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">GMT+8 (Local)</th>
+                <th style="text-align:center; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Importance</th>
+                <th style="text-align:left; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:10px 12px; color:#e2e8f0; font-weight:500;">Empire State Manufacturing Index</td>
+                <td style="padding:10px 12px; text-align:center; color:#94a3b8;">8:30 AM</td>
+                <td style="padding:10px 12px; text-align:center; color:#94a3b8;">8:30 PM</td>
+                <td style="padding:10px 12px; text-align:center;"><span style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.3); color:#fbbf24; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600;">Medium</span></td>
+                <td style="padding:10px 12px; color:#94a3b8;">Growth/Inflation signal.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b; background:rgba(239,68,68,0.05);">
+                <td style="padding:10px 12px; color:#f87171; font-weight:700;">🚨 Hormuz Naval Blockade Order</td>
+                <td style="padding:10px 12px; text-align:center; color:#94a3b8;">10:00 AM</td>
+                <td style="padding:10px 12px; text-align:center; color:#94a3b8;">10:00 PM</td>
+                <td style="padding:10px 12px; text-align:center;"><span style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#f87171; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:700;">CRITICAL</span></td>
+                <td style="padding:10px 12px; color:#f87171; font-weight:600;">President Trump's directive takes effect.</td>
+              </tr>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:10px 12px; color:#e2e8f0; font-weight:500;">NAHB Housing Market Index</td>
+                <td style="padding:10px 12px; text-align:center; color:#94a3b8;">10:00 AM</td>
+                <td style="padding:10px 12px; text-align:center; color:#94a3b8;">10:00 PM</td>
+                <td style="padding:10px 12px; text-align:center;"><span style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.3); color:#fbbf24; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600;">Medium</span></td>
+                <td style="padding:10px 12px; color:#94a3b8;">Housing health at 7%+ rates.</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 12px; color:#e2e8f0; font-weight:500;">Fed Speaker Mary Daly</td>
+                <td style="padding:10px 12px; text-align:center; color:#94a3b8;">2:00 PM</td>
+                <td style="padding:10px 12px; text-align:center; color:#94a3b8;">2:00 AM (Tue)</td>
+                <td style="padding:10px 12px; text-align:center;"><span style="background:rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.3); color:#f87171; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600;">High</span></td>
+                <td style="padding:10px 12px; color:#94a3b8;">First major Fed voice post-CPI release.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <\!-- Two-column: Geopolitical + Strategy -->
+      <div class="daily-two-col" style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+
+        <\!-- Geopolitical & Fed Watch -->
+        <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px;">
+          <div style="font-size:11px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px;">🏛️ Geopolitical &amp; Fed Watch</div>
+
+          <div style="margin-bottom:16px; padding:14px; background:rgba(239,68,68,0.06); border:1px solid rgba(239,68,68,0.2); border-radius:8px;">
+            <div style="font-size:12px; font-weight:700; color:#f87171; margin-bottom:8px;">🚨 The Hormuz Naval Blockade</div>
+            <p style="margin:0 0 8px; font-size:13px; color:#94a3b8; line-height:1.6;">President Trump has ordered a full U.S. Naval blockade of the Strait of Hormuz, effective 10:00 AM EST today.</p>
+            <div style="font-size:12px; color:#cbd5e1; line-height:1.7;">
+              <div style="margin-bottom:4px;">⚡ <strong style="color:#e2e8f0;">Goal:</strong> Intercept vessels paying "illegal tolls" to Iran.</div>
+              <div>⚡ <strong style="color:#e2e8f0;">Market Impact:</strong> Brent Crude +7% today. Watch for high volatility at the 10:00 PM GMT+8 candle.</div>
+            </div>
+          </div>
+
+          <div style="padding:14px; background:rgba(251,191,36,0.06); border:1px solid rgba(251,191,36,0.2); border-radius:8px;">
+            <div style="font-size:12px; font-weight:700; color:#fbbf24; margin-bottom:8px;">🏛️ The "Stagflation" Trap</div>
+            <p style="margin:0 0 8px; font-size:13px; color:#94a3b8; line-height:1.6;">Last Friday's 3.3% CPI print has forced the market to price out June rate cuts.</p>
+            <div style="font-size:12px; color:#cbd5e1; line-height:1.7;">
+              <div>⚡ <strong style="color:#e2e8f0;">Watch:</strong> Mary Daly tonight (2:00 AM GMT+8). If she suggests rate hikes are back on the table, expect a significant correction in ES.</div>
+            </div>
+          </div>
+        </div>
+
+        <\!-- Trading Strategy -->
+        <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px;">
+          <div style="font-size:11px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px;">📈 Trading Strategy — ES Futures</div>
+
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="padding:12px 14px; background:rgba(96,165,250,0.06); border:1px solid rgba(96,165,250,0.2); border-radius:8px;">
+              <div style="font-size:11px; font-weight:600; color:#60a5fa; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px;">Volume Chart (1.5k)</div>
+              <div style="font-size:13px; color:#94a3b8; line-height:1.6;">Watch for technical breakdowns at the <strong style="color:#e2e8f0;">8:30 PM</strong> and <strong style="color:#e2e8f0;">10:00 PM GMT+8</strong> windows.</div>
+            </div>
+            <div style="padding:12px 14px; background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.2); border-radius:8px;">
+              <div style="font-size:11px; font-weight:600; color:#34d399; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px;">Support Levels</div>
+              <div style="font-size:13px; color:#94a3b8; line-height:1.6;">Key levels at <strong style="color:#e2e8f0;">SPY 614</strong> and <strong style="color:#e2e8f0;">QQQ 540</strong>.</div>
+            </div>
+            <div style="padding:12px 14px; background:rgba(251,191,36,0.06); border:1px solid rgba(251,191,36,0.2); border-radius:8px;">
+              <div style="font-size:11px; font-weight:600; color:#fbbf24; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.4px;">Gold (GLD)</div>
+              <div style="font-size:13px; color:#94a3b8; line-height:1.6;">Maintaining safe-haven strength near <strong style="color:#e2e8f0;">$425</strong>.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="pane-stat" class="tab-pane">
 
     <div class="cards-grid">
     <div class="card green">
