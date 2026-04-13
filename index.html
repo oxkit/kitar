@@ -686,6 +686,191 @@ hlRenderStats();
 
   </div>
   <div id="pane-tracker" class="tab-pane">
+
+    <div style="display:flex; justify-content:flex-end; margin-bottom:20px;">
+      <button onclick="document.getElementById('ch-modal').style.display='flex'" style="background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.3); color:#60a5fa; padding:7px 16px; border-radius:8px; font-size:12px; font-weight:600; cursor:pointer; letter-spacing:0.3px;">📋 Challenge History</button>
+    </div>
+
+    <div id="ch-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+      <div style="background:#1a1f2e; border:1px solid #374151; border-radius:14px; padding:28px; max-width:640px; width:92%; max-height:80vh; overflow-y:auto;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+          <div style="font-size:14px; font-weight:700; color:#e2e8f0;">Challenge History</div>
+          <button onclick="document.getElementById('ch-modal').style.display='none'" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">✕</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%; border-collapse:collapse; font-size:13px;">
+            <thead>
+              <tr style="border-bottom:1px solid #2d3748;">
+                <th style="text-align:left; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
+                <th style="text-align:left; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Prop Firm</th>
+                <th style="text-align:left; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Account Type</th>
+                <th style="text-align:left; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #1e293b;">
+                <td style="padding:10px 12px; text-align:left; color:#94a3b8;">2026-04-09</td>
+                <td style="padding:10px 12px; text-align:left; color:#e2e8f0; font-weight:500;">Lucid</td>
+                <td style="padding:10px 12px; text-align:left; color:#94a3b8;">150k Flex</td>
+                <td style="padding:10px 12px; text-align:left;"><span style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:3px 12px; border-radius:6px; font-size:11px; font-weight:700;">Passed</span></td>
+              </tr>
+              <tr>
+                <td style="padding:10px 12px; text-align:left; color:#94a3b8;">2026-04-13</td>
+                <td style="padding:10px 12px; text-align:left; color:#e2e8f0; font-weight:500;">TopStep</td>
+                <td style="padding:10px 12px; text-align:left; color:#94a3b8;">50k TC</td>
+                <td style="padding:10px 12px; text-align:left;"><span style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:3px 12px; border-radius:6px; font-size:11px; font-weight:700;">Passed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 28px;">
+    <div style="font-size:14px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #2d3748;">
+      🟢 Active Account Tracker &mdash; TopStep 50k XFA Consistency
+    </div>
+    <div style="font-size:11px; color:#475569; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#94a3b8; font-weight:600; font-family:monospace; letter-spacing:0.3px;">EXPRESS-V2-CT-45281-27848466</span></div>
+
+    <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+      <div style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>
+      <div style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Min 3 Days Traded</div>
+      <div style="background:rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.25); color:#fca5a5; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">40% Consistency Cap</div>
+      <div style="background:rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.25); color:#60a5fa; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Payout: 50% of Profit</div>
+      <div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max $6,000 per Request</div>
+    </div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
+        <div>
+          <label style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">Current Balance</label>
+          <input id="xfa-balance" type="hidden" value="50000">
+          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$50,000.00</span>
+        </div>
+        <div>
+          <label style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">Days Traded</label>
+          <input id="xfa-days" type="hidden" value="0">
+          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">0</span>
+        </div>
+        <div>
+          <label style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">Best Single Day Profit</label>
+          <input id="xfa-bestday" type="hidden" value="0">
+          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$0.00</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="xfa-stats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:16px;"></div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Days Traded</span>
+            <span id="xfa-days-lbl" style="font-size:11px;color:#fbbf24;font-weight:600;"></span>
+          </div>
+          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
+            <div id="xfa-days-bar" style="height:100%;border-radius:6px;transition:width 0.4s;background:#fbbf24;width:0%;"></div>
+          </div>
+          <div id="xfa-days-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Consistency Check</span>
+            <span id="xfa-cons-lbl" style="font-size:11px;font-weight:600;"></span>
+          </div>
+          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
+            <div id="xfa-cons-bar" style="height:100%;border-radius:6px;transition:width 0.4s,background 0.4s;width:0%;"></div>
+          </div>
+          <div id="xfa-cons-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Payout Available</span>
+            <span id="xfa-payout-lbl" style="font-size:11px;color:#34d399;font-weight:600;"></span>
+          </div>
+          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
+            <div id="xfa-payout-bar" style="height:100%;border-radius:6px;transition:width 0.4s;background:#34d399;width:0%;"></div>
+          </div>
+          <div id="xfa-payout-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
+        </div>
+        <div style="background:#141820; border-radius:8px; padding:16px;">
+          <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;font-weight:600;">Payout Formula</div>
+          <div style="font-size:11px;color:#64748b;line-height:1.6;">
+            Request up to <strong style="color:#94a3b8;">50% of your profits</strong>, capped at <strong style="color:#94a3b8;">$6,000</strong> per request.<br><br>
+            <span id="xfa-payout-example" style="color:#34d399;"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+<script>
+const XFA_START = 50000;
+const XFA_MIN_DAYS = 3;
+const XFA_CONS_CAP_PCT = 0.40;
+const XFA_MAX_PAYOUT = 6000;
+
+function xfaCalc() {
+  const bal = parseFloat(document.getElementById('xfa-balance').value) || XFA_START;
+  const days = parseInt(document.getElementById('xfa-days').value) || 0;
+  const bestDay = parseFloat(document.getElementById('xfa-bestday').value) || 0;
+  const totalProfit = bal - XFA_START;
+  const consCap = totalProfit > 0 ? totalProfit * XFA_CONS_CAP_PCT : 0;
+  const consViolated = totalProfit > 0 && bestDay > consCap;
+  const consPct = consCap > 0 ? Math.min(100, (bestDay / consCap) * 100) : 0;
+  const daysMet = days >= XFA_MIN_DAYS;
+  const daysPct = Math.min(100, (days / XFA_MIN_DAYS) * 100);
+  const payoutAvail = totalProfit > 0 ? Math.min(totalProfit * 0.5, XFA_MAX_PAYOUT) : 0;
+  const payoutPct = Math.min(100, (payoutAvail / XFA_MAX_PAYOUT) * 100);
+  const canPayout = daysMet && \!consViolated && totalProfit > 0;
+
+  // Days bar
+  document.getElementById('xfa-days-bar').style.width = daysPct + '%';
+  document.getElementById('xfa-days-bar').style.background = daysMet ? '#34d399' : '#fbbf24';
+  document.getElementById('xfa-days-lbl').textContent = days + ' / ' + XFA_MIN_DAYS + ' days';
+  document.getElementById('xfa-days-lbl').style.color = daysMet ? '#34d399' : '#fbbf24';
+  document.getElementById('xfa-days-note').textContent = daysMet ? '✅ Minimum days met' : (XFA_MIN_DAYS - days) + ' more day(s) needed before payout';
+
+  // Consistency bar
+  document.getElementById('xfa-cons-bar').style.width = consPct + '%';
+  document.getElementById('xfa-cons-bar').style.background = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
+  document.getElementById('xfa-cons-lbl').style.color = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
+  document.getElementById('xfa-cons-lbl').textContent = totalProfit > 0 && bestDay > 0 ? '$' + bestDay.toFixed(0) + ' / $' + consCap.toFixed(0) + ' cap' : totalProfit <= 0 ? 'No profit yet' : 'Enter best day';
+  document.getElementById('xfa-cons-note').textContent = consViolated ? '🔴 Consistency violated — best day $' + bestDay.toFixed(0) + ' exceeds 40% cap of $' + consCap.toFixed(0) : totalProfit > 0 && bestDay > 0 ? (consPct > 80 ? '⚠️ ' : '✅ ') + 'Best day is ' + consPct.toFixed(0) + '% of the $' + consCap.toFixed(0) + ' cap' : 'Best single day must stay below 40% of total profit';
+
+  // Payout bar
+  document.getElementById('xfa-payout-bar').style.width = payoutPct + '%';
+  document.getElementById('xfa-payout-lbl').textContent = totalProfit > 0 ? '$' + payoutAvail.toFixed(2) : '$0.00';
+  document.getElementById('xfa-payout-note').textContent = canPayout ? '✅ Eligible to request $' + payoutAvail.toFixed(2) : \!daysMet ? 'Need ' + (XFA_MIN_DAYS - days) + ' more trading day(s)' : consViolated ? 'Resolve consistency violation first' : 'No profit to request yet';
+
+  document.getElementById('xfa-payout-example').textContent = totalProfit > 0 ? 'Profit $' + totalProfit.toFixed(2) + ' × 50% = $' + (totalProfit * 0.5).toFixed(2) + (totalProfit * 0.5 > XFA_MAX_PAYOUT ? ' → capped at $' + XFA_MAX_PAYOUT.toLocaleString() : '') : 'Profit the account first to unlock payouts.';
+
+  document.getElementById('xfa-stats').innerHTML = `
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Total Profit</div>
+      <div style="font-size:20px;font-weight:700;color:${totalProfit>=0?'#34d399':'#f87171'};">${totalProfit>=0?'+':''}$${totalProfit.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Max Payout</div>
+      <div style="font-size:20px;font-weight:700;color:#34d399;">$${payoutAvail.toFixed(2)}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Days Traded</div>
+      <div style="font-size:20px;font-weight:700;color:${daysMet?'#34d399':'#fbbf24'};">${days} / ${XFA_MIN_DAYS}</div>
+    </div>
+    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
+      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Status</div>
+      <div style="font-size:13px;font-weight:700;color:${consViolated?'#f87171':canPayout?'#34d399':'#fbbf24'};">
+        ${consViolated?'🔴 Consistency Fail':canPayout?'✅ Ready to Payout':'🟡 Building'}
+      </div>
+    </div>
+  `;
+}
+xfaCalc();
+</script>
+
+
     <div style="margin-bottom: 28px;">
     <div class="section-title" style="margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #2d3748; font-size:14px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px;">
       🟢 Active Account Tracker &mdash; Lucid 150k Sim Funded
@@ -1106,154 +1291,6 @@ function tptCalc() {
 tptCalc();
 </script>
 
-
-    <div style="margin-bottom: 28px;">
-    <div style="font-size:14px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #2d3748;">
-      🔵 Challenge Tracker &mdash; TopStep 50k Trading Combine
-    </div>
-    <div style="font-size:11px; color:#475569; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#94a3b8; font-weight:600; font-family:monospace; letter-spacing:0.3px;">50KTC-V2-45281-25364619</span></div>
-
-    <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
-      <div style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>
-      <div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $2,000</div>
-      <div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $3,000</div>
-      <div style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#fca5a5; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Consistency: Best Day &lt; $1,500 (50% of target)</div>
-      <div style="background:rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.25); color:#60a5fa; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Floor Trails Highest EOD Balance</div>
-      <div style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); color:#fde68a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600; margin-left:auto;">⏰ Renews 1 May 2026</div>
-    </div>
-
-    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:14px;">
-        <div>
-          <label style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">Current Balance</label>
-          <input id="ts-balance" type="hidden" value="52296.93">
-          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$52,296.93</span>
-        </div>
-        <div>
-          <label style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">Highest EOD Balance</label>
-          <input id="ts-peak" type="hidden" value="52296.93">
-          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$52,296.93</span>
-        </div>
-        <div>
-          <label style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;">Best Single Day Profit</label>
-          <input id="ts-bestday" type="hidden" value="1500">
-          <span style="color:#e2e8f0; font-size:16px; font-weight:700; padding:6px 0; display:block;">$1,500.00</span>
-        </div>
-      </div>
-    </div>
-
-    <div id="ts-stats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:16px;"></div>
-
-    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px;">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
-        <div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
-            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Profit Progress</span>
-            <span id="ts-profit-lbl" style="font-size:11px;color:#34d399;font-weight:600;"></span>
-          </div>
-          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
-            <div id="ts-profit-bar" style="height:100%;border-radius:6px;transition:width 0.4s;background:linear-gradient(90deg,#10b981,#34d399);width:0%;"></div>
-          </div>
-          <div id="ts-profit-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
-            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Drawdown Used</span>
-            <span id="ts-dd-lbl" style="font-size:11px;color:#f87171;font-weight:600;"></span>
-          </div>
-          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
-            <div id="ts-dd-bar" style="height:100%;border-radius:6px;transition:width 0.4s,background 0.4s;width:0%;"></div>
-          </div>
-          <div id="ts-dd-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
-            <span style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Consistency Check</span>
-            <span id="ts-cons-lbl" style="font-size:11px;font-weight:600;"></span>
-          </div>
-          <div style="background:#141820;border-radius:6px;height:10px;overflow:hidden;">
-            <div id="ts-cons-bar" style="height:100%;border-radius:6px;transition:width 0.4s,background 0.4s;width:0%;"></div>
-          </div>
-          <div id="ts-cons-note" style="font-size:10px;color:#475569;margin-top:6px;"></div>
-        </div>
-        <div style="background:#141820; border-radius:8px; padding:16px;">
-          <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;font-weight:600;">EOD Trailing Drawdown — How It Works</div>
-          <div style="font-size:11px;color:#64748b;line-height:1.6;">
-            The floor only moves <strong style="color:#94a3b8;">up</strong> — it locks to your highest EOD balance minus $2,000.<br><br>
-            <span id="ts-floor-example" style="color:#60a5fa;"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script>
-const TS_START = 50000;
-const TS_TARGET = 3000;
-const TS_DD = 2000;
-const TS_CONSISTENCY_CAP = 1500;
-
-function tsCalc() {
-  const bal = parseFloat(document.getElementById('ts-balance').value) || TS_START;
-  const peak = parseFloat(document.getElementById('ts-peak').value) || bal;
-  const bestDay = parseFloat(document.getElementById('ts-bestday').value) || 0;
-  const effPeak = Math.max(peak, bal);
-  const floor = effPeak - TS_DD;
-  const ddUsed = Math.max(0, effPeak - bal);
-  const ddRemaining = Math.max(0, bal - floor);
-  const ddPct = Math.min(100, (ddUsed / TS_DD) * 100);
-  const totalProfit = bal - TS_START;
-  const isBreach = bal <= floor;
-  const consViolated = bestDay > TS_CONSISTENCY_CAP;
-  const consPct = Math.min(100, (bestDay / TS_CONSISTENCY_CAP) * 100);
-  const profitPct = Math.min(100, Math.max(0, (totalProfit / TS_TARGET) * 100));
-  const profitNeeded = Math.max(0, TS_TARGET - totalProfit);
-  const passed = totalProfit >= TS_TARGET && !isBreach && !consViolated;
-
-  document.getElementById('ts-profit-bar').style.width = profitPct + '%';
-  document.getElementById('ts-profit-lbl').textContent = '$' + Math.max(0, totalProfit).toFixed(2) + ' / $' + TS_TARGET.toLocaleString();
-  document.getElementById('ts-profit-note').textContent = passed ? '✅ Profit target met!' : profitNeeded > 0 ? '$' + profitNeeded.toFixed(2) + ' still needed to reach $' + TS_TARGET.toLocaleString() + ' target' : 'Target reached';
-
-  document.getElementById('ts-dd-bar').style.width = ddPct + '%';
-  document.getElementById('ts-dd-bar').style.background = ddPct < 50 ? '#34d399' : ddPct < 75 ? '#fbbf24' : '#f87171';
-  document.getElementById('ts-dd-lbl').textContent = '$' + ddUsed.toFixed(0) + ' / $' + TS_DD.toLocaleString();
-  document.getElementById('ts-dd-note').textContent = isBreach ? '🔴 Account breached' : 'Floor $' + floor.toFixed(2) + ' · $' + ddRemaining.toFixed(2) + ' buffer · trailing from $' + effPeak.toFixed(2);
-
-  document.getElementById('ts-cons-bar').style.width = consPct + '%';
-  document.getElementById('ts-cons-bar').style.background = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
-  document.getElementById('ts-cons-lbl').style.color = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
-  document.getElementById('ts-cons-lbl').textContent = bestDay > 0 ? '$' + bestDay.toFixed(0) + ' / $' + TS_CONSISTENCY_CAP.toLocaleString() + ' cap' : 'Enter best day';
-  document.getElementById('ts-cons-note').textContent = consViolated ? '🔴 Consistency violated — best day $' + bestDay.toFixed(0) + ' exceeds $1,500 cap' : bestDay > 0 ? (consPct > 80 ? '⚠️ ' : '✅ ') + 'Best day $' + bestDay.toFixed(0) + ' is ' + consPct.toFixed(0) + '% of the $1,500 cap' : 'Best single day must stay below $1,500 (50% of $3,000 target)';
-
-  document.getElementById('ts-floor-example').textContent = 'Current: balance $' + bal.toFixed(2) + ', highest EOD $' + effPeak.toFixed(2) + ' → floor locked at $' + floor.toFixed(2);
-
-  document.getElementById('ts-stats').innerHTML = `
-    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
-      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Total Profit</div>
-      <div style="font-size:20px;font-weight:700;color:${totalProfit>=0?'#34d399':'#f87171'};">${totalProfit>=0?'+':''}$${totalProfit.toFixed(2)}</div>
-    </div>
-    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
-      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Needed to Pass</div>
-      <div style="font-size:20px;font-weight:700;color:#60a5fa;">$${profitNeeded.toFixed(2)}</div>
-    </div>
-    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
-      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Buffer Remaining</div>
-      <div style="font-size:20px;font-weight:700;color:${ddPct<50?'#34d399':ddPct<75?'#fbbf24':'#f87171'};">$${ddRemaining.toFixed(2)}</div>
-    </div>
-    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
-      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Drawdown Floor</div>
-      <div style="font-size:20px;font-weight:700;color:#f87171;">$${floor.toFixed(2)}</div>
-    </div>
-    <div style="background:#141820;border-radius:8px;padding:14px;text-align:center;">
-      <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Status</div>
-      <div style="font-size:13px;font-weight:700;color:${isBreach?'#f87171':consViolated?'#ef4444':passed?'#34d399':'#fbbf24'};">
-        ${isBreach?'🔴 Breached':consViolated?'🔴 Consistency Fail':passed?'✅ Ready to Pass':'🟡 In Progress'}
-      </div>
-    </div>
-  `;
-}
-tsCalc();
-</script>
 
     <div style="margin-bottom: 28px;">
     <div style="font-size:14px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #2d3748;">
