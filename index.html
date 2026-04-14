@@ -219,7 +219,8 @@
 </div>
 
 <div class="tab-nav">
-  <button class="tab-btn active" onclick="switchTab('daily', this)">📅 Daily</button>
+  <button class="tab-btn active" onclick="switchTab('daily', this)">📅 Current</button>
+  <button class="tab-btn" onclick="switchTab('navigator', this)">🧭 Navigator</button>
   <button class="tab-btn" onclick="switchTab('stat', this)">📊 Stats</button>
   <button class="tab-btn" onclick="switchTab('tracker', this)">🎯 Tracker</button>
 </div>
@@ -363,6 +364,94 @@
             </div>
           </div>
       </div>
+
+  </div>
+
+  <div id="pane-navigator" class="tab-pane">
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:24px; margin-bottom:20px;">
+      <div style="font-size:11px; font-weight:600; color:#a78bfa; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:14px;">🧭 The Philosophy — Why vs. How</div>
+      <p style="font-size:13px; color:#94a3b8; line-height:1.75; margin:0 0 12px;">many traders are looking for a <em>"how"</em> i.e. a simple signal or a fancy new concept to follow. but to survive the deep sea, you need the <strong style="color:#e2e8f0;">why</strong>.</p>
+      <p style="font-size:13px; color:#94a3b8; line-height:1.75; margin:0 0 12px;">in the kita<em>R</em> blueprint, I prefer to use studies over "indicators". the distinction is more than just professional terminology used by platforms like Sierra Chart and MotiveWave; it represents a fundamental shift in mindset. While the retail world often treats an indicator as a "signal" to follow blindly, a study is an active piece of research. It is a mathematical lens through which we analyze the market's auction process.</p>
+      <p style="font-size:13px; color:#94a3b8; line-height:1.75; margin:0 0 12px;">indicators tell you what happened; studies tell you why it's happening. while popular concepts like ict are catchy and easy-to-follow, they are often just pieces of a larger puzzle. for the trader hungry for the truth, we go back to the basics: <strong style="color:#e2e8f0;">macro context</strong> and <strong style="color:#e2e8f0;">order flow.</strong></p>
+      <p style="font-size:13px; color:#94a3b8; line-height:1.75; margin:0;">the market isn't just an algorithm. it's an ecosystem of big fish and small fish. to catch the prize, you have to understand why, where, when and how the fish swim.</p>
+    </div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:24px; margin-bottom:20px;">
+      <div style="font-size:11px; font-weight:600; color:#a78bfa; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:18px;">⚙️ The co-quant Toolkit</div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px;">
+
+        <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:16px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <div style="background:rgba(96,165,250,0.15); border:1px solid rgba(96,165,250,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#60a5fa; text-transform:uppercase; letter-spacing:0.5px;">MACRO</div>
+            <div style="font-size:11px; color:#475569; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "why"</div>
+          </div>
+          <p style="font-size:12px; color:#94a3b8; line-height:1.7; margin:0;">the macro landscape is the invisible hand moving the ocean. before we look at a chart, we must understand the environment we are navigating. for eg, geopolitical risk dictate how global tensions and shifts in power create ripples in liquidity and volatility; the "red folders" such as cpi, nfp, fomc data are not interpreted just as numbers, but as the drivers of the market's next major trend.</p>
+        </div>
+
+        <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:16px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <div style="background:rgba(52,211,153,0.15); border:1px solid rgba(52,211,153,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#34d399; text-transform:uppercase; letter-spacing:0.5px;">TPO</div>
+            <div style="font-size:11px; color:#475569; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "where"</div>
+          </div>
+          <p style="font-size:12px; color:#94a3b8; line-height:1.7; margin:0;">my favorite study for structural context. it tells us where the price is likely to range or expand. it's the map of the ocean floor.</p>
+        </div>
+
+        <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:16px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <div style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#fbbf24; text-transform:uppercase; letter-spacing:0.5px;">FISHER</div>
+            <div style="font-size:11px; color:#475569; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "when"</div>
+          </div>
+          <p style="font-size:12px; color:#94a3b8; line-height:1.7; margin:0;">fisher is one of the many useful mathematical studies that helps to identify when the market is overbought or oversold. it tells us when the current is overstretched and ready to turn.</p>
+        </div>
+
+        <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:16px;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+            <div style="background:rgba(248,113,113,0.15); border:1px solid rgba(248,113,113,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#f87171; text-transform:uppercase; letter-spacing:0.5px;">ORDER FLOW</div>
+            <div style="font-size:11px; color:#475569; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "how"</div>
+          </div>
+          <p style="font-size:12px; color:#94a3b8; line-height:1.7; margin:0;">if macro is the tide, order flow is the movement of the fish. order flow provides the high-resolution evidence we need to execute our strategies with precision. it is the real-time record of every decision made on the tape. it tells us how the price is actually moving at the point of execution. exhaustion &amp; absorption identify when the "big fish" are done buying or when they are quietly absorbing every "small fish" sell order. pulling &amp; stacking observe changing hands in the limit order book.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:24px; margin-bottom:20px;">
+      <div style="font-size:11px; font-weight:600; color:#a78bfa; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px;">📚 The Library — Navigation Resources</div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+          <thead>
+            <tr style="border-bottom:1px solid #2d3748;">
+              <th style="text-align:left; padding:8px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px; background:#141820;">Source</th>
+              <th style="text-align:left; padding:8px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px; background:#141820;">Specialty</th>
+              <th style="text-align:left; padding:8px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px; background:#141820;">The Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a2030'" onmouseout="this.style.background='transparent'">
+              <td style="padding:12px 14px;"><a href="https://gnosisresearch.substack.com" target="_blank" style="color:#60a5fa; font-weight:600; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">gnosisresearch</a> <span style="font-size:10px; color:#475569;">by yusuf</span></td>
+              <td style="padding:12px 14px; color:#94a3b8; text-align:left;">Macro</td>
+              <td style="padding:12px 14px; color:#94a3b8; text-align:left;">The global current. Understanding the "why" before the "how".</td>
+            </tr>
+            <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a2030'" onmouseout="this.style.background='transparent'">
+              <td style="padding:12px 14px;"><a href="https://orderflowlabs.com/" target="_blank" style="color:#60a5fa; font-weight:600; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">orderflow labs</a></td>
+              <td style="padding:12px 14px; color:#94a3b8; text-align:left;">Technical Execution</td>
+              <td style="padding:12px 14px; color:#94a3b8; text-align:left;">The high-resolution radar for execution.</td>
+            </tr>
+            <tr onmouseover="this.style.background='#1a2030'" onmouseout="this.style.background='transparent'">
+              <td style="padding:12px 14px;"><a href="https://www.tradingview.com/support/solutions/43000713306-time-price-opportunity-tpo-indicator/" target="_blank" style="color:#60a5fa; font-weight:600; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">TPO (Market Profile)</a></td>
+              <td style="padding:12px 14px; color:#94a3b8; text-align:left;">Structural Context</td>
+              <td style="padding:12px 14px; color:#94a3b8; text-align:left;">Finding the "where" in the daily and weekly range.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="background:rgba(167,139,250,0.06); border:1px solid rgba(167,139,250,0.2); border-radius:12px; padding:24px; margin-bottom:20px;">
+      <div style="font-size:11px; font-weight:600; color:#a78bfa; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:12px;">💬 Closing Thought — oxkit</div>
+      <p style="font-size:14px; color:#cbd5e1; line-height:1.8; margin:0; font-style:italic;">"a system doesn't have to be over-complicated. eventually, we are all just looking for the <strong style="color:#e2e8f0; font-style:normal;">pullback</strong>, the <strong style="color:#e2e8f0; font-style:normal;">breakout</strong>, or the <strong style="color:#e2e8f0; font-style:normal;">trend</strong>. the blueprint is simply the discipline to wait for them."</p>
+    </div>
 
   </div>
 
