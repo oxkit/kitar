@@ -144,7 +144,7 @@
     <div class="table-card">
       <div class="table-header">
         <div class="section-title">Account History</div>
-        <div style="font-size:13px; color:#60a5fa; font-weight:700;">3 records</div>
+        <div style="font-size:13px; color:#60a5fa; font-weight:700;">4 records</div>
       </div>
       <div style="overflow-x:auto;">
         <table style="width:100%; border-collapse:collapse; font-size:13px;">
@@ -158,6 +158,13 @@
             </tr>
           </thead>
           <tbody>
+            <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a2030'" onmouseout="this.style.background='transparent'">
+              <td style="padding:11px 14px; color:#94a3b8;">2026-04-21</td>
+              <td style="padding:11px 14px; color:#e2e8f0; font-weight:600;">TPT</td>
+              <td style="padding:11px 14px; color:#94a3b8;">25K Challenge</td>
+              <td style="padding:11px 14px; color:#64748b;">Challenge</td>
+              <td style="padding:11px 14px;"><span style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:3px 12px; border-radius:6px; font-size:11px; font-weight:700;">Passed</span></td>
+            </tr>
             <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a2030'" onmouseout="this.style.background='transparent'">
               <td style="padding:11px 14px; color:#94a3b8;">2026-04-17</td>
               <td style="padding:11px 14px; color:#e2e8f0; font-weight:600;">BluSky</td>
@@ -188,6 +195,242 @@
   <!-- DETAILS TAB -->
   <div id="pane-details" class="tab-pane">
     <div style="padding:24px 0;">
+
+
+    <div style="margin-bottom: 28px;">
+    <div style="font-size:14px; font-weight:600; color:#34d399; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid rgba(52,211,153,0.3); display:flex; align-items:center; gap:10px;">
+      🟡 CHALLENGE ACCOUNT &mdash; Take Profit Trader (TPT) 25k
+      <span style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.3); color:#34d399; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:700; letter-spacing:0.5px;">PASSED</span>
+    </div>
+    <div style="background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.3); border-radius:8px; padding:12px 16px; margin-bottom:14px; font-size:13px; color:#34d399; line-height:1.6;">
+      ✅ <strong>Challenge passed.</strong> Profit target reached. This account is now closed and moved to history.
+    </div>
+    <div style="font-size:11px; color:#475569; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#94a3b8; font-weight:600; font-family:monospace; letter-spacing:0.3px;">TPT2658347</span> &nbsp;·&nbsp; Started: <span style="color:#94a3b8; font-weight:600;">24/3/2026</span> &nbsp;·&nbsp; <button onclick="showTptRecords()" style="background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.3); color:#60a5fa; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>
+
+        <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+      <div style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>
+      <div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $1,500</div>
+      <div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $1,500</div>
+      <div style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Min 5 Trading Days</div>
+      <div style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#fca5a5; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Consistency: Best Day &lt; 50% of Total Profit</div>
+      <div style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); color:#fde68a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600; margin-left:auto;">⏰ Renews 25 Apr 2026</div>
+    </div>
+
+        <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
+      <div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>
+      <input id="tpt-balance" type="hidden" value="26502.50">
+      <input id="tpt-peak" type="hidden" value="26502.50">
+      <input id="tpt-bestday" type="hidden" value="750">
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+        <div style="background:#141820; border-radius:8px; padding:14px;">
+          <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Current Balance</div>
+          <div id="tpt-stat-bal" style="font-size:18px; font-weight:700; color:#34d399;">$25,801.00</div>
+        </div>
+        <div style="background:#141820; border-radius:8px; padding:14px;">
+          <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Highest Trailing</div>
+          <div id="tpt-stat-peak" style="font-size:18px; font-weight:700; color:#e2e8f0;">$25,801.00</div>
+        </div>
+        <div style="background:#141820; border-radius:8px; padding:14px;">
+          <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Best Single Day</div>
+          <div id="tpt-stat-bday" style="font-size:18px; font-weight:700; color:#e2e8f0;">$750.00</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
+      <div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Trading Days</div>
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:14px;">
+        <div style="background:#141820; border-radius:8px; padding:14px;">
+          <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Total Trading Days</div>
+          <div id="tpt-stat-days" style="font-size:18px; font-weight:700; color:#e2e8f0;">1</div>
+        </div>
+        <div style="background:#141820; border-radius:8px; padding:14px;">
+          <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Min Trading Days</div>
+          <div style="font-size:18px; font-weight:700; color:#fbbf24;">5</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
+      <div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Drawdown &amp; Consistency</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <div>
+          <div style="background:#141820; border-radius:8px; padding:12px 14px; margin-bottom:12px;">
+            <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div>
+            <div id="tpt-dd-floor" style="font-size:16px; font-weight:700; color:#f87171;">—</div>
+          </div>
+          <div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Drawdown Used</span>
+          <span id="tpt-dd-lbl" style="font-size:11px; font-weight:600; color:#f87171;"></span>
+        </div>
+        <div style="background:#141820; border-radius:6px; height:10px; overflow:hidden;">
+          <div id="tpt-dd-bar" style="height:100%; border-radius:6px; transition:width 0.4s, background 0.4s; width:0%; background:#34d399;"></div>
+        </div>
+        <div id="tpt-dd-note" style="font-size:10px; color:#475569; margin-top:6px;"></div>
+      </div>
+        </div>
+        <div>
+          <div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Consistency Check</span>
+          <span id="tpt-cons-lbl" style="font-size:11px; font-weight:600; color:#34d399;"></span>
+        </div>
+        <div style="background:#141820; border-radius:6px; height:10px; overflow:hidden;">
+          <div id="tpt-cons-bar" style="height:100%; border-radius:6px; transition:width 0.4s, background 0.4s; width:0%; background:#34d399;"></div>
+        </div>
+        <div id="tpt-cons-note" style="font-size:10px; color:#475569; margin-top:6px;"></div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
+      <div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Profit Progress &amp; Renewal Countdown</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Profit Progress</span>
+          <span id="tpt-profit-lbl" style="font-size:11px; font-weight:600; color:#34d399;"></span>
+        </div>
+        <div style="background:#141820; border-radius:6px; height:10px; overflow:hidden;">
+          <div id="tpt-profit-bar" style="height:100%; border-radius:6px; transition:width 0.4s, background 0.4s; width:0%; background:linear-gradient(90deg,#10b981,#34d399);"></div>
+        </div>
+        <div id="tpt-profit-note" style="font-size:10px; color:#475569; margin-top:6px;"></div>
+      </div>
+        <div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Renewal Countdown</span>
+          <span id="tpt-renewal-lbl" style="font-size:11px; font-weight:600; color:#fbbf24;"></span>
+        </div>
+        <div style="background:#141820; border-radius:6px; height:10px; overflow:hidden;">
+          <div id="tpt-renewal-bar" style="height:100%; border-radius:6px; transition:width 0.4s, background 0.4s; width:0%; background:#f59e0b;"></div>
+        </div>
+        <div id="tpt-renewal-note" style="font-size:10px; color:#475569; margin-top:6px;"></div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const TPT_START = 25000;
+const TPT_TARGET = 1500;
+const TPT_DD = 1500;
+const TPT_MIN_DAYS = 5;
+const TPT_RENEWAL = new Date('2026-04-25');
+
+function tptCalc() {
+  const tptDays = tptRecords.length;
+  document.getElementById('tpt-stat-days').textContent = tptDays;
+  const bal = parseFloat(document.getElementById('tpt-balance').value) || TPT_START;
+  const peak = parseFloat(document.getElementById('tpt-peak').value) || bal;
+  const bestDay = parseFloat(document.getElementById('tpt-bestday').value) || 0;
+  const effPeak = Math.max(peak, bal);
+
+  const floor = effPeak - TPT_DD;
+  const ddUsed = Math.max(0, effPeak - bal);
+  const ddRemaining = Math.max(0, bal - floor);
+  document.getElementById('tpt-stat-bal').textContent = '$' + bal.toLocaleString('en-US',{minimumFractionDigits:2});
+  document.getElementById('tpt-stat-bal').style.color = (bal - TPT_START) >= 0 ? '#34d399' : '#f87171';
+  document.getElementById('tpt-stat-peak').textContent = '$' + effPeak.toLocaleString('en-US',{minimumFractionDigits:2});
+  document.getElementById('tpt-stat-bday').textContent = '$' + (parseFloat(document.getElementById('tpt-bestday').value)||0).toFixed(2);
+  document.getElementById('tpt-dd-floor').textContent = '$' + floor.toLocaleString('en-US',{minimumFractionDigits:2});
+  const ddPct = Math.min(100, (ddUsed / TPT_DD) * 100);
+  const totalProfit = bal - TPT_START;
+  const isBreach = bal <= floor;
+
+  // Consistency: cap = Profit Target * 50%
+  const TPT_CONS_CAP = TPT_TARGET * 0.5; // $750
+  const consistencyViolated = bestDay > TPT_CONS_CAP;
+  const consPct = bestDay > 0 ? Math.min(100, (bestDay / TPT_CONS_CAP) * 100) : 0;
+  const profitPct = Math.min(100, Math.max(0, (totalProfit / TPT_TARGET) * 100));
+  const profitNeeded = Math.max(0, TPT_TARGET - totalProfit);
+  const daysMet = tptDays >= TPT_MIN_DAYS;
+
+  // Renewal countdown
+  const today = new Date();
+  const msLeft = TPT_RENEWAL - today;
+  const daysLeft = Math.ceil(msLeft / (1000 * 60 * 60 * 24));
+  const totalWindow = 30; // approx subscription window
+  const renewalPct = Math.max(0, Math.min(100, ((totalWindow - daysLeft) / totalWindow) * 100));
+
+  // Status
+  const passed = totalProfit >= TPT_TARGET && daysMet && !isBreach && !consistencyViolated;
+  const failed = isBreach;
+
+  // Profit bar
+  document.getElementById('tpt-profit-bar').style.width = profitPct + '%';
+  document.getElementById('tpt-profit-lbl').textContent = '$' + Math.max(0,totalProfit).toFixed(2) + ' / $' + TPT_TARGET.toLocaleString();
+  document.getElementById('tpt-profit-note').textContent = passed
+    ? '✅ Profit target met!'
+    : profitNeeded > 0
+      ? '$' + profitNeeded.toFixed(2) + ' still needed'
+      : 'Target reached — check days & consistency';
+
+  // DD bar
+  document.getElementById('tpt-dd-bar').style.width = ddPct + '%';
+  document.getElementById('tpt-dd-bar').style.background = ddPct < 50 ? '#34d399' : ddPct < 75 ? '#fbbf24' : '#f87171';
+  document.getElementById('tpt-dd-lbl').textContent = '$' + ddUsed.toFixed(0) + ' / $' + TPT_DD.toLocaleString();
+  document.getElementById('tpt-dd-note').textContent = isBreach
+    ? '🔴 Account breached — drawdown limit hit'
+    : 'Floor $' + floor.toFixed(2) + ' · $' + ddRemaining.toFixed(2) + ' buffer left';
+
+  // Consistency bar
+  document.getElementById('tpt-cons-bar').style.width = consPct + '%';
+  document.getElementById('tpt-cons-bar').style.background = consistencyViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
+  document.getElementById('tpt-cons-lbl').textContent = bestDay > 0 ? '$' + bestDay.toFixed(0) + ' / $' + TPT_CONS_CAP.toFixed(0) + ' cap' : 'Enter best day';
+  document.getElementById('tpt-cons-lbl').style.color = consistencyViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
+  document.getElementById('tpt-cons-note').textContent = consistencyViolated
+    ? '🔴 Best day $' + bestDay.toFixed(0) + ' exceeds $' + TPT_CONS_CAP.toFixed(0) + ' cap (50% of $' + TPT_TARGET + ' target)'
+    : bestDay > 0
+      ? (consPct > 80 ? '⚠️ ' : '✅ ') + 'Best day $' + bestDay.toFixed(0) + ' is ' + consPct.toFixed(0) + '% of $' + TPT_CONS_CAP.toFixed(0) + ' cap'
+      : 'Best single day must stay below 50% of $1,500 profit target ($750)';
+
+  // Renewal
+  document.getElementById('tpt-renewal-bar').style.width = renewalPct + '%';
+  document.getElementById('tpt-renewal-bar').style.background = daysLeft <= 5 ? '#f87171' : daysLeft <= 10 ? '#fbbf24' : '#f59e0b';
+  document.getElementById('tpt-renewal-lbl').textContent = daysLeft > 0 ? daysLeft + ' days left' : 'Expired';
+  document.getElementById('tpt-renewal-lbl').style.color = daysLeft <= 5 ? '#f87171' : '#fbbf24';
+  document.getElementById('tpt-renewal-note').textContent = 'Renews 25 Apr 2026 — pass or fail before then';
+
+  // Stats
+}
+
+const tptRecords = [
+  {date:'2026-04-13', pnl:27.00},
+  {date:'2026-04-14', pnl:-304.25},
+  {date:'2026-04-15', pnl:32.75},
+  {date:'2026-04-16', pnl:63.50},
+  {date:'2026-04-17', pnl:684.25},
+  {date:'2026-04-20', pnl:109.25},
+  {date:'2026-04-21', pnl:116.00}
+];
+
+function showTptRecords() {
+  document.getElementById('tpt-records-tbody').innerHTML = tptRecords.map((r,i) =>
+    '<tr style="border-bottom:1px solid #1e293b;"><td style="padding:9px 10px; color:#e2e8f0;">' + r.date + '</td>' +
+    '<td style="padding:9px 10px; text-align:right; font-weight:600; color:' + (r.pnl>=0?'#34d399':'#f87171') + ';">' + (r.pnl>=0?'+':'-') + '$' + Math.abs(r.pnl).toFixed(2) + '</td></tr>'
+  ).join('');
+  document.getElementById('tpt-records-modal').style.display = 'flex';
+}
+tptCalc();
+</script>
+
+<div id="tpt-records-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#1a1f2e; border:1px solid #374151; border-radius:14px; padding:28px; max-width:400px; width:92%; max-height:80vh; overflow-y:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <div style="font-size:14px; font-weight:700; color:#e2e8f0;">TPT 25k — Records</div>
+      <button onclick="document.getElementById('tpt-records-modal').style.display='none'" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">✕</button>
+    </div>
+    <div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:13px;">
+      <thead><tr style="border-bottom:1px solid #2d3748;">
+        <th style="text-align:left; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
+        <th style="text-align:right; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">P&amp;L</th>
+      </tr></thead>
+      <tbody id="tpt-records-tbody"></tbody>
+    </table></div>
+  </div>
+</div>
 
     <div style="margin-bottom: 28px;">
     <div style="font-size:14px; font-weight:600; color:#f87171; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid rgba(239,68,68,0.3); display:flex; align-items:center; gap:10px;">
@@ -788,7 +1031,7 @@ bskCalc();
 
 </div>
 
-<div class="footer">Last updated: 21 Apr 2026</div>
+<div class="footer">Last updated: 22 Apr 2026</div>
 
 <script>
 function switchTab(name, btn) {
