@@ -363,12 +363,12 @@
     </div>
     <div class="card red">
       <div class="card-label">Total Fees Paid</div>
-      <div class="card-value red">-$20,201.30</div>
+      <div class="card-value red">-$20,290.30</div>
       <div class="card-sub">Challenge costs (all firms)</div>
     </div>
     <div class="card blue">
       <div class="card-label">Net Prop Firm P&L</div>
-      <div class="card-value blue">$73,548.83</div>
+      <div class="card-value blue">$73,459.83</div>
       <div class="card-sub">Payouts minus all fees</div>
     </div>
     <div class="card red">
@@ -378,12 +378,12 @@
     </div>
     <div class="card purple">
       <div class="card-label">Overall Net P&L</div>
-      <div class="card-value purple">$72,312.18</div>
+      <div class="card-value purple">$72,223.18</div>
       <div class="card-sub">Prop + Personal Live</div>
     </div>
     <div class="card amber">
       <div class="card-label">ROI on Fees</div>
-      <div class="card-value amber">364%</div>
+      <div class="card-value amber">362%</div>
       <div class="card-sub">4.6x return on fees paid</div>
     </div>
   </div>
@@ -462,10 +462,10 @@
         </tr>
         <tr>
           <td class="firm-name">TopStep</td>
-          <td class="positive">+$7,181.85</td>
+          <td class="positive">+$7,092.85</td>
           <td class="positive">$10,144.00</td>
-          <td class="negative">-$2,962.15</td>
-          <td class="positive">+242%</td>
+          <td class="negative">-$3,051.15</td>
+          <td class="positive">+233%</td>
           <td style="color:#475569; font-size:11px;"><button onclick="document.getElementById('fee-modal-topstep').style.display='flex'" style="background:none; border:none; color:#60a5fa; font-size:11px; cursor:pointer; padding:0; text-decoration:underline;">Challenge Fee</button></td>
         </tr>
         <tr>
@@ -1388,6 +1388,201 @@ function tpt50Calc() {
 }
 tpt50Calc();
 </script>
+    <div style="margin-bottom: 28px;">
+    <div style="font-size:14px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #2d3748;">
+      🟡 CHALLENGE ACCOUNT &mdash; TopStep 50k
+    </div>
+    <div style="font-size:11px; color:#475569; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#94a3b8; font-weight:600; font-family:monospace; letter-spacing:0.3px;">50KTC-V2-45281-51504924</span> &nbsp;&middot;&nbsp; Started: <span style="color:#94a3b8; font-weight:600;">23/4/2026</span> &nbsp;&middot;&nbsp; <button onclick="showTs50cRecords()" style="background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.3); color:#60a5fa; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>
+
+    <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+      <div style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>
+      <div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $2,000</div>
+      <div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $3,000</div>
+      <div style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#fca5a5; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Consistency: Best Day &lt; 50% of Profit Target ($1,500 cap)</div>
+    </div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
+      <div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>
+      <input id="ts50c-balance" type="hidden" value="50000">
+      <input id="ts50c-peak" type="hidden" value="50000">
+      <input id="ts50c-bestday" type="hidden" value="0">
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+        <div style="background:#141820; border-radius:8px; padding:14px;">
+          <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Current Balance</div>
+          <div id="ts50c-stat-bal" style="font-size:18px; font-weight:700; color:#34d399;"></div>
+        </div>
+        <div style="background:#141820; border-radius:8px; padding:14px;">
+          <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Highest Trailing</div>
+          <div id="ts50c-stat-peak" style="font-size:18px; font-weight:700; color:#e2e8f0;"></div>
+        </div>
+        <div style="background:#141820; border-radius:8px; padding:14px;">
+          <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Best Single Day</div>
+          <div id="ts50c-stat-bday" style="font-size:18px; font-weight:700; color:#e2e8f0;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
+      <div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Trading Days</div>
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">
+        <div style="background:#141820; border-radius:8px; padding:14px;">
+          <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Total Trading Days</div>
+          <div id="ts50c-stat-days" style="font-size:18px; font-weight:700; color:#e2e8f0;">0</div>
+        </div>
+        <div style="background:#141820; border-radius:8px; padding:14px;">
+          <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Min Trading Days</div>
+          <div style="font-size:18px; font-weight:700; color:#64748b;">&#x221e;</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
+      <div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Drawdown &amp; Consistency</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <div>
+          <div style="background:#141820; border-radius:8px; padding:12px 14px; margin-bottom:12px;">
+            <div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div>
+            <div id="ts50c-dd-floor" style="font-size:16px; font-weight:700; color:#f87171;">&mdash;</div>
+          </div>
+          <div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Drawdown Used</span>
+          <span id="ts50c-dd-lbl" style="font-size:11px; font-weight:600; color:#f87171;"></span>
+        </div>
+        <div style="background:#141820; border-radius:6px; height:10px; overflow:hidden;">
+          <div id="ts50c-dd-bar" style="height:100%; border-radius:6px; transition:width 0.4s, background 0.4s; width:0%; background:#34d399;"></div>
+        </div>
+        <div id="ts50c-dd-note" style="font-size:10px; color:#475569; margin-top:6px;"></div>
+      </div>
+        </div>
+        <div>
+          <div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Consistency Check</span>
+          <span id="ts50c-cons-lbl" style="font-size:11px; font-weight:600; color:#34d399;"></span>
+        </div>
+        <div style="background:#141820; border-radius:6px; height:10px; overflow:hidden;">
+          <div id="ts50c-cons-bar" style="height:100%; border-radius:6px; transition:width 0.4s, background 0.4s; width:0%; background:#34d399;"></div>
+        </div>
+        <div id="ts50c-cons-note" style="font-size:10px; color:#475569; margin-top:6px;"></div>
+      </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
+      <div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Profit Progress &amp; Renewal Countdown</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Profit Progress</span>
+          <span id="ts50c-profit-lbl" style="font-size:11px; font-weight:600; color:#34d399;"></span>
+        </div>
+        <div style="background:#141820; border-radius:6px; height:10px; overflow:hidden;">
+          <div id="ts50c-profit-bar" style="height:100%; border-radius:6px; transition:width 0.4s, background 0.4s; width:0%; background:linear-gradient(90deg,#10b981,#34d399);"></div>
+        </div>
+        <div id="ts50c-profit-note" style="font-size:10px; color:#475569; margin-top:6px;"></div>
+      </div>
+        <div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Renewal Countdown</span>
+          <span id="ts50c-renewal-lbl" style="font-size:11px; font-weight:600; color:#fbbf24;"></span>
+        </div>
+        <div style="background:#141820; border-radius:6px; height:10px; overflow:hidden;">
+          <div id="ts50c-renewal-bar" style="height:100%; border-radius:6px; transition:width 0.4s, background 0.4s; width:0%; background:#f59e0b;"></div>
+        </div>
+        <div id="ts50c-renewal-note" style="font-size:10px; color:#475569; margin-top:6px;"></div>
+      </div>
+      </div>
+    </div>
+    </div>
+
+<div id="ts50c-records-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#1a1f2e; border:1px solid #374151; border-radius:14px; padding:28px; max-width:400px; width:92%; max-height:80vh; overflow-y:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <div style="font-size:14px; font-weight:700; color:#e2e8f0;">TopStep 50k &mdash; Records</div>
+      <button onclick="document.getElementById('ts50c-records-modal').style.display='none'" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">&#x2715;</button>
+    </div>
+    <div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:13px;">
+      <thead><tr style="border-bottom:1px solid #2d3748;">
+        <th style="text-align:left; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
+        <th style="text-align:right; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">P&amp;L</th>
+      </tr></thead>
+      <tbody id="ts50c-records-tbody"></tbody>
+    </table></div>
+  </div>
+</div>
+<script>
+const TS50C_START = 50000;
+const TS50C_TARGET = 3000;
+const TS50C_DD = 2000;
+const TS50C_RENEWAL = new Date('2026-05-23');
+
+const ts50cRecords = [];
+
+function showTs50cRecords() {
+  document.getElementById('ts50c-records-tbody').innerHTML = ts50cRecords.length === 0
+    ? '<tr><td colspan="2" style="padding:16px 10px; text-align:center; color:#475569;">No records yet</td></tr>'
+    : ts50cRecords.map(function(r) {
+        return '<tr style="border-bottom:1px solid #1e293b;"><td style="padding:9px 10px; color:#e2e8f0;">' + r.date + '</td>' +
+          '<td style="padding:9px 10px; text-align:right; font-weight:600; color:' + (r.pnl>=0?'#34d399':'#f87171') + ';">' + (r.pnl>=0?'+':'-') + '$' + Math.abs(r.pnl).toFixed(2) + '</td></tr>';
+      }).join('');
+  document.getElementById('ts50c-records-modal').style.display = 'flex';
+}
+
+function ts50cCalc() {
+  const bal = parseFloat(document.getElementById('ts50c-balance').value) || TS50C_START;
+  const peak = parseFloat(document.getElementById('ts50c-peak').value) || bal;
+  const bestDay = parseFloat(document.getElementById('ts50c-bestday').value) || 0;
+  const effPeak = Math.max(peak, bal);
+  const floor = effPeak - TS50C_DD;
+  const ddUsed = Math.max(0, effPeak - bal);
+  const ddRemaining = Math.max(0, bal - floor);
+  const ddPct = Math.min(100, (ddUsed / TS50C_DD) * 100);
+  const totalProfit = bal - TS50C_START;
+  const isBreach = bal <= floor;
+
+  document.getElementById('ts50c-stat-bal').textContent = '$' + bal.toLocaleString('en-US',{minimumFractionDigits:2});
+  document.getElementById('ts50c-stat-bal').style.color = totalProfit >= 0 ? '#34d399' : '#f87171';
+  document.getElementById('ts50c-stat-peak').textContent = '$' + effPeak.toLocaleString('en-US',{minimumFractionDigits:2});
+  document.getElementById('ts50c-stat-bday').textContent = '$' + bestDay.toFixed(2);
+  document.getElementById('ts50c-stat-days').textContent = ts50cRecords.length;
+  document.getElementById('ts50c-dd-floor').textContent = '$' + floor.toLocaleString('en-US',{minimumFractionDigits:2});
+
+  // Consistency: cap = Profit Target * 50%
+  const consCap = TS50C_TARGET * 0.50; // $1,500
+  const consViolated = bestDay > consCap;
+  const consPct = Math.min(100, (bestDay / consCap) * 100);
+  const profitPct = Math.min(100, Math.max(0, (totalProfit / TS50C_TARGET) * 100));
+  const profitNeeded = Math.max(0, TS50C_TARGET - totalProfit);
+  const passed = totalProfit >= TS50C_TARGET && !isBreach && !consViolated;
+
+  document.getElementById('ts50c-profit-bar').style.width = profitPct + '%';
+  document.getElementById('ts50c-profit-lbl').textContent = '$' + Math.max(0, totalProfit).toFixed(2) + ' / $' + TS50C_TARGET.toLocaleString();
+  document.getElementById('ts50c-profit-note').textContent = passed ? '✅ Profit target met!' : profitNeeded > 0 ? '$' + profitNeeded.toFixed(2) + ' still needed' : 'Target reached — check consistency';
+
+  document.getElementById('ts50c-dd-bar').style.width = ddPct + '%';
+  document.getElementById('ts50c-dd-bar').style.background = ddPct < 50 ? '#34d399' : ddPct < 75 ? '#fbbf24' : '#f87171';
+  document.getElementById('ts50c-dd-lbl').textContent = '$' + ddUsed.toFixed(0) + ' / $' + TS50C_DD.toLocaleString();
+  document.getElementById('ts50c-dd-note').textContent = isBreach ? '🔴 Account breached — drawdown limit hit' : 'Floor $' + floor.toFixed(2) + ' · $' + ddRemaining.toFixed(2) + ' buffer';
+
+  document.getElementById('ts50c-cons-bar').style.width = consPct + '%';
+  document.getElementById('ts50c-cons-bar').style.background = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
+  document.getElementById('ts50c-cons-lbl').style.color = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
+  document.getElementById('ts50c-cons-lbl').textContent = bestDay > 0 ? '$' + bestDay.toFixed(0) + ' / $' + consCap.toFixed(0) + ' cap' : 'Enter best day';
+  document.getElementById('ts50c-cons-note').textContent = consViolated ? '🔴 Consistency violated — best day exceeds $' + consCap.toFixed(0) + ' cap' : bestDay > 0 ? (consPct > 80 ? '⚠️ ' : '✅ ') + 'Best day is ' + consPct.toFixed(0) + '% of $' + consCap.toFixed(0) + ' cap' : 'Best single day must stay below 50% of $3,000 profit target ($1,500)';
+
+  const ts50cDLeft = Math.ceil((TS50C_RENEWAL - new Date()) / 86400000);
+  const ts50cRPct = Math.max(0, Math.min(100, ((30 - ts50cDLeft) / 30) * 100));
+  document.getElementById('ts50c-renewal-bar').style.width = ts50cRPct + '%';
+  document.getElementById('ts50c-renewal-bar').style.background = ts50cDLeft <= 5 ? '#f87171' : ts50cDLeft <= 10 ? '#fbbf24' : '#f59e0b';
+  document.getElementById('ts50c-renewal-lbl').textContent = ts50cDLeft > 0 ? ts50cDLeft + ' days left' : 'Expired';
+  document.getElementById('ts50c-renewal-lbl').style.color = ts50cDLeft <= 5 ? '#f87171' : '#fbbf24';
+  document.getElementById('ts50c-renewal-note').textContent = 'Renews 23 May 2026 — pass or fail before then';
+}
+ts50cCalc();
+</script>
+
 
 
 
@@ -1410,12 +1605,12 @@ function switchTab(name, btn) {
 
 <script>
 const monthLabels = ["Nov 24","Dec 24","Jan 25","Feb 25","Mar 25","Apr 25","May 25","Jun 25","Jul 25","Aug 25","Sep 25","Oct 25","Nov 25","Dec 25","Jan 26","Feb 26","Mar 26","Apr 26"];
-const feesData = [10135.0,337.7,546.9,626.6,590.8,426.65,943.6,386.9,332.7,923.2,610.2,719.35,518.6,1080.1,288.5,1112.5,338.0,284.0];
+const feesData = [10135.0,337.7,546.9,626.6,590.8,426.65,943.6,386.9,332.7,923.2,610.2,719.35,518.6,1080.1,288.5,1112.5,338.0,373.0];
 const payoutsData = [11736.0,13302.70,8334.54,0,0,0,0,0,0,0,0,0,6891.0,9225.0,19759.24,16546.65,5105.0,2850.0];
-const netMonthly = [1601.0,12440.96,5785.5,-626.6,-590.8,-426.65,-943.6,-386.9,-332.7,-923.2,-610.2,-719.35,6372.4,8144.9,19470.74,15434.15,4767.0,2566.0];
+const netMonthly = [1601.0,12440.96,5785.5,-626.6,-590.8,-426.65,-943.6,-386.9,-332.7,-923.2,-610.2,-719.35,6372.4,8144.9,19470.74,15434.15,4767.0,2477.0];
 const netMonthlyColors = ["rgba(52,211,153,0.8)","rgba(52,211,153,0.8)","rgba(52,211,153,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(248,113,113,0.8)","rgba(52,211,153,0.8)","rgba(52,211,153,0.8)","rgba(52,211,153,0.8)","rgba(52,211,153,0.8)","rgba(52,211,153,0.8)","rgba(52,211,153,0.8)"];
-const cumNet = [1601.0,14041.96,19827.46,19200.86,18610.06,18183.41,17239.81,16852.91,16520.21,15597.01,14986.81,14267.46,20639.86,28784.76,48255.5,63689.65,68456.65,71022.65];
-const cumOverall = [1601.0,13946.56,20821.06,19023.06,17816.06,17183.71,16240.11,15853.21,15520.51,14597.31,13987.11,14275.46,19589.23,27375.13,47095.87,62393.56,67160.56,69726.56];
+const cumNet = [1601.0,14041.96,19827.46,19200.86,18610.06,18183.41,17239.81,16852.91,16520.21,15597.01,14986.81,14267.46,20639.86,28784.76,48255.5,63689.65,68456.65,70933.65];
+const cumOverall = [1601.0,13946.56,20821.06,19023.06,17816.06,17183.71,16240.11,15853.21,15520.51,14597.31,13987.11,14275.46,19589.23,27375.13,47095.87,62393.56,67160.56,69637.56];
 
 const chartDefaults = {
   responsive: true,
@@ -1586,6 +1781,7 @@ new Chart(document.getElementById('firmPieChart'), {
         <th style="text-align:right; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
       </tr></thead>
       <tbody>
+        <tr><td style="padding:9px 10px; color:#94a3b8;">23/4/2026</td><td style="padding:9px 10px; color:#e2e8f0; font-family:monospace; font-size:12px; text-align:left;">50KTC-V2-45281-51504924</td><td style="padding:9px 10px; text-align:right; color:#f87171; font-weight:600;">-$89.00</td></tr>
         <tr><td style="padding:9px 10px; color:#94a3b8;">9/4/2026</td><td style="padding:9px 10px; color:#e2e8f0; font-family:monospace; font-size:12px; text-align:left;">50KTC-V2-45281-25364619</td><td style="padding:9px 10px; text-align:right; color:#f87171; font-weight:600;">-$83.00</td></tr>
       </tbody>
     </table></div>
