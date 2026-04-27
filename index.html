@@ -788,7 +788,8 @@ const xfaRecords = [
   {date:'2026-04-16', pnl:124.54},
   {date:'2026-04-17', pnl:701.56},
   {date:'2026-04-20', pnl:3.34},
-  {date:'2026-04-22', pnl:80.52}
+  {date:'2026-04-22', pnl:80.52},
+  {date:'2026-04-24', pnl:147.53}
 ];
 
 function showXfaRecords() {
@@ -805,9 +806,10 @@ function xfaCalc() {
   let runPnl = 0, peakPnl = 0;
   for (const r of xfaRecords) { runPnl += r.pnl; if (runPnl > peakPnl) peakPnl = runPnl; }
   const totalProfit = runPnl;
-  const consLimit = bestDay > 0 ? bestDay / XFA_CONS_CAP_PCT : 0;
-  const consViolated = bestDay > 0 && totalProfit > consLimit;
-  const consPct = consLimit > 0 ? Math.min(100, (totalProfit / consLimit) * 100) : 0;
+  // Consistency: best day must be < 40% of total profit (cap is dynamic)
+  const consCap = totalProfit > 0 ? totalProfit * XFA_CONS_CAP_PCT : 0;
+  const consViolated = bestDay > 0 && consCap > 0 && bestDay > consCap;
+  const consPct = consCap > 0 ? Math.min(100, (bestDay / consCap) * 100) : 0;
   const daysMet = days >= XFA_MIN_DAYS;
   const floor = peakPnl - XFA_DD;
   const ddUsed = Math.max(0, peakPnl - totalProfit);
@@ -832,8 +834,8 @@ function xfaCalc() {
   document.getElementById('xfa-cons-bar').style.width = consPct + '%';
   document.getElementById('xfa-cons-bar').style.background = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
   document.getElementById('xfa-cons-lbl').style.color = consViolated ? '#f87171' : consPct > 80 ? '#fbbf24' : '#34d399';
-  document.getElementById('xfa-cons-lbl').textContent = bestDay > 0 ? '$' + totalProfit.toFixed(2) + ' / $' + consLimit.toFixed(2) + ' max' : 'No trades yet';
-  document.getElementById('xfa-cons-note').textContent = consViolated ? '🔴 Limit exceeded — profit $' + totalProfit.toFixed(2) + ' > max $' + consLimit.toFixed(2) + ' (best day $' + bestDay.toFixed(2) + ' ÷ 40%)' : bestDay > 0 ? (consPct > 80 ? '⚠️ ' : '✅ ') + 'Profit at ' + consPct.toFixed(0) + '% of $' + consLimit.toFixed(2) + ' limit (best day $' + bestDay.toFixed(2) + ' ÷ 40%)' : 'No trades yet';
+  document.getElementById('xfa-cons-lbl').textContent = bestDay > 0 ? '$' + bestDay.toFixed(2) + ' / $' + consCap.toFixed(2) + ' cap' : 'No trades yet';
+  document.getElementById('xfa-cons-note').textContent = consViolated ? '🔴 Consistency violated — best day $' + bestDay.toFixed(2) + ' exceeds 40% cap ($' + consCap.toFixed(2) + ' of $' + totalProfit.toFixed(2) + ' profit)' : bestDay > 0 ? (consPct > 80 ? '⚠️ ' : '✅ ') + 'Best day $' + bestDay.toFixed(2) + ' is ' + consPct.toFixed(0) + '% of $' + consCap.toFixed(2) + ' cap (40% × $' + totalProfit.toFixed(2) + ' profit)' : 'No trades yet';
 
 }
 xfaCalc();
@@ -858,8 +860,8 @@ xfaCalc();
 
         <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
       <div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>
-      <input id="inp-balance" type="hidden" value="152416.25">
-      <input id="inp-peak" type="hidden" value="152416.25">
+      <input id="inp-balance" type="hidden" value="152432">
+      <input id="inp-peak" type="hidden" value="152432">
       <input id="inp-bestday" type="hidden" value="1772.75">
       <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
         <div style="background:#141820; border-radius:8px; padding:14px;">
@@ -929,7 +931,8 @@ const lucidRecords = [
   {date:'2026-04-17', pnl:1772.75},
   {date:'2026-04-20', pnl:242.00},
   {date:'2026-04-21', pnl:110.75},
-  {date:'2026-04-22', pnl:78.50}
+  {date:'2026-04-22', pnl:78.50},
+  {date:'2026-04-24', pnl:15.75}
 ];
 const STARTING_BALANCE = 150000;
 const MAX_LOSS = 4500;
@@ -1036,8 +1039,8 @@ lucidCalc();
 
     <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
       <div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>
-      <input id="tptpro-balance" type="hidden" value="25036.50">
-      <input id="tptpro-peak" type="hidden" value="25036.50">
+      <input id="tptpro-balance" type="hidden" value="25053">
+      <input id="tptpro-peak" type="hidden" value="25053">
       <input id="tptpro-bestday" type="hidden" value="0">
       <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
         <div style="background:#141820; border-radius:8px; padding:14px;">
@@ -1125,7 +1128,8 @@ const TPTPRO_START = 25000;
 const TPTPRO_DD = 1500;
 const TPTPRO_BUFFER = 1500;
 const tptproRecords = [
-  {date:'2026-04-22', pnl:36.50}
+  {date:'2026-04-22', pnl:36.50},
+  {date:'2026-04-24', pnl:16.50}
 ];
 function showTptproRecords() {
   var tbody = tptproRecords.length === 0
@@ -1188,8 +1192,8 @@ tptproCalc();
 
     <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
       <div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>
-      <input id="tpt50-balance" type="hidden" value="50046.50">
-      <input id="tpt50-peak" type="hidden" value="50046.50">
+      <input id="tpt50-balance" type="hidden" value="50066.75">
+      <input id="tpt50-peak" type="hidden" value="50066.75">
       <input id="tpt50-bestday" type="hidden" value="0">
       <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
         <div style="background:#141820; border-radius:8px; padding:14px;">
@@ -1305,7 +1309,8 @@ const TPT50_MIN_DAYS = 5;
 const TPT50_RENEWAL = new Date('2026-05-21');
 
 const tpt50Records = [
-  {date:'2026-04-22', pnl:46.50}
+  {date:'2026-04-22', pnl:46.50},
+  {date:'2026-04-24', pnl:20.25}
 ];
 
 function showTpt50Records() {
@@ -1403,8 +1408,8 @@ tpt50Calc();
 
     <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">
       <div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>
-      <input id="ts50c-balance" type="hidden" value="50000">
-      <input id="ts50c-peak" type="hidden" value="50000">
+      <input id="ts50c-balance" type="hidden" value="50258.54">
+      <input id="ts50c-peak" type="hidden" value="50258.54">
       <input id="ts50c-bestday" type="hidden" value="0">
       <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
         <div style="background:#141820; border-radius:8px; padding:14px;">
@@ -1518,7 +1523,9 @@ const TS50C_TARGET = 3000;
 const TS50C_DD = 2000;
 const TS50C_RENEWAL = new Date('2026-05-23');
 
-const ts50cRecords = [];
+const ts50cRecords = [
+  {date:'2026-04-24', pnl:258.54}
+];
 
 function showTs50cRecords() {
   document.getElementById('ts50c-records-tbody').innerHTML = ts50cRecords.length === 0
