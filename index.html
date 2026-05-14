@@ -892,7 +892,8 @@ const xfaRecords = [
   {date:'2026-05-06', pnl:188.79},
   {date:'2026-05-07', pnl:256.28},
   {date:'2026-05-08', pnl:258.78},
-  {date:'2026-05-11', pnl:-1000, payout:true}
+  {date:'2026-05-11', pnl:-1000, payout:true},
+  {date:'2026-05-13', pnl:57.74}
 ];
 
 function showXfaRecords() {
@@ -1058,7 +1059,9 @@ const XFAS_QD_MIN = 150;
 const XFAS_QD_TARGET = 5;
 const XFAS_SPLIT = 0.90;
 
-const xfasRecords = [];
+const xfasRecords = [
+  {date:'2026-05-13', pnl:102.77}
+];
 
 function showXfasRecords() {
   var tbody = xfasRecords.length === 0
@@ -1637,7 +1640,6 @@ function showBsk2Records() {
     ? '<tr><td colspan="2" style="padding:16px 10px; text-align:center; color:#475569;">No records yet</td></tr>'
     : bsk2Records.map(function(r) {
         return '<tr style="border-bottom:1px solid #1e293b;"><td style="padding:9px 10px; color:#e2e8f0;">' + r.date + '</td>' +
-        return '<tr style="border-bottom:1px solid #1e293b;"><td style="padding:9px 10px; color:#e2e8f0;">' + r.date + '</td>' +
           '<td style="padding:9px 10px; text-align:right; font-weight:600; color:' + (r.pnl>=0?'#34d399':'#f87171') + ';">' + (r.pnl>=0?'+':'-') + '$' + Math.abs(r.pnl).toFixed(2) + '</td></tr>';
       }).join('');
   document.getElementById('bsk2-records-tbody').innerHTML = tbody;
@@ -1736,7 +1738,7 @@ function switchTab(name, btn) {
 }
 </script>
 
-<div class="footer">Last updated: 14 May 2026 01:23 EST</div>
+<div class="footer">Last updated: 14 May 2026 · 06:15 AM EST</div>
 
 <script>
 const monthLabels = ["Nov 24","Dec 24","Jan 25","Feb 25","Mar 25","Apr 25","May 25","Jun 25","Jul 25","Aug 25","Sep 25","Oct 25","Nov 25","Dec 25","Jan 26","Feb 26","Mar 26","Apr 26","May 26"];
@@ -1963,4 +1965,4 @@ new Chart(document.getElementById('firmPieChart'), {
 </div>
 </body>
 </html>
-                                                                                              
+                                                                                                                                                    
