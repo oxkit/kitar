@@ -1,0 +1,938 @@
+{
+  "meta": {
+    "lastUpdated": "17 May 2026",
+    "summaryCards": {
+      "totalPayoutsReceived": 95550.13,
+      "totalFeesPaid": 20389.3,
+      "netPropFirmPnL": 75160.83,
+      "personalLivePnL": -2587.77,
+      "overallNetPnL": 72572.06
+    }
+  },
+  "stats": {
+    "monthLabels": [
+      "Nov 24",
+      "Dec 24",
+      "Jan 25",
+      "Feb 25",
+      "Mar 25",
+      "Apr 25",
+      "May 25",
+      "Jun 25",
+      "Jul 25",
+      "Aug 25",
+      "Sep 25",
+      "Oct 25",
+      "Nov 25",
+      "Dec 25",
+      "Jan 26",
+      "Feb 26",
+      "Mar 26",
+      "Apr 26",
+      "May 26"
+    ],
+    "feesData": [
+      10135.0,
+      337.7,
+      546.9,
+      626.6,
+      590.8,
+      426.65,
+      943.6,
+      386.9,
+      332.7,
+      923.2,
+      610.2,
+      719.35,
+      518.6,
+      1080.1,
+      288.5,
+      1112.5,
+      338.0,
+      373.0,
+      99.0
+    ],
+    "payoutsData": [
+      11736.0,
+      13302.7,
+      8334.54,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      6891.0,
+      9225.0,
+      19759.24,
+      16546.65,
+      5105.0,
+      3750.0,
+      900.0
+    ],
+    "netMonthly": [
+      1601.0,
+      12440.96,
+      5785.5,
+      -626.6,
+      -590.8,
+      -426.65,
+      -943.6,
+      -386.9,
+      -332.7,
+      -923.2,
+      -610.2,
+      -719.35,
+      6372.4,
+      8144.9,
+      19470.74,
+      15434.15,
+      4767.0,
+      3377.0,
+      801.0
+    ],
+    "netMonthlyColors": [
+      "rgba(52,211,153,0.8)",
+      "rgba(52,211,153,0.8)",
+      "rgba(52,211,153,0.8)",
+      "rgba(248,113,113,0.8)",
+      "rgba(248,113,113,0.8)",
+      "rgba(248,113,113,0.8)",
+      "rgba(248,113,113,0.8)",
+      "rgba(248,113,113,0.8)",
+      "rgba(248,113,113,0.8)",
+      "rgba(248,113,113,0.8)",
+      "rgba(248,113,113,0.8)",
+      "rgba(248,113,113,0.8)",
+      "rgba(52,211,153,0.8)",
+      "rgba(52,211,153,0.8)",
+      "rgba(52,211,153,0.8)",
+      "rgba(52,211,153,0.8)",
+      "rgba(52,211,153,0.8)",
+      "rgba(52,211,153,0.8)",
+      "rgba(52,211,153,0.8)"
+    ]
+  },
+  "firms": [
+    {
+      "name": "MOVE Index",
+      "total": 39508.0
+    },
+    {
+      "name": "MFFU",
+      "total": 23439.35
+    },
+    {
+      "name": "TopStep",
+      "total": 11044.0
+    },
+    {
+      "name": "Tradeify",
+      "total": 8761.83
+    },
+    {
+      "name": "Blusky",
+      "total": 7952.9
+    },
+    {
+      "name": "Lucid",
+      "total": 2352.05
+    },
+    {
+      "name": "GFF",
+      "total": 0.0
+    },
+    {
+      "name": "Earn2Trade",
+      "total": 0.0
+    },
+    {
+      "name": "Raen",
+      "total": 0.0
+    },
+    {
+      "name": "TPT",
+      "total": 0.0
+    }
+  ],
+  "activeAccounts": [
+    {
+      "id": "xfa",
+      "name": "TopStep 50k XFA Consistency",
+      "emoji": "🟢",
+      "firm": "TopStep",
+      "accountNumber": "EXPRESS-V2-CT-45281-27848466",
+      "started": "2026-04-13",
+      "status": "funded",
+      "method": "records",
+      "split": 0.9,
+      "rules": {
+        "dd": 2000,
+        "ddType": "EOD trailing",
+        "consistencyCapPct": 0.4,
+        "minDays": 3,
+        "maxSinglePayout": 6000
+      },
+      "records": [
+        {
+          "date": "2026-04-13",
+          "pnl": 273.78
+        },
+        {
+          "date": "2026-04-15",
+          "pnl": 86.26
+        },
+        {
+          "date": "2026-04-16",
+          "pnl": 124.54
+        },
+        {
+          "date": "2026-04-17",
+          "pnl": 701.56
+        },
+        {
+          "date": "2026-04-20",
+          "pnl": 3.34
+        },
+        {
+          "date": "2026-04-22",
+          "pnl": 80.52
+        },
+        {
+          "date": "2026-04-24",
+          "pnl": 147.53
+        },
+        {
+          "date": "2026-04-25",
+          "pnl": 591.36
+        },
+        {
+          "date": "2026-04-25",
+          "pnl": -1000,
+          "payout": true
+        },
+        {
+          "date": "2026-05-01",
+          "pnl": 291.32
+        },
+        {
+          "date": "2026-05-06",
+          "pnl": 188.79
+        },
+        {
+          "date": "2026-05-07",
+          "pnl": 256.28
+        },
+        {
+          "date": "2026-05-08",
+          "pnl": 258.78
+        },
+        {
+          "date": "2026-05-11",
+          "pnl": -1000,
+          "payout": true
+        },
+        {
+          "date": "2026-05-13",
+          "pnl": 57.74
+        }
+      ]
+    },
+    {
+      "id": "xfas",
+      "name": "TopStep 50k XFA Standard",
+      "emoji": "🟢",
+      "firm": "TopStep",
+      "accountNumber": "EXPRESS-V2-45281-63007831",
+      "started": "2026-05-08",
+      "status": "funded",
+      "method": "records",
+      "split": 0.9,
+      "rules": {
+        "dd": 2000,
+        "ddType": "EOD trailing",
+        "qdMin": 150,
+        "qdTarget": 5
+      },
+      "records": [
+        {
+          "date": "2026-05-13",
+          "pnl": 102.77
+        }
+      ]
+    },
+    {
+      "id": "inp",
+      "name": "Lucid 150k Sim Funded",
+      "emoji": "🟢",
+      "firm": "Lucid",
+      "accountNumber": "LFF1506245655001",
+      "started": "2026-04-09",
+      "status": "funded",
+      "method": "hidden",
+      "split": 0.5,
+      "rules": {
+        "startingBalance": 150000,
+        "dd": 4500,
+        "ddType": "intraday",
+        "qdTarget": 5,
+        "qdMinProfit": 250,
+        "payoutOrderTarget": 5
+      },
+      "balance": 153156,
+      "peak": 153362,
+      "bestDay": 1772.75,
+      "records": [
+        {
+          "date": "2026-04-13",
+          "pnl": 445.0
+        },
+        {
+          "date": "2026-04-14",
+          "pnl": -388.75
+        },
+        {
+          "date": "2026-04-15",
+          "pnl": 22.0
+        },
+        {
+          "date": "2026-04-16",
+          "pnl": 134.0
+        },
+        {
+          "date": "2026-04-17",
+          "pnl": 1772.75
+        },
+        {
+          "date": "2026-04-20",
+          "pnl": 242.0
+        },
+        {
+          "date": "2026-04-21",
+          "pnl": 110.75
+        },
+        {
+          "date": "2026-04-22",
+          "pnl": 78.5
+        },
+        {
+          "date": "2026-04-24",
+          "pnl": 15.75
+        },
+        {
+          "date": "2026-04-30",
+          "pnl": 323.0
+        },
+        {
+          "date": "2026-05-01",
+          "pnl": 454.0
+        },
+        {
+          "date": "2026-05-06",
+          "pnl": 153.0
+        },
+        {
+          "date": "2026-05-07",
+          "pnl": -345.5
+        },
+        {
+          "date": "2026-05-08",
+          "pnl": 139.5
+        }
+      ]
+    },
+    {
+      "id": "tptpro",
+      "name": "TPT 25k PRO",
+      "emoji": "🟡",
+      "firm": "TPT",
+      "accountNumber": "TPT2658347",
+      "started": "2026-04-22",
+      "status": "challenge",
+      "method": "hidden",
+      "split": null,
+      "rules": {
+        "start": 25000,
+        "dd": 1500,
+        "ddType": "intraday",
+        "buffer": 1500
+      },
+      "balance": 25345.75,
+      "peak": 25427.5,
+      "bestDay": 267.5,
+      "records": [
+        {
+          "date": "2026-04-22",
+          "pnl": 36.5
+        },
+        {
+          "date": "2026-04-24",
+          "pnl": 16.5
+        },
+        {
+          "date": "2026-04-30",
+          "pnl": 47.75
+        },
+        {
+          "date": "2026-05-01",
+          "pnl": 267.5
+        },
+        {
+          "date": "2026-05-06",
+          "pnl": 59.25
+        },
+        {
+          "date": "2026-05-07",
+          "pnl": -163.5
+        },
+        {
+          "date": "2026-05-08",
+          "pnl": 81.75
+        }
+      ]
+    },
+    {
+      "id": "bsk2",
+      "name": "BluSky PROPEL 50k",
+      "emoji": "🟣",
+      "firm": "BluSky",
+      "accountNumber": "BSKEPROPELYEE11499",
+      "started": "2026-05-08",
+      "status": "challenge",
+      "method": "hidden",
+      "split": null,
+      "rules": {
+        "start": 50000,
+        "target": 3000,
+        "dd": 2000,
+        "ddType": "EOD trailing",
+        "consistencyPct": 0.3,
+        "renewalDate": "2026-06-07"
+      },
+      "balance": 50798.26,
+      "peak": 50798.26,
+      "bestDay": 798.26,
+      "records": [
+        {
+          "date": "2026-05-08",
+          "pnl": 798.26
+        }
+      ]
+    }
+  ],
+  "personalLive": {
+    "id": "hl",
+    "name": "HyperLiquid",
+    "seedBalance": 5000.0,
+    "deposits": 5000.0,
+    "records": [
+      {
+        "date": "2026-03-23",
+        "closedPnl": 39.26,
+        "fee": 0,
+        "funding": 0,
+        "net": 39.26
+      },
+      {
+        "date": "2026-04-08",
+        "closedPnl": 20.8,
+        "fee": 0.19,
+        "funding": -0.43,
+        "net": 20.18
+      },
+      {
+        "date": "2026-05-09",
+        "closedPnl": -1351.12,
+        "fee": 0,
+        "funding": 0,
+        "net": -1351.12
+      }
+    ]
+  },
+  "archivedAccounts": [
+    {
+      "id": "ts50c",
+      "name": "TopStep 50k TC",
+      "emoji": "🟡",
+      "firm": "TopStep",
+      "accountNumber": "50KTC-V2-45281-51504924",
+      "started": "2026-04-23",
+      "closedDate": "2026-05-08",
+      "status": "Passed",
+      "method": "hidden",
+      "rules": {
+        "start": 50000,
+        "dd": 3000,
+        "ddType": "EOD trailing",
+        "target": 3000,
+        "consistencyCapDay": 1500,
+        "minDays": 5
+      },
+      "finalBalance": 53000,
+      "peakBalance": 53000,
+      "bestDay": 629.75,
+      "description": "Profit target met. Account reached $3,000 profit over 6 trading days. Consistency rule maintained (best day $629.75 < $1,500 cap). Passed and submitted for funded account.",
+      "records": [
+        {
+          "date": "2026-04-24",
+          "pnl": 258.54
+        },
+        {
+          "date": "2026-04-25",
+          "pnl": 615.14
+        },
+        {
+          "date": "2026-05-01",
+          "pnl": 597.64
+        },
+        {
+          "date": "2026-05-06",
+          "pnl": 481.38
+        },
+        {
+          "date": "2026-05-07",
+          "pnl": 417.55
+        },
+        {
+          "date": "2026-05-08",
+          "pnl": 629.75
+        }
+      ]
+    },
+    {
+      "id": "tpt50",
+      "name": "Take Profit Trader (TPT) 50k",
+      "emoji": "🟡",
+      "firm": "TPT",
+      "accountNumber": "TPT4670917",
+      "started": "2026-04-21",
+      "closedDate": "2026-04-28",
+      "status": "Failed",
+      "method": "hidden",
+      "rules": {
+        "start": 50000,
+        "dd": 2000,
+        "ddType": "EOD trailing",
+        "target": 3000,
+        "minDays": 5
+      },
+      "finalBalance": 49883.75,
+      "peakBalance": 50066.75,
+      "bestDay": 0,
+      "description": "Account breached drawdown limit. Closed as failed.",
+      "records": [
+        {
+          "date": "2026-04-22",
+          "pnl": 46.5
+        },
+        {
+          "date": "2026-04-24",
+          "pnl": 20.25
+        },
+        {
+          "date": "2026-04-25",
+          "pnl": -183.0
+        }
+      ]
+    },
+    {
+      "id": "tpt",
+      "name": "Take Profit Trader (TPT) 25k",
+      "emoji": "🟡",
+      "firm": "TPT",
+      "accountNumber": "TPT2658347",
+      "started": "2026-03-24",
+      "closedDate": "2026-04-21",
+      "status": "Passed",
+      "method": "hidden",
+      "rules": {
+        "start": 25000,
+        "dd": 1500,
+        "ddType": "intraday",
+        "target": 1500,
+        "minDays": 5
+      },
+      "finalBalance": 26502.5,
+      "peakBalance": 26502.5,
+      "bestDay": 750,
+      "description": "Challenge passed. Profit target reached. Account closed and moved to history.",
+      "records": [
+        {
+          "date": "2026-04-13",
+          "pnl": 27.0
+        },
+        {
+          "date": "2026-04-14",
+          "pnl": -304.25
+        },
+        {
+          "date": "2026-04-15",
+          "pnl": 32.75
+        },
+        {
+          "date": "2026-04-16",
+          "pnl": 63.5
+        },
+        {
+          "date": "2026-04-17",
+          "pnl": 684.25
+        },
+        {
+          "date": "2026-04-20",
+          "pnl": 109.25
+        },
+        {
+          "date": "2026-04-21",
+          "pnl": 116.0
+        }
+      ]
+    },
+    {
+      "id": "bsk1",
+      "name": "BluSky PROPEL 50K",
+      "emoji": "🟣",
+      "firm": "BluSky",
+      "accountNumber": "BSKEPREMIUMYEE12937",
+      "started": "2026-04-08",
+      "closedDate": "2026-04-17",
+      "status": "Failed",
+      "method": "hidden",
+      "rules": {
+        "start": 50000,
+        "dd": 2000,
+        "ddType": "EOD trailing",
+        "target": 3000,
+        "consistencyPct": 0.3
+      },
+      "finalBalance": 48399.6,
+      "peakBalance": 50433,
+      "bestDay": 900,
+      "description": "Account breached EOD trailing drawdown. Closed as failed.",
+      "records": [
+        {
+          "date": "2026-04-13",
+          "pnl": -697.4
+        },
+        {
+          "date": "2026-04-14",
+          "pnl": -265.45
+        },
+        {
+          "date": "2026-04-15",
+          "pnl": 289.6
+        },
+        {
+          "date": "2026-04-16",
+          "pnl": 129.2
+        },
+        {
+          "date": "2026-04-17",
+          "pnl": -1489.35
+        }
+      ]
+    }
+  ],
+  "history": {
+    "overview": [
+      {
+        "date": "2026-05-08",
+        "firm": "TopStep",
+        "account": "50k TC",
+        "type": "Challenge",
+        "status": "Passed"
+      },
+      {
+        "date": "2026-04-28",
+        "firm": "TPT",
+        "account": "50K Challenge",
+        "type": "Challenge",
+        "status": "Failed"
+      },
+      {
+        "date": "2026-04-21",
+        "firm": "TPT",
+        "account": "25K Challenge",
+        "type": "Challenge",
+        "status": "Passed"
+      },
+      {
+        "date": "2026-04-17",
+        "firm": "BluSky",
+        "account": "PROPEL 50K",
+        "type": "Challenge",
+        "status": "Failed"
+      },
+      {
+        "date": "2026-04-09",
+        "firm": "Lucid",
+        "account": "150k Flex",
+        "type": "Challenge",
+        "status": "Passed"
+      },
+      {
+        "date": "2026-04-09",
+        "firm": "TopStep",
+        "account": "50k TC",
+        "type": "Challenge",
+        "status": "Passed"
+      }
+    ],
+    "payoutsTotal": 69,
+    "payoutsGrandTotal": 95550.13,
+    "payouts": [
+      {
+        "date": "11/5/26",
+        "firm": "TopStep",
+        "amount": 900.0
+      },
+      {
+        "date": "25/4/26",
+        "firm": "TopStep",
+        "amount": 900.0
+      },
+      {
+        "date": "2/4/26",
+        "firm": "APEX",
+        "amount": 2850.0
+      },
+      {
+        "date": "18/3/26",
+        "firm": "APEX",
+        "amount": 2000.0
+      },
+      {
+        "date": "12/3/26",
+        "firm": "Blusky",
+        "amount": 450.0
+      },
+      {
+        "date": "11/3/26",
+        "firm": "Blusky",
+        "amount": 450.0
+      },
+      {
+        "date": "10/3/26",
+        "firm": "Blusky",
+        "amount": 450.0
+      },
+      {
+        "date": "9/3/26",
+        "firm": "Blusky",
+        "amount": 513.0
+      },
+      {
+        "date": "5/3/26",
+        "firm": "Blusky",
+        "amount": 477.0
+      },
+      {
+        "date": "4/3/26",
+        "firm": "Blusky",
+        "amount": 270.0
+      },
+      {
+        "date": "3/3/26",
+        "firm": "Blusky",
+        "amount": 270.0
+      },
+      {
+        "date": "2/3/26",
+        "firm": "Blusky",
+        "amount": 225.0
+      },
+      {
+        "date": "24/2/26",
+        "firm": "Blusky",
+        "amount": 405.0
+      },
+      {
+        "date": "20/2/26",
+        "firm": "Blusky",
+        "amount": 450.0
+      },
+      {
+        "date": "19/2/26",
+        "firm": "Blusky",
+        "amount": 270.0
+      },
+      {
+        "date": "18/2/26",
+        "firm": "Blusky",
+        "amount": 250.2
+      },
+      {
+        "date": "17/2/26",
+        "firm": "Blusky",
+        "amount": 380.7
+      },
+      {
+        "date": "13/2/26",
+        "firm": "Blusky",
+        "amount": 250.0
+      },
+      {
+        "date": "13/2/26",
+        "firm": "APEX",
+        "amount": 2000.0
+      },
+      {
+        "date": "10/2/26",
+        "firm": "Blusky",
+        "amount": 250.0
+      },
+      {
+        "date": "9/2/26",
+        "firm": "Blusky",
+        "amount": 249.0
+      },
+      {
+        "date": "6/2/26",
+        "firm": "Blusky",
+        "amount": 265.0
+      },
+      {
+        "date": "5/2/26",
+        "firm": "Lucid",
+        "amount": 557.0
+      },
+      {
+        "date": "4/2/26",
+        "firm": "Blusky",
+        "amount": 464.0
+      },
+      {
+        "date": "4/2/26",
+        "firm": "Tradeify",
+        "amount": 667.4
+      },
+      {
+        "date": "3/2/26",
+        "firm": "APEX",
+        "amount": 7647.0
+      },
+      {
+        "date": "3/2/26",
+        "firm": "Blusky",
+        "amount": 239.0
+      },
+      {
+        "date": "2/2/26",
+        "firm": "APEX",
+        "amount": 1407.0
+      },
+      {
+        "date": "2/2/26",
+        "firm": "Blusky",
+        "amount": 270.0
+      },
+      {
+        "date": "2/2/26",
+        "firm": "Tradeify",
+        "amount": 525.35
+      },
+      {
+        "date": "30/1/26",
+        "firm": "Blusky",
+        "amount": 225.0
+      },
+      {
+        "date": "30/1/26",
+        "firm": "Lucid",
+        "amount": 1085.0
+      },
+      {
+        "date": "29/1/26",
+        "firm": "Blusky",
+        "amount": 360.0
+      },
+      {
+        "date": "29/1/26",
+        "firm": "MFFU",
+        "amount": 800.0
+      },
+      {
+        "date": "29/1/26",
+        "firm": "Tradeify",
+        "amount": 756.4
+      },
+      {
+        "date": "28/1/26",
+        "firm": "Blusky",
+        "amount": 270.0
+      },
+      {
+        "date": "28/1/26",
+        "firm": "Tradeify",
+        "amount": 763.34
+      },
+      {
+        "date": "27/1/26",
+        "firm": "Blusky",
+        "amount": 250.0
+      },
+      {
+        "date": "27/1/26",
+        "firm": "Tradeify",
+        "amount": 507.04
+      },
+      {
+        "date": "21/1/26",
+        "firm": "APEX",
+        "amount": 972.0
+      },
+      {
+        "date": "20/1/26",
+        "firm": "Tradeify",
+        "amount": 249.3
+      },
+      {
+        "date": "19/1/26",
+        "firm": "Tradeify",
+        "amount": 1200.0
+      },
+      {
+        "date": "17/1/26",
+        "firm": "Tradeify",
+        "amount": 270.0
+      },
+      {
+        "date": "16/1/26",
+        "firm": "Tradeify",
+        "amount": 1476.0
+      },
+      {
+        "date": "16/1/26",
+        "firm": "APEX",
+        "amount": 6000.0
+      },
+      {
+        "date": "15/1/26",
+        "firm": "Tradeify",
+        "amount": 450.0
+      },
+      {
+        "date": "15/1/26",
+        "firm": "Lucid",
+        "amount": 710.05
+      },
+      {
+        "date": "8/1/26",
+        "firm": "Tradeify",
+        "amount": 450.0
+      },
+      {
+        "date": "6/1/26",
+        "firm": "Tradeify",
+        "amount": 260.0
+      },
+      {
+        "date": "6/1/26",
+        "firm": "APEX",
+        "amount": 516.0
+      }
+    ]
+  }
+}
