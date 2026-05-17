@@ -3,10 +3,10 @@
     "lastUpdated": "17 May 2026",
     "summaryCards": {
       "totalPayoutsReceived": 95550.13,
-      "totalFeesPaid": 20389.3,
-      "netPropFirmPnL": 75160.83,
+      "totalFeesPaid": 20539.3,
+      "netPropFirmPnL": 75010.83,
       "personalLivePnL": -2587.77,
-      "overallNetPnL": 72572.06
+      "overallNetPnL": 72422.06
     }
   },
   "stats": {
@@ -50,7 +50,7 @@
       1112.5,
       338.0,
       373.0,
-      99.0
+      249.0
     ],
     "payoutsData": [
       11736.0,
@@ -92,7 +92,7 @@
       15434.15,
       4767.0,
       3377.0,
-      801.0
+      651.0
     ],
     "netMonthlyColors": [
       "rgba(52,211,153,0.8)",
@@ -113,7 +113,7 @@
       "rgba(52,211,153,0.8)",
       "rgba(52,211,153,0.8)",
       "rgba(52,211,153,0.8)",
-      "rgba(52,211,153,0.8)"
+      "green"
     ]
   },
   "firms": [
@@ -174,7 +174,7 @@
     {
       "name": "TPT",
       "payouts": 0.0,
-      "costs": 761.0,
+      "costs": 911.0,
       "feeModal": "tpt"
     },
     {
@@ -188,7 +188,7 @@
     {
       "id": "xfa",
       "name": "TopStep 50k XFA Consistency",
-      "emoji": "\ud83d\udfe2",
+      "emoji": "🟢",
       "firm": "TopStep",
       "accountNumber": "EXPRESS-V2-CT-45281-27848466",
       "started": "2026-04-13",
@@ -270,7 +270,7 @@
     {
       "id": "xfas",
       "name": "TopStep 50k XFA Standard",
-      "emoji": "\ud83d\udfe2",
+      "emoji": "🟢",
       "firm": "TopStep",
       "accountNumber": "EXPRESS-V2-45281-63007831",
       "started": "2026-05-08",
@@ -293,7 +293,7 @@
     {
       "id": "inp",
       "name": "Lucid 150k Sim Funded",
-      "emoji": "\ud83d\udfe2",
+      "emoji": "🟢",
       "firm": "Lucid",
       "accountNumber": "LFF1506245655001",
       "started": "2026-04-09",
@@ -373,7 +373,7 @@
     {
       "id": "tptpro",
       "name": "TPT 25k PRO",
-      "emoji": "\ud83d\udfe1",
+      "emoji": "🟡",
       "firm": "TPT",
       "accountNumber": "TPT2658347",
       "started": "2026-04-22",
@@ -421,9 +421,57 @@
       ]
     },
     {
+      "id": "tpt2",
+      "name": "Take Profit Trader (TPT) 25K",
+      "emoji": "🟡",
+      "firm": "TPT",
+      "accountNumber": "TAKEPROFIT567959509",
+      "started": "2026-05-17",
+      "status": "challenge",
+      "method": "hidden",
+      "split": null,
+      "rules": {
+        "start": 25000,
+        "target": 1500,
+        "dd": 1500,
+        "ddType": "EOD trailing",
+        "minDays": 5,
+        "consistencyPct": 0.5,
+        "renewalDate": "2026-06-16"
+      },
+      "balance": 25000,
+      "peak": 25000,
+      "bestDay": 0,
+      "records": []
+    },
+    {
+      "id": "tpt3",
+      "name": "Take Profit Trader (TPT) 25K",
+      "emoji": "🟡",
+      "firm": "TPT",
+      "accountNumber": "TAKEPROFIT795495708",
+      "started": "2026-05-17",
+      "status": "challenge",
+      "method": "hidden",
+      "split": null,
+      "rules": {
+        "start": 25000,
+        "target": 1500,
+        "dd": 1500,
+        "ddType": "EOD trailing",
+        "minDays": 5,
+        "consistencyPct": 0.5,
+        "renewalDate": "2026-06-16"
+      },
+      "balance": 25000,
+      "peak": 25000,
+      "bestDay": 0,
+      "records": []
+    },
+    {
       "id": "bsk2",
       "name": "BluSky PROPEL 50k",
-      "emoji": "\ud83d\udfe3",
+      "emoji": "🟣",
       "firm": "BluSky",
       "accountNumber": "BSKEPROPELYEE11499",
       "started": "2026-05-08",
@@ -473,7 +521,7 @@
     {
       "id": "ts50c",
       "name": "TopStep 50k TC",
-      "emoji": "\ud83d\udfe1",
+      "emoji": "🟡",
       "firm": "TopStep",
       "accountNumber": "50KTC-V2-45281-51504924",
       "started": "2026-04-23",
@@ -522,7 +570,7 @@
     {
       "id": "tpt50",
       "name": "Take Profit Trader (TPT) 50k",
-      "emoji": "\ud83d\udfe1",
+      "emoji": "🟡",
       "firm": "TPT",
       "accountNumber": "TPT4670917",
       "started": "2026-04-21",
@@ -558,7 +606,7 @@
     {
       "id": "tpt",
       "name": "Take Profit Trader (TPT) 25k",
-      "emoji": "\ud83d\udfe1",
+      "emoji": "🟡",
       "firm": "TPT",
       "accountNumber": "TPT2658347",
       "started": "2026-03-24",
@@ -610,7 +658,7 @@
     {
       "id": "bsk1",
       "name": "BluSky PROPEL 50K",
-      "emoji": "\ud83d\udfe3",
+      "emoji": "🟣",
       "firm": "BluSky",
       "accountNumber": "BSKEPREMIUMYEE12937",
       "started": "2026-04-08",
