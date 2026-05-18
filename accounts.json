@@ -264,6 +264,10 @@
         {
           "date": "2026-05-13",
           "pnl": 57.74
+        },
+        {
+          "date": "2026-05-15",
+          "pnl": 141.26
         }
       ]
     },
@@ -287,6 +291,10 @@
         {
           "date": "2026-05-13",
           "pnl": 102.77
+        },
+        {
+          "date": "2026-05-15",
+          "pnl": 152.51
         }
       ]
     },
@@ -308,7 +316,7 @@
         "qdMinProfit": 250,
         "payoutOrderTarget": 5
       },
-      "balance": 153156,
+      "balance": 153173.5,
       "peak": 153362,
       "bestDay": 1772.75,
       "records": [
@@ -367,15 +375,19 @@
         {
           "date": "2026-05-08",
           "pnl": 139.5
+        },
+        {
+          "date": "2026-05-15",
+          "pnl": 17.5
         }
       ]
     },
     {
       "id": "tptpro",
       "name": "TPT 25k PRO",
-      "emoji": "🟡",
+      "emoji": "🟢",
       "firm": "TPT",
-      "accountNumber": "TPT2658347",
+      "accountNumber": "TPPRO5351335",
       "started": "2026-04-22",
       "status": "funded",
       "method": "hidden",
@@ -386,7 +398,7 @@
         "ddType": "intraday",
         "buffer": 1500
       },
-      "balance": 25345.75,
+      "balance": 25368.25,
       "peak": 25427.5,
       "bestDay": 267.5,
       "records": [
@@ -417,6 +429,10 @@
         {
           "date": "2026-05-08",
           "pnl": 81.75
+        },
+        {
+          "date": "2026-05-15",
+          "pnl": 22.5
         }
       ]
     },
@@ -486,13 +502,17 @@
         "consistencyPct": 0.3,
         "renewalDate": "2026-06-07"
       },
-      "balance": 50798.26,
-      "peak": 50798.26,
+      "balance": 50827.26,
+      "peak": 50827.26,
       "bestDay": 798.26,
       "records": [
         {
           "date": "2026-05-08",
           "pnl": 798.26
+        },
+        {
+          "date": "2026-05-15",
+          "pnl": 29.0
         }
       ]
     }
