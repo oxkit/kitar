@@ -273,7 +273,7 @@
 
 </div>
 
-<div class="footer">Last updated: 17 May 2026 · 06:43 PM EST</div>
+<div class="footer">Last updated: 20 May 2026 · 06:29 PM EST</div>
 
 <div div id="fee-modal-topstep" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#1a1f2e; border:1px solid #374151; border-radius:14px; padding:28px; max-width:480px; width:92%;">
@@ -534,9 +534,10 @@ function renderHiddenPanel(acct) {
       + '<div style="background:rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.25); color:#60a5fa; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">'+r.payoutOrderTarget+' Payout Orders &#10132; Live</div>'
       + '<div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">50% Payout Split</div>';
   } else if (id === 'tptpro') {
-    ruleBadges = '<div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Intraday DD $'+r.dd.toLocaleString()+'</div>'
-      + '<div style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Buffer Zone $'+r.buffer.toLocaleString()+' Required</div>'
-      + '<div style="background:rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.25); color:#60a5fa; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Start $'+r.start.toLocaleString()+'</div>';
+    ruleBadges = '<div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Intraday Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
+      + '<div style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">No Min Trading Days</div>'
+      + '<div style="background:rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.25); color:#60a5fa; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Day 1 Payout Eligible</div>'
+      + '<div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Buffer Zone $'+r.buffer.toLocaleString()+' Required</div>';
   } else if (id === 'bsk2') {
     ruleBadges = '<div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing DD $'+r.dd.toLocaleString()+'</div>'
       + '<div style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $'+r.target.toLocaleString()+'</div>'
@@ -603,6 +604,36 @@ function renderHiddenPanel(acct) {
       + '<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">'
       + statBox('Qualifying Days ($'+r.qdMinProfit+'+)', id+'-stat-qd', '0 / '+r.qdTarget, '#fbbf24')
       + statBox('Payout Orders', id+'-stat-po', '— / '+r.payoutOrderTarget, '#60a5fa')
+      + '</div></div>'
+      + '</div>';
+  }
+
+  if (id === 'tptpro') {
+    var noConsBox = '<div style="background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.3); border-radius:10px; padding:14px; width:100%;"><div style="font-size:13px; font-weight:700; color:#34d399; margin-bottom:6px;">&#10003; No Consistency Required</div><div style="font-size:11px; color:#475569; line-height:1.5;">No single-day profit cap. Trade freely &mdash; only intraday trailing drawdown applies.</div></div>';
+    return header
+      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>'
+      + '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">'
+      + statBox('Current Balance', id+'-stat-bal', '--', '#34d399')
+      + statBox('Highest Trailing', id+'-stat-peak', '--')
+      + statBox('Best Single Day', id+'-stat-bday', '--')
+      + '</div></div>'
+      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Trading Days</div>'
+      + '<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">'
+      + statBox('Total Trading Days', id+'-stat-days', '0')
+      + '<div style="background:#141820; border-radius:8px; padding:14px;"><div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;">Buffer Zone ($'+r.buffer.toLocaleString()+')</div>'
+      + progressBar('', id+'-buf-lbl', id+'-buf-bar', id+'-buf-note', '#60a5fa')
+      + '<div id="'+id+'-payout-badge" style="margin-top:10px; display:none; background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.3); border-radius:8px; padding:8px 12px; font-size:11px; color:#34d399; font-weight:600;">Payout Eligible &mdash; Buffer zone built</div>'
+      + '</div></div></div>'
+      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Drawdown</div>'
+      + '<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">'
+      + '<div>'
+      + '<div style="background:#141820; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Min Account Balance</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#f87171;">--</div></div>'
+      + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#f87171')
+      + '</div>'
+      + '<div style="display:flex; align-items:flex-start;">' + noConsBox + '</div>'
       + '</div></div>'
       + '</div>';
   }
@@ -879,9 +910,10 @@ function calcHidden(acct) {
     bar(id+'-dd-bar',ddPct2,barColor(ddPct2));
     el(id+'-dd-lbl').textContent='$'+ddUsed2.toFixed(0)+' / $'+r.dd.toLocaleString();
     el(id+'-dd-note').textContent=isBreach2?'Breached':'Floor $'+floor2.toFixed(2)+' · $'+(bal-floor2).toFixed(2)+' buffer';
-    bar(id+'-profit-bar',bufferPct,bufferPct<50?'#60a5fa':bufferPct<100?'#fbbf24':'#34d399');
-    el(id+'-profit-lbl').textContent='$'+Math.max(0,totalProfit2).toFixed(2)+' / $'+r.buffer.toLocaleString();
-    el(id+'-profit-note').textContent=totalProfit2>=r.buffer?'✅ Buffer built — payout eligible':'$'+(r.buffer-totalProfit2).toFixed(2)+' still needed';
+    bar(id+'-buf-bar',bufferPct,bufferPct<50?'#60a5fa':bufferPct<100?'#fbbf24':'#34d399');
+    el(id+'-buf-lbl').textContent='$'+Math.max(0,totalProfit2).toFixed(2)+' / $'+r.buffer.toLocaleString();
+    el(id+'-buf-note').textContent=totalProfit2>=r.buffer?'Buffer built - payout eligible':'$'+(r.buffer-totalProfit2).toFixed(2)+' still needed';
+    el(id+'-payout-badge').style.display=totalProfit2>=r.buffer?'block':'none';
 
   } else if(id==='bsk2') {
     var floor3=effPeak-r.dd;
