@@ -268,6 +268,10 @@
         {
           "date": "2026-05-15",
           "pnl": 141.26
+        },
+        {
+          "date": "2026-05-19",
+          "pnl": -128.52
         }
       ]
     },
@@ -295,6 +299,10 @@
         {
           "date": "2026-05-15",
           "pnl": 152.51
+        },
+        {
+          "date": "2026-05-19",
+          "pnl": -112.27
         }
       ]
     },
@@ -316,7 +324,7 @@
         "qdMinProfit": 250,
         "payoutOrderTarget": 5
       },
-      "balance": 153173.5,
+      "balance": 152886.5,
       "peak": 153362,
       "bestDay": 1772.75,
       "records": [
@@ -379,6 +387,10 @@
         {
           "date": "2026-05-15",
           "pnl": 17.5
+        },
+        {
+          "date": "2026-05-19",
+          "pnl": -287.0
         }
       ]
     },
@@ -398,7 +410,7 @@
         "ddType": "intraday",
         "buffer": 1500
       },
-      "balance": 25368.25,
+      "balance": 25239.0,
       "peak": 25427.5,
       "bestDay": 267.5,
       "records": [
@@ -433,6 +445,10 @@
         {
           "date": "2026-05-15",
           "pnl": 22.5
+        },
+        {
+          "date": "2026-05-19",
+          "pnl": -129.25
         }
       ]
     },
@@ -455,10 +471,15 @@
         "consistencyPct": 0.5,
         "renewalDate": "2026-06-16"
       },
-      "balance": 25000,
+      "balance": 24646.25,
       "peak": 25000,
       "bestDay": 0,
-      "records": []
+      "records": [
+        {
+          "date": "2026-05-19",
+          "pnl": -353.75
+        }
+      ]
     },
     {
       "id": "tpt3",
@@ -479,10 +500,15 @@
         "consistencyPct": 0.5,
         "renewalDate": "2026-06-16"
       },
-      "balance": 25000,
+      "balance": 24663.75,
       "peak": 25000,
       "bestDay": 0,
-      "records": []
+      "records": [
+        {
+          "date": "2026-05-19",
+          "pnl": -336.25
+        }
+      ]
     },
     {
       "id": "bsk2",
@@ -502,7 +528,7 @@
         "consistencyPct": 0.3,
         "renewalDate": "2026-06-07"
       },
-      "balance": 50827.26,
+      "balance": 50120.66,
       "peak": 50827.26,
       "bestDay": 798.26,
       "records": [
@@ -513,6 +539,10 @@
         {
           "date": "2026-05-15",
           "pnl": 29.0
+        },
+        {
+          "date": "2026-05-19",
+          "pnl": -706.6
         }
       ]
     }
