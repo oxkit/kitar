@@ -320,6 +320,52 @@
   .about-card .domain{margin-top:22px;font-family:var(--mono);font-size:14px;color:var(--accent);
     display:flex;align-items:center;gap:9px;}
 
+  /* pocket / telegram */
+  .pocket-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:48px;align-items:start;}
+  @media(max-width:920px){.pocket-grid{grid-template-columns:1fr;gap:36px;}}
+  .phone{position:relative;margin:0 auto;width:268px;max-width:100%;border-radius:30px;
+    border:1px solid var(--line-2);background:var(--bg-2);padding:12px;
+    box-shadow:0 30px 80px -40px #000,inset 0 0 0 1px rgba(255,255,255,.02);}
+  .phone-notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);z-index:3;
+    width:90px;height:5px;border-radius:3px;background:var(--bg-3);}
+  .phone-screen{border-radius:20px;background:var(--bg);border:1px solid var(--line);
+    overflow:hidden;}
+  .tg-top{display:flex;align-items:center;gap:10px;padding:14px 14px;border-bottom:1px solid var(--line);
+    background:var(--bg-2);}
+  .tg-ava{width:30px;height:30px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;
+    background:color-mix(in srgb,var(--accent) 16%,var(--bg-3));border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);}
+  .tg-ava .glyph{position:relative;width:13px;height:13px;}
+  .tg-ava .glyph::before{content:"";position:absolute;inset:0;border:1.5px solid var(--accent);
+    border-radius:3px;transform:rotate(45deg);}
+  .tg-name{font-family:var(--mono);font-size:12px;color:var(--tx);letter-spacing:.02em;line-height:1.2;}
+  .tg-name span{display:block;font-size:10px;color:var(--ok);letter-spacing:.04em;margin-top:2px;
+    display:flex;align-items:center;gap:5px;}
+  .tg-feed{padding:14px 12px;display:flex;flex-direction:column;gap:9px;min-height:300px;}
+  .tg-msg{align-self:flex-start;max-width:90%;background:var(--bg-3);border:1px solid var(--line);
+    border-radius:11px 11px 11px 3px;padding:9px 11px;font-family:var(--mono);font-size:11px;
+    line-height:1.45;color:var(--tx);}
+  .tg-msg .lbl{display:flex;align-items:center;gap:6px;font-size:9.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--tx-dim);margin-bottom:5px;}
+  .tg-msg.ok .lbl{color:var(--ok);}
+  .tg-msg.warn{border-color:color-mix(in srgb,var(--warn) 45%,transparent);
+    background:color-mix(in srgb,var(--warn) 8%,var(--bg-3));}
+  .tg-msg.warn .lbl{color:var(--warn);}
+  .tg-msg .v{color:var(--tx-mut);}
+  .tg-msg .file{display:flex;align-items:center;gap:8px;margin-top:6px;padding-top:6px;
+    border-top:1px solid var(--line);color:var(--accent);}
+  .tg-msg .ts{color:var(--tx-dim);font-size:9px;margin-top:5px;display:block;text-align:right;}
+  .tg-time{align-self:center;font-family:var(--mono);font-size:9px;color:var(--tx-dim);
+    letter-spacing:.08em;text-transform:uppercase;}
+  .pocket-cards{display:flex;flex-direction:column;gap:14px;}
+  .pcard{padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--bg-2);
+    display:flex;gap:18px;align-items:flex-start;transition:border-color .25s,transform .25s;}
+  .pcard:hover{border-color:var(--line-2);transform:translateY(-2px);}
+  .pcard-ix{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em;
+    flex:0 0 auto;padding-top:3px;display:flex;align-items:center;gap:9px;}
+  .pcard-ix .sdot{box-shadow:0 0 9px var(--accent);}
+  .pcard h3{font-size:18px;letter-spacing:-.015em;line-height:1.15;}
+  .pcard p{color:var(--tx-mut);font-size:14.5px;line-height:1.55;margin-top:7px;}
+
   .cta{position:relative;border-top:1px solid var(--line);padding:120px 0 90px;overflow:hidden;}
   .cta-glow{position:absolute;bottom:-220px;left:50%;transform:translateX(-50%);width:1000px;height:480px;
     background:radial-gradient(ellipse at center,color-mix(in srgb,var(--accent) 14%,transparent),transparent 64%);
@@ -730,6 +776,79 @@
       );
     }
 
+    const POCKET_CARDS=[
+      {t:"Live trade alerts",
+       d:"Every lifecycle event — plan fired, entry filled, breakeven set, target hit, stopped out — pushed to mobile as it happens."},
+      {t:"Mobile controls",
+       d:"Flip adapters on/off, switch execution mode, engage the kill switch or trading lock — directly from Telegram. No dashboard."},
+      {t:"Research delivered",
+       d:"Daily packet, morning brief, weekly summary, Saturday walk-forward — auto-delivered as file attachments. Research arrives; you don't fetch it."},
+    ];
+    function PocketSection(){
+      const ref=useReveal();
+      return (
+        <section className="sec" id="pocket" ref={ref}>
+          <div className="wrap">
+            <SHead eyebrow="FRESH in your pocket" title="Your strategy fires. You hear it — anywhere."
+              lead="Live fill alerts, kill-switch access, and your daily research packet — all delivered to Telegram. You don't need to be at your desk to know what's happening, or to stop something that shouldn't be happening."/>
+            <div className="pocket-grid">
+              <div className="reveal">
+                <div className="phone">
+                  <div className="phone-notch"></div>
+                  <div className="phone-screen">
+                    <div className="tg-top">
+                      <span className="tg-ava"><span className="glyph"></span></span>
+                      <span className="tg-name">FRESH · ops bot
+                        <span><span className="sdot ok live"></span>online · linked</span>
+                      </span>
+                    </div>
+                    <div className="tg-feed">
+                      <span className="tg-time">today · 14:31</span>
+                      <div className="tg-msg ok">
+                        <span className="lbl"><span className="sdot ok"></span>entry filled</span>
+                        ES · long · 2 cts @ 5418.25
+                        <span className="ts">14:31:30</span>
+                      </div>
+                      <div className="tg-msg ok">
+                        <span className="lbl"><span className="sdot ok"></span>breakeven set</span>
+                        <span className="v">stop → 5418.25 · risk off</span>
+                        <span className="ts">14:33:02</span>
+                      </div>
+                      <div className="tg-msg warn">
+                        <span className="lbl"><span className="sdot warn"></span>kill switch · armed</span>
+                        <span className="v">copy dispatch halted by you</span>
+                        <span className="ts">14:46:18</span>
+                      </div>
+                      <div className="tg-msg ok">
+                        <span className="lbl"><span className="sdot ok"></span>daily packet</span>
+                        <span className="v">session evidence ready</span>
+                        <span className="file mono"><span className="sdot ok"></span>fresh_2026-06-05.pdf</span>
+                        <span className="ts">16:10:00</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="pocket-cards">
+                  {POCKET_CARDS.map((c,i)=>(
+                    <div className="pcard reveal" key={i} style={{transitionDelay:(i*80)+'ms'}}>
+                      <div className="pcard-ix"><span className="sdot ok"></span>{String(i+1).padStart(2,'0')}</div>
+                      <div><h3>{c.t}</h3><p>{c.d}</p></div>
+                    </div>
+                  ))}
+                </div>
+                <div className="callout reveal" style={{marginTop:16}}>
+                  <span className="mono">// what it is not</span>
+                  The bot <b>cannot place trades, modify orders, or make any execution decision.</b> It controls copy dispatch and delivers research. MotiveWave remains the execution master.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
     function ResearchSection({motion}){
       const ref=useReveal();
       return (
@@ -848,6 +967,7 @@
             <HooksSection/>
             <HowSection/>
             <SafetySection motion={motion}/>
+            <PocketSection/>
             <ResearchSection motion={motion}/>
             <WhoSection/>
             <AboutSection/>
