@@ -167,13 +167,32 @@
   .fr-badge.ok{ color:var(--ok); border-color:rgba(51,224,138,.32); background:rgba(51,224,138,.08); }
   .fr-badge.warn{ color:var(--warn); border-color:rgba(245,177,61,.32); background:rgba(245,177,61,.08); }
   .fr-badge.bad{ color:var(--bad); border-color:rgba(255,94,87,.32); background:rgba(255,94,87,.08); }
+
+  /* live status dots */
+  .fr-dot{ width:8px; height:8px; border-radius:50%; flex:0 0 auto; display:inline-block; vertical-align:middle; }
+  .fr-dot.ok{ background:var(--ok); box-shadow:0 0 9px var(--ok); }
+  .fr-dot.warn{ background:var(--warn); box-shadow:0 0 9px var(--warn); }
+  .fr-dot.idle{ background:var(--tx-dim); }
+  .fr-dot.live{ animation:fr-pulse 1.8s ease-in-out infinite; }
+  @keyframes fr-pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  /* diamond wordmark glyph */
+  .kr-glyph{ position:relative; width:26px; height:26px; display:inline-grid; place-items:center; flex:0 0 auto; }
+  .kr-glyph::before{ content:""; position:absolute; inset:0; border:1.5px solid var(--accent); border-radius:6px; transform:rotate(45deg); }
+  .kr-glyph i{ width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent); font-style:normal; animation:fr-pulse 1.8s ease-in-out infinite; }
+  /* scroll reveal */
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.3,1); }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; transition:none; } .fr-dot.live,.kr-glyph i{ animation:none; } }
 </style>
 </head>
 <body>
 
 <div class="header" style="display:flex; align-items:center; justify-content:space-between;">
   <div>
-    <h1 style="margin:0; font-size:26px; font-weight:700; letter-spacing:-0.5px;">kita<em style="font-style:italic;">R</em></h1>
+    <div style="display:flex; align-items:center; gap:13px;">
+      <span class="kr-glyph"><i></i></span>
+      <h1 style="margin:0; font-size:26px; font-weight:700; letter-spacing:-0.5px;">kita<em style="font-style:italic;">R</em></h1>
+    </div>
     <div style="margin-top:10px; max-width:560px; line-height:1.65; color:#59626f; font-size:12px;">
       <p style="margin:0 0 8px;">trading is like the deep sea. anyone can see the surface, but the prizes are found in the depths.</p>
       <p style="margin:0 0 8px;">kita<em>R</em> is my personal trading kit, eventually a blueprint designed to turn human observation into systematic discipline. it is the synergy of intuition and math that I call <span style="color:#8a94a3; font-weight:600;">co-quant</span>.</p>
@@ -206,7 +225,7 @@
   <div id="pane-payout" class="tab-pane"></div>
 </div>
 
-<div class="footer">Last updated: 5 Jun 2026 · 10:05 PM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 5 Jun 2026 · 10:18 PM EST</div>
 
 <div id="records-modal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
@@ -324,7 +343,7 @@ function renderDetails(d) {
     return '<div style="margin-bottom:28px;">'
       + '<div style="font-size:14px; font-weight:600; color:' + col.text + '; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid ' + col.border + '; display:flex; align-items:center; gap:10px;">'
       + acct.emoji + ' CHALLENGE ACCOUNT &mdash; ' + acct.name
-      + '<span style="background:' + col.badgeBg + '; border:1px solid ' + col.badgeBorder + '; color:' + col.text + '; padding:3px 10px; border-radius:6px; font-size:10px; font-weight:600; font-family:var(--mono); letter-spacing:.1em;">' + acct.status.toUpperCase() + '</span>'
+      + '<span style="display:inline-flex; align-items:center; gap:6px; background:' + col.badgeBg + '; border:1px solid ' + col.badgeBorder + '; color:' + col.text + '; padding:3px 10px; border-radius:6px; font-size:10px; font-weight:600; font-family:var(--mono); letter-spacing:.1em;"><span class="fr-dot ' + (acct.status==='funded'?'ok live':'idle') + '"></span>' + acct.status.toUpperCase() + '</span>'
       + '</div>'
       + '<div style="background:' + col.descBg + '; border:1px solid ' + col.descBorder + '; border-radius:8px; padding:12px 16px; margin-bottom:14px; font-size:13px; color:' + col.text + '; line-height:1.6;">'
       + prefix + ' <strong>' + acct.description + '</strong>'
@@ -402,6 +421,18 @@ async function init() {
 }
 
 init();
+
+(function(){
+  try{
+    if((window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)||!('IntersectionObserver' in window))return;
+    var SEL='.card, .chart-card, .table-card, #pane-navigator > div';
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.10,rootMargin:'0px 0px -5% 0px'});
+    function proc(n){if(!n||n.nodeType!==1)return;var l=[];if(n.matches&&n.matches(SEL))l.push(n);if(n.querySelectorAll)[].push.apply(l,n.querySelectorAll(SEL));l.forEach(function(x){if(!x.__rv){x.__rv=true;x.classList.add('reveal');io.observe(x);}});}
+    function go(){proc(document.body);}
+    if(document.readyState!=='loading')go();else document.addEventListener('DOMContentLoaded',go);
+    new MutationObserver(function(ms){ms.forEach(function(m){for(var i=0;i<m.addedNodes.length;i++)proc(m.addedNodes[i]);});}).observe(document.documentElement,{childList:true,subtree:true});
+  }catch(e){}
+})();
 </script>
 </body>
 </html>
