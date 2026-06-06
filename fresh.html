@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en" data-accent="both">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FRESH — The operations layer your strategy deserves</title>
+<meta name="description" content="FRESH — a local trading operations platform. Wires your MotiveWave strategy into NinjaTrader, TopStepX and HyperLiquid, safely. It does not pick your trades." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#06080b;
+    --bg-2:#0a0e14;
+    --bg-3:#0e131b;
+    --line:rgba(255,255,255,.09);
+    --line-2:rgba(255,255,255,.16);
+    --tx:#e7ecf2;
+    --tx-mut:#8a94a3;
+    --tx-dim:#59626f;
+    --ok:#33e08a;
+    --ok-dim:rgba(51,224,138,.16);
+    --warn:#f5b13d;
+    --warn-dim:rgba(245,177,61,.16);
+    --bad:#ff5e57;
+    --accent:var(--ok);
+    --accent-dim:var(--ok-dim);
+    --max:1180px;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;
+  }
+  [data-accent="green"]{--accent:var(--ok);--accent-dim:var(--ok-dim);}
+  [data-accent="amber"]{--accent:var(--warn);--accent-dim:var(--warn-dim);}
+  [data-accent="both"]{--accent:var(--ok);--accent-dim:var(--ok-dim);}
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--bg);color:var(--tx);
+    font-family:var(--sans);font-size:17px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 120% 90% at 50% 0%,#000 30%,transparent 80%);
+  }
+  ::selection{background:rgba(51,224,138,.28);color:#fff;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.05;}
+  p{margin:0;}
+  .mono{font-family:var(--mono);}
+  .tnum{font-variant-numeric:tabular-nums;}
+
+  #root{position:relative;z-index:1;}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+  .kicker{
+    font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:9px;
+  }
+  .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 10px var(--accent);}
+  .sec{position:relative;padding:120px 0;border-top:1px solid var(--line);}
+  .sec-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--tx-dim);}
+
+  .cursor{display:inline-block;width:.62em;height:1.02em;background:var(--accent);
+    margin-left:.12em;vertical-align:-2px;}
+  body.motion-on .cursor{animation:blink 1.05s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  .sdot{width:8px;height:8px;border-radius:50%;flex:0 0 auto;display:inline-block;}
+  .sdot.ok{background:var(--ok);box-shadow:0 0 9px var(--ok);}
+  .sdot.warn{background:var(--warn);box-shadow:0 0 9px var(--warn);}
+  .sdot.bad{background:var(--bad);box-shadow:0 0 9px var(--bad);}
+  .sdot.idle{background:var(--tx-dim);}
+  body.motion-on .sdot.live{animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+  body:not(.motion-on) .reveal{opacity:1;transform:none;transition:none;}
+
+  button{font-family:inherit;}
+  .btn{
+    font-family:var(--mono);font-size:13.5px;font-weight:500;letter-spacing:.02em;
+    display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+    padding:14px 22px;border-radius:8px;border:1px solid transparent;transition:.18s ease;
+  }
+  .btn-primary{background:var(--accent);color:#04140c;border-color:var(--accent);}
+  .btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px);
+    box-shadow:0 8px 30px -8px var(--accent);}
+  [data-accent="amber"] .btn-primary{color:#1a1204;}
+  .btn-ghost{background:transparent;color:var(--tx);border-color:var(--line-2);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+  .btn.is-soon,.btn:disabled{background:var(--bg-3);color:var(--tx-dim);
+    border-color:var(--line);cursor:not-allowed;box-shadow:none;transform:none;filter:none;
+    gap:8px;}
+  .btn.is-soon:hover,.btn:disabled:hover{background:var(--bg-3);color:var(--tx-dim);
+    border-color:var(--line);box-shadow:none;transform:none;filter:none;}
+  .btn.is-soon .soon-dot{width:6px;height:6px;border-radius:50%;background:var(--tx-dim);}
+
+  .panel{background:var(--bg-2);border:1px solid var(--line);border-radius:12px;}
+
+  @media (max-width:860px){
+    body{font-size:16px;}
+    .wrap{padding:0 22px;}
+    .sec{padding:84px 0;}
+  }
+
+  /* NAV */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 32px;transition:background .3s ease,border-color .3s ease,padding .3s ease;
+    border-bottom:1px solid transparent;}
+  .nav.scrolled{background:rgba(6,8,11,.82);-webkit-backdrop-filter:blur(14px);
+    backdrop-filter:blur(14px);border-bottom-color:var(--line);padding:11px 32px;}
+  .wordmark{display:flex;align-items:center;gap:11px;font-family:var(--mono);
+    font-weight:600;font-size:15px;letter-spacing:.18em;}
+  .wordmark .glyph{position:relative;width:22px;height:22px;display:grid;place-items:center;}
+  .wordmark .glyph::before{content:"";position:absolute;inset:0;border:1.5px solid var(--accent);
+    border-radius:5px;transform:rotate(45deg);}
+  .wordmark .glyph i{width:6px;height:6px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 8px var(--accent);font-style:normal;}
+  .nav-right{display:flex;align-items:center;gap:22px;}
+  .nav-stat{display:none;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;
+    color:var(--tx-mut);letter-spacing:.04em;}
+  @media(min-width:760px){.nav-stat{display:flex;}}
+  .nav-link{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--tx-mut);
+    transition:color .15s;}
+  .nav-link:hover{color:var(--tx);}
+
+  /* SIGNAL TICKER */
+  .ticker{position:relative;overflow:hidden;border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);background:var(--bg-2);}
+  .ticker::before,.ticker::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none;}
+  .ticker::before{left:0;background:linear-gradient(90deg,var(--bg-2),transparent);}
+  .ticker::after{right:0;background:linear-gradient(270deg,var(--bg-2),transparent);}
+  .ticker-track{display:flex;gap:0;width:max-content;}
+  body.motion-on .ticker-track{animation:ticker-scroll 46s linear infinite;}
+  @keyframes ticker-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .ticker:hover .ticker-track{animation-play-state:paused;}
+  .tk-item{display:flex;align-items:center;gap:12px;padding:13px 26px;
+    border-right:1px solid var(--line);font-family:var(--mono);font-size:12.5px;white-space:nowrap;}
+  .tk-time{color:var(--tx-dim);}
+  .tk-sym{color:var(--tx);font-weight:600;letter-spacing:.03em;}
+  .tk-tag{color:var(--tx-mut);}
+  .tk-ok{color:var(--ok);display:flex;align-items:center;gap:6px;}
+  .tk-ghost{color:var(--warn);display:flex;align-items:center;gap:6px;text-decoration:line-through;
+    text-decoration-color:rgba(245,177,61,.5);}
+
+  /* generic schematic node */
+  .node{background:var(--bg-3);border:1px solid var(--line);border-radius:10px;padding:16px 18px;
+    position:relative;transition:border-color .3s,box-shadow .3s;}
+  .node .nlabel{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--tx-dim);margin-bottom:7px;display:flex;align-items:center;gap:8px;}
+  .node .ntitle{font-size:16px;font-weight:600;letter-spacing:-.01em;}
+  .node .ndesc{font-size:13px;color:var(--tx-mut);margin-top:5px;line-height:1.45;font-family:var(--mono);}
+  .node.accent{border-color:color-mix(in srgb,var(--accent) 55%,transparent);
+    box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 22%,transparent),0 12px 40px -18px var(--accent);}
+
+  /* ARCH FLOW */
+  .arch{position:relative;}
+  .arch-svg{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+  .arch-tier{position:relative;z-index:1;display:grid;gap:18px;}
+  .arch-tier.t1{grid-template-columns:1fr;max-width:440px;margin:0 auto;}
+  .arch-tier.t2{grid-template-columns:repeat(3,1fr);margin:64px 0;}
+  .arch-tier.t3{grid-template-columns:repeat(3,1fr);}
+  .flow-dot{fill:var(--accent);}
+  body.motion-on .flow-dash{stroke-dasharray:5 7;animation:dashmove 1.1s linear infinite;}
+  @keyframes dashmove{to{stroke-dashoffset:-24;}}
+  @media(max-width:760px){
+    .arch-tier.t2,.arch-tier.t3{grid-template-columns:1fr;}
+    .arch-tier.t2{margin:30px 0;}
+    .arch-svg{display:none;}
+  }
+
+  /* GATE STACK */
+  .gates{display:grid;grid-template-columns:1fr;gap:10px;position:relative;}
+  .gate{display:flex;align-items:center;gap:16px;padding:15px 18px;border-radius:10px;
+    border:1px solid var(--line);background:var(--bg-3);transition:.32s ease;}
+  .gate.active{border-color:color-mix(in srgb,var(--ok) 60%,transparent);
+    background:color-mix(in srgb,var(--ok) 9%,var(--bg-3));}
+  .gate.blocked{border-color:color-mix(in srgb,var(--bad) 60%,transparent);
+    background:color-mix(in srgb,var(--bad) 10%,var(--bg-3));}
+  .gate.pending{opacity:.5;}
+  .gate-ix{font-family:var(--mono);font-size:12px;color:var(--tx-dim);width:26px;flex:0 0 auto;}
+  .gate-body{flex:1;min-width:0;}
+  .gate-name{font-size:15px;font-weight:600;letter-spacing:-.01em;}
+  .gate-sub{font-family:var(--mono);font-size:12px;color:var(--tx-mut);margin-top:2px;}
+  .gate-state{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    display:flex;align-items:center;gap:7px;flex:0 0 auto;color:var(--tx-dim);}
+  .gate.active .gate-state{color:var(--ok);}
+  .gate.blocked .gate-state{color:var(--bad);}
+  .gate-readout{margin-top:18px;display:flex;align-items:center;justify-content:space-between;
+    padding:16px 20px;border-radius:10px;font-family:var(--mono);font-size:13px;
+    border:1px solid var(--line);background:var(--bg-2);transition:.3s;}
+  .gate-readout.pass{border-color:color-mix(in srgb,var(--ok) 55%,transparent);color:var(--ok);}
+  .gate-readout.fail{border-color:color-mix(in srgb,var(--bad) 55%,transparent);color:var(--bad);}
+
+  /* FLYWHEEL */
+  .fly{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative;}
+  .fly-step{position:relative;padding:22px 20px;border-radius:12px;border:1px solid var(--line);
+    background:var(--bg-3);transition:.3s;}
+  .fly-step.lit{border-color:color-mix(in srgb,var(--accent) 60%,transparent);
+    box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 22%,transparent);}
+  .fly-ix{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--tx-dim);}
+  .fly-step.lit .fly-ix{color:var(--accent);}
+  .fly-name{font-size:18px;font-weight:600;margin-top:10px;letter-spacing:-.01em;}
+  .fly-desc{font-family:var(--mono);font-size:12px;color:var(--tx-mut);margin-top:8px;line-height:1.5;}
+  .fly-arrow{position:absolute;right:-12px;top:50%;transform:translateY(-50%);z-index:2;
+    color:var(--tx-dim);font-size:14px;}
+  .fly-loop{margin-top:14px;text-align:center;font-family:var(--mono);font-size:12px;
+    color:var(--tx-mut);letter-spacing:.04em;}
+  .fly-loop b{color:var(--accent);font-weight:500;}
+  @media(max-width:760px){.fly{grid-template-columns:1fr;}.fly-arrow{display:none;}}
+
+  /* HERO */
+  .hero{position:relative;padding:148px 0 70px;overflow:hidden;}
+  .hero-glow{position:absolute;top:-160px;left:50%;transform:translateX(-50%);
+    width:1100px;height:560px;z-index:0;pointer-events:none;
+    background:radial-gradient(ellipse at center,color-mix(in srgb,var(--accent) 16%,transparent),transparent 62%);
+    opacity:.6;filter:blur(8px);}
+  .hero .wrap{position:relative;z-index:1;}
+  .hero-head{font-size:clamp(38px,5.6vw,74px);font-weight:600;letter-spacing:-.03em;
+    line-height:1.0;max-width:16ch;}
+  .hero-head .hl{color:var(--accent);}
+  .hero-sub{margin-top:26px;font-size:clamp(16px,1.5vw,19px);color:var(--tx-mut);
+    max-width:60ch;line-height:1.6;}
+  .hero-sub b{color:var(--tx);font-weight:500;}
+  .hero-cta{margin-top:34px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .hero-meta{margin-top:30px;display:flex;gap:26px;flex-wrap:wrap;
+    font-family:var(--mono);font-size:12px;color:var(--tx-dim);letter-spacing:.04em;}
+  .hero-meta span{display:flex;align-items:center;gap:8px;}
+  .hero-split{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+  @media(max-width:920px){.hero-split{grid-template-columns:1fr;gap:40px;}}
+  .board{font-family:var(--mono);}
+  .board-top{display:flex;align-items:center;justify-content:space-between;
+    padding:13px 16px;border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;
+    background:var(--bg-2);font-size:12px;color:var(--tx-mut);letter-spacing:.05em;}
+  .board-body{border:1px solid var(--line);border-radius:0 0 12px 12px;background:var(--bg-2);
+    padding:6px;}
+  .board-row{display:flex;align-items:center;gap:14px;padding:13px 14px;border-radius:8px;
+    font-size:13px;}
+  .board-row+.board-row{border-top:1px solid var(--line);}
+  .board-row .bk{color:var(--tx-dim);width:118px;flex:0 0 auto;letter-spacing:.04em;}
+  .board-row .bv{color:var(--tx);flex:1;min-width:0;}
+  .board-row .bs{display:flex;align-items:center;gap:7px;color:var(--ok);font-size:12px;letter-spacing:.06em;}
+  .board-row .bs.warn{color:var(--warn);}
+  .board-flow{display:flex;align-items:center;gap:9px;padding:14px;justify-content:center;
+    font-size:12px;color:var(--tx-mut);border-top:1px solid var(--line);flex-wrap:wrap;}
+  .board-chip{padding:5px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg-3);}
+  .board-chip.on{border-color:color-mix(in srgb,var(--accent) 55%,transparent);color:var(--accent);}
+  .board-arr{color:var(--tx-dim);}
+  .hero-center{text-align:center;display:flex;flex-direction:column;align-items:center;}
+  .hero-center .hero-head{max-width:20ch;}
+  .hero-center .hero-sub{margin-left:auto;margin-right:auto;}
+  .hero-center .hero-cta{justify-content:center;}
+  .hero-tape{margin-top:48px;width:100vw;position:relative;left:50%;transform:translateX(-50%);}
+  .tape-cap{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:14px;
+    font-family:var(--mono);font-size:12px;color:var(--tx-dim);letter-spacing:.08em;text-transform:uppercase;}
+  .hero-gatewrap .panel{padding:20px;}
+  .hero-gatewrap .gate{padding:12px 15px;}
+  .hero-gatewrap .gate-name{font-size:14px;}
+  .gw-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;
+    font-family:var(--mono);font-size:12px;color:var(--tx-mut);letter-spacing:.06em;}
+
+  /* SECTIONS */
+  .shead{max-width:780px;margin-bottom:54px;}
+  .shead .ey{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--tx-dim);display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+  .shead .ey::before{content:"";width:26px;height:1px;background:var(--accent);}
+  .shead h2{font-size:clamp(28px,3.6vw,44px);letter-spacing:-.025em;line-height:1.04;}
+  .shead .lead{margin-top:18px;font-size:18px;color:var(--tx-mut);line-height:1.6;max-width:64ch;}
+
+  .hooks{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:860px){.hooks{grid-template-columns:1fr;}}
+  .hook{padding:26px;border:1px solid var(--line);border-radius:14px;background:var(--bg-2);
+    display:flex;flex-direction:column;gap:14px;transition:border-color .25s,transform .25s;}
+  .hook:hover{border-color:var(--line-2);transform:translateY(-3px);}
+  .hook-ix{font-family:var(--mono);font-size:12px;color:var(--warn);letter-spacing:.1em;
+    display:flex;align-items:center;gap:9px;}
+  .hook-ix .sdot{box-shadow:0 0 9px var(--warn);}
+  .hook h3{font-size:21px;letter-spacing:-.015em;line-height:1.12;}
+  .hook .pain{color:var(--tx-mut);font-size:15px;line-height:1.55;}
+  .hook .fix{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:13px;color:var(--ok);line-height:1.5;display:flex;gap:9px;}
+  .hook .fix .sdot{margin-top:5px;flex:0 0 auto;}
+
+  .safety-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:start;}
+  @media(max-width:920px){.safety-grid{grid-template-columns:1fr;gap:34px;}}
+  .safety-lead{font-size:22px;font-weight:500;letter-spacing:-.01em;line-height:1.35;}
+  .safety-lead .mono{color:var(--accent);}
+  .safety-note{margin-top:20px;font-family:var(--mono);font-size:13px;color:var(--tx-mut);
+    line-height:1.6;padding:16px;border-left:2px solid var(--line-2);}
+  .safety-note b{color:var(--tx);font-weight:500;}
+
+  .split-2{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+  @media(max-width:860px){.split-2{grid-template-columns:1fr;gap:32px;}}
+  .prose{font-size:18px;line-height:1.62;color:var(--tx-mut);}
+  .prose b{color:var(--tx);font-weight:500;}
+  .callout{margin-top:24px;padding:22px 24px;border-radius:12px;border:1px solid var(--line);
+    background:var(--bg-2);font-size:18px;line-height:1.5;}
+  .callout .mono{color:var(--warn);font-size:13px;letter-spacing:.04em;display:block;margin-bottom:10px;text-transform:uppercase;}
+  .fits{display:flex;flex-direction:column;gap:12px;}
+  .fit{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line);}
+  .fit .sdot{margin-top:7px;flex:0 0 auto;}
+  .fit-t{font-size:16px;color:var(--tx);}
+  .fit-d{font-family:var(--mono);font-size:13px;color:var(--tx-dim);margin-top:3px;}
+
+  .about-card{border:1px solid var(--line);border-radius:16px;background:var(--bg-2);padding:34px;}
+  .about-tag{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--tx-dim);margin-bottom:18px;}
+  .about-card .big{font-size:24px;font-weight:500;letter-spacing:-.015em;line-height:1.4;}
+  .about-card .domain{margin-top:22px;font-family:var(--mono);font-size:14px;color:var(--accent);
+    display:flex;align-items:center;gap:9px;}
+
+  .cta{position:relative;border-top:1px solid var(--line);padding:120px 0 90px;overflow:hidden;}
+  .cta-glow{position:absolute;bottom:-220px;left:50%;transform:translateX(-50%);width:1000px;height:480px;
+    background:radial-gradient(ellipse at center,color-mix(in srgb,var(--accent) 14%,transparent),transparent 64%);
+    z-index:0;pointer-events:none;filter:blur(6px);}
+  .cta .wrap{position:relative;z-index:1;text-align:center;}
+  .cta h2{font-size:clamp(32px,4.4vw,56px);letter-spacing:-.03em;line-height:1.02;max-width:18ch;margin:0 auto;}
+  .cta-sub{margin:20px auto 0;font-size:18px;color:var(--tx-mut);max-width:52ch;line-height:1.6;}
+  .cta-form{margin:38px auto 0;display:flex;gap:10px;max-width:520px;width:100%;}
+  .cta-form input{flex:1;min-width:0;background:var(--bg-2);border:1px solid var(--line-2);border-radius:9px;
+    color:var(--tx);font-family:var(--mono);font-size:14.5px;padding:15px 16px;outline:none;transition:.18s;}
+  .cta-form input::placeholder{color:var(--tx-dim);}
+  .cta-form input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim);}
+  .cta-form input.bad{border-color:var(--bad);box-shadow:0 0 0 3px rgba(255,94,87,.14);}
+  .cta-form input:disabled{background:var(--bg-3);border-color:var(--line);color:var(--tx-dim);cursor:not-allowed;}
+  .cta-form .btn-primary{flex:0 0 auto;}
+  @media(max-width:560px){.cta-form{flex-direction:column;}}
+  .cta-msg{min-height:22px;margin-top:14px;font-family:var(--mono);font-size:13px;letter-spacing:.02em;}
+  .cta-msg.err{color:var(--bad);}
+  .cta-msg.ok{color:var(--ok);}
+  .cta-fine{margin-top:30px;font-family:var(--mono);font-size:12px;color:var(--tx-dim);letter-spacing:.04em;}
+
+  .foot{border-top:1px solid var(--line);padding:40px 0;}
+  .foot .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  .foot-meta{font-family:var(--mono);font-size:12px;color:var(--tx-dim);letter-spacing:.05em;
+    display:flex;gap:22px;flex-wrap:wrap;}
+</style>
+</head>
+<body class="motion-on">
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" data-presets="react">
+    const { useState, useEffect, useRef } = React;
+
+    /* hooks */
+    function useReveal(){
+      const ref=useRef(null);
+      useEffect(()=>{
+        const el=ref.current; if(!el) return;
+        const els=el.matches?.('.reveal')?[el]:[...el.querySelectorAll('.reveal')];
+        const io=new IntersectionObserver((ents)=>{
+          ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+        },{threshold:.14, rootMargin:'0px 0px -8% 0px'});
+        els.forEach(n=>io.observe(n));
+        return ()=>io.disconnect();
+      },[]);
+      return ref;
+    }
+
+    /* primitives */
+    function Wordmark(){
+      return (
+        <a className="wordmark" href="#top" aria-label="FRESH home">
+          <span className="glyph"><i></i></span>
+          <span>FRESH</span>
+        </a>
+      );
+    }
+
+    function Nav(){
+      const [scrolled,setScrolled]=useState(false);
+      useEffect(()=>{
+        const f=()=>setScrolled(window.scrollY>24);
+        f(); window.addEventListener('scroll',f,{passive:true});
+        return ()=>window.removeEventListener('scroll',f);
+      },[]);
+      return (
+        <nav className={"nav"+(scrolled?" scrolled":"")}>
+          <Wordmark/>
+          <div className="nav-right">
+            <span className="nav-stat"><span className="sdot ok live"></span>local · 4 venues linked</span>
+            <a className="nav-link" href="#how">How it works</a>
+            <a className="nav-link" href="#safety">Safety</a>
+            <button className="btn is-soon" style={{padding:'10px 16px'}} disabled title="Early access opening soon"><span className="soon-dot"></span>Access — soon</button>
+          </div>
+        </nav>
+      );
+    }
+
+    /* Signal ticker */
+    const TICKER_EVENTS=[
+      {t:"14:32:00",s:"ES",tag:"long entry · bar-close",ok:true},
+      {t:"14:31:45",s:"NQ",tag:"forming-bar marker",ghost:true},
+      {t:"14:31:30",s:"ES",tag:"lifecycle fill confirmed",ok:true},
+      {t:"14:30:15",s:"NQ",tag:"exit · bar-close",ok:true},
+      {t:"14:29:58",s:"ES",tag:"retracted study signal",ghost:true},
+      {t:"14:29:30",s:"MES",tag:"scale-in confirmed",ok:true},
+      {t:"14:28:45",s:"NQ",tag:"long entry · bar-close",ok:true},
+      {t:"14:28:02",s:"ES",tag:"phantom tick marker",ghost:true},
+      {t:"14:27:30",s:"MNQ",tag:"flat · session close",ok:true},
+      {t:"14:26:50",s:"ES",tag:"lifecycle fill confirmed",ok:true},
+    ];
+    function SignalTicker(){
+      const items=[...TICKER_EVENTS,...TICKER_EVENTS];
+      return (
+        <div className="ticker" aria-hidden="true">
+          <div className="ticker-track">
+            {items.map((e,i)=>(
+              <div className="tk-item" key={i}>
+                <span className="tk-time">{e.t}</span>
+                <span className="tk-sym">{e.s}</span>
+                <span className="tk-tag">{e.tag}</span>
+                {e.ok
+                  ? <span className="tk-ok"><span className="sdot ok"></span>accepted</span>
+                  : <span className="tk-ghost">ghost · rejected</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    /* Architecture flow */
+    function ArchFlow(){
+      return (
+        <div className="arch" style={{padding:'8px 0'}}>
+          <svg className="arch-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <g fill="none" stroke="var(--line-2)" strokeWidth="1" vectorEffect="non-scaling-stroke">
+              <path d="M50 18 L50 30 M16.7 30 L83.3 30 M16.7 30 L16.7 40 M50 30 L50 40 M83.3 30 L83.3 40"/>
+              <path d="M83.3 62 L83.3 72 M16.7 72 L83.3 72 M16.7 72 L16.7 82 M50 72 L50 82 M83.3 72 L83.3 82"/>
+            </g>
+            <g fill="none" stroke="var(--accent)" strokeWidth="1.4" vectorEffect="non-scaling-stroke" className="flow-dash" opacity="0.85">
+              <path d="M50 18 L50 30 M16.7 30 L83.3 30 M16.7 30 L16.7 40 M50 30 L50 40 M83.3 30 L83.3 40"/>
+              <path d="M83.3 62 L83.3 72 M16.7 72 L83.3 72 M16.7 72 L16.7 82 M50 72 L50 82 M83.3 72 L83.3 82"/>
+            </g>
+          </svg>
+
+          <div className="arch-tier t1">
+            <div className="node accent">
+              <div className="nlabel"><span className="sdot ok live"></span>source · strategy state</div>
+              <div className="ntitle">MotiveWave → FRESH Strategy</div>
+              <div className="ndesc">Your strategy fires. FRESH ingests bar-close state only.</div>
+            </div>
+          </div>
+
+          <div className="arch-tier t2">
+            <div className="node">
+              <div className="nlabel">component 01</div>
+              <div className="ntitle">Strategy Hub</div>
+              <div className="ndesc">Tracks live strategy &amp; position state across instruments.</div>
+            </div>
+            <div className="node">
+              <div className="nlabel">component 02</div>
+              <div className="ntitle">Research Hub</div>
+              <div className="ndesc">Turns each session into a structured evidence packet.</div>
+            </div>
+            <div className="node accent">
+              <div className="nlabel"><span className="sdot ok live"></span>component 03</div>
+              <div className="ntitle">Execution Hub</div>
+              <div className="ndesc">Routes confirmed fills through the safety-gate stack.</div>
+            </div>
+          </div>
+
+          <div className="arch-tier t3">
+            {[["NinjaTrader","copy execution"],["TopStepX","prop accounts"],["HyperLiquid","crypto futures"]].map(([n,d],i)=>(
+              <div className="node" key={i}>
+                <div className="nlabel"><span className="sdot idle"></span>venue</div>
+                <div className="ntitle" style={{fontSize:15}}>{n}</div>
+                <div className="ndesc">{d}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    /* Gate stack sequence */
+    const GATES=[
+      {name:"Kill switch",sub:"global halt must be disarmed"},
+      {name:"Stale-event check",sub:"event age within tolerance"},
+      {name:"Enabled-account routing",sub:"target account explicitly enabled"},
+      {name:"Risk gates",sub:"size, exposure & loss limits pass"},
+      {name:"Confirmed fill — not intent",sub:"mirror lifecycle fills only"},
+    ];
+    function GateStack({motion}){
+      const [step,setStep]=useState(GATES.length);
+      const [blockAt,setBlockAt]=useState(-1);
+      const timer=useRef(null);
+      useEffect(()=>{
+        if(!motion){ setStep(GATES.length); setBlockAt(-1); return; }
+        let i=0; let block=-1; let runs=0;
+        const tick=()=>{
+          if(i===0){ runs++; block = (runs%3===0) ? (1+Math.floor(Math.random()*(GATES.length-1))) : -1; setBlockAt(-1); }
+          setStep(i);
+          if(block===i){ setBlockAt(i); i=0; timer.current=setTimeout(tick,2200); return; }
+          i++;
+          if(i>GATES.length){ i=0; timer.current=setTimeout(tick,2400); return; }
+          timer.current=setTimeout(tick,720);
+        };
+        tick();
+        return ()=>clearTimeout(timer.current);
+      },[motion]);
+
+      const done = step>=GATES.length && blockAt<0;
+      return (
+        <div>
+          <div className="gates">
+            {GATES.map((g,i)=>{
+              let cls="gate pending";
+              if(blockAt>=0){ cls = i<blockAt?"gate active":(i===blockAt?"gate blocked":"gate pending"); }
+              else { cls = i<=step?"gate active":"gate pending"; }
+              if(!motion) cls="gate active";
+              const blocked = blockAt===i;
+              return (
+                <div className={cls} key={i}>
+                  <span className="gate-ix">G{String(i+1).padStart(2,'0')}</span>
+                  <div className="gate-body">
+                    <div className="gate-name">{g.name}</div>
+                    <div className="gate-sub">{g.sub}</div>
+                  </div>
+                  <span className="gate-state">
+                    {blocked
+                      ? <><span className="sdot bad"></span>blocked</>
+                      : (cls.includes("active")
+                          ? <><span className="sdot ok"></span>pass</>
+                          : <><span className="sdot idle"></span>—</>)}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+          <div className={"gate-readout "+(blockAt>=0?"fail":(done?"pass":""))}>
+            <span>{blockAt>=0
+              ? "→ manual_reconciliation_required · copy withheld"
+              : (done? "→ confirmed fill mirrored to enabled accounts" : "→ evaluating event…")}</span>
+            <span>{blockAt>=0?"UNSAFE · STOPPED":"SAFE"}</span>
+          </div>
+        </div>
+      );
+    }
+
+    /* Research flywheel */
+    const FLY=[
+      {n:"Session",d:"A day of live trading — every signal, fill & regime shift."},
+      {n:"Packet",d:"Auto-built evidence: signal counts, coverage, telemetry."},
+      {n:"Research",d:"Local AI runs walk-forward analysis on the packet."},
+      {n:"Decision",d:"You learn what's edge and what's noise — and adjust."},
+    ];
+    function ResearchFlywheel({motion}){
+      const [lit,setLit]=useState(motion?0:-1);
+      useEffect(()=>{
+        if(!motion){ setLit(-1); return; }
+        const id=setInterval(()=>setLit(p=>(p+1)%FLY.length),1300);
+        return ()=>clearInterval(id);
+      },[motion]);
+      return (
+        <div>
+          <div className="fly">
+            {FLY.map((s,i)=>(
+              <div className={"fly-step"+(lit===i?" lit":"")} key={i}>
+                <div className="fly-ix">{String(i+1).padStart(2,'0')} / {motion&&lit===i?"active":"step"}</div>
+                <div className="fly-name">{s.n}</div>
+                <div className="fly-desc">{s.d}</div>
+                {i<FLY.length-1 && <span className="fly-arrow">→</span>}
+              </div>
+            ))}
+          </div>
+          <div className="fly-loop">↻ &nbsp;evidence compounds — <b>better decisions feed the next session</b></div>
+        </div>
+      );
+    }
+
+    /* HERO */
+    const HERO_HEAD = (<>The operations layer your <span className="hl">MotiveWave</span> strategy deserves.</>);
+    const HERO_SUB = (<>FRESH wires your MotiveWave strategy into <b>NinjaTrader, TopStepX and HyperLiquid</b> — locally, on your machine. It validates signal evidence, enforces copy-execution discipline, and turns every session into research. <b>It does not pick your trades.</b></>);
+
+    function HeroCTAs(){
+      return (
+        <div className="hero-cta">
+          <button className="btn is-soon" disabled title="Early access opening soon"><span className="soon-dot"></span>Early access — opening soon</button>
+          <a className="btn btn-ghost" href="#how">See the architecture</a>
+        </div>
+      );
+    }
+    function HeroMeta(){
+      return (
+        <div className="hero-meta">
+          <span><span className="sdot ok live"></span>runs 100% local</span>
+          <span><span className="sdot ok"></span>4 venues, one control plane</span>
+          <span><span className="sdot warn"></span>safety is the default</span>
+        </div>
+      );
+    }
+
+    function HeroTerminal(){
+      return (
+        <div className="hero-split">
+          <div>
+            <div className="kicker reveal in" style={{marginBottom:22}}><span className="dot"></span>Local trading operations platform</div>
+            <h1 className="hero-head">{HERO_HEAD}</h1>
+            <p className="hero-sub">{HERO_SUB}</p>
+            <HeroCTAs/>
+            <HeroMeta/>
+          </div>
+          <div className="board">
+            <div className="board-top"><span>FRESH · control plane</span><span style={{display:'flex',alignItems:'center',gap:7}}><span className="sdot ok live"></span>operating</span></div>
+            <div className="board-body">
+              <div className="board-row"><span className="bk">strategy state</span><span className="bv">ES · long · 2 cts</span><span className="bs"><span className="sdot ok"></span>tracked</span></div>
+              <div className="board-row"><span className="bk">signal source</span><span className="bv">bar-close only</span><span className="bs"><span className="sdot ok"></span>no ghosts</span></div>
+              <div className="board-row"><span className="bk">execution hub</span><span className="bv">lifecycle fills</span><span className="bs"><span className="sdot ok"></span>gated</span></div>
+              <div className="board-row"><span className="bk">kill switch</span><span className="bv">disarmed</span><span className="bs warn"><span className="sdot warn"></span>armed-ready</span></div>
+              <div className="board-flow">
+                <span className="board-chip on">MotiveWave</span><span className="board-arr">→</span>
+                <span className="board-chip on">FRESH</span><span className="board-arr">→</span>
+                <span className="board-chip">NinjaTrader</span>
+                <span className="board-chip">TopStepX</span>
+                <span className="board-chip">HyperLiquid</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function Hero({motion}){
+      return (
+        <header className="hero" id="top">
+          <div className="hero-glow"></div>
+          <div className="wrap">
+            <HeroTerminal/>
+          </div>
+        </header>
+      );
+    }
+
+    /* SECTIONS */
+    function SHead({eyebrow,title,lead}){
+      return (
+        <div className="shead reveal">
+          <div className="ey">{eyebrow}</div>
+          <h2>{title}</h2>
+          {lead && <p className="lead">{lead}</p>}
+        </div>
+      );
+    }
+
+    const HOOKS=[
+      {t:"Ghost signals cost you real money.",
+       pain:"Most MotiveWave vendor studies evaluate on the forming bar, then retract. You take the fill; the marker vanishes.",
+       fix:"FRESH ingests bar-close data only — ghosts are impossible by design."},
+      {t:"Copy execution is a liability without gates.",
+       pain:"Fire into NinjaTrader, TopStepX and HyperLiquid at once and a single bad event compounds across every account.",
+       fix:"The Execution Hub mirrors confirmed lifecycle fills only — through a stack of safety gates nothing in the UI can bypass."},
+      {t:"Your edge should be evidence, not memory.",
+       pain:"A good week feels like edge. It isn't. Without an audit trail you're trading on a feeling.",
+       fix:"The Research Hub turns every session into a structured evidence packet for walk-forward analysis."},
+    ];
+    function HooksSection(){
+      const ref=useReveal();
+      return (
+        <section className="sec" id="problem" ref={ref}>
+          <div className="wrap">
+            <SHead eyebrow="The problem" title="Three ways the machine breaks downstream of your strategy."
+              lead="You're running a tiny trading desk with no operations infrastructure. Here's where it bites."/>
+            <div className="hooks">
+              {HOOKS.map((h,i)=>(
+                <div className="hook reveal" key={i} style={{transitionDelay:(i*90)+'ms'}}>
+                  <div className="hook-ix"><span className="sdot warn"></span>HOOK {String(i+1).padStart(2,'0')}</div>
+                  <h3>{h.t}</h3>
+                  <p className="pain">{h.pain}</p>
+                  <div className="fix"><span className="sdot ok"></span><span>{h.fix}</span></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function HowSection(){
+      const ref=useReveal();
+      return (
+        <section className="sec" id="how" ref={ref}>
+          <div className="wrap">
+            <SHead eyebrow="What FRESH does" title="One control plane, from strategy state to every venue."
+              lead="MotiveWave fires. FRESH takes it from there — three hubs that track state, build evidence, and route execution safely across four venues."/>
+            <div className="reveal"><ArchFlow/></div>
+          </div>
+        </section>
+      );
+    }
+
+    function SafetySection({motion}){
+      const ref=useReveal();
+      return (
+        <section className="sec" id="safety" ref={ref}>
+          <div className="wrap">
+            <SHead eyebrow="Safety by design" title="FRESH will not copy a trade unless every gate passes."
+              lead="Retail copy products almost never talk about this. Capital preservation isn't a setting in FRESH — it's the architecture."/>
+            <div className="safety-grid">
+              <div className="reveal">
+                <div className="safety-lead">Every path prefers <span className="mono">blocked</span>, <span className="mono">stale</span> or <span className="mono">manual_reconciliation_required</span> over an unsafe action.</div>
+                <div className="safety-note">A trade event runs the full stack on the right, every time. <b>No shortcut in the UI can bypass it.</b> If any gate fails, copy is withheld and flagged for a human — nothing fires.</div>
+              </div>
+              <div className="reveal panel" style={{padding:20}}>
+                <div className="gw-head" style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:14,fontFamily:'var(--mono)',fontSize:12,color:'var(--tx-mut)',letterSpacing:'.06em'}}>
+                  <span>execution hub · gate stack</span>
+                  <span style={{display:'flex',alignItems:'center',gap:7}}><span className="sdot ok live"></span>evaluating</span>
+                </div>
+                <GateStack motion={motion}/>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function ResearchSection({motion}){
+      const ref=useReveal();
+      return (
+        <section className="sec" id="research" ref={ref}>
+          <div className="wrap">
+            <SHead eyebrow="Research that compounds" title="Every session becomes evidence. Evidence becomes edge."
+              lead="The Research Hub turns trading days into structured packets your local AI analyzes — so over time you actually know whether your strategies work."/>
+            <div className="reveal"><ResearchFlywheel motion={motion}/></div>
+          </div>
+        </section>
+      );
+    }
+
+    const FITS=[
+      {t:"Run systematic strategies in MotiveWave",d:"ES, NQ or similar — trading as a craft, not a hobby"},
+      {t:"Trade prop accounts on TopStepX",d:"and want clean, auditable execution discipline"},
+      {t:"Use or want NinjaTrader copy execution",d:"with gates instead of duct tape"},
+      {t:"Are exploring HyperLiquid for crypto futures",d:"one control plane across every venue"},
+    ];
+    function WhoSection(){
+      const ref=useReveal();
+      return (
+        <section className="sec" id="who" ref={ref}>
+          <div className="wrap">
+            <SHead eyebrow="Who it's for" title="Built for traders who already operate like a desk."/>
+            <div className="split-2">
+              <div className="reveal">
+                <p className="prose">If you take signals seriously, run prop accounts, and want systematic discipline across venues — <b>FRESH is the operations layer you've been hand-building in spreadsheets.</b> You respect technical depth. You've been burned by black boxes.</p>
+                <div className="callout">
+                  <span className="mono">// what FRESH is not</span>
+                  If you're looking for an AI to pick your trades, <b>FRESH isn't it.</b> No signal service. No black box. No cloud lock-in. Local AI advises in the research path — it never touches the order path.
+                </div>
+              </div>
+              <div className="reveal fits">
+                {FITS.map((f,i)=>(
+                  <div className="fit" key={i}>
+                    <span className="sdot ok"></span>
+                    <div><div className="fit-t">{f.t}</div><div className="fit-d">{f.d}</div></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function AboutSection(){
+      const ref=useReveal();
+      return (
+        <section className="sec" id="about" ref={ref}>
+          <div className="wrap">
+            <div className="split-2" style={{alignItems:'center'}}>
+              <div className="reveal">
+                <SHead eyebrow="About kitar" title="A one-person quant company, building the missing layer."/>
+              </div>
+              <div className="reveal about-card">
+                <div className="about-tag">// kitar</div>
+                <p className="big">FRESH exists because the gap between retail and institutional operations infrastructure was too wide. So I built the control plane I wanted: local-first, evidence-driven, safe by default. No team, no cloud, no black box — just the machine that should sit between your strategy and your venues.</p>
+                <div className="domain"><span className="sdot ok live"></span>kitar.co</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function CTASection(){
+      return (
+        <section className="cta" id="apply">
+          <div className="cta-glow"></div>
+          <div className="wrap">
+            <div className="kicker reveal" style={{justifyContent:'center',marginBottom:22}}><span className="dot"></span>Early access</div>
+            <h2 className="reveal">FRESH is for serious systematic traders.</h2>
+            <p className="cta-sub reveal">Selective by design — kitar takes implementation seriously, and limited access keeps support real. <b style={{color:'var(--warn)'}}>Applications aren't open yet.</b></p>
+            <form className="cta-form reveal" onSubmit={(e)=>e.preventDefault()} noValidate aria-disabled="true">
+              <input
+                type="email" inputMode="email" placeholder="early access opening soon"
+                disabled
+                aria-label="Email address (applications closed)"/>
+              <button className="btn is-soon" type="button" disabled><span className="soon-dot"></span>Opening soon</button>
+            </form>
+            <div className="cta-msg" style={{color:'var(--tx-dim)'}}>→ waitlist isn't live yet — check back shortly.</div>
+            <div className="cta-fine reveal">no guaranteed returns · not a trading bot · runs on your machine</div>
+          </div>
+        </section>
+      );
+    }
+
+    function Footer(){
+      return (
+        <footer className="foot">
+          <div className="wrap">
+            <Wordmark/>
+            <div className="foot-meta">
+              <span>Futures Research, Execution &amp; Strategy Hub</span>
+              <span>kitar.co</span>
+              <span>© 2026 kitar</span>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    /* App root — static production defaults (Tweaks panel removed for production) */
+    function App(){
+      const accent="both";
+      const motion=true;
+      useEffect(()=>{ document.documentElement.setAttribute('data-accent', accent); },[]);
+      useEffect(()=>{ document.body.classList.toggle('motion-on', motion); },[]);
+      return (
+        <>
+          <Nav/>
+          <main>
+            <Hero motion={motion}/>
+            <HooksSection/>
+            <HowSection/>
+            <SafetySection motion={motion}/>
+            <ResearchSection motion={motion}/>
+            <WhoSection/>
+            <AboutSection/>
+            <CTASection/>
+          </main>
+          <Footer/>
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>
