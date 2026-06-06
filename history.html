@@ -3,17 +3,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>kitaR — History</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #0f1117;
-    color: #e2e8f0;
+    font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    background: #06080b;
+    color: #e7ecf2;
     min-height: 100vh;
   }
   .header {
-    background: linear-gradient(135deg, #1a1f2e 0%, #16213e 100%);
-    border-bottom: 1px solid #2d3748;
+    background: linear-gradient(135deg, #0a0e14 0%, #0a0e14 100%);
+    border-bottom: 1px solid rgba(255,255,255,0.09);
     padding: 20px 32px;
     display: flex;
     align-items: center;
@@ -21,21 +24,21 @@
   }
   .container { padding: 24px 32px; max-width: 1400px; margin: 0 auto; }
   .table-card {
-    background: #1a1f2e;
-    border: 1px solid #2d3748;
+    background: #0a0e14;
+    border: 1px solid rgba(255,255,255,0.09);
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 28px;
   }
   .table-header {
     padding: 16px 20px;
-    border-bottom: 1px solid #2d3748;
+    border-bottom: 1px solid rgba(255,255,255,0.09);
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   .section-title {
-    font-size: 14px; font-weight: 600; color: #94a3b8;
+    font-size: 14px; font-weight: 600; color: #8a94a3;
     text-transform: uppercase; letter-spacing: 0.6px;
   }
   .tab-nav {
@@ -43,8 +46,8 @@
     align-items: flex-end;
     gap: 4px;
     padding: 16px 32px 0;
-    background: linear-gradient(135deg, #1a1f2e 0%, #16213e 100%);
-    border-bottom: 1px solid #2d3748;
+    background: linear-gradient(135deg, #0a0e14 0%, #0a0e14 100%);
+    border-bottom: 1px solid rgba(255,255,255,0.09);
   }
   .tab-btn {
     padding: 10px 24px;
@@ -54,18 +57,18 @@
     font-weight: 600;
     cursor: pointer;
     background: transparent;
-    color: #475569;
+    color: #59626f;
     letter-spacing: 0.4px;
     transition: color 0.2s, background 0.2s;
     position: relative;
     bottom: -1px;
   }
-  .tab-btn:hover { color: #94a3b8; }
+  .tab-btn:hover { color: #8a94a3; }
   .tab-btn.active {
-    background: #0f1117;
-    color: #e2e8f0;
-    border: 1px solid #2d3748;
-    border-bottom-color: #0f1117;
+    background: #06080b;
+    color: #e7ecf2;
+    border: 1px solid rgba(255,255,255,0.09);
+    border-bottom-color: #06080b;
   }
   .tab-pane { display: none; }
   .tab-pane.active { display: block; }
@@ -74,9 +77,9 @@
     padding: 8px 18px;
     font-size: 12px;
     font-weight: 600;
-    color: #64748b;
+    color: #59626f;
     text-decoration: none;
-    border: 1px solid #2d3748;
+    border: 1px solid rgba(255,255,255,0.09);
     border-radius: 8px 8px 0 0;
     background: transparent;
     position: relative;
@@ -84,8 +87,8 @@
     letter-spacing: 0.3px;
     transition: color 0.2s, border-color 0.2s;
   }
-  .back-link:hover { color: #94a3b8; border-color: #4b5563; }
-  .footer { text-align: center; padding: 20px; color: #2d3748; font-size: 11px; }
+  .back-link:hover { color: #8a94a3; border-color: #59626f; }
+  .footer { text-align: center; padding: 20px; color: rgba(255,255,255,0.09); font-size: 11px; }
   .modal-overlay {
     display: none; position: fixed; inset: 0;
     background: rgba(0,0,0,0.75); z-index: 1000;
@@ -93,32 +96,61 @@
   }
   .modal-overlay.open { display: flex; }
   .modal-box {
-    background: #1a1f2e; border: 1px solid #2d3748;
+    background: #0a0e14; border: 1px solid rgba(255,255,255,0.09);
     border-radius: 14px; padding: 24px; width: 480px;
     max-width: 95vw; max-height: 80vh; overflow-y: auto;
   }
   .modal-title {
-    font-size: 15px; font-weight: 700; color: #e2e8f0;
+    font-size: 15px; font-weight: 700; color: #e7ecf2;
     margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;
   }
   .modal-close {
-    background: none; border: none; color: #64748b;
+    background: none; border: none; color: #59626f;
     font-size: 20px; cursor: pointer; padding: 0 4px; line-height: 1;
   }
-  .modal-close:hover { color: #e2e8f0; }
+  .modal-close:hover { color: #e7ecf2; }
   .rec-row {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 8px 0; border-bottom: 1px solid #1e293b; font-size: 13px;
+    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 13px;
   }
   .rec-row:last-child { border-bottom: none; }
-  .rec-date { color: #64748b; font-family: monospace; }
-  .rec-pnl-pos { color: #34d399; font-weight: 600; }
-  .rec-pnl-neg { color: #f87171; font-weight: 600; }
+  .rec-date { color: #59626f; font-family: var(--mono); }
+  .rec-pnl-pos { color: #33e08a; font-weight: 600; }
+  .rec-pnl-neg { color: #ff5e57; font-weight: 600; }
   .rec-payout-badge {
-    font-size: 10px; background: rgba(251,191,36,0.15);
-    border: 1px solid rgba(251,191,36,0.3); color: #fbbf24;
+    font-size: 10px; background: rgba(245,177,61,0.15);
+    border: 1px solid rgba(245,177,61,0.3); color: #f5b13d;
     padding: 2px 8px; border-radius: 4px; margin-left: 8px; font-weight: 700;
   }
+
+  :root{
+    --bg:#06080b; --bg-2:#0a0e14; --bg-3:#0e131b;
+    --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+    --tx:#e7ecf2; --tx-mut:#8a94a3; --tx-dim:#59626f;
+    --ok:#33e08a; --warn:#f5b13d; --bad:#ff5e57; --accent:#33e08a;
+    --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  }
+  html{ scroll-behavior:smooth; }
+  body{ position:relative; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  body::before{ content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(ellipse 120% 90% at 50% 0%,#000 30%,transparent 80%);
+            mask-image:radial-gradient(ellipse 120% 90% at 50% 0%,#000 30%,transparent 80%); }
+  .header,.tab-nav,.container,.footer{ position:relative; z-index:1; }
+  ::selection{ background:rgba(51,224,138,.28); color:#fff; }
+  h1,h2,h3,h4{ font-family:var(--sans); letter-spacing:-.02em; }
+
+  .section-title,thead th,tbody td,.tab-btn,.footer,.rec-date{ font-family:var(--mono); }
+  thead th{ letter-spacing:.12em; }
+
+  .tab-btn{ border:0; border-bottom:2px solid transparent; border-radius:0; bottom:0;
+    font-size:11.5px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--tx-dim); }
+  .tab-btn:hover{ color:var(--tx); background:transparent; }
+  .tab-btn.active{ background:transparent; color:var(--accent); border:0; border-bottom:2px solid var(--accent); }
 </style>
 </head>
 <body>
@@ -126,19 +158,19 @@
 <div class="header" style="display:flex; align-items:center; justify-content:space-between;">
   <div>
     <h1 style="margin:0; font-size:26px; font-weight:700; letter-spacing:-0.5px;">kita<em style="font-style:italic;">R</em></h1>
-    <div style="margin-top:10px; max-width:560px; line-height:1.65; color:#64748b; font-size:12px;">
+    <div style="margin-top:10px; max-width:560px; line-height:1.65; color:#59626f; font-size:12px;">
       <p style="margin:0 0 8px;">trading is like the deep sea. anyone can see the surface, but the prizes are found in the depths.</p>
-      <p style="margin:0 0 8px;">kita<em>R</em> is my personal trading kit, eventually a blueprint designed to turn human observation into systematic discipline. it is the synergy of intuition and math that I call <span style="color:#94a3b8; font-weight:600;">co-quant</span>.</p>
+      <p style="margin:0 0 8px;">kita<em>R</em> is my personal trading kit, eventually a blueprint designed to turn human observation into systematic discipline. it is the synergy of intuition and math that I call <span style="color:#8a94a3; font-weight:600;">co-quant</span>.</p>
       <p style="margin:0 0 8px;">this is how i manage my R. this is how you can build your own.</p>
-      <p style="margin:0; color:#475569; font-style:italic;">"the ocean doesn't care if you're right."</p>
+      <p style="margin:0; color:#59626f; font-style:italic;">"the ocean doesn't care if you're right."</p>
     </div>
   </div>
   <div style="display:flex; align-items:center; gap:18px;">
-    <a href="https://x.com/oxkitng" target="_blank" style="color:#94a3b8; text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px; transition:color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">
+    <a href="https://x.com/oxkitng" target="_blank" style="color:#8a94a3; text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px; transition:color 0.2s;" onmouseover="this.style.color='#e7ecf2'" onmouseout="this.style.color='#8a94a3'">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       @oxkitng
     </a>
-    <a href="https://kita.co" target="_blank" style="color:#94a3b8; text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px; transition:color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">
+    <a href="https://kita.co" target="_blank" style="color:#8a94a3; text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px; transition:color 0.2s;" onmouseover="this.style.color='#e7ecf2'" onmouseout="this.style.color='#8a94a3'">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       Shop
     </a>
@@ -158,7 +190,7 @@
   <div id="pane-payout" class="tab-pane"></div>
 </div>
 
-<div class="footer">Last updated: 20 May 2026 · 06:29 PM EST</div>
+<div class="footer">Last updated: 5 Jun 2026 · 10:05 PM EST</div>
 
 <div id="records-modal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
@@ -191,7 +223,7 @@ function showRecords(acct) {
     var badge = isPayout ? '<span class="rec-payout-badge">PAYOUT</span>' : '';
     return '<div class="rec-row"><span class="rec-date">' + r.date + '</span><span class="' + cls + '">' + fmtSigned(r.pnl) + badge + '</span></div>';
   }).join('');
-  document.getElementById('modal-body').innerHTML = rows || '<div style="color:#475569;text-align:center;padding:20px;">No records</div>';
+  document.getElementById('modal-body').innerHTML = rows || '<div style="color:#59626f;text-align:center;padding:20px;">No records</div>';
   document.getElementById('records-modal').classList.add('open');
 }
 
@@ -199,13 +231,13 @@ function renderOverview(d) {
   var rows = d.history.overview.map(function(r) {
     var isPassed = r.status === 'Passed';
     var badge = isPassed
-      ? '<span style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:3px 12px; border-radius:6px; font-size:11px; font-weight:700;">Passed</span>'
-      : '<span style="background:rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.3); color:#f87171; padding:3px 12px; border-radius:6px; font-size:11px; font-weight:700;">Failed</span>';
-    return '<tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background=\'#1a2030\'" onmouseout="this.style.background=\'transparent\'">'
-      + '<td style="padding:11px 14px; color:#94a3b8;">' + r.date + '</td>'
-      + '<td style="padding:11px 14px; color:#e2e8f0; font-weight:600;">' + r.firm + '</td>'
-      + '<td style="padding:11px 14px; color:#94a3b8;">' + r.account + '</td>'
-      + '<td style="padding:11px 14px; color:#64748b;">' + r.type + '</td>'
+      ? '<span style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:3px 12px; border-radius:6px; font-size:11px; font-weight:700;">Passed</span>'
+      : '<span style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.3); color:#ff5e57; padding:3px 12px; border-radius:6px; font-size:11px; font-weight:700;">Failed</span>';
+    return '<tr style="border-bottom:1px solid rgba(255,255,255,0.07);" onmouseover="this.style.background=\'#0e131b\'" onmouseout="this.style.background=\'transparent\'">'
+      + '<td style="padding:11px 14px; color:#8a94a3;">' + r.date + '</td>'
+      + '<td style="padding:11px 14px; color:#e7ecf2; font-weight:600;">' + r.firm + '</td>'
+      + '<td style="padding:11px 14px; color:#8a94a3;">' + r.account + '</td>'
+      + '<td style="padding:11px 14px; color:#59626f;">' + r.type + '</td>'
       + '<td style="padding:11px 14px;">' + badge + '</td>'
       + '</tr>';
   }).join('');
@@ -214,15 +246,15 @@ function renderOverview(d) {
   document.getElementById('pane-overview').innerHTML =
     '<div class="table-card">'
     + '<div class="table-header"><div class="section-title">Account History</div>'
-    + '<div style="font-size:13px; color:#60a5fa; font-weight:700;">' + count + ' records</div></div>'
+    + '<div style="font-size:13px; color:#33e08a; font-weight:700;">' + count + ' records</div></div>'
     + '<div style="overflow-x:auto;">'
     + '<table style="width:100%; border-collapse:collapse; font-size:13px;">'
-    + '<thead><tr style="border-bottom:2px solid #2d3748;">'
-    + '<th style="text-align:left; padding:10px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#141820;">Date</th>'
-    + '<th style="text-align:left; padding:10px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#141820;">Prop Firm</th>'
-    + '<th style="text-align:left; padding:10px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#141820;">Account</th>'
-    + '<th style="text-align:left; padding:10px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#141820;">Type</th>'
-    + '<th style="text-align:left; padding:10px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#141820;">Status</th>'
+    + '<thead><tr style="border-bottom:2px solid rgba(255,255,255,0.09);">'
+    + '<th style="text-align:left; padding:10px 14px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#0e131b;">Date</th>'
+    + '<th style="text-align:left; padding:10px 14px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#0e131b;">Prop Firm</th>'
+    + '<th style="text-align:left; padding:10px 14px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#0e131b;">Account</th>'
+    + '<th style="text-align:left; padding:10px 14px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#0e131b;">Type</th>'
+    + '<th style="text-align:left; padding:10px 14px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#0e131b;">Status</th>'
     + '</tr></thead>'
     + '<tbody>' + rows + '</tbody>'
     + '</table></div></div>';
@@ -230,8 +262,8 @@ function renderOverview(d) {
 
 function renderDetails(d) {
   var sc = {
-    'Passed': {border:'rgba(52,211,153,0.3)', text:'#34d399', badgeBg:'rgba(52,211,153,0.15)', badgeBorder:'rgba(52,211,153,0.4)', descBg:'rgba(52,211,153,0.08)', descBorder:'rgba(52,211,153,0.3)'},
-    'Failed':  {border:'rgba(239,68,68,0.3)',  text:'#f87171', badgeBg:'rgba(239,68,68,0.15)',  badgeBorder:'rgba(239,68,68,0.4)',  descBg:'rgba(239,68,68,0.08)',  descBorder:'rgba(239,68,68,0.3)'}
+    'Passed': {border:'rgba(51,224,138,0.3)', text:'#33e08a', badgeBg:'rgba(51,224,138,0.15)', badgeBorder:'rgba(51,224,138,0.4)', descBg:'rgba(51,224,138,0.08)', descBorder:'rgba(51,224,138,0.3)'},
+    'Failed':  {border:'rgba(255,94,87,0.3)',  text:'#ff5e57', badgeBg:'rgba(255,94,87,0.15)',  badgeBorder:'rgba(255,94,87,0.4)',  descBg:'rgba(255,94,87,0.08)',  descBorder:'rgba(255,94,87,0.3)'}
   };
 
   function ruleBadge(bg, border, color, text) {
@@ -241,21 +273,21 @@ function renderDetails(d) {
   function buildRules(rules) {
     var b = '';
     if (rules.ddType === 'intraday') {
-      b += ruleBadge('rgba(248,113,113,0.12)','rgba(248,113,113,0.25)','#f87171','Intraday DD $' + rules.dd.toLocaleString());
+      b += ruleBadge('rgba(255,94,87,0.12)','rgba(255,94,87,0.25)','#ff5e57','Intraday DD $' + rules.dd.toLocaleString());
     } else {
-      b += ruleBadge('rgba(248,113,113,0.12)','rgba(248,113,113,0.25)','#f87171','EOD Trailing Drawdown $' + rules.dd.toLocaleString());
+      b += ruleBadge('rgba(255,94,87,0.12)','rgba(255,94,87,0.25)','#ff5e57','EOD Trailing Drawdown $' + rules.dd.toLocaleString());
     }
-    if (rules.target) b += ruleBadge('rgba(52,211,153,0.12)','rgba(52,211,153,0.25)','#34d399','Profit Target $' + rules.target.toLocaleString());
-    if (rules.minDays) b += ruleBadge('rgba(251,191,36,0.12)','rgba(251,191,36,0.25)','#fbbf24','Min ' + rules.minDays + ' Trading Days');
-    if (rules.consistencyCapDay) b += ruleBadge('rgba(239,68,68,0.15)','rgba(239,68,68,0.3)','#fca5a5','Consistency: Best Day &lt; $' + rules.consistencyCapDay.toLocaleString() + ' cap');
-    if (rules.consistencyPct) b += ruleBadge('rgba(239,68,68,0.12)','rgba(239,68,68,0.25)','#fca5a5',(rules.consistencyPct * 100) + '% Consistency Cap');
+    if (rules.target) b += ruleBadge('rgba(51,224,138,0.12)','rgba(51,224,138,0.25)','#33e08a','Profit Target $' + rules.target.toLocaleString());
+    if (rules.minDays) b += ruleBadge('rgba(245,177,61,0.12)','rgba(245,177,61,0.25)','#f5b13d','Min ' + rules.minDays + ' Trading Days');
+    if (rules.consistencyCapDay) b += ruleBadge('rgba(255,94,87,0.15)','rgba(255,94,87,0.3)','#ff5e57','Consistency: Best Day &lt; $' + rules.consistencyCapDay.toLocaleString() + ' cap');
+    if (rules.consistencyPct) b += ruleBadge('rgba(255,94,87,0.12)','rgba(255,94,87,0.25)','#ff5e57',(rules.consistencyPct * 100) + '% Consistency Cap');
     return b;
   }
 
   function dBox(label, val, color) {
-    return '<div style="background:#141820; border-radius:8px; padding:14px;">'
-      + '<div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">' + label + '</div>'
-      + '<div style="font-size:18px; font-weight:700; color:' + (color || '#e2e8f0') + ';">' + val + '</div>'
+    return '<div style="background:#0e131b; border-radius:8px; padding:14px;">'
+      + '<div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">' + label + '</div>'
+      + '<div style="font-size:18px; font-weight:700; color:' + (color || '#e7ecf2') + ';">' + val + '</div>'
       + '</div>';
   }
 
@@ -281,24 +313,24 @@ function renderDetails(d) {
       + '<div style="background:' + col.descBg + '; border:1px solid ' + col.descBorder + '; border-radius:8px; padding:12px 16px; margin-bottom:14px; font-size:13px; color:' + col.text + '; line-height:1.6;">'
       + prefix + ' <strong>' + acct.description + '</strong>'
       + '</div>'
-      + '<div style="font-size:11px; color:#475569; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#94a3b8; font-weight:600; font-family:monospace; letter-spacing:0.3px;">' + acct.accountNumber + '</span>'
-      + ' &nbsp;&middot;&nbsp; Started: <span style="color:#94a3b8; font-weight:600;">' + started + '</span>'
-      + ' &nbsp;&middot;&nbsp; <button onclick="showRecords(window._data.archivedAccounts[' + acctIdx + '])" style="background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.3); color:#60a5fa; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button>'
+      + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono); letter-spacing:0.3px;">' + acct.accountNumber + '</span>'
+      + ' &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">' + started + '</span>'
+      + ' &nbsp;&middot;&nbsp; <button onclick="showRecords(window._data.archivedAccounts[' + acctIdx + '])" style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); color:#33e08a; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button>'
       + '</div>'
-      + '<div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;"><div style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>' + buildRules(acct.rules) + '</div>'
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>'
+      + '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;"><div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>' + buildRules(acct.rules) + '</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Balance</div>'
       + '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">'
-      + dBox('Final Balance', fmt(acct.finalBalance), isPassed ? '#34d399' : '#f87171')
+      + dBox('Final Balance', fmt(acct.finalBalance), isPassed ? '#33e08a' : '#ff5e57')
       + dBox('Highest Trailing', fmt(acct.peakBalance))
       + dBox('Best Single Day', fmt(acct.bestDay))
       + '</div></div>'
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Trading Days &amp; Results</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Trading Days &amp; Results</div>'
       + '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; text-align:center;">'
       + dBox('Total Trading Days', days)
-      + dBox('Total P&amp;L', (totalPnl >= 0 ? '+' : '-') + fmt(totalPnl), totalPnl >= 0 ? '#34d399' : '#f87171')
-      + '<div style="background:#141820; border-radius:8px; padding:14px;"><div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Consistency</div><div style="font-size:13px; font-weight:700; color:' + (isPassed ? '#34d399' : '#f87171') + ';">' + consCheck + '</div></div>'
+      + dBox('Total P&amp;L', (totalPnl >= 0 ? '+' : '-') + fmt(totalPnl), totalPnl >= 0 ? '#33e08a' : '#ff5e57')
+      + '<div style="background:#0e131b; border-radius:8px; padding:14px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Consistency</div><div style="font-size:13px; font-weight:700; color:' + (isPassed ? '#33e08a' : '#ff5e57') + ';">' + consCheck + '</div></div>'
       + '</div></div>'
       + '</div>';
   }).join('');
@@ -307,18 +339,18 @@ function renderDetails(d) {
 }
 
 function stat(label, value) {
-  return '<div style="background:#141820; border:1px solid #2d3748; border-radius:8px; padding:10px 16px; min-width:120px;">'
-    + '<div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">' + label + '</div>'
-    + '<div style="font-size:15px; font-weight:700; color:#e2e8f0;">' + value + '</div>'
+  return '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:8px; padding:10px 16px; min-width:120px;">'
+    + '<div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">' + label + '</div>'
+    + '<div style="font-size:15px; font-weight:700; color:#e7ecf2;">' + value + '</div>'
     + '</div>';
 }
 
 function renderPayout(d) {
   var rows = d.history.payouts.map(function(p) {
-    return '<tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background=\'#1a2030\'" onmouseout="this.style.background=\'transparent\'">'
-      + '<td style="padding:11px 14px; color:#94a3b8; font-family:monospace; font-size:12px;">' + p.date + '</td>'
-      + '<td style="padding:11px 14px; color:#e2e8f0; font-weight:600;">' + p.firm + '</td>'
-      + '<td style="padding:11px 14px; color:#34d399; font-weight:700;">' + fmt(p.amount) + '</td>'
+    return '<tr style="border-bottom:1px solid rgba(255,255,255,0.07);" onmouseover="this.style.background=\'#0e131b\'" onmouseout="this.style.background=\'transparent\'">'
+      + '<td style="padding:11px 14px; color:#8a94a3; font-family:var(--mono); font-size:12px;">' + p.date + '</td>'
+      + '<td style="padding:11px 14px; color:#e7ecf2; font-weight:600;">' + p.firm + '</td>'
+      + '<td style="padding:11px 14px; color:#33e08a; font-weight:700;">' + fmt(p.amount) + '</td>'
       + '</tr>';
   }).join('');
 
@@ -328,13 +360,13 @@ function renderPayout(d) {
   document.getElementById('pane-payout').innerHTML =
     '<div class="table-card">'
     + '<div class="table-header"><div class="section-title">Payout History</div>'
-    + '<div style="font-size:13px; color:#60a5fa; font-weight:700;">' + count + ' payouts &middot; ' + fmt(total) + ' total</div></div>'
+    + '<div style="font-size:13px; color:#33e08a; font-weight:700;">' + count + ' payouts &middot; ' + fmt(total) + ' total</div></div>'
     + '<div style="overflow-x:auto;">'
     + '<table style="width:100%; border-collapse:collapse; font-size:13px;">'
-    + '<thead><tr style="border-bottom:2px solid #2d3748;">'
-    + '<th style="text-align:left; padding:10px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#141820;">Date</th>'
-    + '<th style="text-align:left; padding:10px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#141820;">Firm</th>'
-    + '<th style="text-align:left; padding:10px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#141820;">Amount Received</th>'
+    + '<thead><tr style="border-bottom:2px solid rgba(255,255,255,0.09);">'
+    + '<th style="text-align:left; padding:10px 14px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#0e131b;">Date</th>'
+    + '<th style="text-align:left; padding:10px 14px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#0e131b;">Firm</th>'
+    + '<th style="text-align:left; padding:10px 14px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.6px; background:#0e131b;">Amount Received</th>'
     + '</tr></thead>'
     + '<tbody>' + rows + '</tbody>'
     + '</table></div></div>';
@@ -349,7 +381,7 @@ async function init() {
     renderPayout(d);
   } catch(e) {
     console.error('Failed to load accounts.json:', e);
-    document.getElementById('pane-overview').innerHTML = '<div style="padding:40px;text-align:center;color:#f87171;">Failed to load data. Ensure accounts.json is present.</div>';
+    document.getElementById('pane-overview').innerHTML = '<div style="padding:40px;text-align:center;color:#ff5e57;">Failed to load data. Ensure accounts.json is present.</div>';
   }
 }
 
