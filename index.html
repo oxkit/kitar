@@ -3,57 +3,97 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>kitaR by oxkit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
-  .header { background: linear-gradient(135deg, #1a1f2e 0%, #16213e 100%); border-bottom: 1px solid #2d3748; padding: 20px 32px; display: flex; align-items: center; gap: 16px; }
+  body { font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif; background: #06080b; color: #e7ecf2; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #0a0e14 0%, #0a0e14 100%); border-bottom: 1px solid rgba(255,255,255,0.09); padding: 20px 32px; display: flex; align-items: center; gap: 16px; }
   .container { padding: 24px 32px; max-width: 1400px; margin: 0 auto; }
   .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
-  .card { background: #1a1f2e; border: 1px solid #2d3748; border-radius: 12px; padding: 20px; position: relative; overflow: hidden; }
+  .card { background: #0a0e14; border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; }
   .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-  .card.green::before { background: linear-gradient(90deg, #10b981, #34d399); }
-  .card.red::before { background: linear-gradient(90deg, #ef4444, #f87171); }
-  .card.blue::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
-  .card.purple::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
-  .card.amber::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-  .card-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+  .card.green::before { background: linear-gradient(90deg, #33e08a, #33e08a); }
+  .card.red::before { background: linear-gradient(90deg, #ff5e57, #ff5e57); }
+  .card.blue::before { background: linear-gradient(90deg, #33e08a, #33e08a); }
+  .card.purple::before { background: linear-gradient(90deg, #33e08a, #33e08a); }
+  .card.amber::before { background: linear-gradient(90deg, #f5b13d, #f5b13d); }
+  .card-label { font-size: 11px; color: #59626f; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
   .card-value { font-size: 26px; font-weight: 700; }
-  .card-value.green { color: #34d399; }
-  .card-value.red { color: #f87171; }
-  .card-value.blue { color: #60a5fa; }
-  .card-value.purple { color: #a78bfa; }
-  .card-value.amber { color: #fbbf24; }
-  .card-sub { font-size: 11px; color: #4a5568; margin-top: 4px; }
+  .card-value.green { color: #33e08a; }
+  .card-value.red { color: #ff5e57; }
+  .card-value.blue { color: #33e08a; }
+  .card-value.purple { color: #33e08a; }
+  .card-value.amber { color: #f5b13d; }
+  .card-sub { font-size: 11px; color: #59626f; margin-top: 4px; }
   .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
-  .chart-card { background: #1a1f2e; border: 1px solid #2d3748; border-radius: 12px; padding: 20px; }
+  .chart-card { background: #0a0e14; border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; padding: 20px; }
   @media (max-width: 640px) { .charts-grid { grid-template-columns: 1fr; } .daily-two-col { grid-template-columns: 1fr !important; } }
-  .chart-title { font-size: 13px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 16px; }
+  .chart-title { font-size: 13px; font-weight: 600; color: #8a94a3; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 16px; }
   .chart-wrap { position: relative; height: 240px; }
-  .section-title { font-size: 14px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #2d3748; }
-  .table-card { background: #1a1f2e; border: 1px solid #2d3748; border-radius: 12px; overflow: hidden; margin-bottom: 28px; }
-  .table-header { padding: 16px 20px; border-bottom: 1px solid #2d3748; }
+  .section-title { font-size: 14px; font-weight: 600; color: #8a94a3; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.09); }
+  .table-card { background: #0a0e14; border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; overflow: hidden; margin-bottom: 28px; }
+  .table-header { padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.09); }
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  thead th { padding: 11px 14px; text-align: right; font-size: 10px; font-weight: 600; color: #475569; text-transform: uppercase; letter-spacing: 0.6px; background: #141820; border-bottom: 1px solid #2d3748; }
+  thead th { padding: 11px 14px; text-align: right; font-size: 10px; font-weight: 600; color: #59626f; text-transform: uppercase; letter-spacing: 0.6px; background: #0e131b; border-bottom: 1px solid rgba(255,255,255,0.09); }
   thead th:first-child { text-align: left; }
-  tbody td { padding: 11px 14px; text-align: right; border-bottom: 1px solid #1e2537; }
+  tbody td { padding: 11px 14px; text-align: right; border-bottom: 1px solid #0e131b; }
   tbody td:first-child { text-align: left; }
   tbody tr:last-child td { border-bottom: none; }
-  tbody tr:hover { background: #1e2537; }
-  .firm-name { font-weight: 600; color: #e2e8f0; }
-  .positive { color: #34d399; }
-  .negative { color: #f87171; }
+  tbody tr:hover { background: #0e131b; }
+  .firm-name { font-weight: 600; color: #e7ecf2; }
+  .positive { color: #33e08a; }
+  .negative { color: #ff5e57; }
   .amp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-top: 14px; }
-  .amp-stat { background: #141820; border-radius: 8px; padding: 14px; text-align: center; }
-  .amp-stat-label { font-size: 10px; color: #475569; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; }
+  .amp-stat { background: #0e131b; border-radius: 8px; padding: 14px; text-align: center; }
+  .amp-stat-label { font-size: 10px; color: #59626f; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; }
   .amp-stat-value { font-size: 18px; font-weight: 700; }
-  .footer { text-align: center; padding: 20px; color: #2d3748; font-size: 11px; }
-  .tab-nav { display: flex; gap: 4px; padding: 16px 32px 0; background: linear-gradient(135deg, #1a1f2e 0%, #16213e 100%); border-bottom: 1px solid #2d3748; }
-  .tab-btn { padding: 10px 24px; border: none; border-radius: 8px 8px 0 0; font-size: 13px; font-weight: 600; cursor: pointer; background: transparent; color: #475569; letter-spacing: 0.4px; transition: color 0.2s, background 0.2s; position: relative; bottom: -1px; }
-  .tab-btn:hover { color: #94a3b8; }
-  .tab-btn.active { background: #0f1117; color: #e2e8f0; border: 1px solid #2d3748; border-bottom-color: #0f1117; }
+  .footer { text-align: center; padding: 20px; color: rgba(255,255,255,0.09); font-size: 11px; }
+  .tab-nav { display: flex; gap: 4px; padding: 16px 32px 0; background: linear-gradient(135deg, #0a0e14 0%, #0a0e14 100%); border-bottom: 1px solid rgba(255,255,255,0.09); }
+  .tab-btn { padding: 10px 24px; border: none; border-radius: 8px 8px 0 0; font-size: 13px; font-weight: 600; cursor: pointer; background: transparent; color: #59626f; letter-spacing: 0.4px; transition: color 0.2s, background 0.2s; position: relative; bottom: -1px; }
+  .tab-btn:hover { color: #8a94a3; }
+  .tab-btn.active { background: #06080b; color: #e7ecf2; border: 1px solid rgba(255,255,255,0.09); border-bottom-color: #06080b; }
   .tab-pane { display: none; }
   .tab-pane.active { display: block; }
+
+  :root{
+    --bg:#06080b; --bg-2:#0a0e14; --bg-3:#0e131b;
+    --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+    --tx:#e7ecf2; --tx-mut:#8a94a3; --tx-dim:#59626f;
+    --ok:#33e08a; --warn:#f5b13d; --bad:#ff5e57; --accent:#33e08a;
+    --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  }
+  html{ scroll-behavior:smooth; }
+  body{ position:relative; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  body::before{ content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(ellipse 120% 90% at 50% 0%,#000 30%,transparent 80%);
+            mask-image:radial-gradient(ellipse 120% 90% at 50% 0%,#000 30%,transparent 80%); }
+  .header,.tab-nav,.container,.footer{ position:relative; z-index:1; }
+  ::selection{ background:rgba(51,224,138,.28); color:#fff; }
+  h1,h2,h3,h4{ font-family:var(--sans); letter-spacing:-.02em; }
+
+  /* mono voice — data, labels, numbers, status read like a terminal */
+  .card-label,.card-value,.card-sub,.section-title,.chart-title,
+  .amp-stat-label,.amp-stat-value,thead th,tbody td,.tab-btn,.footer,.rec-date{
+    font-family:var(--mono); }
+  .card-value{ letter-spacing:-.01em; font-variant-numeric:tabular-nums; }
+  thead th{ letter-spacing:.12em; }
+
+  /* terminal tabs — underline instead of folder tabs */
+  .tab-btn{ border:0; border-bottom:2px solid transparent; border-radius:0; bottom:0;
+    font-size:11.5px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--tx-dim); }
+  .tab-btn:hover{ color:var(--tx); background:transparent; }
+  .tab-btn.active{ background:transparent; color:var(--accent); border:0; border-bottom:2px solid var(--accent); }
+
+  /* collapse decorative card top-bars to a single hairline accent */
+  .card::before{ height:1px; opacity:.65; }
 </style>
 </head>
 <body>
@@ -61,23 +101,23 @@
 <div class="header" style="display:flex; align-items:center; justify-content:space-between;">
   <div>
     <h1 style="margin:0; font-size:26px; font-weight:700; letter-spacing:-0.5px;">kita<em style="font-style:italic;">R</em></h1>
-    <div style="margin-top:10px; max-width:560px; line-height:1.65; color:#64748b; font-size:12px;">
+    <div style="margin-top:10px; max-width:560px; line-height:1.65; color:#59626f; font-size:12px;">
       <p style="margin:0 0 8px;">trading is like the deep sea. anyone can see the surface, but the prizes are found in the depths.</p>
-      <p style="margin:0 0 8px;">kita<em>R</em> is my personal trading kit, eventually a blueprint designed to turn human observation into systematic discipline. it is the synergy of intuition and math that I call <span style="color:#94a3b8; font-weight:600;">co-quant</span>.</p>
+      <p style="margin:0 0 8px;">kita<em>R</em> is my personal trading kit, eventually a blueprint designed to turn human observation into systematic discipline. it is the synergy of intuition and math that I call <span style="color:#8a94a3; font-weight:600;">co-quant</span>.</p>
       <p style="margin:0 0 8px;">this is how i manage my R. this is how you can build your own.</p>
-      <p style="margin:0; color:#475569; font-style:italic;">"the ocean doesn't care if you're right."</p>
+      <p style="margin:0; color:#59626f; font-style:italic;">"the ocean doesn't care if you're right."</p>
     </div>
   </div>
   <div style="display:flex; align-items:center; gap:18px;">
-    <a href="https://kitar.co/fresh.html" target="_blank" style="color:#94a3b8; text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'" title="FRESH — trading operations platform">
+    <a href="https://kitar.co/fresh.html" target="_blank" style="color:#8a94a3; text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px;" onmouseover="this.style.color='#e7ecf2'" onmouseout="this.style.color='#8a94a3'" title="FRESH — trading operations platform">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 3-4 3 3 5-6"/></svg>
       FRESH
     </a>
-    <a href="https://x.com/oxkitng" target="_blank" style="color:#94a3b8; text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">
+    <a href="https://x.com/oxkitng" target="_blank" style="color:#8a94a3; text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px;" onmouseover="this.style.color='#e7ecf2'" onmouseout="this.style.color='#8a94a3'">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       @oxkitng
     </a>
-    <a href="https://kita.co" target="_blank" style="color:#94a3b8; text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px; transition:color 0.2s;" onmouseover="this.style.color='#e2e8f0'" onmouseout="this.style.color='#94a3b8'">&#x1F6CD; Shop</a>
+    <a href="https://kita.co" target="_blank" style="color:#8a94a3; text-decoration:none; font-size:13px; display:flex; align-items:center; gap:5px; transition:color 0.2s;" onmouseover="this.style.color='#e7ecf2'" onmouseout="this.style.color='#8a94a3'">&#x1F6CD; Shop</a>
   </div>
 </div>
 
@@ -90,95 +130,95 @@
 
 <div class="container">
 <div id="pane-daily" class="tab-pane active" style="padding:0 2px">
-  <div id="daily-loading" style="padding:40px; text-align:center; color:#475569; font-size:13px;">Loading briefing&#8230;</div>
+  <div id="daily-loading" style="padding:40px; text-align:center; color:#59626f; font-size:13px;">Loading briefing&#8230;</div>
   <div id="daily-content" style="display:none;"></div>
-  <div id="daily-empty" style="display:none; padding:40px; text-align:center; color:#475569; font-size:13px;">No briefing available for today.</div>
+  <div id="daily-empty" style="display:none; padding:40px; text-align:center; color:#59626f; font-size:13px;">No briefing available for today.</div>
 </div>
 
 <div id="pane-navigator" class="tab-pane">
 
-    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:24px; margin-bottom:20px;">
-      <div style="font-size:11px; font-weight:600; color:#a78bfa; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:14px;">🧭 The Philosophy — Why vs. How</div>
-      <p style="font-size:13px; color:#94a3b8; line-height:1.75; margin:0 0 12px;">many traders are looking for a <em>"how"</em> i.e. a simple signal or a fancy new concept to follow. but to survive the deep sea, you need the <strong style="color:#e2e8f0;">why</strong>.</p>
-      <p style="font-size:13px; color:#94a3b8; line-height:1.75; margin:0 0 12px;">in the kita<em>R</em> blueprint, I prefer to use studies over "indicators". the distinction is more than just professional terminology used by platforms like Sierra Chart and MotiveWave; it represents a fundamental shift in mindset. While the retail world often treats an indicator as a "signal" to follow blindly, a study is an active piece of research. It is a mathematical lens through which we analyze the market's auction process.</p>
-      <p style="font-size:13px; color:#94a3b8; line-height:1.75; margin:0 0 12px;">indicators tell you what happened; studies tell you why it's happening. while popular concepts like ict are catchy and easy-to-follow, they are often just pieces of a larger puzzle. for the trader hungry for the truth, we go back to the basics: <strong style="color:#e2e8f0;">macro context</strong> and <strong style="color:#e2e8f0;">order flow.</strong></p>
-      <p style="font-size:13px; color:#94a3b8; line-height:1.75; margin:0;">the market isn't just an algorithm. it's an ecosystem of big fish and small fish. to catch the prize, you have to understand why, where, when and how the fish swim.</p>
+    <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:24px; margin-bottom:20px;">
+      <div style="font-size:11px; font-weight:600; color:#33e08a; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:14px;">🧭 The Philosophy — Why vs. How</div>
+      <p style="font-size:13px; color:#8a94a3; line-height:1.75; margin:0 0 12px;">many traders are looking for a <em>"how"</em> i.e. a simple signal or a fancy new concept to follow. but to survive the deep sea, you need the <strong style="color:#e7ecf2;">why</strong>.</p>
+      <p style="font-size:13px; color:#8a94a3; line-height:1.75; margin:0 0 12px;">in the kita<em>R</em> blueprint, I prefer to use studies over "indicators". the distinction is more than just professional terminology used by platforms like Sierra Chart and MotiveWave; it represents a fundamental shift in mindset. While the retail world often treats an indicator as a "signal" to follow blindly, a study is an active piece of research. It is a mathematical lens through which we analyze the market's auction process.</p>
+      <p style="font-size:13px; color:#8a94a3; line-height:1.75; margin:0 0 12px;">indicators tell you what happened; studies tell you why it's happening. while popular concepts like ict are catchy and easy-to-follow, they are often just pieces of a larger puzzle. for the trader hungry for the truth, we go back to the basics: <strong style="color:#e7ecf2;">macro context</strong> and <strong style="color:#e7ecf2;">order flow.</strong></p>
+      <p style="font-size:13px; color:#8a94a3; line-height:1.75; margin:0;">the market isn't just an algorithm. it's an ecosystem of big fish and small fish. to catch the prize, you have to understand why, where, when and how the fish swim.</p>
     </div>
 
-    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:24px; margin-bottom:20px;">
-      <div style="font-size:11px; font-weight:600; color:#a78bfa; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:18px;">⚙️ The co-quant Toolkit</div>
+    <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:24px; margin-bottom:20px;">
+      <div style="font-size:11px; font-weight:600; color:#33e08a; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:18px;">⚙️ The co-quant Toolkit</div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px;">
 
-        <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:16px;">
+        <div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:16px;">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-            <div style="background:rgba(96,165,250,0.15); border:1px solid rgba(96,165,250,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#60a5fa; text-transform:uppercase; letter-spacing:0.5px;">MACRO</div>
-            <div style="font-size:11px; color:#475569; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "why"</div>
+            <div style="background:rgba(51,224,138,0.15); border:1px solid rgba(51,224,138,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#33e08a; text-transform:uppercase; letter-spacing:0.5px;">MACRO</div>
+            <div style="font-size:11px; color:#59626f; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "why"</div>
           </div>
-          <p style="font-size:12px; color:#94a3b8; line-height:1.7; margin:0;">the macro landscape is the invisible hand moving the ocean. before we look at a chart, we must understand the environment we are navigating. for eg, geopolitical risk dictate how global tensions and shifts in power create ripples in liquidity and volatility; the "red folders" such as cpi, nfp, fomc data are not interpreted just as numbers, but as the drivers of the market's next major trend.</p>
+          <p style="font-size:12px; color:#8a94a3; line-height:1.7; margin:0;">the macro landscape is the invisible hand moving the ocean. before we look at a chart, we must understand the environment we are navigating. for eg, geopolitical risk dictate how global tensions and shifts in power create ripples in liquidity and volatility; the "red folders" such as cpi, nfp, fomc data are not interpreted just as numbers, but as the drivers of the market's next major trend.</p>
         </div>
 
-        <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:16px;">
+        <div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:16px;">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-            <div style="background:rgba(52,211,153,0.15); border:1px solid rgba(52,211,153,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#34d399; text-transform:uppercase; letter-spacing:0.5px;">TPO</div>
-            <div style="font-size:11px; color:#475569; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "where"</div>
+            <div style="background:rgba(51,224,138,0.15); border:1px solid rgba(51,224,138,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#33e08a; text-transform:uppercase; letter-spacing:0.5px;">TPO</div>
+            <div style="font-size:11px; color:#59626f; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "where"</div>
           </div>
-          <p style="font-size:12px; color:#94a3b8; line-height:1.7; margin:0;">my favorite study for structural context. it tells us where the price is likely to range or expand. it's the map of the ocean floor.</p>
+          <p style="font-size:12px; color:#8a94a3; line-height:1.7; margin:0;">my favorite study for structural context. it tells us where the price is likely to range or expand. it's the map of the ocean floor.</p>
         </div>
 
-        <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:16px;">
+        <div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:16px;">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-            <div style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#fbbf24; text-transform:uppercase; letter-spacing:0.5px;">FISHER</div>
-            <div style="font-size:11px; color:#475569; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "when"</div>
+            <div style="background:rgba(245,177,61,0.15); border:1px solid rgba(245,177,61,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#f5b13d; text-transform:uppercase; letter-spacing:0.5px;">FISHER</div>
+            <div style="font-size:11px; color:#59626f; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "when"</div>
           </div>
-          <p style="font-size:12px; color:#94a3b8; line-height:1.7; margin:0;">fisher is one of the many useful mathematical studies that helps to identify when the market is overbought or oversold. it tells us when the current is overstretched and ready to turn.</p>
+          <p style="font-size:12px; color:#8a94a3; line-height:1.7; margin:0;">fisher is one of the many useful mathematical studies that helps to identify when the market is overbought or oversold. it tells us when the current is overstretched and ready to turn.</p>
         </div>
 
-        <div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:16px;">
+        <div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:16px;">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-            <div style="background:rgba(248,113,113,0.15); border:1px solid rgba(248,113,113,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#f87171; text-transform:uppercase; letter-spacing:0.5px;">ORDER FLOW</div>
-            <div style="font-size:11px; color:#475569; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "how"</div>
+            <div style="background:rgba(255,94,87,0.15); border:1px solid rgba(255,94,87,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#ff5e57; text-transform:uppercase; letter-spacing:0.5px;">ORDER FLOW</div>
+            <div style="font-size:11px; color:#59626f; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "how"</div>
           </div>
-          <p style="font-size:12px; color:#94a3b8; line-height:1.7; margin:0;">if macro is the tide, order flow is the movement of the fish. order flow provides the high-resolution evidence we need to execute our strategies with precision. it is the real-time record of every decision made on the tape. it tells us how the price is actually moving at the point of execution. exhaustion &amp; absorption identify when the "big fish" are done buying or when they are quietly absorbing every "small fish" sell order. pulling &amp; stacking observe changing hands in the limit order book.</p>
+          <p style="font-size:12px; color:#8a94a3; line-height:1.7; margin:0;">if macro is the tide, order flow is the movement of the fish. order flow provides the high-resolution evidence we need to execute our strategies with precision. it is the real-time record of every decision made on the tape. it tells us how the price is actually moving at the point of execution. exhaustion &amp; absorption identify when the "big fish" are done buying or when they are quietly absorbing every "small fish" sell order. pulling &amp; stacking observe changing hands in the limit order book.</p>
         </div>
 
       </div>
     </div>
 
-    <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:24px; margin-bottom:20px;">
-      <div style="font-size:11px; font-weight:600; color:#a78bfa; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px;">📚 The Library — Navigation Resources</div>
+    <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:24px; margin-bottom:20px;">
+      <div style="font-size:11px; font-weight:600; color:#33e08a; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px;">📚 The Library — Navigation Resources</div>
       <div style="overflow-x:auto;">
         <table style="width:100%; border-collapse:collapse; font-size:13px;">
           <thead>
-            <tr style="border-bottom:1px solid #2d3748;">
-              <th style="text-align:left; padding:8px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px; background:#141820;">Source</th>
-              <th style="text-align:left; padding:8px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px; background:#141820;">Specialty</th>
-              <th style="text-align:left; padding:8px 14px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px; background:#141820;">The Role</th>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.09);">
+              <th style="text-align:left; padding:8px 14px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px; background:#0e131b;">Source</th>
+              <th style="text-align:left; padding:8px 14px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px; background:#0e131b;">Specialty</th>
+              <th style="text-align:left; padding:8px 14px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px; background:#0e131b;">The Role</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a2030'" onmouseout="this.style.background='transparent'">
-              <td style="padding:12px 14px;"><a href="https://gnosisresearch.substack.com" target="_blank" style="color:#60a5fa; font-weight:600; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">gnosisresearch</a> <span style="font-size:10px; color:#475569;">by yusuf</span></td>
-              <td style="padding:12px 14px; color:#94a3b8; text-align:left;">Macro</td>
-              <td style="padding:12px 14px; color:#94a3b8; text-align:left;">The global current. Understanding the "why" before the "how".</td>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.07);" onmouseover="this.style.background='#0e131b'" onmouseout="this.style.background='transparent'">
+              <td style="padding:12px 14px;"><a href="https://gnosisresearch.substack.com" target="_blank" style="color:#33e08a; font-weight:600; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">gnosisresearch</a> <span style="font-size:10px; color:#59626f;">by yusuf</span></td>
+              <td style="padding:12px 14px; color:#8a94a3; text-align:left;">Macro</td>
+              <td style="padding:12px 14px; color:#8a94a3; text-align:left;">The global current. Understanding the "why" before the "how".</td>
             </tr>
-            <tr style="border-bottom:1px solid #1e293b;" onmouseover="this.style.background='#1a2030'" onmouseout="this.style.background='transparent'">
-              <td style="padding:12px 14px;"><a href="https://orderflowlabs.com/" target="_blank" style="color:#60a5fa; font-weight:600; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">orderflow labs</a></td>
-              <td style="padding:12px 14px; color:#94a3b8; text-align:left;">Technical Execution</td>
-              <td style="padding:12px 14px; color:#94a3b8; text-align:left;">The high-resolution radar for execution.</td>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.07);" onmouseover="this.style.background='#0e131b'" onmouseout="this.style.background='transparent'">
+              <td style="padding:12px 14px;"><a href="https://orderflowlabs.com/" target="_blank" style="color:#33e08a; font-weight:600; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">orderflow labs</a></td>
+              <td style="padding:12px 14px; color:#8a94a3; text-align:left;">Technical Execution</td>
+              <td style="padding:12px 14px; color:#8a94a3; text-align:left;">The high-resolution radar for execution.</td>
             </tr>
-            <tr onmouseover="this.style.background='#1a2030'" onmouseout="this.style.background='transparent'">
-              <td style="padding:12px 14px;"><a href="https://www.tradingview.com/support/solutions/43000713306-time-price-opportunity-tpo-indicator/" target="_blank" style="color:#60a5fa; font-weight:600; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">TPO (Market Profile)</a></td>
-              <td style="padding:12px 14px; color:#94a3b8; text-align:left;">Structural Context</td>
-              <td style="padding:12px 14px; color:#94a3b8; text-align:left;">Finding the "where" in the daily and weekly range.</td>
+            <tr onmouseover="this.style.background='#0e131b'" onmouseout="this.style.background='transparent'">
+              <td style="padding:12px 14px;"><a href="https://www.tradingview.com/support/solutions/43000713306-time-price-opportunity-tpo-indicator/" target="_blank" style="color:#33e08a; font-weight:600; text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">TPO (Market Profile)</a></td>
+              <td style="padding:12px 14px; color:#8a94a3; text-align:left;">Structural Context</td>
+              <td style="padding:12px 14px; color:#8a94a3; text-align:left;">Finding the "where" in the daily and weekly range.</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <div style="background:rgba(167,139,250,0.06); border:1px solid rgba(167,139,250,0.2); border-radius:12px; padding:24px; margin-bottom:20px;">
-      <div style="font-size:11px; font-weight:600; color:#a78bfa; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:12px;">💬 Closing Thought — oxkit</div>
-      <p style="font-size:14px; color:#cbd5e1; line-height:1.8; margin:0; font-style:italic;">"a system doesn't have to be over-complicated. eventually, we are all just looking for the <strong style="color:#e2e8f0; font-style:normal;">pullback</strong>, the <strong style="color:#e2e8f0; font-style:normal;">breakout</strong>, or the <strong style="color:#e2e8f0; font-style:normal;">trend</strong>. the blueprint is simply the discipline to wait for them."</p>
+    <div style="background:rgba(51,224,138,0.06); border:1px solid rgba(51,224,138,0.2); border-radius:12px; padding:24px; margin-bottom:20px;">
+      <div style="font-size:11px; font-weight:600; color:#33e08a; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:12px;">💬 Closing Thought — oxkit</div>
+      <p style="font-size:14px; color:#e7ecf2; line-height:1.8; margin:0; font-style:italic;">"a system doesn't have to be over-complicated. eventually, we are all just looking for the <strong style="color:#e7ecf2; font-style:normal;">pullback</strong>, the <strong style="color:#e7ecf2; font-style:normal;">breakout</strong>, or the <strong style="color:#e7ecf2; font-style:normal;">trend</strong>. the blueprint is simply the discipline to wait for them."</p>
     </div>
 
   </div>
@@ -246,18 +286,18 @@
     <div class="table-header" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
       <div class="section-title" style="margin-bottom:0; border:none; padding:0">AMP &#x2014; Personal Live Account</div>
       <div style="display:flex; align-items:center; gap:8px;">
-        <span style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.5px;">Current Balance</span>
-        <span style="font-size:20px; font-weight:700; color:#f87171;">$0.00</span>
+        <span style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px;">Current Balance</span>
+        <span style="font-size:20px; font-weight:700; color:#ff5e57;">$0.00</span>
       </div>
     </div>
     <div style="padding:16px 20px;">
       <div class="amp-grid">
-        <div class="amp-stat"><div class="amp-stat-label">Total Deposits</div><div class="amp-stat-value" style="color:#60a5fa">$2,730.00</div></div>
-        <div class="amp-stat"><div class="amp-stat-label">Total Withdrawals</div><div class="amp-stat-value" style="color:#a78bfa">$1,433.91</div></div>
+        <div class="amp-stat"><div class="amp-stat-label">Total Deposits</div><div class="amp-stat-value" style="color:#33e08a">$2,730.00</div></div>
+        <div class="amp-stat"><div class="amp-stat-label">Total Withdrawals</div><div class="amp-stat-value" style="color:#33e08a">$1,433.91</div></div>
         <div class="amp-stat"><div class="amp-stat-label">Trading Gains</div><div class="amp-stat-value positive">$3,495.90</div></div>
         <div class="amp-stat"><div class="amp-stat-label">Trading Losses</div><div class="amp-stat-value negative">-$4,791.99</div></div>
-        <div class="amp-stat"><div class="amp-stat-label">Win / Loss</div><div class="amp-stat-value" style="color:#e2e8f0">30 / 29</div></div>
-        <div class="amp-stat"><div class="amp-stat-label">Win Rate</div><div class="amp-stat-value" style="color:#fbbf24">51%</div></div>
+        <div class="amp-stat"><div class="amp-stat-label">Win / Loss</div><div class="amp-stat-value" style="color:#e7ecf2">30 / 29</div></div>
+        <div class="amp-stat"><div class="amp-stat-label">Win Rate</div><div class="amp-stat-value" style="color:#f5b13d">51%</div></div>
         <div class="amp-stat"><div class="amp-stat-label">Avg Win</div><div class="amp-stat-value positive">$116.53</div></div>
         <div class="amp-stat"><div class="amp-stat-label">Avg Loss</div><div class="amp-stat-value negative">-$165.24</div></div>
       </div>
@@ -270,71 +310,71 @@
 
   <div id="pane-tracker" class="tab-pane">
     <div style="display:flex; justify-content:flex-end; margin-bottom:20px;">
-      <a href="history.html" style="background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.3); color:#60a5fa; padding:7px 16px; border-radius:8px; font-size:12px; font-weight:600; letter-spacing:0.3px; text-decoration:none;">&#x1F4CB; Account &amp; Payout History</a>
+      <a href="history.html" style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); color:#33e08a; padding:7px 16px; border-radius:8px; font-size:12px; font-weight:600; letter-spacing:0.3px; text-decoration:none;">&#x1F4CB; Account &amp; Payout History</a>
     </div>
     <div id="tracker-container"></div>
   </div>
 
 </div>
 
-<div class="footer">Last updated: 5 Jun 2026 · 09:46 PM EST</div>
+<div class="footer">Last updated: 5 Jun 2026 · 10:05 PM EST</div>
 
 <div div id="fee-modal-topstep" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
-  <div style="background:#1a1f2e; border:1px solid #374151; border-radius:14px; padding:28px; max-width:480px; width:92%;">
+  <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-      <div style="font-size:14px; font-weight:700; color:#e2e8f0;">TopStep — Challenge Fees</div>
-      <button onclick="document.getElementById('fee-modal-topstep').style.display='none'" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">✕</button>
+      <div style="font-size:14px; font-weight:700; color:#e7ecf2;">TopStep — Challenge Fees</div>
+      <button onclick="document.getElementById('fee-modal-topstep').style.display='none'" style="background:none; border:none; color:#59626f; font-size:18px; cursor:pointer; line-height:1;">✕</button>
     </div>
     <div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:13px;">
-      <thead><tr style="border-bottom:1px solid #2d3748;">
-        <th style="text-align:left; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
-        <th style="text-align:left; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Account Number</th>
-        <th style="text-align:right; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
+      <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.09);">
+        <th style="text-align:left; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
+        <th style="text-align:left; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Account Number</th>
+        <th style="text-align:right; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
       </tr></thead>
       <tbody>
-        <tr><td style="padding:9px 10px; color:#94a3b8;">9/4/2026</td><td style="padding:9px 10px; color:#e2e8f0; font-family:monospace; font-size:12px; text-align:left;">50KTC-V2-45281-25364619</td><td style="padding:9px 10px; text-align:right; color:#f87171; font-weight:600;">-$83.00</td></tr>
+        <tr><td style="padding:9px 10px; color:#8a94a3;">9/4/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">50KTC-V2-45281-25364619</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$83.00</td></tr>
       </tbody>
     </table></div>
   </div>
 </div>
 
 <div id="fee-modal-blusky" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
-  <div style="background:#1a1f2e; border:1px solid #374151; border-radius:14px; padding:28px; max-width:480px; width:92%;">
+  <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-      <div style="font-size:14px; font-weight:700; color:#e2e8f0;">BluSky — Challenge Fees</div>
-      <button onclick="document.getElementById('fee-modal-blusky').style.display='none'" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">✕</button>
+      <div style="font-size:14px; font-weight:700; color:#e7ecf2;">BluSky — Challenge Fees</div>
+      <button onclick="document.getElementById('fee-modal-blusky').style.display='none'" style="background:none; border:none; color:#59626f; font-size:18px; cursor:pointer; line-height:1;">✕</button>
     </div>
     <div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:13px;">
-      <thead><tr style="border-bottom:1px solid #2d3748;">
-        <th style="text-align:left; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
-        <th style="text-align:left; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Account Number</th>
-        <th style="text-align:right; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
+      <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.09);">
+        <th style="text-align:left; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
+        <th style="text-align:left; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Account Number</th>
+        <th style="text-align:right; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
       </tr></thead>
       <tbody>
-        <tr><td style="padding:9px 10px; color:#94a3b8;">8/4/2026</td><td style="padding:9px 10px; color:#e2e8f0; font-family:monospace; font-size:12px; text-align:left;">BSKEPREMIUMYEE12937</td><td style="padding:9px 10px; text-align:right; color:#f87171; font-weight:600;">-$99.00</td></tr>
-        <tr><td style="padding:9px 10px; color:#94a3b8;">8/5/2026</td><td style="padding:9px 10px; color:#e2e8f0; font-family:monospace; font-size:12px; text-align:left;">BSKEPROPELYEE11499</td><td style="padding:9px 10px; text-align:right; color:#f87171; font-weight:600;">-$99.00</td></tr>
+        <tr><td style="padding:9px 10px; color:#8a94a3;">8/4/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">BSKEPREMIUMYEE12937</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$99.00</td></tr>
+        <tr><td style="padding:9px 10px; color:#8a94a3;">8/5/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">BSKEPROPELYEE11499</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$99.00</td></tr>
       </tbody>
     </table></div>
   </div>
 </div>
 
 <div id="fee-modal-tpt" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
-  <div style="background:#1a1f2e; border:1px solid #374151; border-radius:14px; padding:28px; max-width:480px; width:92%;">
+  <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-      <div style="font-size:14px; font-weight:700; color:#e2e8f0;">TPT — Challenge Fees</div>
-      <button onclick="document.getElementById('fee-modal-tpt').style.display='none'" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">✕</button>
+      <div style="font-size:14px; font-weight:700; color:#e7ecf2;">TPT — Challenge Fees</div>
+      <button onclick="document.getElementById('fee-modal-tpt').style.display='none'" style="background:none; border:none; color:#59626f; font-size:18px; cursor:pointer; line-height:1;">✕</button>
     </div>
     <div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:13px;">
-      <thead><tr style="border-bottom:1px solid #2d3748;">
-        <th style="text-align:left; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
-        <th style="text-align:left; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Account Number</th>
-        <th style="text-align:right; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
+      <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.09);">
+        <th style="text-align:left; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
+        <th style="text-align:left; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Account Number</th>
+        <th style="text-align:right; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
       </tr></thead>
       <tbody>
-        <tr><td style="padding:9px 10px; color:#94a3b8;">17/5/2026</td><td style="padding:9px 10px; color:#e2e8f0; font-family:monospace; font-size:12px; text-align:left;">TAKEPROFIT795495708</td><td style="padding:9px 10px; text-align:right; color:#f87171; font-weight:600;">-$75.00</td></tr>
-        <tr><td style="padding:9px 10px; color:#94a3b8;">17/5/2026</td><td style="padding:9px 10px; color:#e2e8f0; font-family:monospace; font-size:12px; text-align:left;">TAKEPROFIT567959509</td><td style="padding:9px 10px; text-align:right; color:#f87171; font-weight:600;">-$75.00</td></tr>
-        <tr><td style="padding:9px 10px; color:#94a3b8;">21/4/2026</td><td style="padding:9px 10px; color:#e2e8f0; font-family:monospace; font-size:12px; text-align:left;">TPT4670917</td><td style="padding:9px 10px; text-align:right; color:#f87171; font-weight:600;">-$102.00</td></tr>
-        <tr><td style="padding:9px 10px; color:#94a3b8;">24/3/2026</td><td style="padding:9px 10px; color:#e2e8f0; font-family:monospace; font-size:12px; text-align:left;">TPT2658347</td><td style="padding:9px 10px; text-align:right; color:#f87171; font-weight:600;">-$90.00</td></tr>
+        <tr><td style="padding:9px 10px; color:#8a94a3;">17/5/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">TAKEPROFIT795495708</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$75.00</td></tr>
+        <tr><td style="padding:9px 10px; color:#8a94a3;">17/5/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">TAKEPROFIT567959509</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$75.00</td></tr>
+        <tr><td style="padding:9px 10px; color:#8a94a3;">21/4/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">TPT4670917</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$102.00</td></tr>
+        <tr><td style="padding:9px 10px; color:#8a94a3;">24/3/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">TPT2658347</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$90.00</td></tr>
       </tbody>
     </table></div>
   </div>
@@ -352,7 +392,7 @@ function el(id) { return document.getElementById(id); }
 function fmt(v) { return '$' + Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}); }
 function fmtSigned(v) { return (v >= 0 ? '' : '-') + fmt(v); }
 function bar(id, pct, color) { var e = el(id); if(e){e.style.width=pct+'%'; e.style.background=color;} }
-function barColor(pct) { return pct < 50 ? '#34d399' : pct < 75 ? '#fbbf24' : '#f87171'; }
+function barColor(pct) { return pct < 50 ? '#33e08a' : pct < 75 ? '#f5b13d' : '#ff5e57'; }
 
 function renderStats(d) {
   var sc = d.meta.summaryCards;
@@ -378,7 +418,7 @@ function renderFirmTable(firms) {
     var roi = f.payouts > 0 ? Math.round(net / f.costs * 100) : -100;
     var pos = net >= 0;
     var feeCell = f.feeModal
-      ? "<button onclick=\"document.getElementById('fee-modal-"+f.feeModal+"').style.display='flex'\" style=\"background:none; border:none; color:#60a5fa; font-size:11px; cursor:pointer; padding:0; text-decoration:underline;\">Challenge Fee</button>"
+      ? "<button onclick=\"document.getElementById('fee-modal-"+f.feeModal+"').style.display='flex'\" style=\"background:none; border:none; color:#33e08a; font-size:11px; cursor:pointer; padding:0; text-decoration:underline;\">Challenge Fee</button>"
       : 'Challenge Fee';
     return '<tr>'
       + '<td class="firm-name">' + f.name + '</td>'
@@ -386,7 +426,7 @@ function renderFirmTable(firms) {
       + '<td class="' + (f.payouts > 0 ? 'positive' : '') + '">$' + f.payouts.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) + '</td>'
       + '<td class="negative">-$' + f.costs.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) + '</td>'
       + '<td class="' + (roi >= 0 ? 'positive' : 'negative') + '">' + (roi >= 0 ? '+' : '') + roi + '%</td>'
-      + '<td style="color:#475569; font-size:11px;">' + feeCell + '</td>'
+      + '<td style="color:#59626f; font-size:11px;">' + feeCell + '</td>'
       + '</tr>';
   }).join('');
   el('firm-breakdown').innerHTML =
@@ -411,54 +451,54 @@ function renderCharts(d) {
   var chartDefaults = {
     responsive: true, maintainAspectRatio: false,
     plugins: {
-      legend: { labels: { color: '#94a3b8', font: { size: 11 } } },
+      legend: { labels: { color: '#8a94a3', font: { size: 11 } } },
       tooltip: {
-        backgroundColor: '#1e2537', borderColor: '#374151', borderWidth: 1,
-        titleColor: '#e2e8f0', bodyColor: '#94a3b8',
+        backgroundColor: '#0e131b', borderColor: 'rgba(255,255,255,0.16)', borderWidth: 1,
+        titleColor: '#e7ecf2', bodyColor: '#8a94a3',
         callbacks: { label: function(ctx) { return ' $' + ctx.parsed.y.toLocaleString('en-US', {minimumFractionDigits:2}); } }
       }
     },
     scales: {
-      x: { ticks: { color: '#475569', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
-      y: { ticks: { color: '#475569', font: { size: 10 }, callback: function(v) { return '$' + (Math.abs(v)>=1000?(v/1000).toFixed(0)+'k':v); } }, grid: { color: 'rgba(255,255,255,0.04)' } }
+      x: { ticks: { color: '#59626f', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+      y: { ticks: { color: '#59626f', font: { size: 10 }, callback: function(v) { return '$' + (Math.abs(v)>=1000?(v/1000).toFixed(0)+'k':v); } }, grid: { color: 'rgba(255,255,255,0.04)' } }
     }
   };
 
   new Chart(el('monthlyNetChart'), { type:'bar', data:{ labels:s.monthLabels, datasets:[{ label:'Net P&L', data:s.netMonthly, backgroundColor:s.netMonthlyColors, borderRadius:4, borderSkipped:false }] }, options:{...chartDefaults} });
 
   new Chart(el('cumulativeChart'), { type:'line', data:{ labels:s.monthLabels.slice(0,-1), datasets:[
-    { label:'Prop Firm Net', data:cumNet, borderColor:'#60a5fa', backgroundColor:'rgba(96,165,250,0.1)', fill:true, tension:0.3, pointRadius:3, pointBackgroundColor:'#60a5fa' },
-    { label:'Overall (incl. Personal Live)', data:cumOverall, borderColor:'#a78bfa', backgroundColor:'rgba(167,139,250,0.05)', fill:false, tension:0.3, pointRadius:3, borderDash:[4,3], pointBackgroundColor:'#a78bfa' }
+    { label:'Prop Firm Net', data:cumNet, borderColor:'#33e08a', backgroundColor:'rgba(51,224,138,0.1)', fill:true, tension:0.3, pointRadius:3, pointBackgroundColor:'#33e08a' },
+    { label:'Overall (incl. Personal Live)', data:cumOverall, borderColor:'#f5b13d', backgroundColor:'rgba(245,177,61,0.05)', fill:false, tension:0.3, pointRadius:3, borderDash:[4,3], pointBackgroundColor:'#f5b13d' }
   ] }, options:{...chartDefaults} });
 
   new Chart(el('feesPayoutsChart'), { type:'bar', data:{ labels:s.monthLabels, datasets:[
-    { label:'Payouts', data:s.payoutsData, backgroundColor:'rgba(52,211,153,0.7)', borderRadius:3 },
-    { label:'Fees Paid', data:s.feesData.map(function(v){return -v;}), backgroundColor:'rgba(248,113,113,0.7)', borderRadius:3 }
+    { label:'Payouts', data:s.payoutsData, backgroundColor:'rgba(51,224,138,0.7)', borderRadius:3 },
+    { label:'Fees Paid', data:s.feesData.map(function(v){return -v;}), backgroundColor:'rgba(255,94,87,0.7)', borderRadius:3 }
   ] }, options:{...chartDefaults, plugins:{...chartDefaults.plugins, tooltip:{...chartDefaults.plugins.tooltip, callbacks:{label:function(ctx){return ' $'+Math.abs(ctx.parsed.y).toLocaleString('en-US',{minimumFractionDigits:2});}}}}} });
 
   var firmNames = ["APEX","MFFU","Tradeify","TopStep","Blusky","Lucid"];
   var firmPnls = [36849.4,18203.32,7959.13,7992.85,6969.4,1915.55];
-  var pieColors = ['#3b82f6','#10b981','#8b5cf6','#f59e0b','#06b6d4','#ec4899'];
-  new Chart(el('firmPieChart'), { type:'doughnut', data:{ labels:firmNames, datasets:[{ data:firmPnls, backgroundColor:pieColors, borderWidth:1, borderColor:'#0f1117' }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'right', labels:{ color:'#94a3b8', font:{size:11}, padding:12 } }, tooltip:{ backgroundColor:'#1e2537', borderColor:'#374151', borderWidth:1, titleColor:'#e2e8f0', bodyColor:'#94a3b8', callbacks:{ label:function(ctx){ var total=ctx.dataset.data.reduce(function(a,b){return a+b;},0); var pct=((ctx.parsed/total)*100).toFixed(1); return ' $'+ctx.parsed.toLocaleString('en-US',{minimumFractionDigits:2})+' ('+pct+'%)'; } } } } } });
+  var pieColors = ['#33e08a','#2bbf76','#1f9e63','#f5b13d','#8a94a3','#59626f'];
+  new Chart(el('firmPieChart'), { type:'doughnut', data:{ labels:firmNames, datasets:[{ data:firmPnls, backgroundColor:pieColors, borderWidth:1, borderColor:'#06080b' }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'right', labels:{ color:'#8a94a3', font:{size:11}, padding:12 } }, tooltip:{ backgroundColor:'#0e131b', borderColor:'rgba(255,255,255,0.16)', borderWidth:1, titleColor:'#e7ecf2', bodyColor:'#8a94a3', callbacks:{ label:function(ctx){ var total=ctx.dataset.data.reduce(function(a,b){return a+b;},0); var pct=((ctx.parsed/total)*100).toFixed(1); return ' $'+ctx.parsed.toLocaleString('en-US',{minimumFractionDigits:2})+' ('+pct+'%)'; } } } } } });
 }
 
 function statBox(label, valueId, defaultVal, color) {
-  return '<div style="background:#141820; border-radius:8px; padding:14px;">'
-    + '<div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">'+label+'</div>'
-    + '<div id="'+valueId+'" style="font-size:18px; font-weight:700; color:'+(color||'#e2e8f0')+'">'+(defaultVal||'--')+'</div>'
+  return '<div style="background:#0e131b; border-radius:8px; padding:14px;">'
+    + '<div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">'+label+'</div>'
+    + '<div id="'+valueId+'" style="font-size:18px; font-weight:700; color:'+(color||'#e7ecf2')+'">'+(defaultVal||'--')+'</div>'
     + '</div>';
 }
 
 function progressBar(label, labelId, barId, noteId, labelColor) {
   return '<div>'
     + '<div style="display:flex; justify-content:space-between; margin-bottom:8px;">'
-    + '<span style="font-size:11px; color:#94a3b8; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">'+label+'</span>'
-    + '<span id="'+labelId+'" style="font-size:11px; font-weight:600; color:'+(labelColor||'#34d399')+'"></span>'
+    + '<span style="font-size:11px; color:#8a94a3; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">'+label+'</span>'
+    + '<span id="'+labelId+'" style="font-size:11px; font-weight:600; color:'+(labelColor||'#33e08a')+'"></span>'
     + '</div>'
-    + '<div style="background:#141820; border-radius:6px; height:10px; overflow:hidden;">'
-    + '<div id="'+barId+'" style="height:100%; border-radius:6px; transition:width 0.4s,background 0.4s; width:0%; background:#34d399;"></div>'
+    + '<div style="background:#0e131b; border-radius:6px; height:10px; overflow:hidden;">'
+    + '<div id="'+barId+'" style="height:100%; border-radius:6px; transition:width 0.4s,background 0.4s; width:0%; background:#33e08a;"></div>'
     + '</div>'
-    + '<div id="'+noteId+'" style="font-size:10px; color:#475569; margin-top:6px;"></div>'
+    + '<div id="'+noteId+'" style="font-size:10px; color:#59626f; margin-top:6px;"></div>'
     + '</div>';
 }
 
@@ -467,58 +507,58 @@ function renderXFAPanel(acct) {
   var hasConsCap = !!acct.rules.consistencyCapPct;
   var ruleBadges = '';
   if (hasConsCap) {
-    ruleBadges += '<div style="background:rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $'+acct.rules.dd.toLocaleString()+'</div>';
-    ruleBadges += '<div style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Min '+acct.rules.minDays+' Days Traded</div>';
-    ruleBadges += '<div style="background:rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.25); color:#fca5a5; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">'+(acct.rules.consistencyCapPct*100)+'% Consistency Cap</div>';
-    ruleBadges += '<div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max $'+acct.rules.maxSinglePayout.toLocaleString()+' per Request</div>';
-    ruleBadges += '<div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max Loss $'+acct.rules.dd.toLocaleString()+'</div>';
+    ruleBadges += '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $'+acct.rules.dd.toLocaleString()+'</div>';
+    ruleBadges += '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Min '+acct.rules.minDays+' Days Traded</div>';
+    ruleBadges += '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">'+(acct.rules.consistencyCapPct*100)+'% Consistency Cap</div>';
+    ruleBadges += '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max $'+acct.rules.maxSinglePayout.toLocaleString()+' per Request</div>';
+    ruleBadges += '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max Loss $'+acct.rules.dd.toLocaleString()+'</div>';
   } else {
-    ruleBadges += '<div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $'+acct.rules.dd.toLocaleString()+'</div>';
-    ruleBadges += '<div style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">5 Qualifying Days $'+(acct.rules.qdMin||150)+'+</div>';
-    ruleBadges += '<div style="background:rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.25); color:#60a5fa; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max Payout $5,000 per Request</div>';
-    ruleBadges += '<div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">No Consistency Rule</div>';
+    ruleBadges += '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $'+acct.rules.dd.toLocaleString()+'</div>';
+    ruleBadges += '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">5 Qualifying Days $'+(acct.rules.qdMin||150)+'+</div>';
+    ruleBadges += '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max Payout $5,000 per Request</div>';
+    ruleBadges += '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">No Consistency Rule</div>';
   }
 
   var consSection = hasConsCap
-    ? progressBar('Consistency Check', id+'-cons-lbl', id+'-cons-bar', id+'-cons-note', '#34d399')
-    : '<div style="background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.3); border-radius:10px; padding:14px; width:100%;"><div style="font-size:13px; font-weight:700; color:#34d399; margin-bottom:6px;">&#10003; No Consistency Required</div><div style="font-size:11px; color:#475569; line-height:1.5;">No single-day profit cap. Trade freely &mdash; only drawdown and qualifying days apply.</div></div>';
+    ? progressBar('Consistency Check', id+'-cons-lbl', id+'-cons-bar', id+'-cons-note', '#33e08a')
+    : '<div style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); border-radius:10px; padding:14px; width:100%;"><div style="font-size:13px; font-weight:700; color:#33e08a; margin-bottom:6px;">&#10003; No Consistency Required</div><div style="font-size:11px; color:#59626f; line-height:1.5;">No single-day profit cap. Trade freely &mdash; only drawdown and qualifying days apply.</div></div>';
 
   var daysSection = hasConsCap
     ? '<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:14px;">'
       + statBox('Total Trading Days', id+'-stat-days', '0')
-      + '<div style="background:#141820; border-radius:8px; padding:14px;"><div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Min Days (Payout)</div><div style="font-size:18px; font-weight:700; color:#fbbf24;">'+acct.rules.minDays+'</div></div>'
+      + '<div style="background:#0e131b; border-radius:8px; padding:14px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Min Days (Payout)</div><div style="font-size:18px; font-weight:700; color:#f5b13d;">'+acct.rules.minDays+'</div></div>'
       + '</div>'
     : '<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">'
       + statBox('Total Trading Days', id+'-stat-days', '0')
-      + statBox('Qualifying Days ($'+(acct.rules.qdMin||150)+'+)', id+'-stat-qd', '0', '#fbbf24')
+      + statBox('Qualifying Days ($'+(acct.rules.qdMin||150)+'+)', id+'-stat-qd', '0', '#f5b13d')
       + '</div>';
 
   var started = acct.started.split('-').reverse().join('/').replace(/^0/,'').replace(/\/0/g,'/');
 
   return '<div style="margin-bottom:28px;">'
-    + '<div style="font-size:14px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #2d3748;">'
+    + '<div style="font-size:14px; font-weight:600; color:#8a94a3; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.09);">'
     + acct.emoji + ' SIM FUNDED ACCOUNT &mdash; '+acct.name
     + '</div>'
-    + '<div style="font-size:11px; color:#475569; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#94a3b8; font-weight:600; font-family:monospace; letter-spacing:0.3px;">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#94a3b8; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" style="background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.3); color:#60a5fa; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>'
-    + '<div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;"><div style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'+ruleBadges+'</div>'
-    + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-    + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>'
+    + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono); letter-spacing:0.3px;">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); color:#33e08a; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>'
+    + '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;"><div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'+ruleBadges+'</div>'
+    + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+    + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Balance</div>'
     + '<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:12px;">'
-    + statBox(hasConsCap ? 'Net P&L' : 'Net P&L', id+'-stat-bal', '$0.00', '#34d399')
+    + statBox(hasConsCap ? 'Net P&L' : 'Net P&L', id+'-stat-bal', '$0.00', '#33e08a')
     + statBox('Highest Trailing', id+'-stat-peak', '$0.00')
     + statBox('Best Single Day', id+'-stat-bday', '$0.00')
-    + statBox('Total Received ('+(acct.split*100)+'%)', id+'-stat-received', '$0.00', '#fbbf24')
+    + statBox('Total Received ('+(acct.split*100)+'%)', id+'-stat-received', '$0.00', '#f5b13d')
     + '</div></div>'
-    + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-    + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Trading Days</div>'
+    + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+    + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Trading Days</div>'
     + daysSection
     + '</div>'
-    + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-    + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Drawdown &amp; Consistency</div>'
+    + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+    + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Drawdown &amp; Consistency</div>'
     + '<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">'
     + '<div>'
-    + '<div style="background:#141820; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#f87171;">&mdash;</div></div>'
-    + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#f87171')
+    + '<div style="background:#0e131b; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#ff5e57;">&mdash;</div></div>'
+    + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#ff5e57')
     + '</div>'
     + '<div>' + consSection + '</div>'
     + '</div></div>'
@@ -533,109 +573,109 @@ function renderHiddenPanel(acct) {
   var ruleBadges = '';
 
   if (id === 'inp') {
-    ruleBadges = '<div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max Loss $'+r.dd.toLocaleString()+'</div>'
-      + '<div style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">'+r.qdTarget+' Qualifying Days $'+r.qdMinProfit+'+</div>'
-      + '<div style="background:rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.25); color:#60a5fa; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">'+r.payoutOrderTarget+' Payout Orders &#10132; Live</div>'
-      + '<div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">50% Payout Split</div>';
+    ruleBadges = '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max Loss $'+r.dd.toLocaleString()+'</div>'
+      + '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">'+r.qdTarget+' Qualifying Days $'+r.qdMinProfit+'+</div>'
+      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">'+r.payoutOrderTarget+' Payout Orders &#10132; Live</div>'
+      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">50% Payout Split</div>';
   } else if (id === 'tptpro') {
-    ruleBadges = '<div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Intraday Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
-      + '<div style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">No Min Trading Days</div>'
-      + '<div style="background:rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.25); color:#60a5fa; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Day 1 Payout Eligible</div>'
-      + '<div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Buffer Zone $'+r.buffer.toLocaleString()+' Required</div>';
+    ruleBadges = '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Intraday Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
+      + '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">No Min Trading Days</div>'
+      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Day 1 Payout Eligible</div>'
+      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Buffer Zone $'+r.buffer.toLocaleString()+' Required</div>';
   } else if (id === 'bsk2') {
-    ruleBadges = '<div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing DD $'+r.dd.toLocaleString()+'</div>'
-      + '<div style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $'+r.target.toLocaleString()+'</div>'
-      + '<div style="background:rgba(239,68,68,0.12); border:1px solid rgba(239,68,68,0.25); color:#fca5a5; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">'+(r.consistencyPct*100)+'% Consistency Cap</div>';
+    ruleBadges = '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing DD $'+r.dd.toLocaleString()+'</div>'
+      + '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $'+r.target.toLocaleString()+'</div>'
+      + '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">'+(r.consistencyPct*100)+'% Consistency Cap</div>';
   }
 
   var extraPanels = '';
   if (id === 'inp') {
-    extraPanels = '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Payout Progress</div>'
+    extraPanels = '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Payout Progress</div>'
       + '<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">'
-      + statBox('Qualifying Days ($'+r.qdMinProfit+'+)', id+'-stat-qd', '0', '#fbbf24')
-      + statBox('Payout Orders', id+'-stat-po', '0 / '+r.payoutOrderTarget, '#60a5fa')
+      + statBox('Qualifying Days ($'+r.qdMinProfit+'+)', id+'-stat-qd', '0', '#f5b13d')
+      + statBox('Payout Orders', id+'-stat-po', '0 / '+r.payoutOrderTarget, '#33e08a')
       + '</div></div>';
   } else if (id === 'tptpro') {
-    extraPanels = '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Profit Buffer</div>'
-      + progressBar('Buffer Progress', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#fbbf24')
+    extraPanels = '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Profit Buffer</div>'
+      + progressBar('Buffer Progress', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#f5b13d')
       + '</div>';
   } else if (id === 'bsk2') {
-    extraPanels = '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Profit Target &amp; Renewal</div>'
+    extraPanels = '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Profit Target &amp; Renewal</div>'
       + '<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">'
-      + '<div>'+progressBar('Profit Target', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#34d399')+'</div>'
-      + '<div>'+progressBar('Renewal Countdown', id+'-renewal-lbl', id+'-renewal-bar', id+'-renewal-note', '#fbbf24')+'</div>'
+      + '<div>'+progressBar('Profit Target', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#33e08a')+'</div>'
+      + '<div>'+progressBar('Renewal Countdown', id+'-renewal-lbl', id+'-renewal-bar', id+'-renewal-note', '#f5b13d')+'</div>'
       + '</div></div>';
   }
 
   var header = '<div style="margin-bottom:28px;">'
-    + '<div style="font-size:14px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #2d3748;">'
+    + '<div style="font-size:14px; font-weight:600; color:#8a94a3; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.09);">'
     + acct.emoji + ' '+typeLabel+' &mdash; '+acct.name
     + '</div>'
-    + '<div style="font-size:11px; color:#475569; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#94a3b8; font-weight:600; font-family:monospace;">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#94a3b8; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" style="background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.3); color:#60a5fa; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>'
-    + '<div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;"><div style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'+ruleBadges+'</div>';
+    + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); color:#33e08a; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>'
+    + '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;"><div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'+ruleBadges+'</div>';
 
   // ── inp: standardised layout matching XFA accounts ──
   if (id === 'inp') {
-    var noConsBox = '<div style="background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.3); border-radius:10px; padding:14px; width:100%;"><div style="font-size:13px; font-weight:700; color:#34d399; margin-bottom:6px;">&#10003; No Consistency Required</div><div style="font-size:11px; color:#475569; line-height:1.5;">No single-day profit cap. Trade freely &mdash; only drawdown and qualifying days apply.</div></div>';
+    var noConsBox = '<div style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); border-radius:10px; padding:14px; width:100%;"><div style="font-size:13px; font-weight:700; color:#33e08a; margin-bottom:6px;">&#10003; No Consistency Required</div><div style="font-size:11px; color:#59626f; line-height:1.5;">No single-day profit cap. Trade freely &mdash; only drawdown and qualifying days apply.</div></div>';
     return header
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Balance</div>'
       + '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">'
-      + statBox('Current Balance', id+'-stat-bal', '--', '#34d399')
+      + statBox('Current Balance', id+'-stat-bal', '--', '#33e08a')
       + statBox('Highest Trailing', id+'-stat-peak', '--')
       + statBox('Best Single Day', id+'-stat-bday', '--')
       + '</div></div>'
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Trading Days</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Trading Days</div>'
       + '<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">'
       + statBox('Total Trading Days', id+'-stat-days', '0')
-      + statBox('Qualifying Days ($'+r.qdMinProfit+'+)', id+'-stat-qd-raw', '0', '#fbbf24')
+      + statBox('Qualifying Days ($'+r.qdMinProfit+'+)', id+'-stat-qd-raw', '0', '#f5b13d')
       + '</div></div>'
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Drawdown &amp; Consistency</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Drawdown &amp; Consistency</div>'
       + '<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">'
       + '<div>'
-      + '<div style="background:#141820; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#fbbf24;">--</div></div>'
-      + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#f87171')
+      + '<div style="background:#0e131b; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#f5b13d;">--</div></div>'
+      + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#ff5e57')
       + '</div>'
       + '<div>' + noConsBox + '</div>'
       + '</div></div>'
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Payout Progress</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Payout Progress</div>'
       + '<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">'
-      + statBox('Qualifying Days ($'+r.qdMinProfit+'+)', id+'-stat-qd', '0 / '+r.qdTarget, '#fbbf24')
-      + statBox('Payout Orders', id+'-stat-po', '— / '+r.payoutOrderTarget, '#60a5fa')
+      + statBox('Qualifying Days ($'+r.qdMinProfit+'+)', id+'-stat-qd', '0 / '+r.qdTarget, '#f5b13d')
+      + statBox('Payout Orders', id+'-stat-po', '— / '+r.payoutOrderTarget, '#33e08a')
       + '</div></div>'
       + '</div>';
   }
 
   if (id === 'tptpro') {
-    var noConsBox = '<div style="background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.3); border-radius:10px; padding:14px; width:100%;"><div style="font-size:13px; font-weight:700; color:#34d399; margin-bottom:6px;">&#10003; No Consistency Required</div><div style="font-size:11px; color:#475569; line-height:1.5;">No single-day profit cap. Trade freely &mdash; only intraday trailing drawdown applies.</div></div>';
+    var noConsBox = '<div style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); border-radius:10px; padding:14px; width:100%;"><div style="font-size:13px; font-weight:700; color:#33e08a; margin-bottom:6px;">&#10003; No Consistency Required</div><div style="font-size:11px; color:#59626f; line-height:1.5;">No single-day profit cap. Trade freely &mdash; only intraday trailing drawdown applies.</div></div>';
     return header
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Balance</div>'
       + '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">'
-      + statBox('Current Balance', id+'-stat-bal', '--', '#34d399')
+      + statBox('Current Balance', id+'-stat-bal', '--', '#33e08a')
       + statBox('Highest Trailing', id+'-stat-peak', '--')
       + statBox('Best Single Day', id+'-stat-bday', '--')
       + '</div></div>'
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Trading Days</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Trading Days</div>'
       + '<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">'
       + statBox('Total Trading Days', id+'-stat-days', '0')
-      + '<div style="background:#141820; border-radius:8px; padding:14px;"><div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;">Buffer Zone ($'+r.buffer.toLocaleString()+')</div>'
-      + progressBar('', id+'-buf-lbl', id+'-buf-bar', id+'-buf-note', '#60a5fa')
-      + '<div id="'+id+'-payout-badge" style="margin-top:10px; display:none; background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.3); border-radius:8px; padding:8px 12px; font-size:11px; color:#34d399; font-weight:600;">Payout Eligible &mdash; Buffer zone built</div>'
+      + '<div style="background:#0e131b; border-radius:8px; padding:14px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;">Buffer Zone ($'+r.buffer.toLocaleString()+')</div>'
+      + progressBar('', id+'-buf-lbl', id+'-buf-bar', id+'-buf-note', '#33e08a')
+      + '<div id="'+id+'-payout-badge" style="margin-top:10px; display:none; background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); border-radius:8px; padding:8px 12px; font-size:11px; color:#33e08a; font-weight:600;">Payout Eligible &mdash; Buffer zone built</div>'
       + '</div></div></div>'
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Drawdown</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Drawdown</div>'
       + '<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">'
       + '<div>'
-      + '<div style="background:#141820; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Min Account Balance</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#f87171;">--</div></div>'
-      + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#f87171')
+      + '<div style="background:#0e131b; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Min Account Balance</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#ff5e57;">--</div></div>'
+      + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#ff5e57')
       + '</div>'
       + '<div style="display:flex; align-items:flex-start;">' + noConsBox + '</div>'
       + '</div></div>'
@@ -647,54 +687,54 @@ function renderHiddenPanel(acct) {
     var consCap = Math.round(r.target * r.consistencyPct);
     var renewalDt = new Date(r.renewalDate);
     var renewalLabel = renewalDt.getDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][renewalDt.getMonth()] + ' ' + renewalDt.getFullYear();
-    var phasePills = '<div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:12px 16px; margin-bottom:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">'
-      + '<span style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Phase:</span>'
-      + '<button id="bsk2-phase-eval" onclick="bsk2SetPhase(\'eval\')" style="padding:5px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; background:rgba(167,139,250,0.2); border:1px solid rgba(167,139,250,0.5); color:#a78bfa;">Evaluation</button>'
-      + '<button id="bsk2-phase-buf" onclick="bsk2SetPhase(\'buf\')" style="padding:5px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; background:none; border:1px solid #374151; color:#64748b;">Buffer</button>'
-      + '<span id="bsk2-phase-label" style="font-size:11px; color:#a78bfa; font-weight:600; margin-left:4px;">Evaluation Phase</span>'
+    var phasePills = '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:12px 16px; margin-bottom:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">'
+      + '<span style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Phase:</span>'
+      + '<button id="bsk2-phase-eval" onclick="bsk2SetPhase(\'eval\')" style="padding:5px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; background:rgba(51,224,138,0.2); border:1px solid rgba(51,224,138,0.5); color:#33e08a;">Evaluation</button>'
+      + '<button id="bsk2-phase-buf" onclick="bsk2SetPhase(\'buf\')" style="padding:5px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; background:none; border:1px solid rgba(255,255,255,0.16); color:#59626f;">Buffer</button>'
+      + '<span id="bsk2-phase-label" style="font-size:11px; color:#33e08a; font-weight:600; margin-left:4px;">Evaluation Phase</span>'
       + '</div>';
-    var bsk2RuleBadges = '<div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">'
-      + '<div style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'
-      + '<div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
-      + '<div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $'+r.target.toLocaleString()+'</div>'
-      + '<div style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#fca5a5; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Consistency: Best Day &lt; '+(r.consistencyPct*100)+'% of Profit ($'+consCap+' cap)</div>'
-      + '<div style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600; margin-left:auto;">Renews '+renewalLabel+'</div>'
+    var bsk2RuleBadges = '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">'
+      + '<div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'
+      + '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
+      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $'+r.target.toLocaleString()+'</div>'
+      + '<div style="background:rgba(255,94,87,0.15); border:1px solid rgba(255,94,87,0.3); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Consistency: Best Day &lt; '+(r.consistencyPct*100)+'% of Profit ($'+consCap+' cap)</div>'
+      + '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600; margin-left:auto;">Renews '+renewalLabel+'</div>'
       + '</div>';
     var bsk2Hdr = '<div style="margin-bottom:28px;">'
-      + '<div style="font-size:14px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #2d3748;">'
+      + '<div style="font-size:14px; font-weight:600; color:#8a94a3; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.09);">'
       + acct.emoji + ' Challenge Tracker &mdash; ' + acct.name
       + '</div>'
-      + '<div style="font-size:11px; color:#475569; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#94a3b8; font-weight:600; font-family:monospace;">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#94a3b8; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" style="background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.3); color:#60a5fa; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>'
+      + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); color:#33e08a; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>'
       + phasePills
       + bsk2RuleBadges;
     return bsk2Hdr
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Balance</div>'
       + '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">'
-      + statBox('Current Balance', id+'-stat-bal', '--', '#34d399')
+      + statBox('Current Balance', id+'-stat-bal', '--', '#33e08a')
       + statBox('Highest Trailing', id+'-stat-peak', '--')
       + statBox('Best Single Day', id+'-stat-bday', '--')
       + '</div></div>'
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Trading Days</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Trading Days</div>'
       + '<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">'
       + statBox('Total Trading Days', id+'-stat-days', '0')
-      + '<div style="background:#141820; border-radius:8px; padding:14px;"><div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Min Trading Days</div><div style="font-size:18px; font-weight:700; color:#64748b;">&#x221e;</div></div>'
+      + '<div style="background:#0e131b; border-radius:8px; padding:14px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Min Trading Days</div><div style="font-size:18px; font-weight:700; color:#59626f;">&#x221e;</div></div>'
       + '</div></div>'
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Drawdown &amp; Consistency</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Drawdown &amp; Consistency</div>'
       + '<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">'
       + '<div>'
-      + '<div style="background:#141820; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#fbbf24;">--</div></div>'
-      + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#f87171')
+      + '<div style="background:#0e131b; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#f5b13d;">--</div></div>'
+      + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#ff5e57')
       + '</div>'
-      + '<div>'+progressBar('Consistency Cap', id+'-cons-lbl', id+'-cons-bar', id+'-cons-note', '#34d399')+'</div>'
+      + '<div>'+progressBar('Consistency Cap', id+'-cons-lbl', id+'-cons-bar', id+'-cons-note', '#33e08a')+'</div>'
       + '</div></div>'
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Profit Progress &amp; Renewal Countdown</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Profit Progress &amp; Renewal Countdown</div>'
       + '<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">'
-      + '<div>'+progressBar('Profit Progress', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#34d399')+'</div>'
-      + '<div>'+progressBar('Renewal Countdown', id+'-renewal-lbl', id+'-renewal-bar', id+'-renewal-note', '#fbbf24')+'</div>'
+      + '<div>'+progressBar('Profit Progress', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#33e08a')+'</div>'
+      + '<div>'+progressBar('Renewal Countdown', id+'-renewal-lbl', id+'-renewal-bar', id+'-renewal-note', '#f5b13d')+'</div>'
       + '</div></div>'
       + '</div>';
   }
@@ -704,66 +744,66 @@ function renderHiddenPanel(acct) {
     var consCap = Math.round(r.target * r.consistencyPct);
     var renewalDt = new Date(r.renewalDate);
     var renewalLabel = renewalDt.getDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][renewalDt.getMonth()] + ' ' + renewalDt.getFullYear();
-    var tpt2RuleBadges = '<div style="background:#141820; border:1px solid #2d3748; border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">'
-      + '<div style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'
-      + '<div style="background:rgba(248,113,113,0.12); border:1px solid rgba(248,113,113,0.25); color:#f87171; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
-      + '<div style="background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25); color:#34d399; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $'+r.target.toLocaleString()+'</div>'
-      + '<div style="background:rgba(96,165,250,0.12); border:1px solid rgba(96,165,250,0.25); color:#60a5fa; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Min '+r.minDays+' Trading Days</div>'
-      + '<div style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#fca5a5; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Consistency: Best Day &lt; '+(r.consistencyPct*100)+'% of Profit ($'+consCap+' cap)</div>'
-      + '<div style="background:rgba(251,191,36,0.12); border:1px solid rgba(251,191,36,0.25); color:#fbbf24; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600; margin-left:auto;">&#x1F514; Renews '+renewalLabel+'</div>'
+    var tpt2RuleBadges = '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">'
+      + '<div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'
+      + '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
+      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $'+r.target.toLocaleString()+'</div>'
+      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Min '+r.minDays+' Trading Days</div>'
+      + '<div style="background:rgba(255,94,87,0.15); border:1px solid rgba(255,94,87,0.3); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Consistency: Best Day &lt; '+(r.consistencyPct*100)+'% of Profit ($'+consCap+' cap)</div>'
+      + '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600; margin-left:auto;">&#x1F514; Renews '+renewalLabel+'</div>'
       + '</div>';
     var tpt2Hdr = '<div style="margin-bottom:28px;">'
-      + '<div style="font-size:14px; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid #2d3748;">'
+      + '<div style="font-size:14px; font-weight:600; color:#8a94a3; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.09);">'
       + acct.emoji + ' Challenge Account &mdash; ' + acct.name
       + '</div>'
-      + '<div style="font-size:11px; color:#475569; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#94a3b8; font-weight:600; font-family:monospace;">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#94a3b8; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" style="background:rgba(96,165,250,0.1); border:1px solid rgba(96,165,250,0.3); color:#60a5fa; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>'
+      + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); color:#33e08a; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>'
       + tpt2RuleBadges;
     return tpt2Hdr
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Balance</div>'
       + '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">'
-      + statBox('Current Balance', id+'-stat-bal', '--', '#34d399')
+      + statBox('Current Balance', id+'-stat-bal', '--', '#33e08a')
       + statBox('Highest Trailing', id+'-stat-peak', '--')
       + statBox('Best Single Day', id+'-stat-bday', '--')
       + '</div></div>'
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Trading Days</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Trading Days</div>'
       + '<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">'
       + statBox('Total Trading Days', id+'-stat-days', '0')
-      + '<div style="background:#141820; border-radius:8px; padding:14px;"><div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Min Trading Days</div><div style="font-size:18px; font-weight:700; color:#fbbf24;">'+r.minDays+'</div></div>'
+      + '<div style="background:#0e131b; border-radius:8px; padding:14px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Min Trading Days</div><div style="font-size:18px; font-weight:700; color:#f5b13d;">'+r.minDays+'</div></div>'
       + '</div></div>'
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Drawdown &amp; Consistency</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Drawdown &amp; Consistency</div>'
       + '<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">'
       + '<div>'
-      + '<div style="background:#141820; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#fbbf24;">--</div></div>'
-      + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#f87171')
+      + '<div style="background:#0e131b; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#f5b13d;">--</div></div>'
+      + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#ff5e57')
       + '</div>'
-      + '<div>'+progressBar('Consistency Check', id+'-cons-lbl', id+'-cons-bar', id+'-cons-note', '#34d399')+'</div>'
+      + '<div>'+progressBar('Consistency Check', id+'-cons-lbl', id+'-cons-bar', id+'-cons-note', '#33e08a')+'</div>'
       + '</div></div>'
-      + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Profit Progress &amp; Renewal Countdown</div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Profit Progress &amp; Renewal Countdown</div>'
       + '<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">'
-      + '<div>'+progressBar('Profit Progress', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#34d399')+'</div>'
-      + '<div>'+progressBar('Renewal Countdown', id+'-renewal-lbl', id+'-renewal-bar', id+'-renewal-note', '#fbbf24')+'</div>'
+      + '<div>'+progressBar('Profit Progress', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#33e08a')+'</div>'
+      + '<div>'+progressBar('Renewal Countdown', id+'-renewal-lbl', id+'-renewal-bar', id+'-renewal-note', '#f5b13d')+'</div>'
       + '</div></div>'
       + '</div>';
   }
 
     // ── tptpro: original layout ──
   return header
-    + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-    + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Balance</div>'
+    + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+    + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Balance</div>'
     + '<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:12px;">'
     + statBox('Current Balance', id+'-stat-bal', '--')
     + statBox('Highest Trailing', id+'-stat-peak', '--')
     + statBox('Best Single Day', id+'-stat-bday', '--')
     + statBox('Trading Days', id+'-stat-days', '--')
     + '</div></div>'
-    + '<div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:12px; padding:20px; margin-bottom:16px;">'
-    + '<div style="font-size:10px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #1e293b;">Drawdown</div>'
-    + '<div style="background:#141820; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#475569; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#fbbf24;">--</div></div>'
-    + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#f87171')
+    + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+    + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Drawdown</div>'
+    + '<div style="background:#0e131b; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#f5b13d;">--</div></div>'
+    + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#ff5e57')
     + '</div>'
     + extraPanels
     + '</div>';
@@ -780,27 +820,27 @@ function renderHLPanel(acct) {
   var winRate = records.length>0?Math.round(gains.length/records.length*100):0;
   var avgWin = gains.length>0?totalGains/gains.length:0;
   var avgLoss = losses.length>0?totalLosses/losses.length:0;
-  var balColor = currentBalance>=acct.deposits?'#34d399':'#f87171';
+  var balColor = currentBalance>=acct.deposits?'#33e08a':'#ff5e57';
 
   function ampStat(label,val,color){
     return '<div class="amp-stat"><div class="amp-stat-label">'+label+'</div><div class="amp-stat-value" style="color:'+color+';">'+val+'</div></div>';
   }
 
-  var statsGrid = ampStat('Cash Deposited','$'+acct.deposits.toFixed(2),'#60a5fa')
-    + ampStat('Recorded Gains', totalGains>0?'+$'+totalGains.toFixed(2):'$0.00', totalGains>0?'#34d399':'#475569')
-    + ampStat('Recorded Losses', totalLosses<0?'$'+totalLosses.toFixed(2):'$0.00', totalLosses<0?'#f87171':'#475569')
-    + ampStat('Win / Loss', gains.length+' / '+losses.length, '#e2e8f0')
-    + ampStat('Win Rate', winRate+'%', '#fbbf24')
-    + ampStat('Avg Win', gains.length>0?'+$'+avgWin.toFixed(2):'—', gains.length>0?'#34d399':'#475569')
-    + ampStat('Avg Loss', losses.length>0?'$'+avgLoss.toFixed(2):'—', losses.length>0?'#f87171':'#475569');
+  var statsGrid = ampStat('Cash Deposited','$'+acct.deposits.toFixed(2),'#33e08a')
+    + ampStat('Recorded Gains', totalGains>0?'+$'+totalGains.toFixed(2):'$0.00', totalGains>0?'#33e08a':'#59626f')
+    + ampStat('Recorded Losses', totalLosses<0?'$'+totalLosses.toFixed(2):'$0.00', totalLosses<0?'#ff5e57':'#59626f')
+    + ampStat('Win / Loss', gains.length+' / '+losses.length, '#e7ecf2')
+    + ampStat('Win Rate', winRate+'%', '#f5b13d')
+    + ampStat('Avg Win', gains.length>0?'+$'+avgWin.toFixed(2):'—', gains.length>0?'#33e08a':'#59626f')
+    + ampStat('Avg Loss', losses.length>0?'$'+avgLoss.toFixed(2):'—', losses.length>0?'#ff5e57':'#59626f');
 
   return '<div class="table-card">'
     + '<div class="table-header" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">'
     + '<div class="section-title" style="margin-bottom:0; border:none; padding:0">HyperLiquid &#x2014; Personal Live Account</div>'
     + '<div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">'
-    + '<span style="font-size:11px; color:#475569; text-transform:uppercase; letter-spacing:0.5px;">Current Balance</span>'
+    + '<span style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px;">Current Balance</span>'
     + '<span style="font-size:20px; font-weight:700; color:'+balColor+';">$'+currentBalance.toFixed(2)+'</span>'
-    + '<button onclick="showHlRecords()" style="background:#1a1f2e; border:1px solid #374151; color:#94a3b8; padding:5px 12px; border-radius:6px; font-size:12px; cursor:pointer; font-weight:600;">Records</button>'
+    + '<button onclick="showHlRecords()" style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); color:#8a94a3; padding:5px 12px; border-radius:6px; font-size:12px; cursor:pointer; font-weight:600;">Records</button>'
     + '</div></div>'
     + '<div style="padding:16px 20px;"><div class="amp-grid">'+statsGrid+'</div></div>'
     + '</div>';
@@ -809,11 +849,11 @@ function renderHLPanel(acct) {
 function showHlRecords() {
   var records = window._data.personalLive.records;
   document.getElementById('hl-rec-modal-body').innerHTML = records.map(function(r) {
-    return '<tr style="border-bottom:1px solid #1e293b;">'
-      + '<td style="padding:9px 10px; color:#e2e8f0;">'+r.date+'</td>'
-      + '<td style="padding:9px 10px; text-align:right; font-weight:600; color:'+(r.net>=0?'#34d399':'#f87171')+';">'+(r.net>=0?'+':'')+r.net.toFixed(2)+'</td>'
+    return '<tr style="border-bottom:1px solid rgba(255,255,255,0.07);">'
+      + '<td style="padding:9px 10px; color:#e7ecf2;">'+r.date+'</td>'
+      + '<td style="padding:9px 10px; text-align:right; font-weight:600; color:'+(r.net>=0?'#33e08a':'#ff5e57')+';">'+(r.net>=0?'+':'')+r.net.toFixed(2)+'</td>'
       + '</tr>';
-  }).join('') || '<tr><td colspan="2" style="padding:20px; text-align:center; color:#475569;">No records</td></tr>';
+  }).join('') || '<tr><td colspan="2" style="padding:20px; text-align:center; color:#59626f;">No records</td></tr>';
   document.getElementById('hl-rec-modal').style.display = 'flex';
 }
 
@@ -848,14 +888,14 @@ function calcXFAType(acct) {
 
   el(id+'-stat-received').textContent=fmt(totalReceived);
   el(id+'-stat-bal').textContent=(totalProfit<0?'-':'')+fmt(totalProfit);
-  el(id+'-stat-bal').style.color=totalProfit>=0?'#34d399':'#f87171';
+  el(id+'-stat-bal').style.color=totalProfit>=0?'#33e08a':'#ff5e57';
   el(id+'-stat-peak').textContent=fmt(peakBal);
   el(id+'-stat-bday').textContent=fmt(bestDay);
   el(id+'-stat-days').textContent=days;
   if(el(id+'-stat-qd')) el(id+'-stat-qd').textContent=qdCount;
 
   el(id+'-dd-floor').textContent=fmt(floor);
-  el(id+'-dd-floor').style.color=isBreach?'#ef4444':allTimePeak>=DD?'#34d399':'#fbbf24';
+  el(id+'-dd-floor').style.color=isBreach?'#ff5e57':allTimePeak>=DD?'#33e08a':'#f5b13d';
   bar(id+'-dd-bar', ddPct, barColor(ddPct));
   el(id+'-dd-lbl').textContent='$'+ddUsed.toFixed(0)+' / $'+DD.toLocaleString();
   el(id+'-dd-note').textContent=isBreach?'Breached':allTimePeak>=DD?'Floor locked at $0 · $'+totalProfit.toFixed(2)+' above floor':'Floor $'+floor.toFixed(2)+' · $'+(totalProfit-floor).toFixed(2)+' buffer left';
@@ -864,8 +904,8 @@ function calcXFAType(acct) {
     var consCap=postRun>0?postRun*CONS_CAP:0;
     var consViolated=bestDay>0&&consCap>0&&bestDay>consCap;
     var consPct=consCap>0?Math.min(100,(bestDay/consCap)*100):0;
-    bar(id+'-cons-bar', consPct, consViolated?'#f87171':consPct>80?'#fbbf24':'#34d399');
-    el(id+'-cons-lbl').style.color=consViolated?'#f87171':consPct>80?'#fbbf24':'#34d399';
+    bar(id+'-cons-bar', consPct, consViolated?'#ff5e57':consPct>80?'#f5b13d':'#33e08a');
+    el(id+'-cons-lbl').style.color=consViolated?'#ff5e57':consPct>80?'#f5b13d':'#33e08a';
     el(id+'-cons-lbl').textContent=bestDay>0?fmt(bestDay)+' / '+fmt(consCap)+' cap':'No trades yet';
     el(id+'-cons-note').textContent=consViolated?'🔴 Consistency violated — best day $'+bestDay.toFixed(2)+' exceeds cap $'+consCap.toFixed(2):bestDay>0?(consPct>80?'⚠️ ':'✅ ')+'Best day '+consPct.toFixed(0)+'% of cap':'No trades yet';
   }
@@ -884,12 +924,12 @@ function calcHidden(acct) {
     var totalProfit=bal-r.startingBalance;
     var qdCount=acct.records.filter(function(rec){return rec.pnl>=r.qdMinProfit;}).length;
     el(id+'-stat-bal').textContent='$'+bal.toLocaleString('en-US',{minimumFractionDigits:2});
-    el(id+'-stat-bal').style.color=totalProfit>=0?'#34d399':'#f87171';
+    el(id+'-stat-bal').style.color=totalProfit>=0?'#33e08a':'#ff5e57';
     el(id+'-stat-peak').textContent='$'+effPeak.toLocaleString('en-US',{minimumFractionDigits:2});
     el(id+'-stat-bday').textContent=fmt(bestDay);
     el(id+'-stat-days').textContent=days;
     el(id+'-dd-floor').textContent='$'+floor.toLocaleString('en-US',{minimumFractionDigits:2});
-    el(id+'-dd-floor').style.color=bal<=floor?'#ef4444':'#fbbf24';
+    el(id+'-dd-floor').style.color=bal<=floor?'#ff5e57':'#f5b13d';
     bar(id+'-dd-bar',ddPct,barColor(ddPct));
     el(id+'-dd-lbl').textContent='$'+ddUsed.toFixed(0)+' / $'+r.dd.toLocaleString();
     el(id+'-dd-note').textContent=bal<=floor?'Breached':'Floor $'+floor.toLocaleString('en-US',{minimumFractionDigits:2})+' · $'+(bal-floor).toFixed(2)+' buffer';
@@ -905,16 +945,16 @@ function calcHidden(acct) {
     var isBreach2=bal<=floor2;
     var bufferPct=Math.min(100,Math.max(0,(totalProfit2/r.buffer)*100));
     el(id+'-stat-bal').textContent='$'+bal.toLocaleString('en-US',{minimumFractionDigits:2});
-    el(id+'-stat-bal').style.color=totalProfit2>=0?'#34d399':'#f87171';
+    el(id+'-stat-bal').style.color=totalProfit2>=0?'#33e08a':'#ff5e57';
     el(id+'-stat-peak').textContent='$'+effPeak.toLocaleString('en-US',{minimumFractionDigits:2});
     el(id+'-stat-bday').textContent=fmt(bestDay);
     el(id+'-stat-days').textContent=days;
     el(id+'-dd-floor').textContent='$'+floor2.toLocaleString('en-US',{minimumFractionDigits:2});
-    el(id+'-dd-floor').style.color=isBreach2?'#ef4444':'#fbbf24';
+    el(id+'-dd-floor').style.color=isBreach2?'#ff5e57':'#f5b13d';
     bar(id+'-dd-bar',ddPct2,barColor(ddPct2));
     el(id+'-dd-lbl').textContent='$'+ddUsed2.toFixed(0)+' / $'+r.dd.toLocaleString();
     el(id+'-dd-note').textContent=isBreach2?'Breached':'Floor $'+floor2.toFixed(2)+' · $'+(bal-floor2).toFixed(2)+' buffer';
-    bar(id+'-buf-bar',bufferPct,bufferPct<50?'#60a5fa':bufferPct<100?'#fbbf24':'#34d399');
+    bar(id+'-buf-bar',bufferPct,bufferPct<50?'#33e08a':bufferPct<100?'#f5b13d':'#33e08a');
     el(id+'-buf-lbl').textContent='$'+Math.max(0,totalProfit2).toFixed(2)+' / $'+r.buffer.toLocaleString();
     el(id+'-buf-note').textContent=totalProfit2>=r.buffer?'Buffer built - payout eligible':'$'+(r.buffer-totalProfit2).toFixed(2)+' still needed';
     el(id+'-payout-badge').style.display=totalProfit2>=r.buffer?'block':'none';
@@ -933,26 +973,26 @@ function calcHidden(acct) {
     var dLeft=Math.ceil((renewalDate-new Date())/86400000);
     var rPct=Math.max(0,Math.min(100,((30-dLeft)/30)*100));
     el(id+'-stat-bal').textContent='$'+bal.toLocaleString('en-US',{minimumFractionDigits:2});
-    el(id+'-stat-bal').style.color=totalProfit3>=0?'#34d399':'#f87171';
+    el(id+'-stat-bal').style.color=totalProfit3>=0?'#33e08a':'#ff5e57';
     el(id+'-stat-peak').textContent='$'+effPeak.toLocaleString('en-US',{minimumFractionDigits:2});
     el(id+'-stat-bday').textContent=fmt(bestDay);
     el(id+'-stat-days').textContent=days;
     el(id+'-dd-floor').textContent='$'+floor3.toFixed(2);
-    el(id+'-dd-floor').style.color=isBreach3?'#ef4444':'#fbbf24';
+    el(id+'-dd-floor').style.color=isBreach3?'#ff5e57':'#f5b13d';
     bar(id+'-dd-bar',ddPct3,barColor(ddPct3));
     el(id+'-dd-lbl').style.color=barColor(ddPct3);
     el(id+'-dd-lbl').textContent='$'+ddUsed3.toFixed(0)+' / $'+r.dd.toLocaleString();
     el(id+'-dd-note').textContent=isBreach3?'🔴 Account breached':'Floor $'+floor3.toFixed(2)+' · $'+(bal-floor3).toFixed(2)+' buffer';
-    bar(id+'-cons-bar',consPct3,consViolated3?'#f87171':consPct3>80?'#fbbf24':'#34d399');
-    el(id+'-cons-lbl').style.color=consViolated3?'#f87171':consPct3>80?'#fbbf24':'#34d399';
+    bar(id+'-cons-bar',consPct3,consViolated3?'#ff5e57':consPct3>80?'#f5b13d':'#33e08a');
+    el(id+'-cons-lbl').style.color=consViolated3?'#ff5e57':consPct3>80?'#f5b13d':'#33e08a';
     el(id+'-cons-lbl').textContent=bestDay>0?'$'+bestDay.toFixed(0)+' / $'+consCap3.toFixed(0)+' cap':'No trades yet';
     el(id+'-cons-note').textContent=consViolated3?'🔴 Consistency violated':bestDay>0?(consPct3>80?'⚠️ ':'✅ ')+'Best day is '+consPct3.toFixed(0)+'% of $'+consCap3.toFixed(0)+' cap':'Best single day must stay below $'+consCap3.toFixed(0);
-    bar(id+'-profit-bar',profitPct3,'#34d399');
+    bar(id+'-profit-bar',profitPct3,'#33e08a');
     el(id+'-profit-lbl').textContent='$'+Math.max(0,totalProfit3).toFixed(2)+' / $'+r.target.toLocaleString();
     el(id+'-profit-note').textContent=totalProfit3>=r.target?'✅ Target met!':'$'+Math.max(0,r.target-totalProfit3).toFixed(2)+' still needed';
-    bar(id+'-renewal-bar',rPct,dLeft<=5?'#f87171':dLeft<=10?'#fbbf24':'#f59e0b');
+    bar(id+'-renewal-bar',rPct,dLeft<=5?'#ff5e57':dLeft<=10?'#f5b13d':'#f5b13d');
     el(id+'-renewal-lbl').textContent=dLeft>0?dLeft+' days left':'Expired';
-    el(id+'-renewal-lbl').style.color=dLeft<=5?'#f87171':'#fbbf24';
+    el(id+'-renewal-lbl').style.color=dLeft<=5?'#ff5e57':'#f5b13d';
     el(id+'-renewal-note').textContent='Renews '+renewalDate.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][renewalDate.getMonth()]+' '+renewalDate.getFullYear();
   } else if(id==='tpt2'||id==='tpt3') {
     var floor4=effPeak-r.dd;
@@ -968,26 +1008,26 @@ function calcHidden(acct) {
     var dLeft4=Math.ceil((renewalDate4-new Date())/86400000);
     var rPct4=Math.max(0,Math.min(100,((30-dLeft4)/30)*100));
     el(id+'-stat-bal').textContent='$'+bal.toLocaleString('en-US',{minimumFractionDigits:2});
-    el(id+'-stat-bal').style.color=totalProfit4>=0?'#34d399':'#f87171';
+    el(id+'-stat-bal').style.color=totalProfit4>=0?'#33e08a':'#ff5e57';
     el(id+'-stat-peak').textContent='$'+effPeak.toLocaleString('en-US',{minimumFractionDigits:2});
     el(id+'-stat-bday').textContent=fmt(bestDay);
     el(id+'-stat-days').textContent=days;
     el(id+'-dd-floor').textContent='$'+floor4.toFixed(2);
-    el(id+'-dd-floor').style.color=isBreach4?'#ef4444':'#fbbf24';
+    el(id+'-dd-floor').style.color=isBreach4?'#ff5e57':'#f5b13d';
     bar(id+'-dd-bar',ddPct4,barColor(ddPct4));
     el(id+'-dd-lbl').style.color=barColor(ddPct4);
     el(id+'-dd-lbl').textContent='$'+ddUsed4.toFixed(0)+' / $'+r.dd.toLocaleString();
     el(id+'-dd-note').textContent=isBreach4?'🔴 Account breached':'Floor $'+floor4.toFixed(2)+' · $'+(bal-floor4).toFixed(2)+' buffer';
-    bar(id+'-cons-bar',consPct4,consViolated4?'#f87171':consPct4>80?'#fbbf24':'#34d399');
-    el(id+'-cons-lbl').style.color=consViolated4?'#f87171':consPct4>80?'#fbbf24':'#34d399';
+    bar(id+'-cons-bar',consPct4,consViolated4?'#ff5e57':consPct4>80?'#f5b13d':'#33e08a');
+    el(id+'-cons-lbl').style.color=consViolated4?'#ff5e57':consPct4>80?'#f5b13d':'#33e08a';
     el(id+'-cons-lbl').textContent=bestDay>0?'$'+bestDay.toFixed(0)+' / $'+consCap4.toFixed(0)+' cap':'No trades yet';
     el(id+'-cons-note').textContent=consViolated4?'🔴 Consistency violated':bestDay>0?(consPct4>80?'⚠️ ':'✅ ')+'Best day is '+consPct4.toFixed(0)+'% of $'+consCap4.toFixed(0)+' cap':'Best single day must stay below $'+consCap4.toFixed(0);
-    bar(id+'-profit-bar',profitPct4,'#34d399');
+    bar(id+'-profit-bar',profitPct4,'#33e08a');
     el(id+'-profit-lbl').textContent='$'+Math.max(0,totalProfit4).toFixed(2)+' / $'+r.target.toLocaleString();
     el(id+'-profit-note').textContent=totalProfit4>=r.target?'✅ Target met!':'$'+Math.max(0,r.target-totalProfit4).toFixed(2)+' still needed';
-    bar(id+'-renewal-bar',rPct4,dLeft4<=5?'#f87171':dLeft4<=10?'#fbbf24':'#f59e0b');
+    bar(id+'-renewal-bar',rPct4,dLeft4<=5?'#ff5e57':dLeft4<=10?'#f5b13d':'#f5b13d');
     el(id+'-renewal-lbl').textContent=dLeft4>0?dLeft4+' days left':'Expired';
-    el(id+'-renewal-lbl').style.color=dLeft4<=5?'#f87171':'#fbbf24';
+    el(id+'-renewal-lbl').style.color=dLeft4<=5?'#ff5e57':'#f5b13d';
     el(id+'-renewal-note').textContent='Renews '+renewalDate4.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][renewalDate4.getMonth()]+' '+renewalDate4.getFullYear();
   }
 }
@@ -998,23 +1038,23 @@ function bsk2SetPhase(phase) {
   var label = document.getElementById('bsk2-phase-label');
   if (!evalBtn) return;
   if (phase === 'eval') {
-    evalBtn.style.background = 'rgba(167,139,250,0.2)';
-    evalBtn.style.border = '1px solid rgba(167,139,250,0.5)';
-    evalBtn.style.color = '#a78bfa';
+    evalBtn.style.background = 'rgba(51,224,138,0.2)';
+    evalBtn.style.border = '1px solid rgba(51,224,138,0.5)';
+    evalBtn.style.color = '#33e08a';
     bufBtn.style.background = 'none';
-    bufBtn.style.border = '1px solid #374151';
-    bufBtn.style.color = '#64748b';
+    bufBtn.style.border = '1px solid rgba(255,255,255,0.16)';
+    bufBtn.style.color = '#59626f';
     label.textContent = 'Evaluation Phase';
-    label.style.color = '#a78bfa';
+    label.style.color = '#33e08a';
   } else {
-    bufBtn.style.background = 'rgba(167,139,250,0.2)';
-    bufBtn.style.border = '1px solid rgba(167,139,250,0.5)';
-    bufBtn.style.color = '#a78bfa';
+    bufBtn.style.background = 'rgba(51,224,138,0.2)';
+    bufBtn.style.border = '1px solid rgba(51,224,138,0.5)';
+    bufBtn.style.color = '#33e08a';
     evalBtn.style.background = 'none';
-    evalBtn.style.border = '1px solid #374151';
-    evalBtn.style.color = '#64748b';
+    evalBtn.style.border = '1px solid rgba(255,255,255,0.16)';
+    evalBtn.style.color = '#59626f';
     label.textContent = 'Buffer Phase';
-    label.style.color = '#a78bfa';
+    label.style.color = '#33e08a';
   }
 }
 
@@ -1025,14 +1065,14 @@ function showRecordsModal(id) {
   document.getElementById('rec-modal-title').textContent = acct.name + ' — Records';
   var rows = acct.records.map(function(r) {
     var isPayout = r.payout === true;
-    var cls = r.pnl >= 0 ? 'color:#34d399' : 'color:#f87171';
-    var badge = isPayout ? '<span style="font-size:10px; background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); color:#fbbf24; padding:2px 8px; border-radius:4px; margin-left:6px; font-weight:700;">PAYOUT</span>' : '';
-    return '<tr style="border-bottom:1px solid #1e293b;">'
-      + '<td style="padding:9px 12px; color:#64748b; font-family:monospace; font-size:12px;">'+r.date+'</td>'
+    var cls = r.pnl >= 0 ? 'color:#33e08a' : 'color:#ff5e57';
+    var badge = isPayout ? '<span style="font-size:10px; background:rgba(245,177,61,0.15); border:1px solid rgba(245,177,61,0.3); color:#f5b13d; padding:2px 8px; border-radius:4px; margin-left:6px; font-weight:700;">PAYOUT</span>' : '';
+    return '<tr style="border-bottom:1px solid rgba(255,255,255,0.07);">'
+      + '<td style="padding:9px 12px; color:#59626f; font-family:var(--mono); font-size:12px;">'+r.date+'</td>'
       + '<td style="padding:9px 12px; text-align:right; '+cls+'; font-weight:600;">'+(r.pnl>=0?'+':'')+r.pnl.toFixed(2)+badge+'</td>'
       + '</tr>';
   }).join('');
-  document.getElementById('rec-modal-body').innerHTML = rows || '<tr><td colspan="2" style="padding:20px; text-align:center; color:#475569;">No records</td></tr>';
+  document.getElementById('rec-modal-body').innerHTML = rows || '<tr><td colspan="2" style="padding:20px; text-align:center; color:#59626f;">No records</td></tr>';
   document.getElementById('rec-modal').style.display = 'flex';
 }
 
@@ -1090,15 +1130,15 @@ loadDaily();
 </script>
 
 <div id="rec-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
-  <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:14px; padding:24px; width:400px; max-width:95vw; max-height:80vh; overflow-y:auto;">
+  <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:14px; padding:24px; width:400px; max-width:95vw; max-height:80vh; overflow-y:auto;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-      <div id="rec-modal-title" style="font-size:14px; font-weight:700; color:#e2e8f0;">Records</div>
-      <button onclick="document.getElementById('rec-modal').style.display='none'" style="background:none; border:none; color:#64748b; font-size:18px; cursor:pointer; line-height:1;">&#215;</button>
+      <div id="rec-modal-title" style="font-size:14px; font-weight:700; color:#e7ecf2;">Records</div>
+      <button onclick="document.getElementById('rec-modal').style.display='none'" style="background:none; border:none; color:#59626f; font-size:18px; cursor:pointer; line-height:1;">&#215;</button>
     </div>
     <table style="width:100%; border-collapse:collapse; font-size:13px;">
-      <thead><tr style="border-bottom:1px solid #2d3748;">
-        <th style="text-align:left; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
-        <th style="text-align:right; padding:8px 12px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">P&L</th>
+      <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.09);">
+        <th style="text-align:left; padding:8px 12px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
+        <th style="text-align:right; padding:8px 12px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">P&L</th>
       </tr></thead>
       <tbody id="rec-modal-body"></tbody>
     </table>
@@ -1108,15 +1148,15 @@ loadDaily();
 
 
 <div id="hl-rec-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
-  <div style="background:#1a1f2e; border:1px solid #374151; border-radius:14px; padding:28px; max-width:400px; width:92%; max-height:80vh; overflow-y:auto;">
+  <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:400px; width:92%; max-height:80vh; overflow-y:auto;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-      <div style="font-size:16px; font-weight:700; color:#e2e8f0;">HyperLiquid Trade Records</div>
-      <button onclick="document.getElementById('hl-rec-modal').style.display='none'" style="background:none; border:none; color:#64748b; font-size:20px; cursor:pointer; line-height:1;">&#x2715;</button>
+      <div style="font-size:16px; font-weight:700; color:#e7ecf2;">HyperLiquid Trade Records</div>
+      <button onclick="document.getElementById('hl-rec-modal').style.display='none'" style="background:none; border:none; color:#59626f; font-size:20px; cursor:pointer; line-height:1;">&#x2715;</button>
     </div>
     <table style="width:100%; border-collapse:collapse; font-size:13px;">
-      <thead><tr style="border-bottom:1px solid #374151;">
-        <th style="text-align:left; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
-        <th style="text-align:right; padding:8px 10px; color:#64748b; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Net P&amp;L</th>
+      <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.16);">
+        <th style="text-align:left; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
+        <th style="text-align:right; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Net P&amp;L</th>
       </tr></thead>
       <tbody id="hl-rec-modal-body"></tbody>
     </table>
