@@ -94,6 +94,32 @@
 
   /* collapse decorative card top-bars to a single hairline accent */
   .card::before{ height:1px; opacity:.65; }
+
+  /* FRESH buttons & badges */
+  .fr-btn-ghost{ font-family:var(--mono); font-weight:500; letter-spacing:.04em;
+    display:inline-flex; align-items:center; gap:7px; cursor:pointer;
+    background:transparent; color:var(--tx-mut); border:1px solid var(--line-2);
+    border-radius:8px; padding:9px 16px; font-size:12px; text-decoration:none;
+    transition:border-color .16s,color .16s,background .16s; }
+  .fr-btn-ghost:hover{ border-color:var(--accent); color:var(--accent); background:rgba(51,224,138,.06); }
+  .fr-btn-sm{ padding:8px 16px; font-size:12px; }
+  .fr-btn-xs{ padding:4px 11px; font-size:11px; border-radius:6px; }
+  .fr-link-btn{ font-family:var(--mono); font-size:11px; color:var(--accent);
+    background:none; border:0; padding:0; cursor:pointer; letter-spacing:.02em; text-decoration:none; }
+  .fr-link-btn:hover{ text-decoration:underline; }
+  .fr-x{ background:none; border:0; color:var(--tx-dim); font-size:18px; cursor:pointer;
+    line-height:1; transition:color .15s; }
+  .fr-x:hover{ color:var(--tx); }
+  .fr-badge{ display:inline-flex; align-items:center; gap:6px; font-family:var(--mono);
+    font-size:11px; font-weight:500; letter-spacing:.01em; padding:5px 11px; border-radius:6px;
+    border:1px solid var(--line-2); background:var(--bg-3); color:var(--tx-mut); }
+  .fr-badge.ok{ color:var(--ok); border-color:rgba(51,224,138,.32); background:rgba(51,224,138,.08); }
+  .fr-badge.warn{ color:var(--warn); border-color:rgba(245,177,61,.32); background:rgba(245,177,61,.08); }
+  .fr-badge.bad{ color:var(--bad); border-color:rgba(255,94,87,.32); background:rgba(255,94,87,.08); }
+  .fr-badge.push{ margin-left:auto; }
+  .fr-tag{ font-family:var(--mono); font-size:10px; font-weight:600; text-transform:uppercase;
+    letter-spacing:.12em; padding:5px 10px; border-radius:6px;
+    border:1px solid rgba(51,224,138,.3); background:rgba(51,224,138,.1); color:var(--accent); }
 </style>
 </head>
 <body>
@@ -151,7 +177,7 @@
 
         <div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:16px;">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-            <div style="background:rgba(51,224,138,0.15); border:1px solid rgba(51,224,138,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#33e08a; text-transform:uppercase; letter-spacing:0.5px;">MACRO</div>
+            <div class="fr-tag">MACRO</div>
             <div style="font-size:11px; color:#59626f; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "why"</div>
           </div>
           <p style="font-size:12px; color:#8a94a3; line-height:1.7; margin:0;">the macro landscape is the invisible hand moving the ocean. before we look at a chart, we must understand the environment we are navigating. for eg, geopolitical risk dictate how global tensions and shifts in power create ripples in liquidity and volatility; the "red folders" such as cpi, nfp, fomc data are not interpreted just as numbers, but as the drivers of the market's next major trend.</p>
@@ -159,7 +185,7 @@
 
         <div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:16px;">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-            <div style="background:rgba(51,224,138,0.15); border:1px solid rgba(51,224,138,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#33e08a; text-transform:uppercase; letter-spacing:0.5px;">TPO</div>
+            <div class="fr-tag">TPO</div>
             <div style="font-size:11px; color:#59626f; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "where"</div>
           </div>
           <p style="font-size:12px; color:#8a94a3; line-height:1.7; margin:0;">my favorite study for structural context. it tells us where the price is likely to range or expand. it's the map of the ocean floor.</p>
@@ -167,7 +193,7 @@
 
         <div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:16px;">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-            <div style="background:rgba(245,177,61,0.15); border:1px solid rgba(245,177,61,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#f5b13d; text-transform:uppercase; letter-spacing:0.5px;">FISHER</div>
+            <div class="fr-tag">FISHER</div>
             <div style="font-size:11px; color:#59626f; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "when"</div>
           </div>
           <p style="font-size:12px; color:#8a94a3; line-height:1.7; margin:0;">fisher is one of the many useful mathematical studies that helps to identify when the market is overbought or oversold. it tells us when the current is overstretched and ready to turn.</p>
@@ -175,7 +201,7 @@
 
         <div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:16px;">
           <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-            <div style="background:rgba(255,94,87,0.15); border:1px solid rgba(255,94,87,0.3); border-radius:6px; padding:5px 10px; font-size:10px; font-weight:700; color:#ff5e57; text-transform:uppercase; letter-spacing:0.5px;">ORDER FLOW</div>
+            <div class="fr-tag">ORDER FLOW</div>
             <div style="font-size:11px; color:#59626f; font-weight:600; text-transform:uppercase; letter-spacing:0.4px;">answers the "how"</div>
           </div>
           <p style="font-size:12px; color:#8a94a3; line-height:1.7; margin:0;">if macro is the tide, order flow is the movement of the fish. order flow provides the high-resolution evidence we need to execute our strategies with precision. it is the real-time record of every decision made on the tape. it tells us how the price is actually moving at the point of execution. exhaustion &amp; absorption identify when the "big fish" are done buying or when they are quietly absorbing every "small fish" sell order. pulling &amp; stacking observe changing hands in the limit order book.</p>
@@ -310,7 +336,7 @@
 
   <div id="pane-tracker" class="tab-pane">
     <div style="display:flex; justify-content:flex-end; margin-bottom:20px;">
-      <a href="history.html" style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); color:#33e08a; padding:7px 16px; border-radius:8px; font-size:12px; font-weight:600; letter-spacing:0.3px; text-decoration:none;">&#x1F4CB; Account &amp; Payout History</a>
+      <a href="history.html" class="fr-btn-ghost fr-btn-sm">&#x1F4CB; Account &amp; Payout History</a>
     </div>
     <div id="tracker-container"></div>
   </div>
@@ -323,7 +349,7 @@
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
       <div style="font-size:14px; font-weight:700; color:#e7ecf2;">TopStep — Challenge Fees</div>
-      <button onclick="document.getElementById('fee-modal-topstep').style.display='none'" style="background:none; border:none; color:#59626f; font-size:18px; cursor:pointer; line-height:1;">✕</button>
+      <button onclick="document.getElementById('fee-modal-topstep').style.display='none'" class="fr-x">✕</button>
     </div>
     <div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:13px;">
       <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.09);">
@@ -342,7 +368,7 @@
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
       <div style="font-size:14px; font-weight:700; color:#e7ecf2;">BluSky — Challenge Fees</div>
-      <button onclick="document.getElementById('fee-modal-blusky').style.display='none'" style="background:none; border:none; color:#59626f; font-size:18px; cursor:pointer; line-height:1;">✕</button>
+      <button onclick="document.getElementById('fee-modal-blusky').style.display='none'" class="fr-x">✕</button>
     </div>
     <div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:13px;">
       <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.09);">
@@ -362,7 +388,7 @@
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
       <div style="font-size:14px; font-weight:700; color:#e7ecf2;">TPT — Challenge Fees</div>
-      <button onclick="document.getElementById('fee-modal-tpt').style.display='none'" style="background:none; border:none; color:#59626f; font-size:18px; cursor:pointer; line-height:1;">✕</button>
+      <button onclick="document.getElementById('fee-modal-tpt').style.display='none'" class="fr-x">✕</button>
     </div>
     <div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:13px;">
       <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.09);">
@@ -418,7 +444,7 @@ function renderFirmTable(firms) {
     var roi = f.payouts > 0 ? Math.round(net / f.costs * 100) : -100;
     var pos = net >= 0;
     var feeCell = f.feeModal
-      ? "<button onclick=\"document.getElementById('fee-modal-"+f.feeModal+"').style.display='flex'\" style=\"background:none; border:none; color:#33e08a; font-size:11px; cursor:pointer; padding:0; text-decoration:underline;\">Challenge Fee</button>"
+      ? "<button onclick=\"document.getElementById('fee-modal-"+f.feeModal+"').style.display='flex'\" class=\"fr-link-btn\">Challenge Fee</button>"
       : 'Challenge Fee';
     return '<tr>'
       + '<td class="firm-name">' + f.name + '</td>'
@@ -507,16 +533,16 @@ function renderXFAPanel(acct) {
   var hasConsCap = !!acct.rules.consistencyCapPct;
   var ruleBadges = '';
   if (hasConsCap) {
-    ruleBadges += '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $'+acct.rules.dd.toLocaleString()+'</div>';
-    ruleBadges += '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Min '+acct.rules.minDays+' Days Traded</div>';
-    ruleBadges += '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">'+(acct.rules.consistencyCapPct*100)+'% Consistency Cap</div>';
-    ruleBadges += '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max $'+acct.rules.maxSinglePayout.toLocaleString()+' per Request</div>';
-    ruleBadges += '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max Loss $'+acct.rules.dd.toLocaleString()+'</div>';
+    ruleBadges += '<div class="fr-badge bad">EOD Trailing Drawdown $'+acct.rules.dd.toLocaleString()+'</div>';
+    ruleBadges += '<div class="fr-badge warn">Min '+acct.rules.minDays+' Days Traded</div>';
+    ruleBadges += '<div class="fr-badge bad">'+(acct.rules.consistencyCapPct*100)+'% Consistency Cap</div>';
+    ruleBadges += '<div class="fr-badge ok">Max $'+acct.rules.maxSinglePayout.toLocaleString()+' per Request</div>';
+    ruleBadges += '<div class="fr-badge bad">Max Loss $'+acct.rules.dd.toLocaleString()+'</div>';
   } else {
-    ruleBadges += '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $'+acct.rules.dd.toLocaleString()+'</div>';
-    ruleBadges += '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">5 Qualifying Days $'+(acct.rules.qdMin||150)+'+</div>';
-    ruleBadges += '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max Payout $5,000 per Request</div>';
-    ruleBadges += '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">No Consistency Rule</div>';
+    ruleBadges += '<div class="fr-badge bad">EOD Trailing Drawdown $'+acct.rules.dd.toLocaleString()+'</div>';
+    ruleBadges += '<div class="fr-badge warn">5 Qualifying Days $'+(acct.rules.qdMin||150)+'+</div>';
+    ruleBadges += '<div class="fr-badge ok">Max Payout $5,000 per Request</div>';
+    ruleBadges += '<div class="fr-badge ok">No Consistency Rule</div>';
   }
 
   var consSection = hasConsCap
@@ -539,7 +565,7 @@ function renderXFAPanel(acct) {
     + '<div style="font-size:14px; font-weight:600; color:#8a94a3; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.09);">'
     + acct.emoji + ' SIM FUNDED ACCOUNT &mdash; '+acct.name
     + '</div>'
-    + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono); letter-spacing:0.3px;">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); color:#33e08a; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>'
+    + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono); letter-spacing:0.3px;">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" class="fr-btn-ghost fr-btn-xs">Records</button></div>'
     + '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;"><div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'+ruleBadges+'</div>'
     + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
     + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Balance</div>'
@@ -573,19 +599,19 @@ function renderHiddenPanel(acct) {
   var ruleBadges = '';
 
   if (id === 'inp') {
-    ruleBadges = '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Max Loss $'+r.dd.toLocaleString()+'</div>'
-      + '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">'+r.qdTarget+' Qualifying Days $'+r.qdMinProfit+'+</div>'
-      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">'+r.payoutOrderTarget+' Payout Orders &#10132; Live</div>'
-      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">50% Payout Split</div>';
+    ruleBadges = '<div class="fr-badge bad">Max Loss $'+r.dd.toLocaleString()+'</div>'
+      + '<div class="fr-badge warn">'+r.qdTarget+' Qualifying Days $'+r.qdMinProfit+'+</div>'
+      + '<div class="fr-badge ok">'+r.payoutOrderTarget+' Payout Orders &#10132; Live</div>'
+      + '<div class="fr-badge ok">50% Payout Split</div>';
   } else if (id === 'tptpro') {
-    ruleBadges = '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Intraday Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
-      + '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">No Min Trading Days</div>'
-      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Day 1 Payout Eligible</div>'
-      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Buffer Zone $'+r.buffer.toLocaleString()+' Required</div>';
+    ruleBadges = '<div class="fr-badge bad">Intraday Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
+      + '<div class="fr-badge warn">No Min Trading Days</div>'
+      + '<div class="fr-badge ok">Day 1 Payout Eligible</div>'
+      + '<div class="fr-badge ok">Buffer Zone $'+r.buffer.toLocaleString()+' Required</div>';
   } else if (id === 'bsk2') {
-    ruleBadges = '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing DD $'+r.dd.toLocaleString()+'</div>'
-      + '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $'+r.target.toLocaleString()+'</div>'
-      + '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">'+(r.consistencyPct*100)+'% Consistency Cap</div>';
+    ruleBadges = '<div class="fr-badge bad">EOD Trailing DD $'+r.dd.toLocaleString()+'</div>'
+      + '<div class="fr-badge warn">Profit Target $'+r.target.toLocaleString()+'</div>'
+      + '<div class="fr-badge bad">'+(r.consistencyPct*100)+'% Consistency Cap</div>';
   }
 
   var extraPanels = '';
@@ -614,7 +640,7 @@ function renderHiddenPanel(acct) {
     + '<div style="font-size:14px; font-weight:600; color:#8a94a3; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.09);">'
     + acct.emoji + ' '+typeLabel+' &mdash; '+acct.name
     + '</div>'
-    + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); color:#33e08a; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>'
+    + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" class="fr-btn-ghost fr-btn-xs">Records</button></div>'
     + '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;"><div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'+ruleBadges+'</div>';
 
   // ── inp: standardised layout matching XFA accounts ──
@@ -695,16 +721,16 @@ function renderHiddenPanel(acct) {
       + '</div>';
     var bsk2RuleBadges = '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">'
       + '<div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'
-      + '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
-      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $'+r.target.toLocaleString()+'</div>'
-      + '<div style="background:rgba(255,94,87,0.15); border:1px solid rgba(255,94,87,0.3); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Consistency: Best Day &lt; '+(r.consistencyPct*100)+'% of Profit ($'+consCap+' cap)</div>'
-      + '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600; margin-left:auto;">Renews '+renewalLabel+'</div>'
+      + '<div class="fr-badge bad">EOD Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
+      + '<div class="fr-badge ok">Profit Target $'+r.target.toLocaleString()+'</div>'
+      + '<div class="fr-badge bad">Consistency: Best Day &lt; '+(r.consistencyPct*100)+'% of Profit ($'+consCap+' cap)</div>'
+      + '<div class="fr-badge warn push">Renews '+renewalLabel+'</div>'
       + '</div>';
     var bsk2Hdr = '<div style="margin-bottom:28px;">'
       + '<div style="font-size:14px; font-weight:600; color:#8a94a3; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.09);">'
       + acct.emoji + ' Challenge Tracker &mdash; ' + acct.name
       + '</div>'
-      + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); color:#33e08a; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>'
+      + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" class="fr-btn-ghost fr-btn-xs">Records</button></div>'
       + phasePills
       + bsk2RuleBadges;
     return bsk2Hdr
@@ -746,17 +772,17 @@ function renderHiddenPanel(acct) {
     var renewalLabel = renewalDt.getDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][renewalDt.getMonth()] + ' ' + renewalDt.getFullYear();
     var tpt2RuleBadges = '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">'
       + '<div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'
-      + '<div style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.25); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">EOD Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
-      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Profit Target $'+r.target.toLocaleString()+'</div>'
-      + '<div style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Min '+r.minDays+' Trading Days</div>'
-      + '<div style="background:rgba(255,94,87,0.15); border:1px solid rgba(255,94,87,0.3); color:#ff5e57; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">Consistency: Best Day &lt; '+(r.consistencyPct*100)+'% of Profit ($'+consCap+' cap)</div>'
-      + '<div style="background:rgba(245,177,61,0.12); border:1px solid rgba(245,177,61,0.25); color:#f5b13d; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600; margin-left:auto;">&#x1F514; Renews '+renewalLabel+'</div>'
+      + '<div class="fr-badge bad">EOD Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
+      + '<div class="fr-badge ok">Profit Target $'+r.target.toLocaleString()+'</div>'
+      + '<div class="fr-badge ok">Min '+r.minDays+' Trading Days</div>'
+      + '<div class="fr-badge bad">Consistency: Best Day &lt; '+(r.consistencyPct*100)+'% of Profit ($'+consCap+' cap)</div>'
+      + '<div class="fr-badge warn push">&#x1F514; Renews '+renewalLabel+'</div>'
       + '</div>';
     var tpt2Hdr = '<div style="margin-bottom:28px;">'
       + '<div style="font-size:14px; font-weight:600; color:#8a94a3; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.09);">'
       + acct.emoji + ' Challenge Account &mdash; ' + acct.name
       + '</div>'
-      + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); color:#33e08a; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button></div>'
+      + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" class="fr-btn-ghost fr-btn-xs">Records</button></div>'
       + tpt2RuleBadges;
     return tpt2Hdr
       + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
@@ -1133,7 +1159,7 @@ loadDaily();
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:14px; padding:24px; width:400px; max-width:95vw; max-height:80vh; overflow-y:auto;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
       <div id="rec-modal-title" style="font-size:14px; font-weight:700; color:#e7ecf2;">Records</div>
-      <button onclick="document.getElementById('rec-modal').style.display='none'" style="background:none; border:none; color:#59626f; font-size:18px; cursor:pointer; line-height:1;">&#215;</button>
+      <button onclick="document.getElementById('rec-modal').style.display='none'" class="fr-x">&#215;</button>
     </div>
     <table style="width:100%; border-collapse:collapse; font-size:13px;">
       <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.09);">
@@ -1151,7 +1177,7 @@ loadDaily();
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:400px; width:92%; max-height:80vh; overflow-y:auto;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
       <div style="font-size:16px; font-weight:700; color:#e7ecf2;">HyperLiquid Trade Records</div>
-      <button onclick="document.getElementById('hl-rec-modal').style.display='none'" style="background:none; border:none; color:#59626f; font-size:20px; cursor:pointer; line-height:1;">&#x2715;</button>
+      <button onclick="document.getElementById('hl-rec-modal').style.display='none'" class="fr-x">&#x2715;</button>
     </div>
     <table style="width:100%; border-collapse:collapse; font-size:13px;">
       <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.16);">
