@@ -74,20 +74,19 @@
   .tab-pane.active { display: block; }
   .back-link {
     margin-left: auto;
-    padding: 8px 18px;
+    padding: 8px 16px;
     font-size: 12px;
-    font-weight: 600;
-    color: #59626f;
+    font-weight: 500;
+    font-family: var(--mono);
+    color: #8a94a3;
     text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.09);
-    border-radius: 8px 8px 0 0;
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 8px;
     background: transparent;
-    position: relative;
-    bottom: -1px;
-    letter-spacing: 0.3px;
-    transition: color 0.2s, border-color 0.2s;
+    letter-spacing: 0.04em;
+    transition: color .16s, border-color .16s, background .16s;
   }
-  .back-link:hover { color: #8a94a3; border-color: #59626f; }
+  .back-link:hover { color: #33e08a; border-color: #33e08a; background: rgba(51,224,138,.06); }
   .footer { text-align: center; padding: 20px; color: rgba(255,255,255,0.09); font-size: 11px; }
   .modal-overlay {
     display: none; position: fixed; inset: 0;
@@ -118,9 +117,10 @@
   .rec-pnl-pos { color: #33e08a; font-weight: 600; }
   .rec-pnl-neg { color: #ff5e57; font-weight: 600; }
   .rec-payout-badge {
-    font-size: 10px; background: rgba(245,177,61,0.15);
-    border: 1px solid rgba(245,177,61,0.3); color: #f5b13d;
-    padding: 2px 8px; border-radius: 4px; margin-left: 8px; font-weight: 700;
+    font-size: 10px; background: rgba(245,177,61,0.12);
+    border: 1px solid rgba(245,177,61,0.32); color: #f5b13d;
+    padding: 2px 8px; border-radius: 4px; margin-left: 8px; font-weight: 500;
+    font-family: var(--mono); letter-spacing: .08em;
   }
 
   :root{
@@ -151,6 +151,22 @@
     font-size:11.5px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--tx-dim); }
   .tab-btn:hover{ color:var(--tx); background:transparent; }
   .tab-btn.active{ background:transparent; color:var(--accent); border:0; border-bottom:2px solid var(--accent); }
+
+  /* FRESH buttons & badges */
+  .fr-btn-ghost{ font-family:var(--mono); font-weight:500; letter-spacing:.04em;
+    display:inline-flex; align-items:center; gap:7px; cursor:pointer;
+    background:transparent; color:var(--tx-mut); border:1px solid var(--line-2);
+    border-radius:8px; padding:9px 16px; font-size:12px; text-decoration:none;
+    transition:border-color .16s,color .16s,background .16s; }
+  .fr-btn-ghost:hover{ border-color:var(--accent); color:var(--accent); background:rgba(51,224,138,.06); }
+  .fr-btn-sm{ padding:8px 16px; font-size:12px; }
+  .fr-btn-xs{ padding:4px 11px; font-size:11px; border-radius:6px; }
+  .fr-badge{ display:inline-flex; align-items:center; gap:6px; font-family:var(--mono);
+    font-size:11px; font-weight:500; letter-spacing:.01em; padding:5px 11px; border-radius:6px;
+    border:1px solid var(--line-2); background:var(--bg-3); color:var(--tx-mut); }
+  .fr-badge.ok{ color:var(--ok); border-color:rgba(51,224,138,.32); background:rgba(51,224,138,.08); }
+  .fr-badge.warn{ color:var(--warn); border-color:rgba(245,177,61,.32); background:rgba(245,177,61,.08); }
+  .fr-badge.bad{ color:var(--bad); border-color:rgba(255,94,87,.32); background:rgba(255,94,87,.08); }
 </style>
 </head>
 <body>
@@ -231,8 +247,8 @@ function renderOverview(d) {
   var rows = d.history.overview.map(function(r) {
     var isPassed = r.status === 'Passed';
     var badge = isPassed
-      ? '<span style="background:rgba(51,224,138,0.12); border:1px solid rgba(51,224,138,0.25); color:#33e08a; padding:3px 12px; border-radius:6px; font-size:11px; font-weight:700;">Passed</span>'
-      : '<span style="background:rgba(255,94,87,0.12); border:1px solid rgba(255,94,87,0.3); color:#ff5e57; padding:3px 12px; border-radius:6px; font-size:11px; font-weight:700;">Failed</span>';
+      ? '<span class="fr-badge ok">Passed</span>'
+      : '<span class="fr-badge bad">Failed</span>';
     return '<tr style="border-bottom:1px solid rgba(255,255,255,0.07);" onmouseover="this.style.background=\'#0e131b\'" onmouseout="this.style.background=\'transparent\'">'
       + '<td style="padding:11px 14px; color:#8a94a3;">' + r.date + '</td>'
       + '<td style="padding:11px 14px; color:#e7ecf2; font-weight:600;">' + r.firm + '</td>'
@@ -267,7 +283,7 @@ function renderDetails(d) {
   };
 
   function ruleBadge(bg, border, color, text) {
-    return '<div style="background:' + bg + '; border:1px solid ' + border + '; color:' + color + '; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;">' + text + '</div>';
+    return '<div style="background:' + bg + '; border:1px solid ' + border + '; color:' + color + '; padding:5px 11px; border-radius:6px; font-size:11px; font-weight:500; font-family:var(--mono); letter-spacing:.01em;">' + text + '</div>';
   }
 
   function buildRules(rules) {
@@ -308,14 +324,14 @@ function renderDetails(d) {
     return '<div style="margin-bottom:28px;">'
       + '<div style="font-size:14px; font-weight:600; color:' + col.text + '; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid ' + col.border + '; display:flex; align-items:center; gap:10px;">'
       + acct.emoji + ' CHALLENGE ACCOUNT &mdash; ' + acct.name
-      + '<span style="background:' + col.badgeBg + '; border:1px solid ' + col.badgeBorder + '; color:' + col.text + '; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:700; letter-spacing:0.5px;">' + acct.status.toUpperCase() + '</span>'
+      + '<span style="background:' + col.badgeBg + '; border:1px solid ' + col.badgeBorder + '; color:' + col.text + '; padding:3px 10px; border-radius:6px; font-size:10px; font-weight:600; font-family:var(--mono); letter-spacing:.1em;">' + acct.status.toUpperCase() + '</span>'
       + '</div>'
       + '<div style="background:' + col.descBg + '; border:1px solid ' + col.descBorder + '; border-radius:8px; padding:12px 16px; margin-bottom:14px; font-size:13px; color:' + col.text + '; line-height:1.6;">'
       + prefix + ' <strong>' + acct.description + '</strong>'
       + '</div>'
       + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono); letter-spacing:0.3px;">' + acct.accountNumber + '</span>'
       + ' &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">' + started + '</span>'
-      + ' &nbsp;&middot;&nbsp; <button onclick="showRecords(window._data.archivedAccounts[' + acctIdx + '])" style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); color:#33e08a; padding:3px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Records</button>'
+      + ' &nbsp;&middot;&nbsp; <button onclick="showRecords(window._data.archivedAccounts[' + acctIdx + '])" class="fr-btn-ghost fr-btn-xs">Records</button>'
       + '</div>'
       + '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;"><div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>' + buildRules(acct.rules) + '</div>'
       + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
