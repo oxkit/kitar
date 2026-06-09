@@ -329,39 +329,54 @@
   /* pocket / telegram */
   .pocket-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:48px;align-items:start;}
   @media(max-width:920px){.pocket-grid{grid-template-columns:1fr;gap:36px;}}
-  .phone{position:relative;margin:0 auto;width:268px;max-width:100%;border-radius:30px;
-    border:1px solid var(--line-2);background:var(--bg-2);padding:12px;
-    box-shadow:0 30px 80px -40px #000,inset 0 0 0 1px rgba(255,255,255,.02);}
-  .phone-notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);z-index:3;
-    width:90px;height:5px;border-radius:3px;background:var(--bg-3);}
-  .phone-screen{border-radius:20px;background:var(--bg);border:1px solid var(--line);
-    overflow:hidden;}
-  .tg-top{display:flex;align-items:center;gap:10px;padding:14px 14px;border-bottom:1px solid var(--line);
-    background:var(--bg-2);}
-  .tg-ava{width:30px;height:30px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;
-    background:color-mix(in srgb,var(--accent) 16%,var(--bg-3));border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);}
-  .tg-ava .glyph{position:relative;width:13px;height:13px;}
-  .tg-ava .glyph::before{content:"";position:absolute;inset:0;border:1.5px solid var(--accent);
-    border-radius:3px;transform:rotate(45deg);}
-  .tg-name{font-family:var(--mono);font-size:12px;color:var(--tx);letter-spacing:.02em;line-height:1.2;}
-  .tg-name span{display:block;font-size:10px;color:var(--ok);letter-spacing:.04em;margin-top:2px;
-    display:flex;align-items:center;gap:5px;}
-  .tg-feed{padding:14px 12px;display:flex;flex-direction:column;gap:9px;min-height:300px;}
-  .tg-msg{align-self:flex-start;max-width:90%;background:var(--bg-3);border:1px solid var(--line);
-    border-radius:11px 11px 11px 3px;padding:9px 11px;font-family:var(--mono);font-size:11px;
-    line-height:1.45;color:var(--tx);}
-  .tg-msg .lbl{display:flex;align-items:center;gap:6px;font-size:9.5px;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--tx-dim);margin-bottom:5px;}
-  .tg-msg.ok .lbl{color:var(--ok);}
-  .tg-msg.warn{border-color:color-mix(in srgb,var(--warn) 45%,transparent);
-    background:color-mix(in srgb,var(--warn) 8%,var(--bg-3));}
-  .tg-msg.warn .lbl{color:var(--warn);}
-  .tg-msg .v{color:var(--tx-mut);}
-  .tg-msg .file{display:flex;align-items:center;gap:8px;margin-top:6px;padding-top:6px;
-    border-top:1px solid var(--line);color:var(--accent);}
-  .tg-msg .ts{color:var(--tx-dim);font-size:9px;margin-top:5px;display:block;text-align:right;}
-  .tg-time{align-self:center;font-family:var(--mono);font-size:9px;color:var(--tx-dim);
-    letter-spacing:.08em;text-transform:uppercase;}
+  .phone{position:relative;margin:0 auto;width:300px;max-width:100%;border-radius:42px;
+    border:11px solid #0c0f14;background:#0c0f14;padding:0;overflow:hidden;
+    box-shadow:0 40px 100px -34px #000,0 0 0 1px rgba(255,255,255,.05),inset 0 1px 0 rgba(255,255,255,.04);}
+  .phone-screen{position:relative;border-radius:31px;background:#0e1621;overflow:hidden;}
+  .ios-bar{display:flex;align-items:center;justify-content:space-between;padding:9px 24px 4px;
+    background:#17212b;font-family:var(--sans);font-size:13px;font-weight:600;color:#fff;}
+  .ios-bar .ico-row{display:flex;align-items:center;gap:5px;}
+  .ios-bar svg{display:block;}
+  .tg-top{display:flex;align-items:center;gap:11px;padding:7px 12px 9px;background:#17212b;
+    border-bottom:1px solid rgba(255,255,255,.04);}
+  .tg-back{display:flex;align-items:center;gap:5px;color:#62a0dc;font-family:var(--sans);font-size:14px;flex:0 0 auto;}
+  .tg-back .cnt{background:#62a0dc;color:#17212b;font-size:11px;font-weight:700;border-radius:50%;
+    width:19px;height:19px;display:grid;place-items:center;}
+  .tg-title{flex:1;text-align:center;line-height:1.15;}
+  .tg-title b{font-size:15px;color:#fff;font-weight:600;letter-spacing:.01em;}
+  .tg-title span{display:block;font-size:11px;color:#7d8e9e;margin-top:1px;}
+  .tg-ava{width:33px;height:33px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;
+    background:color-mix(in srgb,var(--accent) 18%,#0e1621);border:1px solid color-mix(in srgb,var(--accent) 50%,transparent);}
+  .tg-ava .glyph{position:relative;width:14px;height:14px;}
+  .tg-ava .glyph::before{content:"";position:absolute;inset:0;border:1.6px solid var(--accent);border-radius:3px;transform:rotate(45deg);}
+  .tg-feed{padding:13px 11px 10px;display:flex;flex-direction:column;gap:7px;min-height:430px;
+    background-color:#0e1621;
+    background-image:radial-gradient(circle at 18% 12%,rgba(255,255,255,.022) 0 9px,transparent 10px),
+      radial-gradient(circle at 78% 22%,rgba(255,255,255,.02) 0 7px,transparent 8px),
+      radial-gradient(circle at 42% 38%,rgba(255,255,255,.018) 0 11px,transparent 12px),
+      radial-gradient(circle at 88% 56%,rgba(255,255,255,.02) 0 8px,transparent 9px),
+      radial-gradient(circle at 24% 64%,rgba(255,255,255,.018) 0 10px,transparent 11px),
+      radial-gradient(circle at 64% 82%,rgba(255,255,255,.02) 0 7px,transparent 8px),
+      radial-gradient(circle at 12% 90%,rgba(255,255,255,.016) 0 9px,transparent 10px);
+    background-size:240px 240px;}
+  .tg-date{align-self:center;background:rgba(0,0,0,.4);color:#cdd6df;font-family:var(--sans);
+    font-size:11px;font-weight:500;padding:3px 12px;border-radius:12px;margin:3px 0;}
+  .tg-msg{align-self:flex-start;max-width:88%;background:#1c2733;border-radius:13px 13px 13px 5px;
+    padding:8px 11px 6px;font-family:var(--sans);font-size:13px;line-height:1.34;color:#e9edf0;
+    box-shadow:0 1px 1px rgba(0,0,0,.18);}
+  .tg-msg .h{font-weight:700;font-size:13.5px;color:#fff;line-height:1.3;}
+  .tg-msg .h .em{margin-right:6px;}
+  .tg-msg .h .pl{font-weight:500;color:#8aa0b3;font-size:12.5px;}
+  .tg-msg .d{font-family:var(--mono);font-size:11.5px;color:#aab8c5;margin-top:3px;letter-spacing:-.01em;}
+  .tg-msg .d b{color:#e9edf0;font-weight:600;}
+  .tg-msg .d .pos{color:#5fd38d;font-weight:600;} .tg-msg .d .neg{color:#ff6b6b;font-weight:600;}
+  .tg-msg .chk{color:#5fd38d;}
+  .tg-msg .t{font-size:10px;color:#5d6d7b;text-align:right;margin-top:1px;}
+  .tg-input{display:flex;align-items:center;gap:9px;padding:9px 11px;background:#17212b;border-top:1px solid rgba(255,255,255,.04);}
+  .tg-menu{background:#3390ec;color:#fff;border-radius:17px;padding:7px 13px;font-family:var(--sans);
+    font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:6px;flex:0 0 auto;}
+  .tg-field{flex:1;color:#5d6d7b;font-family:var(--sans);font-size:13.5px;}
+  .tg-input .mic{color:#62a0dc;flex:0 0 auto;}
   .pocket-cards{display:flex;flex-direction:column;gap:14px;}
   .pcard{padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--bg-2);
     display:flex;gap:18px;align-items:flex-start;transition:border-color .25s,transform .25s;}
@@ -908,37 +923,54 @@
             <div className="pocket-grid">
               <div className="reveal">
                 <div className="phone">
-                  <div className="phone-notch"></div>
                   <div className="phone-screen">
-                    <div className="tg-top">
-                      <span className="tg-ava"><span className="glyph"></span></span>
-                      <span className="tg-name">FRESH · ops bot
-                        <span><span className="sdot ok live"></span>online · linked</span>
+                    <div className="ios-bar">
+                      <span>13:38</span>
+                      <span className="ico-row">
+                        <svg width="17" height="11" viewBox="0 0 17 11" fill="#fff"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
+                        <span style={{fontSize:'11px',fontWeight:700}}>5G</span>
+                        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="1" y="1" width="20" height="10" rx="2.5" stroke="#fff" strokeOpacity="0.5"/><rect x="2.5" y="2.5" width="13" height="7" rx="1" fill="#fff"/><rect x="22" y="4" width="1.6" height="4" rx="0.8" fill="#fff" fillOpacity="0.5"/></svg>
                       </span>
                     </div>
+                    <div className="tg-top">
+                      <span className="tg-back"><span style={{fontSize:'20px',lineHeight:1}}>‹</span><span className="cnt">6</span></span>
+                      <span className="tg-title"><b>FRESH</b><span>bot</span></span>
+                      <span className="tg-ava"><span className="glyph"></span></span>
+                    </div>
                     <div className="tg-feed">
-                      <span className="tg-time">today · 14:31</span>
-                      <div className="tg-msg ok">
-                        <span className="lbl"><span className="sdot ok"></span>entry filled</span>
-                        ES · long · 2 cts @ 5418.25
-                        <span className="ts">14:31:30</span>
+                      <div className="tg-msg">
+                        <div className="h"><span className="em">✅</span>ENTRY FILLED<span className="pl">— Plan 1 LONG</span></div>
+                        <div className="d">Fill: <b>7,471.00</b>  |  Qty: 1</div>
+                        <div className="d">Bracket: attached <span className="chk">✓</span></div>
+                        <div className="t">21:22</div>
                       </div>
-                      <div className="tg-msg ok">
-                        <span className="lbl"><span className="sdot ok"></span>breakeven set</span>
-                        <span className="v">stop → 5418.25 · risk off</span>
-                        <span className="ts">14:33:02</span>
+                      <div className="tg-msg">
+                        <div className="h"><span className="em">🔴</span>STOPPED OUT<span className="pl">— Plan 1 LONG</span></div>
+                        <div className="d">Stop: <b>7,464.75</b>  |  <span className="neg">−6.25 pts (−25 ticks)</span></div>
+                        <div className="t">21:25</div>
                       </div>
-                      <div className="tg-msg warn">
-                        <span className="lbl"><span className="sdot warn"></span>kill switch · armed</span>
-                        <span className="v">copy dispatch halted by you</span>
-                        <span className="ts">14:46:18</span>
+                      <span className="tg-date">Today</span>
+                      <div className="tg-msg">
+                        <div className="h"><span className="em">🔔</span>PLAN FIRED<span className="pl">— Plan 1 LONG</span></div>
+                        <div className="d">Symbol: MESM6  |  Qty: 1</div>
+                        <div className="d">Intent px: <b>7,437.50</b></div>
+                        <div className="t">01:29</div>
                       </div>
-                      <div className="tg-msg ok">
-                        <span className="lbl"><span className="sdot ok"></span>daily packet</span>
-                        <span className="v">session evidence ready</span>
-                        <span className="file mono"><span className="sdot ok"></span>fresh_2026-06-05.pdf</span>
-                        <span className="ts">16:10:00</span>
+                      <div className="tg-msg">
+                        <div className="h"><span className="em">🔵</span>BREAKEVEN SET<span className="pl">— Plan 1 LONG</span></div>
+                        <div className="d">Stop moved to: <b>7,437.75</b> (entry)</div>
+                        <div className="t">01:29</div>
                       </div>
+                      <div className="tg-msg">
+                        <div className="h"><span className="em">🎯</span>TARGET FILLED<span className="pl">— Plan 1 LONG</span></div>
+                        <div className="d">Exit: <b>7,441.50</b>  |  <span className="pos">+4.00 pts (+16 ticks)</span></div>
+                        <div className="t">01:29</div>
+                      </div>
+                    </div>
+                    <div className="tg-input">
+                      <span className="tg-menu">☰ Menu</span>
+                      <span className="tg-field">Message</span>
+                      <span className="mic">🎤</span>
                     </div>
                   </div>
                 </div>
