@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FRESH — The operations layer your strategy deserves</title>
+<title>FRESH - Futures Research, Execution &amp; Strategy Hub</title>
+<link rel="icon" type="image/png" href="fresh/assets/fresh-glyph-v2.png" />
 <meta name="description" content="FRESH — a local trading operations platform. Wires your MotiveWave strategy into NinjaTrader, TopStepX and HyperLiquid, safely. It does not pick your trades." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -120,13 +121,11 @@
     border-bottom:1px solid transparent;}
   .nav.scrolled{background:rgba(6,8,11,.82);-webkit-backdrop-filter:blur(14px);
     backdrop-filter:blur(14px);border-bottom-color:var(--line);padding:11px 32px;}
-  .wordmark{display:flex;align-items:center;gap:11px;font-family:var(--mono);
-    font-weight:600;font-size:15px;letter-spacing:.18em;}
-  .wordmark .glyph{position:relative;width:22px;height:22px;display:grid;place-items:center;}
-  .wordmark .glyph::before{content:"";position:absolute;inset:0;border:1.5px solid var(--accent);
-    border-radius:5px;transform:rotate(45deg);}
-  .wordmark .glyph i{width:6px;height:6px;border-radius:50%;background:var(--accent);
-    box-shadow:0 0 8px var(--accent);font-style:normal;}
+  .wordmark{display:flex;align-items:center;gap:11px;}
+  .wordmark .wm-glyph{width:30px;height:30px;flex:0 0 auto;border-radius:7px;display:block;}
+  .wordmark .wm-text{height:17px;width:auto;display:block;}
+  .nav.scrolled .wordmark .wm-glyph{width:27px;height:27px;}
+  .nav.scrolled .wordmark .wm-text{height:16px;}
   .nav-right{display:flex;align-items:center;gap:22px;}
   .nav-stat{display:none;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;
     color:var(--tx-mut);letter-spacing:.04em;}
@@ -134,6 +133,12 @@
   .nav-link{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--tx-mut);
     transition:color .15s;}
   .nav-link:hover{color:var(--tx);}
+  @media(max-width:560px){
+    .nav{padding:13px 18px;}
+    .nav.scrolled{padding:10px 18px;}
+    .nav-right{gap:14px;}
+    .nav-link{display:none;}
+  }
 
   /* SIGNAL TICKER */
   .ticker{position:relative;overflow:hidden;border-top:1px solid var(--line);
@@ -239,6 +244,7 @@
   .hero-meta span{display:flex;align-items:center;gap:8px;}
   .hero-split{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
   @media(max-width:920px){.hero-split{grid-template-columns:1fr;gap:40px;}}
+  @media(max-width:600px){.hero-cta{gap:10px;width:100%;}.hero-cta .btn{width:100%;justify-content:center;}}
   .board{font-family:var(--mono);}
   .board-top{display:flex;align-items:center;justify-content:space-between;
     padding:13px 16px;border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;
@@ -366,6 +372,44 @@
   .pcard h3{font-size:18px;letter-spacing:-.015em;line-height:1.15;}
   .pcard p{color:var(--tx-mut);font-size:14.5px;line-height:1.55;margin-top:7px;}
 
+  /* product showcase */
+  .showcase{position:relative;}
+  .showcase .frame-glow{position:absolute;left:50%;top:18%;transform:translateX(-50%);width:80%;height:70%;z-index:0;
+    background:radial-gradient(ellipse at center,color-mix(in srgb,var(--accent) 13%,transparent),transparent 65%);filter:blur(10px);pointer-events:none;}
+  .app-frame{position:relative;z-index:1;border:1px solid var(--line-2);border-radius:14px;overflow:hidden;
+    background:var(--bg-2);box-shadow:0 40px 120px -40px rgba(0,0,0,.8),0 0 0 1px var(--line);}
+  .app-bar{display:flex;align-items:center;gap:13px;padding:11px 16px;background:var(--bg-3);border-bottom:1px solid var(--line);}
+  .app-dots{display:flex;gap:7px;}
+  .app-dots i{width:11px;height:11px;border-radius:50%;display:block;}
+  .bro-url{flex:1;display:flex;align-items:center;gap:9px;justify-content:center;max-width:340px;margin:0 auto;
+    font-family:var(--mono);font-size:11.5px;color:var(--tx-mut);background:var(--bg);border:1px solid var(--line);
+    border-radius:7px;padding:6px 14px;letter-spacing:.01em;}
+  .bro-url .lock{color:var(--ok);font-size:10px;}
+  .bro-url b{color:var(--tx);font-weight:500;}
+  .app-bar .right{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--tx-dim);display:flex;align-items:center;gap:7px;}
+  .app-bar .live-tag{color:var(--ok);}
+  .app-shot{display:block;width:100%;height:auto;}
+  .shot-scroll{display:block;width:100%;}
+  .shot-scroll .app-shot{width:100%;}
+  .showcase-caps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;position:relative;z-index:1;}
+  @media(max-width:760px){.showcase-caps{grid-template-columns:1fr;}}
+  .scap{padding:15px 17px;border:1px solid var(--line);border-radius:11px;background:var(--bg-2);}
+  .scap .n{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.08em;display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+  .scap .t{font-size:14.5px;font-weight:600;letter-spacing:-.01em;}
+  .scap .d{font-family:var(--mono);font-size:12px;color:var(--tx-mut);margin-top:4px;line-height:1.5;}
+  .showcase-second{display:grid;grid-template-columns:.9fr 1.1fr;gap:32px;align-items:center;margin-top:34px;position:relative;z-index:1;}
+  @media(max-width:860px){.showcase-second{grid-template-columns:1fr;gap:22px;}}
+  .showcase-second .ss-copy .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--tx-dim);display:flex;align-items:center;gap:9px;margin-bottom:13px;}
+  .showcase-second .ss-copy h3{font-size:21px;letter-spacing:-.02em;line-height:1.12;}
+  .showcase-second .ss-copy p{margin-top:12px;font-size:15px;color:var(--tx-mut);line-height:1.6;}
+  @media(max-width:760px){
+    .shot-scroll.wide{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;}
+    .shot-scroll.wide .app-shot{width:680px;min-width:680px;max-width:none;}
+    .shot-scroll.wide::-webkit-scrollbar{height:6px;}
+    .shot-scroll.wide::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:6px;}
+    .shot-scroll.wide::-webkit-scrollbar-track{background:var(--bg-3);}
+  }
+
   .cta{position:relative;border-top:1px solid var(--line);padding:120px 0 90px;overflow:hidden;}
   .cta-glow{position:absolute;bottom:-220px;left:50%;transform:translateX(-50%);width:1000px;height:480px;
     background:radial-gradient(ellipse at center,color-mix(in srgb,var(--accent) 14%,transparent),transparent 64%);
@@ -386,6 +430,12 @@
   .cta-msg.err{color:var(--bad);}
   .cta-msg.ok{color:var(--ok);}
   .cta-fine{margin-top:30px;font-family:var(--mono);font-size:12px;color:var(--tx-dim);letter-spacing:.04em;}
+  .cta-actions{margin:38px auto 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .cta-actions .btn{padding:15px 24px;font-size:14px;}
+  .x-btn{display:inline-flex;align-items:center;gap:10px;}
+  .x-glyph{display:inline-grid;place-items:center;width:20px;height:20px;border:1px solid currentColor;
+    border-radius:5px;font-weight:700;font-size:12px;line-height:1;font-family:var(--sans);}
+  @media(max-width:560px){.cta-actions{flex-direction:column;}.cta-actions .btn{width:100%;justify-content:center;}}
 
   .foot{border-top:1px solid var(--line);padding:40px 0;}
   .foot .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
@@ -422,8 +472,8 @@
     function Wordmark(){
       return (
         <a className="wordmark" href="#top" aria-label="FRESH home">
-          <span className="glyph"><i></i></span>
-          <span>FRESH</span>
+          <img className="wm-glyph" src="fresh/assets/fresh-glyph-v2.png" alt="" />
+          <img className="wm-text" src="fresh/assets/fresh-wordmark.png" alt="FRESH" />
         </a>
       );
     }
@@ -440,9 +490,7 @@
           <Wordmark/>
           <div className="nav-right">
             <span className="nav-stat"><span className="sdot ok live"></span>local · 4 venues linked</span>
-            <a className="nav-link" href="#how">How it works</a>
-            <a className="nav-link" href="#safety">Safety</a>
-            <button className="btn is-soon" style={{padding:'10px 16px'}} disabled title="Early access opening soon"><span className="soon-dot"></span>Access — soon</button>
+            <a className="btn btn-primary" style={{padding:'10px 16px'}} href="https://app.kitar.co/">Live Terminal →</a>
           </div>
         </nav>
       );
@@ -638,7 +686,7 @@
     function HeroCTAs(){
       return (
         <div className="hero-cta">
-          <button className="btn is-soon" disabled title="Early access opening soon"><span className="soon-dot"></span>Early access — opening soon</button>
+          <a className="btn btn-primary" href="https://app.kitar.co/">Open Live Terminal →</a>
           <a className="btn btn-ghost" href="#how">See the architecture</a>
         </div>
       );
@@ -746,6 +794,72 @@
             <SHead eyebrow="What FRESH does" title="One control plane, from strategy state to every venue."
               lead="MotiveWave fires. FRESH takes it from there — three hubs that track state, build evidence, and route execution safely across four venues."/>
             <div className="reveal"><ArchFlow/></div>
+          </div>
+        </section>
+      );
+    }
+
+    function ShowcaseSection(){
+      const ref=useReveal();
+      return (
+        <section className="sec" id="live" ref={ref}>
+          <div className="wrap">
+            <SHead eyebrow="Live on the desk" title="One system, the surfaces you actually use."
+              lead="Not a mockup. Build plans with real depth in MotiveWave, watch them run on your chart, and monitor — or stop — everything from the FRESH terminal at app.kitar.co."/>
+            <div className="showcase reveal">
+              <div className="frame-glow"></div>
+              <div className="app-frame">
+                <div className="app-bar">
+                  <span className="app-dots"><i style={{background:'#ff5f57'}}></i><i style={{background:'#febc2e'}}></i><i style={{background:'#28c840'}}></i></span>
+                  <span className="bro-url"><span className="lock">⬢</span>app.kitar.co<b>/overview</b></span>
+                  <span className="right"><span className="live-tag">●</span>live</span>
+                </div>
+                <div className="shot-scroll wide"><img className="app-shot" src="fresh/assets/fresh-terminal.png" alt="FRESH terminal command-center overview — persistent vitals bar, performance scoreboard, and a needs-attention triage list"/></div>
+              </div>
+              <div className="showcase-caps">
+                <div className="scap"><div className="n"><span className="sdot ok live"></span>command center</div>
+                  <div className="t">Triage, not a data dump</div>
+                  <div className="d">System posture up top; blocked copy and reconciliation surface as action items.</div></div>
+                <div className="scap"><div className="n"><span className="sdot ok"></span>live vitals, every view</div>
+                  <div className="t">P&amp;L, venues, packet — at a glance</div>
+                  <div className="d">A persistent bar keeps today's ticks, venue health and copy state always on screen.</div></div>
+                <div className="scap"><div className="n"><span className="sdot warn"></span>kill switch, one tap</div>
+                  <div className="t">Stop everything, instantly</div>
+                  <div className="d">Halt copy across every venue from the terminal — or from Telegram in your pocket.</div></div>
+              </div>
+
+              <div className="showcase-second">
+                <div className="ss-copy">
+                  <div className="lab"><span className="sdot ok"></span>where the edge is defined</div>
+                  <h3>Plans with real depth — no black box.</h3>
+                  <p>Each plan slot is fully specified: direction, up to six gated conditions, plan-wide market &amp; time gates, stop and breakeven logic, and T1/T2/T3 targets. You see — and own — exactly why a trade fires.</p>
+                </div>
+                <div className="app-frame">
+                  <div className="app-bar">
+                    <span className="app-dots"><i style={{background:'#ff5f57'}}></i><i style={{background:'#febc2e'}}></i><i style={{background:'#28c840'}}></i></span>
+                    <span className="app-title" style={{fontFamily:'var(--mono)',fontSize:12,color:'var(--tx-mut)',margin:'0 auto'}}>FRESH MW Strategy — Plan 7</span>
+                    <span className="right">MotiveWave</span>
+                  </div>
+                  <img className="app-shot" src="fresh/assets/fresh-plan.png" alt="FRESH MW Strategy Plan 7 configuration — conditions, plan gates, stop and targets"/>
+                </div>
+              </div>
+
+              <div className="showcase-second" style={{gridTemplateColumns:'1.1fr .9fr'}}>
+                <div className="app-frame">
+                  <div className="app-bar">
+                    <span className="app-dots"><i style={{background:'#ff5f57'}}></i><i style={{background:'#febc2e'}}></i><i style={{background:'#28c840'}}></i></span>
+                    <span className="app-title" style={{fontFamily:'var(--mono)',fontSize:12,color:'var(--tx-mut)',margin:'0 auto'}}>ESM6 — Vol(1.5K)<span className="live-tag" style={{marginLeft:9}}>●&nbsp;feed live</span></span>
+                    <span className="right">MotiveWave</span>
+                  </div>
+                  <div className="shot-scroll wide"><img className="app-shot" src="fresh/assets/fresh-chart.png" alt="FRESH MW Strategy panel overlaid on a live ESM6 chart, showing 12 plan slots with per-plan net ticks and pause controls"/></div>
+                </div>
+                <div className="ss-copy">
+                  <div className="lab"><span className="sdot ok live"></span>where it runs</div>
+                  <h3>The panel lives on your chart.</h3>
+                  <p>Every plan slot, its entry/exit direction, live per-plan net ticks, and pause-longs / pause-shorts controls — overlaid right on the MotiveWave chart, in sync with the terminal.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       );
@@ -921,18 +1035,16 @@
         <section className="cta" id="apply">
           <div className="cta-glow"></div>
           <div className="wrap">
-            <div className="kicker reveal" style={{justifyContent:'center',marginBottom:22}}><span className="dot"></span>Early access</div>
-            <h2 className="reveal">FRESH is for serious systematic traders.</h2>
-            <p className="cta-sub reveal">Selective by design — kitar takes implementation seriously, and limited access keeps support real. <b style={{color:'var(--warn)'}}>Applications aren't open yet.</b></p>
-            <form className="cta-form reveal" onSubmit={(e)=>e.preventDefault()} noValidate aria-disabled="true">
-              <input
-                type="email" inputMode="email" placeholder="early access opening soon"
-                disabled
-                aria-label="Email address (applications closed)"/>
-              <button className="btn is-soon" type="button" disabled><span className="soon-dot"></span>Opening soon</button>
-            </form>
-            <div className="cta-msg" style={{color:'var(--tx-dim)'}}>→ waitlist isn't live yet — check back shortly.</div>
-            <div className="cta-fine reveal">no guaranteed returns · not a trading bot · runs on your machine</div>
+            <div className="kicker reveal" style={{justifyContent:'center',marginBottom:22}}><span className="dot"></span>Live now</div>
+            <h2 className="reveal">The FRESH terminal is live.</h2>
+            <p className="cta-sub reveal">Built for serious systematic traders running MotiveWave across NinjaTrader, TopStepX and HyperLiquid. Open the live command center — or reach out directly.</p>
+            <div className="cta-actions reveal">
+              <a className="btn btn-primary" href="https://app.kitar.co/">Open Live Terminal →</a>
+              <a className="btn btn-ghost x-btn" href="https://x.com/oxkitng" target="_blank" rel="noopener">
+                <span className="x-glyph">X</span>@oxkitng
+              </a>
+            </div>
+            <div className="cta-fine reveal">enquiries via X DM · no guaranteed returns · not a trading bot · runs on your machine</div>
           </div>
         </section>
       );
@@ -966,6 +1078,7 @@
             <Hero motion={motion}/>
             <HooksSection/>
             <HowSection/>
+            <ShowcaseSection/>
             <SafetySection motion={motion}/>
             <PocketSection/>
             <ResearchSection motion={motion}/>
