@@ -3,6 +3,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>kitaR by oxkit</title>
+<link rel="icon" type="image/png" href="fresh/assets/fresh-glyph-v2.png">
+<link rel="apple-touch-icon" href="fresh/assets/fresh-glyph-v2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -132,6 +134,7 @@
   .kr-glyph{ position:relative; width:26px; height:26px; display:inline-grid; place-items:center; flex:0 0 auto; }
   .kr-glyph::before{ content:""; position:absolute; inset:0; border:1.5px solid var(--accent); border-radius:6px; transform:rotate(45deg); }
   .kr-glyph i{ width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent); font-style:normal; animation:fr-pulse 1.8s ease-in-out infinite; }
+  .kr-logo{ width:34px; height:34px; flex:0 0 auto; border-radius:8px; display:block; }
   /* scroll reveal */
   .reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.3,1); }
   .reveal.in{ opacity:1; transform:none; }
@@ -143,7 +146,7 @@
 <div class="header" style="display:flex; align-items:center; justify-content:space-between;">
   <div>
     <div style="display:flex; align-items:center; gap:13px;">
-      <span class="kr-glyph"><i></i></span>
+      <img class="kr-logo" src="fresh/assets/fresh-glyph-v2.png" alt="kitaR logo">
       <h1 style="margin:0; font-size:26px; font-weight:700; letter-spacing:-0.5px;">kita<em style="font-style:italic;">R</em></h1>
     </div>
     <div style="margin-top:10px; max-width:560px; line-height:1.65; color:#59626f; font-size:12px;">
@@ -362,7 +365,7 @@
 
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 5 Jun 2026 · 10:18 PM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 9 Jun 2026 · 03:55 AM EST</div>
 
 <div div id="fee-modal-topstep" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
