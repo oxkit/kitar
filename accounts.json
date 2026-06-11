@@ -2,11 +2,11 @@
   "meta": {
     "lastUpdated": "20 May 2026",
     "summaryCards": {
-      "totalPayoutsReceived": 95550.13,
+      "totalPayoutsReceived": 96865.76,
       "totalFeesPaid": 20638.3,
-      "netPropFirmPnL": 74911.83,
-      "personalLivePnL": -2587.77,
-      "overallNetPnL": 72323.06
+      "netPropFirmPnL": 76227.46,
+      "personalLivePnL": 0,
+      "overallNetPnL": 76227.46
     }
   },
   "stats": {
@@ -73,7 +73,7 @@
       16546.65,
       5105.0,
       3750.0,
-      900.0,
+      2215.63,
       0
     ],
     "netMonthly": [
@@ -95,7 +95,7 @@
       15434.15,
       4767.0,
       3377.0,
-      651.0,
+      1966.63,
       -99.0
     ],
     "netMonthlyColors": [
@@ -154,7 +154,7 @@
     },
     {
       "name": "Lucid",
-      "payouts": 2352.05,
+      "payouts": 3667.68,
       "costs": 436.5,
       "feeModal": null
     },
@@ -281,6 +281,10 @@
         {
           "date": "2026-05-20",
           "pnl": -377.3
+        },
+        {
+          "date": "2026-05-27",
+          "pnl": -123.07
         }
       ]
     },
@@ -316,6 +320,10 @@
         {
           "date": "2026-05-20",
           "pnl": -404.8
+        },
+        {
+          "date": "2026-05-27",
+          "pnl": -176.85
         }
       ]
     },
@@ -337,7 +345,7 @@
         "qdMinProfit": 250,
         "payoutOrderTarget": 5
       },
-      "balance": 152474,
+      "balance": 151206.62,
       "peak": 153362,
       "bestDay": 1772.75,
       "records": [
@@ -408,6 +416,23 @@
         {
           "date": "2026-05-20",
           "pnl": -412.5
+        },
+        {
+          "date": "2026-05-27",
+          "pnl": 250.0
+        },
+        {
+          "date": "2026-05-28",
+          "pnl": -93.0
+        },
+        {
+          "date": "2026-05-29",
+          "pnl": -1427.0,
+          "payout": true
+        },
+        {
+          "date": "2026-06-10",
+          "pnl": 2.62
         }
       ]
     },
@@ -427,7 +452,7 @@
         "ddType": "intraday",
         "buffer": 1500
       },
-      "balance": 25041.5,
+      "balance": 24903.75,
       "peak": 25427.5,
       "bestDay": 267.5,
       "records": [
@@ -470,6 +495,10 @@
         {
           "date": "2026-05-20",
           "pnl": -197.5
+        },
+        {
+          "date": "2026-05-27",
+          "pnl": -137.75
         }
       ]
     },
@@ -500,22 +529,9 @@
   "personalLive": {
     "id": "hl",
     "name": "HyperLiquid",
-    "seedBalance": 5000.0,
-    "deposits": 5000.0,
-    "records": [
-      {
-        "date": "2026-03-23",
-        "net": 39.26
-      },
-      {
-        "date": "2026-04-08",
-        "net": 20.18
-      },
-      {
-        "date": "2026-05-09",
-        "net": -1351.12
-      }
-    ]
+    "seedBalance": 1000.0,
+    "deposits": 1000.0,
+    "records": []
   },
   "archivedAccounts": [
     {
@@ -886,9 +902,14 @@
         "status": "Passed"
       }
     ],
-    "payoutsTotal": 69,
-    "payoutsGrandTotal": 95550.13,
+    "payoutsTotal": 70,
+    "payoutsGrandTotal": 96865.76,
     "payouts": [
+      {
+        "date": "29/5/26",
+        "firm": "Lucid",
+        "amount": 1315.63
+      },
       {
         "date": "11/5/26",
         "firm": "TopStep",
