@@ -144,13 +144,37 @@
       "name": "TopStep",
       "payouts": 11044.0,
       "costs": 3051.15,
-      "feeModal": "topstep"
+      "feeModal": "topstep",
+      "feeRecords": [
+        {
+          "date": "2026-04-09",
+          "accountNumber": "50KTC-V2-45281-25364619",
+          "amount": 83.0
+        }
+      ]
     },
     {
       "name": "Blusky",
       "payouts": 7952.9,
       "costs": 1082.5,
-      "feeModal": "blusky"
+      "feeModal": "blusky",
+      "feeRecords": [
+        {
+          "date": "2026-04-08",
+          "accountNumber": "BSKEPREMIUMYEE12937",
+          "amount": 99.0
+        },
+        {
+          "date": "2026-05-08",
+          "accountNumber": "BSKEPROPELYEE11499",
+          "amount": 99.0
+        },
+        {
+          "date": "2026-06-06",
+          "accountNumber": "BSKEPROPELYEE11499",
+          "amount": 99.0
+        }
+      ]
     },
     {
       "name": "Lucid",
@@ -180,7 +204,29 @@
       "name": "TPT",
       "payouts": 0.0,
       "costs": 911.0,
-      "feeModal": "tpt"
+      "feeModal": "tpt",
+      "feeRecords": [
+        {
+          "date": "2026-05-17",
+          "accountNumber": "TAKEPROFIT795495708",
+          "amount": 75.0
+        },
+        {
+          "date": "2026-05-17",
+          "accountNumber": "TAKEPROFIT567959509",
+          "amount": 75.0
+        },
+        {
+          "date": "2026-04-21",
+          "accountNumber": "TPT4670917",
+          "amount": 102.0
+        },
+        {
+          "date": "2026-03-24",
+          "accountNumber": "TPT2658347",
+          "amount": 90.0
+        }
+      ]
     },
     {
       "name": "TFT",
