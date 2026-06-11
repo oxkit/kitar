@@ -365,7 +365,7 @@
 
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 11 Jun 2026 · 01:21 AM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 11 Jun 2026 · 01:44 AM EST</div>
 
 <div div id="fee-modal-topstep" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
@@ -379,9 +379,7 @@
         <th style="text-align:left; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Account Number</th>
         <th style="text-align:right; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
       </tr></thead>
-      <tbody>
-        <tr><td style="padding:9px 10px; color:#8a94a3;">9/4/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">50KTC-V2-45281-25364619</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$83.00</td></tr>
-      </tbody>
+      <tbody id="fee-modal-topstep-body"></tbody>
     </table></div>
   </div>
 </div>
@@ -398,10 +396,7 @@
         <th style="text-align:left; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Account Number</th>
         <th style="text-align:right; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
       </tr></thead>
-      <tbody>
-        <tr><td style="padding:9px 10px; color:#8a94a3;">8/4/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">BSKEPREMIUMYEE12937</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$99.00</td></tr>
-        <tr><td style="padding:9px 10px; color:#8a94a3;">8/5/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">BSKEPROPELYEE11499</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$99.00</td></tr>
-      </tbody>
+      <tbody id="fee-modal-blusky-body"></tbody>
     </table></div>
   </div>
 </div>
@@ -418,12 +413,7 @@
         <th style="text-align:left; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Account Number</th>
         <th style="text-align:right; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
       </tr></thead>
-      <tbody>
-        <tr><td style="padding:9px 10px; color:#8a94a3;">17/5/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">TAKEPROFIT795495708</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$75.00</td></tr>
-        <tr><td style="padding:9px 10px; color:#8a94a3;">17/5/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">TAKEPROFIT567959509</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$75.00</td></tr>
-        <tr><td style="padding:9px 10px; color:#8a94a3;">21/4/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">TPT4670917</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$102.00</td></tr>
-        <tr><td style="padding:9px 10px; color:#8a94a3;">24/3/2026</td><td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">TPT2658347</td><td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$90.00</td></tr>
-      </tbody>
+      <tbody id="fee-modal-tpt-body"></tbody>
     </table></div>
   </div>
 </div>
@@ -458,6 +448,7 @@ function renderStats(d) {
   el('sc-roi').textContent = roi + '%';
   el('sc-roi-sub').textContent = mult + 'x return on fees paid';
   renderFirmTable(d.firms);
+  renderFeeModals(d.firms);
 }
 
 function renderFirmTable(firms) {
@@ -483,6 +474,27 @@ function renderFirmTable(firms) {
     + '<div style="overflow-x:auto;"><table><thead><tr>'
     + '<th>Firm</th><th>Net P&L</th><th>Total Payouts</th><th>Total Costs</th><th>ROI</th><th>Cost Category</th>'
     + '</tr></thead><tbody>' + rows + '</tbody></table></div></div>';
+}
+
+function formatIsoDateShort(isoDate) {
+  var parts = isoDate.split('-');
+  return Number(parts[2]) + '/' + Number(parts[1]) + '/' + parts[0];
+}
+
+function renderFeeModals(firms) {
+  firms.forEach(function(f) {
+    if (!f.feeModal) return;
+    var body = el('fee-modal-' + f.feeModal + '-body');
+    if (!body) return;
+    var records = f.feeRecords || [];
+    body.innerHTML = records.map(function(rec) {
+      return '<tr>'
+        + '<td style="padding:9px 10px; color:#8a94a3;">' + formatIsoDateShort(rec.date) + '</td>'
+        + '<td style="padding:9px 10px; color:#e7ecf2; font-family:var(--mono); font-size:12px; text-align:left;">' + rec.accountNumber + '</td>'
+        + '<td style="padding:9px 10px; text-align:right; color:#ff5e57; font-weight:600;">-$' + rec.amount.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) + '</td>'
+        + '</tr>';
+    }).join('') || '<tr><td colspan="3" style="padding:18px 10px; text-align:center; color:#59626f;">No fee records</td></tr>';
+  });
 }
 
 function renderCharts(d) {
