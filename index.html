@@ -365,7 +365,7 @@
 
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 9 Jun 2026 · 03:55 AM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 11 Jun 2026 · 01:21 AM EST</div>
 
 <div div id="fee-modal-topstep" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
@@ -550,6 +550,11 @@ function progressBar(label, labelId, barId, noteId, labelColor) {
     + '</div>';
 }
 
+function parseYmdLocal(ymd) {
+  var parts = ymd.split('-').map(Number);
+  return new Date(parts[0], parts[1] - 1, parts[2]);
+}
+
 function renderXFAPanel(acct) {
   var id = acct.id;
   var hasConsCap = !!acct.rules.consistencyCapPct;
@@ -616,6 +621,7 @@ function renderXFAPanel(acct) {
 function renderHiddenPanel(acct) {
   var id = acct.id;
   var r = acct.rules;
+  var isBluSkyPropel = acct.firm === 'BluSky' && r.start === 50000 && r.target === 3000 && r.consistencyPct;
   var started = acct.started.split('-').reverse().join('/').replace(/^0/,'').replace(/\/0/g,'/');
   var typeLabel = acct.status === 'funded' ? 'SIM FUNDED ACCOUNT' : 'CHALLENGE ACCOUNT';
   var ruleBadges = '';
@@ -630,7 +636,7 @@ function renderHiddenPanel(acct) {
       + '<div class="fr-badge warn">No Min Trading Days</div>'
       + '<div class="fr-badge ok">Day 1 Payout Eligible</div>'
       + '<div class="fr-badge ok">Buffer Zone $'+r.buffer.toLocaleString()+' Required</div>';
-  } else if (id === 'bsk2') {
+  } else if (isBluSkyPropel) {
     ruleBadges = '<div class="fr-badge bad">EOD Trailing DD $'+r.dd.toLocaleString()+'</div>'
       + '<div class="fr-badge warn">Profit Target $'+r.target.toLocaleString()+'</div>'
       + '<div class="fr-badge bad">'+(r.consistencyPct*100)+'% Consistency Cap</div>';
@@ -649,7 +655,7 @@ function renderHiddenPanel(acct) {
       + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Profit Buffer</div>'
       + progressBar('Buffer Progress', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#f5b13d')
       + '</div>';
-  } else if (id === 'bsk2') {
+  } else if (isBluSkyPropel) {
     extraPanels = '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
       + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Profit Target &amp; Renewal</div>'
       + '<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">'
@@ -730,16 +736,16 @@ function renderHiddenPanel(acct) {
       + '</div>';
   }
 
-  // ── bsk2: standardised layout ──
-  if (id === 'bsk2') {
+  // ── BluSky PROPEL 50k: standardised layout ──
+  if (isBluSkyPropel) {
     var consCap = Math.round(r.target * r.consistencyPct);
-    var renewalDt = new Date(r.renewalDate);
+    var renewalDt = parseYmdLocal(r.renewalDate);
     var renewalLabel = renewalDt.getDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][renewalDt.getMonth()] + ' ' + renewalDt.getFullYear();
     var phasePills = '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:12px 16px; margin-bottom:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">'
       + '<span style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Phase:</span>'
-      + '<button id="bsk2-phase-eval" onclick="bsk2SetPhase(\'eval\')" style="padding:5px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; background:rgba(51,224,138,0.2); border:1px solid rgba(51,224,138,0.5); color:#33e08a;">Evaluation</button>'
-      + '<button id="bsk2-phase-buf" onclick="bsk2SetPhase(\'buf\')" style="padding:5px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; background:none; border:1px solid rgba(255,255,255,0.16); color:#59626f;">Buffer</button>'
-      + '<span id="bsk2-phase-label" style="font-size:11px; color:#33e08a; font-weight:600; margin-left:4px;">Evaluation Phase</span>'
+      + '<button id="'+id+'-phase-eval" onclick="bskSetPhase(\''+id+'\',\'eval\')" style="padding:5px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; background:rgba(51,224,138,0.2); border:1px solid rgba(51,224,138,0.5); color:#33e08a;">Evaluation</button>'
+      + '<button id="'+id+'-phase-buf" onclick="bskSetPhase(\''+id+'\',\'buf\')" style="padding:5px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; background:none; border:1px solid rgba(255,255,255,0.16); color:#59626f;">Buffer</button>'
+      + '<span id="'+id+'-phase-label" style="font-size:11px; color:#33e08a; font-weight:600; margin-left:4px;">Evaluation Phase</span>'
       + '</div>';
     var bsk2RuleBadges = '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">'
       + '<div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'
@@ -790,7 +796,7 @@ function renderHiddenPanel(acct) {
   // ── tpt2: standardised layout ──
   if (id === 'tpt2' || id === 'tpt3') {
     var consCap = Math.round(r.target * r.consistencyPct);
-    var renewalDt = new Date(r.renewalDate);
+    var renewalDt = parseYmdLocal(r.renewalDate);
     var renewalLabel = renewalDt.getDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][renewalDt.getMonth()] + ' ' + renewalDt.getFullYear();
     var tpt2RuleBadges = '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">'
       + '<div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'
@@ -1007,7 +1013,7 @@ function calcHidden(acct) {
     el(id+'-buf-note').textContent=totalProfit2>=r.buffer?'Buffer built - payout eligible':'$'+(r.buffer-totalProfit2).toFixed(2)+' still needed';
     el(id+'-payout-badge').style.display=totalProfit2>=r.buffer?'block':'none';
 
-  } else if(id==='bsk2') {
+  } else if(acct.firm === 'BluSky' && r.start === 50000 && r.target === 3000 && r.consistencyPct) {
     var floor3=effPeak-r.dd;
     var ddUsed3=Math.max(0,effPeak-bal);
     var ddPct3=Math.min(100,(ddUsed3/r.dd)*100);
@@ -1017,7 +1023,7 @@ function calcHidden(acct) {
     var consViolated3=bestDay>consCap3;
     var consPct3=Math.min(100,(bestDay/consCap3)*100);
     var profitPct3=Math.min(100,Math.max(0,(totalProfit3/r.target)*100));
-    var renewalDate=new Date(r.renewalDate);
+    var renewalDate=parseYmdLocal(r.renewalDate);
     var dLeft=Math.ceil((renewalDate-new Date())/86400000);
     var rPct=Math.max(0,Math.min(100,((30-dLeft)/30)*100));
     el(id+'-stat-bal').textContent='$'+bal.toLocaleString('en-US',{minimumFractionDigits:2});
@@ -1052,7 +1058,7 @@ function calcHidden(acct) {
     var consViolated4=bestDay>consCap4;
     var consPct4=Math.min(100,(bestDay/consCap4)*100);
     var profitPct4=Math.min(100,Math.max(0,(totalProfit4/r.target)*100));
-    var renewalDate4=new Date(r.renewalDate);
+    var renewalDate4=parseYmdLocal(r.renewalDate);
     var dLeft4=Math.ceil((renewalDate4-new Date())/86400000);
     var rPct4=Math.max(0,Math.min(100,((30-dLeft4)/30)*100));
     el(id+'-stat-bal').textContent='$'+bal.toLocaleString('en-US',{minimumFractionDigits:2});
@@ -1080,10 +1086,10 @@ function calcHidden(acct) {
   }
 }
 
-function bsk2SetPhase(phase) {
-  var evalBtn = document.getElementById('bsk2-phase-eval');
-  var bufBtn = document.getElementById('bsk2-phase-buf');
-  var label = document.getElementById('bsk2-phase-label');
+function bskSetPhase(id, phase) {
+  var evalBtn = document.getElementById(id+'-phase-eval');
+  var bufBtn = document.getElementById(id+'-phase-buf');
+  var label = document.getElementById(id+'-phase-label');
   if (!evalBtn) return;
   if (phase === 'eval') {
     evalBtn.style.background = 'rgba(51,224,138,0.2)';
@@ -1104,6 +1110,10 @@ function bsk2SetPhase(phase) {
     label.textContent = 'Buffer Phase';
     label.style.color = '#33e08a';
   }
+}
+
+function bsk2SetPhase(phase) {
+  bskSetPhase('bsk2', phase);
 }
 
 var _recordsData = {};
