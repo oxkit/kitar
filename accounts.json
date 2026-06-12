@@ -391,7 +391,7 @@
         "qdMinProfit": 250,
         "payoutOrderTarget": 5
       },
-      "balance": 151206.62,
+      "balance": 151163.62,
       "peak": 153362,
       "bestDay": 1772.75,
       "records": [
@@ -479,6 +479,10 @@
         {
           "date": "2026-06-10",
           "pnl": 2.62
+        },
+        {
+          "date": "2026-06-11",
+          "pnl": -43.0
         }
       ]
     },
@@ -498,7 +502,7 @@
         "ddType": "intraday",
         "buffer": 1500
       },
-      "balance": 24903.75,
+      "balance": 24878.5,
       "peak": 25427.5,
       "bestDay": 267.5,
       "records": [
@@ -545,6 +549,10 @@
         {
           "date": "2026-05-27",
           "pnl": -137.75
+        },
+        {
+          "date": "2026-06-11",
+          "pnl": -25.25
         }
       ]
     },
@@ -566,10 +574,15 @@
         "consistencyPct": 0.3,
         "renewalDate": "2026-07-06"
       },
-      "balance": 50000,
+      "balance": 49828,
       "peak": 50000,
       "bestDay": 0,
-      "records": []
+      "records": [
+        {
+          "date": "2026-06-11",
+          "pnl": -172.0
+        }
+      ]
     }
   ],
   "personalLive": {
