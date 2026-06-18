@@ -1,12 +1,12 @@
 {
   "meta": {
-    "lastUpdated": "20 May 2026",
+    "lastUpdated": "18 Jun 2026",
     "summaryCards": {
       "totalPayoutsReceived": 96865.76,
-      "totalFeesPaid": 20638.3,
-      "netPropFirmPnL": 76227.46,
+      "totalFeesPaid": 20788.3,
+      "netPropFirmPnL": 76077.46,
       "personalLivePnL": 0,
-      "overallNetPnL": 76227.46
+      "overallNetPnL": 76077.46
     }
   },
   "stats": {
@@ -52,7 +52,7 @@
       338.0,
       373.0,
       249.0,
-      99.0
+      249.0
     ],
     "payoutsData": [
       11736.0,
@@ -96,7 +96,7 @@
       4767.0,
       3377.0,
       1966.63,
-      -99.0
+      -249.0
     ],
     "netMonthlyColors": [
       "rgba(52,211,153,0.8)",
@@ -203,7 +203,7 @@
     {
       "name": "TPT",
       "payouts": 0.0,
-      "costs": 911.0,
+      "costs": 1061.0,
       "feeModal": "tpt",
       "feeRecords": [
         {
@@ -214,6 +214,16 @@
         {
           "date": "2026-05-17",
           "accountNumber": "TAKEPROFIT567959509",
+          "amount": 75.0
+        },
+        {
+          "date": "2026-06-18",
+          "accountNumber": "TAKEPROFIT619217658",
+          "amount": 75.0
+        },
+        {
+          "date": "2026-06-18",
+          "accountNumber": "TAKEPROFIT704675169",
           "amount": 75.0
         },
         {
@@ -555,6 +565,54 @@
           "pnl": -25.25
         }
       ]
+    },
+    {
+      "id": "tpt4",
+      "name": "Take Profit Trader (TPT) 25K",
+      "emoji": "ðŸŸ¡",
+      "firm": "TPT",
+      "accountNumber": "TAKEPROFIT619217658",
+      "started": "2026-06-18",
+      "status": "challenge",
+      "method": "hidden",
+      "split": null,
+      "rules": {
+        "start": 25000,
+        "target": 1500,
+        "dd": 1500,
+        "ddType": "EOD trailing",
+        "minDays": 5,
+        "consistencyPct": 0.5,
+        "renewalDate": "2026-07-18"
+      },
+      "balance": 25000,
+      "peak": 25000,
+      "bestDay": 0,
+      "records": []
+    },
+    {
+      "id": "tpt5",
+      "name": "Take Profit Trader (TPT) 25K",
+      "emoji": "ðŸŸ¡",
+      "firm": "TPT",
+      "accountNumber": "TAKEPROFIT704675169",
+      "started": "2026-06-18",
+      "status": "challenge",
+      "method": "hidden",
+      "split": null,
+      "rules": {
+        "start": 25000,
+        "target": 1500,
+        "dd": 1500,
+        "ddType": "EOD trailing",
+        "minDays": 5,
+        "consistencyPct": 0.5,
+        "renewalDate": "2026-07-18"
+      },
+      "balance": 25000,
+      "peak": 25000,
+      "bestDay": 0,
+      "records": []
     },
     {
       "id": "bsk3",
