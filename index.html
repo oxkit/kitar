@@ -365,7 +365,7 @@
 
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 11 Jun 2026 · 02:15 AM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 22 Jun 2026 · 07:10 PM EST</div>
 
 <div div id="fee-modal-topstep" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
@@ -634,6 +634,7 @@ function renderHiddenPanel(acct) {
   var id = acct.id;
   var r = acct.rules;
   var isBluSkyPropel = acct.firm === 'BluSky' && r.start === 50000 && r.target === 3000 && r.consistencyPct;
+  var isTpt25kChallenge = acct.firm === 'TPT' && r.start === 25000 && r.target === 1500 && r.consistencyPct;
   var started = acct.started.split('-').reverse().join('/').replace(/^0/,'').replace(/\/0/g,'/');
   var typeLabel = acct.status === 'funded' ? 'SIM FUNDED ACCOUNT' : 'CHALLENGE ACCOUNT';
   var ruleBadges = '';
@@ -806,7 +807,7 @@ function renderHiddenPanel(acct) {
   }
 
   // ── tpt2: standardised layout ──
-  if (id === 'tpt2' || id === 'tpt3') {
+  if (isTpt25kChallenge) {
     var consCap = Math.round(r.target * r.consistencyPct);
     var renewalDt = parseYmdLocal(r.renewalDate);
     var renewalLabel = renewalDt.getDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][renewalDt.getMonth()] + ' ' + renewalDt.getFullYear();
@@ -820,7 +821,7 @@ function renderHiddenPanel(acct) {
       + '</div>';
     var tpt2Hdr = '<div style="margin-bottom:28px;">'
       + '<div style="font-size:14px; font-weight:600; color:#8a94a3; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.09);">'
-      + '<span class="fr-dot warn" style="margin-right:9px;"></span>' + acct.emoji + ' Challenge Account &mdash; ' + acct.name
+      + '<span class="fr-dot warn" style="margin-right:9px;"></span>Challenge Account &mdash; ' + acct.name
       + '</div>'
       + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" class="fr-btn-ghost fr-btn-xs">Records</button></div>'
       + tpt2RuleBadges;
@@ -1060,7 +1061,7 @@ function calcHidden(acct) {
     el(id+'-renewal-lbl').textContent=dLeft>0?dLeft+' days left':'Expired';
     el(id+'-renewal-lbl').style.color=dLeft<=5?'#ff5e57':'#f5b13d';
     el(id+'-renewal-note').textContent='Renews '+renewalDate.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][renewalDate.getMonth()]+' '+renewalDate.getFullYear();
-  } else if(id==='tpt2'||id==='tpt3') {
+  } else if(acct.firm === 'TPT' && r.start === 25000 && r.target === 1500 && r.consistencyPct) {
     var floor4=effPeak-r.dd;
     var ddUsed4=Math.max(0,effPeak-bal);
     var ddPct4=Math.min(100,(ddUsed4/r.dd)*100);
