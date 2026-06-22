@@ -341,45 +341,10 @@
         {
           "date": "2026-05-27",
           "pnl": -123.07
-        }
-      ]
-    },
-    {
-      "id": "xfas",
-      "name": "TopStep 50k XFA Standard",
-      "emoji": "🟢",
-      "firm": "TopStep",
-      "accountNumber": "EXPRESS-V2-45281-63007831",
-      "started": "2026-05-08",
-      "status": "funded",
-      "method": "records",
-      "split": 0.9,
-      "rules": {
-        "dd": 2000,
-        "ddType": "EOD trailing",
-        "qdMin": 150,
-        "qdTarget": 5
-      },
-      "records": [
-        {
-          "date": "2026-05-13",
-          "pnl": 102.77
         },
         {
-          "date": "2026-05-15",
-          "pnl": 152.51
-        },
-        {
-          "date": "2026-05-19",
-          "pnl": -112.27
-        },
-        {
-          "date": "2026-05-20",
-          "pnl": -404.8
-        },
-        {
-          "date": "2026-05-27",
-          "pnl": -176.85
+          "date": "2026-06-22",
+          "pnl": -267.14
         }
       ]
     },
@@ -401,7 +366,7 @@
         "qdMinProfit": 250,
         "payoutOrderTarget": 5
       },
-      "balance": 151163.62,
+      "balance": 150998.97,
       "peak": 153362,
       "bestDay": 1772.75,
       "records": [
@@ -493,6 +458,10 @@
         {
           "date": "2026-06-11",
           "pnl": -43.0
+        },
+        {
+          "date": "2026-06-22",
+          "pnl": -164.65
         }
       ]
     },
@@ -512,7 +481,7 @@
         "ddType": "intraday",
         "buffer": 1500
       },
-      "balance": 24878.5,
+      "balance": 24967,
       "peak": 25427.5,
       "bestDay": 267.5,
       "records": [
@@ -563,13 +532,17 @@
         {
           "date": "2026-06-11",
           "pnl": -25.25
+        },
+        {
+          "date": "2026-06-22",
+          "pnl": 88.5
         }
       ]
     },
     {
       "id": "tpt4",
       "name": "Take Profit Trader (TPT) 25K",
-      "emoji": "ðŸŸ¡",
+      "emoji": "🟡",
       "firm": "TPT",
       "accountNumber": "TAKEPROFIT619217658",
       "started": "2026-06-18",
@@ -585,15 +558,20 @@
         "consistencyPct": 0.5,
         "renewalDate": "2026-07-18"
       },
-      "balance": 25000,
-      "peak": 25000,
-      "bestDay": 0,
-      "records": []
+      "balance": 25711.5,
+      "peak": 25711.5,
+      "bestDay": 711.5,
+      "records": [
+        {
+          "date": "2026-06-22",
+          "pnl": 711.5
+        }
+      ]
     },
     {
       "id": "tpt5",
       "name": "Take Profit Trader (TPT) 25K",
-      "emoji": "ðŸŸ¡",
+      "emoji": "🟡",
       "firm": "TPT",
       "accountNumber": "TAKEPROFIT704675169",
       "started": "2026-06-18",
@@ -609,10 +587,15 @@
         "consistencyPct": 0.5,
         "renewalDate": "2026-07-18"
       },
-      "balance": 25000,
-      "peak": 25000,
-      "bestDay": 0,
-      "records": []
+      "balance": 25705.25,
+      "peak": 25705.25,
+      "bestDay": 705.25,
+      "records": [
+        {
+          "date": "2026-06-22",
+          "pnl": 705.25
+        }
+      ]
     },
     {
       "id": "bsk3",
@@ -632,13 +615,17 @@
         "consistencyPct": 0.3,
         "renewalDate": "2026-07-06"
       },
-      "balance": 49828,
+      "balance": 49499.25,
       "peak": 50000,
       "bestDay": 0,
       "records": [
         {
           "date": "2026-06-11",
           "pnl": -172.0
+        },
+        {
+          "date": "2026-06-22",
+          "pnl": -328.75
         }
       ]
     }
@@ -651,6 +638,54 @@
     "records": []
   },
   "archivedAccounts": [
+    {
+      "id": "xfas",
+      "name": "TopStep 50k XFA Standard",
+      "emoji": "🟢",
+      "firm": "TopStep",
+      "accountNumber": "EXPRESS-V2-45281-63007831",
+      "started": "2026-05-08",
+      "closedDate": "2026-06-22",
+      "status": "Blown",
+      "method": "records",
+      "split": 0.9,
+      "rules": {
+        "dd": 2000,
+        "ddType": "EOD trailing",
+        "qdMin": 150,
+        "qdTarget": 5
+      },
+      "finalBalance": -1800,
+      "peakBalance": 255.28,
+      "bestDay": 152.51,
+      "description": "Account breached drawdown limit. Closed as blown.",
+      "records": [
+        {
+          "date": "2026-05-13",
+          "pnl": 102.77
+        },
+        {
+          "date": "2026-05-15",
+          "pnl": 152.51
+        },
+        {
+          "date": "2026-05-19",
+          "pnl": -112.27
+        },
+        {
+          "date": "2026-05-20",
+          "pnl": -404.8
+        },
+        {
+          "date": "2026-05-27",
+          "pnl": -176.85
+        },
+        {
+          "date": "2026-06-22",
+          "pnl": -1361.36
+        }
+      ]
+    },
     {
       "id": "bsk2",
       "name": "BluSky PROPEL 50k",
@@ -956,6 +991,13 @@
   ],
   "history": {
     "overview": [
+      {
+        "date": "2026-06-22",
+        "firm": "TopStep",
+        "account": "50k XFA Standard",
+        "type": "Sim Funded",
+        "status": "Blown"
+      },
       {
         "date": "2026-06-10",
         "firm": "BluSky",
