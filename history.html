@@ -228,7 +228,7 @@
   <div id="pane-payout" class="tab-pane"></div>
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 22 Jun 2026 · 07:10 PM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 22 Jun 2026 · 07:35 PM EST</div>
 
 <div id="records-modal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
@@ -270,7 +270,7 @@ function renderOverview(d) {
     var isPassed = r.status === 'Passed';
     var badge = isPassed
       ? '<span class="fr-badge ok">Passed</span>'
-      : '<span class="fr-badge bad">Failed</span>';
+      : '<span class="fr-badge bad">' + r.status + '</span>';
     return '<tr style="border-bottom:1px solid rgba(255,255,255,0.07);" onmouseover="this.style.background=\'#0e131b\'" onmouseout="this.style.background=\'transparent\'">'
       + '<td style="padding:11px 14px; color:#8a94a3;">' + r.date + '</td>'
       + '<td style="padding:11px 14px; color:#e7ecf2; font-weight:600;">' + r.firm + '</td>'
@@ -335,6 +335,7 @@ function renderDetails(d) {
     var totalPnl = acct.records.reduce(function(s, r) { return s + r.pnl; }, 0);
     var days = acct.records.length;
     var isPassed = acct.status === 'Passed';
+    var typeLabel = acct.method === 'records' || acct.split ? 'SIM FUNDED ACCOUNT' : 'CHALLENGE ACCOUNT';
     var prefix = isPassed ? '&#x2705;' : '&#x274C;';
     var consCheck = isPassed
       ? (acct.rules.consistencyCapDay
@@ -345,7 +346,7 @@ function renderDetails(d) {
 
     return '<div style="margin-bottom:28px;">'
       + '<div style="font-size:14px; font-weight:600; color:' + col.text + '; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid ' + col.border + '; display:flex; align-items:center; gap:10px;">'
-      + acct.emoji + ' CHALLENGE ACCOUNT &mdash; ' + acct.name
+      + acct.emoji + ' ' + typeLabel + ' &mdash; ' + acct.name
       + '<span style="display:inline-flex; align-items:center; gap:6px; background:' + col.badgeBg + '; border:1px solid ' + col.badgeBorder + '; color:' + col.text + '; padding:3px 10px; border-radius:6px; font-size:10px; font-weight:600; font-family:var(--mono); letter-spacing:.1em;"><span class="fr-dot ' + (acct.status==='funded'?'ok live':'idle') + '"></span>' + acct.status.toUpperCase() + '</span>'
       + '</div>'
       + '<div style="background:' + col.descBg + '; border:1px solid ' + col.descBorder + '; border-radius:8px; padding:12px 16px; margin-bottom:14px; font-size:13px; color:' + col.text + '; line-height:1.6;">'
