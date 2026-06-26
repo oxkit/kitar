@@ -365,7 +365,7 @@
 
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 22 Jun 2026 · 07:35 PM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 26 Jun 2026 · 12:00 AM EST</div>
 
 <div div id="fee-modal-topstep" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
@@ -635,6 +635,8 @@ function renderHiddenPanel(acct) {
   var r = acct.rules;
   var isBluSkyPropel = acct.firm === 'BluSky' && r.start === 50000 && r.target === 3000 && r.consistencyPct;
   var isTpt25kChallenge = acct.firm === 'TPT' && r.start === 25000 && r.target === 1500 && r.consistencyPct;
+  var isTopStep50kTC = acct.firm === 'TopStep' && r.start === 50000 && r.dd && r.consistencyCapDay;
+  var isTpt25kPro = acct.firm === 'TPT' && acct.status === 'funded' && r.start === 25000 && r.dd === 1500 && r.buffer;
   var started = acct.started.split('-').reverse().join('/').replace(/^0/,'').replace(/\/0/g,'/');
   var typeLabel = acct.status === 'funded' ? 'SIM FUNDED ACCOUNT' : 'CHALLENGE ACCOUNT';
   var ruleBadges = '';
@@ -644,7 +646,7 @@ function renderHiddenPanel(acct) {
       + '<div class="fr-badge warn">'+r.qdTarget+' Qualifying Days $'+r.qdMinProfit+'+</div>'
       + '<div class="fr-badge ok">'+r.payoutOrderTarget+' Payout Orders &#10132; Live</div>'
       + '<div class="fr-badge ok">50% Payout Split</div>';
-  } else if (id === 'tptpro') {
+  } else if (isTpt25kPro) {
     ruleBadges = '<div class="fr-badge bad">Intraday Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
       + '<div class="fr-badge warn">No Min Trading Days</div>'
       + '<div class="fr-badge ok">Day 1 Payout Eligible</div>'
@@ -653,6 +655,11 @@ function renderHiddenPanel(acct) {
     ruleBadges = '<div class="fr-badge bad">EOD Trailing DD $'+r.dd.toLocaleString()+'</div>'
       + '<div class="fr-badge warn">Profit Target $'+r.target.toLocaleString()+'</div>'
       + '<div class="fr-badge bad">'+(r.consistencyPct*100)+'% Consistency Cap</div>';
+  } else if (isTopStep50kTC) {
+    ruleBadges = '<div class="fr-badge bad">EOD Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
+      + '<div class="fr-badge ok">Profit Target $'+r.target.toLocaleString()+'</div>'
+      + '<div class="fr-badge ok">Min '+r.minDays+' Trading Days</div>'
+      + '<div class="fr-badge bad">Consistency: Best Day &lt; $'+r.consistencyCapDay.toLocaleString()+'</div>';
   }
 
   var extraPanels = '';
@@ -663,7 +670,7 @@ function renderHiddenPanel(acct) {
       + statBox('Qualifying Days ($'+r.qdMinProfit+'+)', id+'-stat-qd', '0', '#f5b13d')
       + statBox('Payout Orders', id+'-stat-po', '0 / '+r.payoutOrderTarget, '#33e08a')
       + '</div></div>';
-  } else if (id === 'tptpro') {
+  } else if (isTpt25kPro) {
     extraPanels = '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
       + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Profit Buffer</div>'
       + progressBar('Buffer Progress', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#f5b13d')
@@ -719,7 +726,7 @@ function renderHiddenPanel(acct) {
       + '</div>';
   }
 
-  if (id === 'tptpro') {
+  if (isTpt25kPro) {
     var noConsBox = '<div style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); border-radius:10px; padding:14px; width:100%;"><div style="font-size:13px; font-weight:700; color:#33e08a; margin-bottom:6px;">&#10003; No Consistency Required</div><div style="font-size:11px; color:#59626f; line-height:1.5;">No single-day profit cap. Trade freely &mdash; only intraday trailing drawdown applies.</div></div>';
     return header
       + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
@@ -854,6 +861,37 @@ function renderHiddenPanel(acct) {
       + '<div>'+progressBar('Profit Progress', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#33e08a')+'</div>'
       + '<div>'+progressBar('Renewal Countdown', id+'-renewal-lbl', id+'-renewal-bar', id+'-renewal-note', '#f5b13d')+'</div>'
       + '</div></div>'
+      + '</div>';
+  }
+
+  if (isTopStep50kTC) {
+    return header
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Balance</div>'
+      + '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">'
+      + statBox('Current Balance', id+'-stat-bal', '--', '#33e08a')
+      + statBox('Highest Trailing', id+'-stat-peak', '--')
+      + statBox('Best Single Day', id+'-stat-bday', '--')
+      + '</div></div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Trading Days</div>'
+      + '<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">'
+      + statBox('Total Trading Days', id+'-stat-days', '0')
+      + '<div style="background:#0e131b; border-radius:8px; padding:14px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Min Trading Days</div><div style="font-size:18px; font-weight:700; color:#f5b13d;">'+r.minDays+'</div></div>'
+      + '</div></div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Drawdown &amp; Consistency</div>'
+      + '<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">'
+      + '<div>'
+      + '<div style="background:#0e131b; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#f5b13d;">--</div></div>'
+      + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#ff5e57')
+      + '</div>'
+      + '<div>'+progressBar('Consistency Check', id+'-cons-lbl', id+'-cons-bar', id+'-cons-note', '#33e08a')+'</div>'
+      + '</div></div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Profit Progress</div>'
+      + progressBar('Profit Progress', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#33e08a')
+      + '</div>'
       + '</div>';
   }
 
@@ -1004,7 +1042,7 @@ function calcHidden(acct) {
     if(el(id+'-stat-qd-raw')) el(id+'-stat-qd-raw').textContent=qdCount;
     el(id+'-stat-po').textContent='— / '+r.payoutOrderTarget;
 
-  } else if(id==='tptpro') {
+  } else if(acct.firm === 'TPT' && acct.status === 'funded' && r.start === 25000 && r.dd === 1500 && r.buffer) {
     var floor2=Math.min(r.start,effPeak-r.dd);
     var ddUsed2=Math.max(0,effPeak-bal);
     var ddPct2=Math.min(100,(ddUsed2/r.dd)*100);
@@ -1025,6 +1063,34 @@ function calcHidden(acct) {
     el(id+'-buf-lbl').textContent='$'+Math.max(0,totalProfit2).toFixed(2)+' / $'+r.buffer.toLocaleString();
     el(id+'-buf-note').textContent=totalProfit2>=r.buffer?'Buffer built - payout eligible':'$'+(r.buffer-totalProfit2).toFixed(2)+' still needed';
     el(id+'-payout-badge').style.display=totalProfit2>=r.buffer?'block':'none';
+
+  } else if(acct.firm === 'TopStep' && r.start === 50000 && r.dd && r.consistencyCapDay) {
+    var floorTs=effPeak-r.dd;
+    var ddUsedTs=Math.max(0,effPeak-bal);
+    var ddPctTs=Math.min(100,(ddUsedTs/r.dd)*100);
+    var totalProfitTs=bal-r.start;
+    var isBreachTs=bal<=floorTs;
+    var consViolatedTs=bestDay>r.consistencyCapDay;
+    var consPctTs=Math.min(100,(bestDay/r.consistencyCapDay)*100);
+    var profitPctTs=Math.min(100,Math.max(0,(totalProfitTs/r.target)*100));
+    el(id+'-stat-bal').textContent='$'+bal.toLocaleString('en-US',{minimumFractionDigits:2});
+    el(id+'-stat-bal').style.color=totalProfitTs>=0?'#33e08a':'#ff5e57';
+    el(id+'-stat-peak').textContent='$'+effPeak.toLocaleString('en-US',{minimumFractionDigits:2});
+    el(id+'-stat-bday').textContent=fmt(bestDay);
+    el(id+'-stat-days').textContent=days;
+    el(id+'-dd-floor').textContent='$'+floorTs.toFixed(2);
+    el(id+'-dd-floor').style.color=isBreachTs?'#ff5e57':'#f5b13d';
+    bar(id+'-dd-bar',ddPctTs,barColor(ddPctTs));
+    el(id+'-dd-lbl').style.color=barColor(ddPctTs);
+    el(id+'-dd-lbl').textContent='$'+ddUsedTs.toFixed(0)+' / $'+r.dd.toLocaleString();
+    el(id+'-dd-note').textContent=isBreachTs?'Account breached':'Floor $'+floorTs.toFixed(2)+' · $'+(bal-floorTs).toFixed(2)+' buffer';
+    bar(id+'-cons-bar',consPctTs,consViolatedTs?'#ff5e57':consPctTs>80?'#f5b13d':'#33e08a');
+    el(id+'-cons-lbl').style.color=consViolatedTs?'#ff5e57':consPctTs>80?'#f5b13d':'#33e08a';
+    el(id+'-cons-lbl').textContent=bestDay>0?'$'+bestDay.toFixed(0)+' / $'+r.consistencyCapDay.toLocaleString()+' cap':'No trades yet';
+    el(id+'-cons-note').textContent=consViolatedTs?'Consistency violated':bestDay>0?(consPctTs>80?'Warning: ':'OK: ')+'Best day is '+consPctTs.toFixed(0)+'% of $'+r.consistencyCapDay.toLocaleString()+' cap':'Best single day must stay below $'+r.consistencyCapDay.toLocaleString();
+    bar(id+'-profit-bar',profitPctTs,'#33e08a');
+    el(id+'-profit-lbl').textContent='$'+Math.max(0,totalProfitTs).toFixed(2)+' / $'+r.target.toLocaleString();
+    el(id+'-profit-note').textContent=totalProfitTs>=r.target?'Target met':'$'+Math.max(0,r.target-totalProfitTs).toFixed(2)+' still needed';
 
   } else if(acct.firm === 'BluSky' && r.start === 50000 && r.target === 3000 && r.consistencyPct) {
     var floor3=effPeak-r.dd;
