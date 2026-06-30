@@ -365,7 +365,7 @@
 
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 26 Jun 2026 · 12:00 AM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 29 Jun 2026 · 12:15 PM EST</div>
 
 <div div id="fee-modal-topstep" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
@@ -889,9 +889,11 @@ function renderHiddenPanel(acct) {
       + '<div>'+progressBar('Consistency Check', id+'-cons-lbl', id+'-cons-bar', id+'-cons-note', '#33e08a')+'</div>'
       + '</div></div>'
       + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
-      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Profit Progress</div>'
-      + progressBar('Profit Progress', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#33e08a')
-      + '</div>'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Profit Progress &amp; Renewal Countdown</div>'
+      + '<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">'
+      + '<div>'+progressBar('Profit Progress', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#33e08a')+'</div>'
+      + '<div>'+progressBar('Renewal Countdown', id+'-renewal-lbl', id+'-renewal-bar', id+'-renewal-note', '#f5b13d')+'</div>'
+      + '</div></div>'
       + '</div>';
   }
 
@@ -1073,6 +1075,9 @@ function calcHidden(acct) {
     var consViolatedTs=bestDay>r.consistencyCapDay;
     var consPctTs=Math.min(100,(bestDay/r.consistencyCapDay)*100);
     var profitPctTs=Math.min(100,Math.max(0,(totalProfitTs/r.target)*100));
+    var renewalDateTs=parseYmdLocal(r.renewalDate);
+    var dLeftTs=Math.ceil((renewalDateTs-new Date())/86400000);
+    var rPctTs=Math.max(0,Math.min(100,((30-dLeftTs)/30)*100));
     el(id+'-stat-bal').textContent='$'+bal.toLocaleString('en-US',{minimumFractionDigits:2});
     el(id+'-stat-bal').style.color=totalProfitTs>=0?'#33e08a':'#ff5e57';
     el(id+'-stat-peak').textContent='$'+effPeak.toLocaleString('en-US',{minimumFractionDigits:2});
@@ -1091,6 +1096,10 @@ function calcHidden(acct) {
     bar(id+'-profit-bar',profitPctTs,'#33e08a');
     el(id+'-profit-lbl').textContent='$'+Math.max(0,totalProfitTs).toFixed(2)+' / $'+r.target.toLocaleString();
     el(id+'-profit-note').textContent=totalProfitTs>=r.target?'Target met':'$'+Math.max(0,r.target-totalProfitTs).toFixed(2)+' still needed';
+    bar(id+'-renewal-bar',rPctTs,dLeftTs<=5?'#ff5e57':dLeftTs<=10?'#f5b13d':'#f5b13d');
+    el(id+'-renewal-lbl').textContent=dLeftTs>0?dLeftTs+' days left':'Expired';
+    el(id+'-renewal-lbl').style.color=dLeftTs<=5?'#ff5e57':'#f5b13d';
+    el(id+'-renewal-note').textContent='Renews '+renewalDateTs.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][renewalDateTs.getMonth()]+' '+renewalDateTs.getFullYear();
 
   } else if(acct.firm === 'BluSky' && r.start === 50000 && r.target === 3000 && r.consistencyPct) {
     var floor3=effPeak-r.dd;
