@@ -656,10 +656,13 @@ function renderHiddenPanel(acct) {
       + '<div class="fr-badge warn">Profit Target $'+r.target.toLocaleString()+'</div>'
       + '<div class="fr-badge bad">'+(r.consistencyPct*100)+'% Consistency Cap</div>';
   } else if (isTopStep50kTC) {
+    var topStepRenewalDt = parseYmdLocal(r.renewalDate);
+    var topStepRenewalLabel = topStepRenewalDt.getDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][topStepRenewalDt.getMonth()] + ' ' + topStepRenewalDt.getFullYear();
     ruleBadges = '<div class="fr-badge bad">EOD Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
       + '<div class="fr-badge ok">Profit Target $'+r.target.toLocaleString()+'</div>'
       + '<div class="fr-badge ok">Min '+r.minDays+' Trading Days</div>'
-      + '<div class="fr-badge bad">Consistency: Best Day &lt; $'+r.consistencyCapDay.toLocaleString()+'</div>';
+      + '<div class="fr-badge bad">Consistency: Best Day &lt; $'+r.consistencyCapDay.toLocaleString()+'</div>'
+      + '<div class="fr-badge warn push">Renews '+topStepRenewalLabel+'</div>';
   }
 
   var extraPanels = '';
