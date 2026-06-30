@@ -252,116 +252,6 @@
   ],
   "activeAccounts": [
     {
-      "id": "xfa",
-      "name": "TopStep 50k XFA Consistency",
-      "emoji": "🟢",
-      "firm": "TopStep",
-      "accountNumber": "EXPRESS-V2-CT-45281-27848466",
-      "started": "2026-04-13",
-      "status": "funded",
-      "method": "records",
-      "split": 0.9,
-      "rules": {
-        "dd": 2000,
-        "ddType": "EOD trailing",
-        "consistencyCapPct": 0.4,
-        "minDays": 3,
-        "maxSinglePayout": 6000
-      },
-      "records": [
-        {
-          "date": "2026-04-13",
-          "pnl": 273.78
-        },
-        {
-          "date": "2026-04-15",
-          "pnl": 86.26
-        },
-        {
-          "date": "2026-04-16",
-          "pnl": 124.54
-        },
-        {
-          "date": "2026-04-17",
-          "pnl": 701.56
-        },
-        {
-          "date": "2026-04-20",
-          "pnl": 3.34
-        },
-        {
-          "date": "2026-04-22",
-          "pnl": 80.52
-        },
-        {
-          "date": "2026-04-24",
-          "pnl": 147.53
-        },
-        {
-          "date": "2026-04-25",
-          "pnl": 591.36
-        },
-        {
-          "date": "2026-04-25",
-          "pnl": -1000,
-          "payout": true
-        },
-        {
-          "date": "2026-05-01",
-          "pnl": 291.32
-        },
-        {
-          "date": "2026-05-06",
-          "pnl": 188.79
-        },
-        {
-          "date": "2026-05-07",
-          "pnl": 256.28
-        },
-        {
-          "date": "2026-05-08",
-          "pnl": 258.78
-        },
-        {
-          "date": "2026-05-11",
-          "pnl": -1000,
-          "payout": true
-        },
-        {
-          "date": "2026-05-13",
-          "pnl": 57.74
-        },
-        {
-          "date": "2026-05-15",
-          "pnl": 141.26
-        },
-        {
-          "date": "2026-05-19",
-          "pnl": -128.52
-        },
-        {
-          "date": "2026-05-20",
-          "pnl": -377.3
-        },
-        {
-          "date": "2026-05-27",
-          "pnl": -123.07
-        },
-        {
-          "date": "2026-06-22",
-          "pnl": -267.14
-        },
-        {
-          "date": "2026-06-25",
-          "pnl": 128.12
-        },
-        {
-          "date": "2026-06-29",
-          "pnl": -324.66
-        }
-      ]
-    },
-    {
       "id": "inp",
       "name": "Lucid 150k Sim Funded",
       "emoji": "🟢",
@@ -658,7 +548,16 @@
           "pnl": 868.9
         }
       ]
-    },
+    }
+  ],
+  "personalLive": {
+    "id": "hl",
+    "name": "HyperLiquid",
+    "seedBalance": 1000,
+    "deposits": 1000,
+    "records": []
+  },
+  "archivedAccounts": [
     {
       "id": "ts50c2",
       "name": "TopStep 50k TC",
@@ -666,7 +565,7 @@
       "firm": "TopStep",
       "accountNumber": "50KTC-V2-DLL-45281-96185358",
       "started": "2026-06-23",
-      "status": "challenge",
+      "status": "Failed",
       "method": "hidden",
       "split": null,
       "rules": {
@@ -678,8 +577,6 @@
         "minDays": 2,
         "renewalDate": "2026-07-23"
       },
-      "balance": 49888.5,
-      "peak": 51257.22,
       "bestDay": 1257.22,
       "records": [
         {
@@ -689,18 +586,136 @@
         {
           "date": "2026-06-29",
           "pnl": -1368.72
+        },
+        {
+          "date": "2026-06-30",
+          "pnl": -699.6
         }
-      ]
-    }
-  ],
-  "personalLive": {
-    "id": "hl",
-    "name": "HyperLiquid",
-    "seedBalance": 1000,
-    "deposits": 1000,
-    "records": []
-  },
-  "archivedAccounts": [
+      ],
+      "closedDate": "2026-06-30",
+      "finalBalance": 49188.9,
+      "peakBalance": 51257.22,
+      "description": "Account breached the EOD trailing drawdown floor. Closed as failed."
+    },
+    {
+      "id": "xfa",
+      "name": "TopStep 50k XFA Consistency",
+      "emoji": "🟢",
+      "firm": "TopStep",
+      "accountNumber": "EXPRESS-V2-CT-45281-27848466",
+      "started": "2026-04-13",
+      "status": "Blown",
+      "method": "records",
+      "split": 0.9,
+      "rules": {
+        "dd": 2000,
+        "ddType": "EOD trailing",
+        "consistencyCapPct": 0.4,
+        "minDays": 3,
+        "maxSinglePayout": 6000
+      },
+      "records": [
+        {
+          "date": "2026-04-13",
+          "pnl": 273.78
+        },
+        {
+          "date": "2026-04-15",
+          "pnl": 86.26
+        },
+        {
+          "date": "2026-04-16",
+          "pnl": 124.54
+        },
+        {
+          "date": "2026-04-17",
+          "pnl": 701.56
+        },
+        {
+          "date": "2026-04-20",
+          "pnl": 3.34
+        },
+        {
+          "date": "2026-04-22",
+          "pnl": 80.52
+        },
+        {
+          "date": "2026-04-24",
+          "pnl": 147.53
+        },
+        {
+          "date": "2026-04-25",
+          "pnl": 591.36
+        },
+        {
+          "date": "2026-04-25",
+          "pnl": -1000,
+          "payout": true
+        },
+        {
+          "date": "2026-05-01",
+          "pnl": 291.32
+        },
+        {
+          "date": "2026-05-06",
+          "pnl": 188.79
+        },
+        {
+          "date": "2026-05-07",
+          "pnl": 256.28
+        },
+        {
+          "date": "2026-05-08",
+          "pnl": 258.78
+        },
+        {
+          "date": "2026-05-11",
+          "pnl": -1000,
+          "payout": true
+        },
+        {
+          "date": "2026-05-13",
+          "pnl": 57.74
+        },
+        {
+          "date": "2026-05-15",
+          "pnl": 141.26
+        },
+        {
+          "date": "2026-05-19",
+          "pnl": -128.52
+        },
+        {
+          "date": "2026-05-20",
+          "pnl": -377.3
+        },
+        {
+          "date": "2026-05-27",
+          "pnl": -123.07
+        },
+        {
+          "date": "2026-06-22",
+          "pnl": -267.14
+        },
+        {
+          "date": "2026-06-25",
+          "pnl": 128.12
+        },
+        {
+          "date": "2026-06-29",
+          "pnl": -324.66
+        },
+        {
+          "date": "2026-06-30",
+          "pnl": -110.49
+        }
+      ],
+      "closedDate": "2026-06-30",
+      "finalBalance": 0,
+      "peakBalance": 2008.89,
+      "bestDay": 701.56,
+      "description": "Account balance reached $0. Closed as blown."
+    },
     {
       "id": "tpt4",
       "name": "Take Profit Trader (TPT) 25K",
@@ -1132,6 +1147,20 @@
   ],
   "history": {
     "overview": [
+      {
+        "date": "2026-06-30",
+        "firm": "TopStep",
+        "account": "50k TC",
+        "type": "Challenge",
+        "status": "Failed"
+      },
+      {
+        "date": "2026-06-30",
+        "firm": "TopStep",
+        "account": "50k XFA Consistency",
+        "type": "Sim Funded",
+        "status": "Blown"
+      },
       {
         "date": "2026-06-25",
         "firm": "TPT",
