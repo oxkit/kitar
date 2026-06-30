@@ -354,6 +354,10 @@
         {
           "date": "2026-06-25",
           "pnl": 128.12
+        },
+        {
+          "date": "2026-06-29",
+          "pnl": -324.66
         }
       ]
     },
@@ -375,7 +379,7 @@
         "qdMinProfit": 250,
         "payoutOrderTarget": 5
       },
-      "balance": 151415.12,
+      "balance": 151415.37,
       "peak": 153362,
       "bestDay": 1772.75,
       "records": [
@@ -475,6 +479,10 @@
         {
           "date": "2026-06-25",
           "pnl": 416.15
+        },
+        {
+          "date": "2026-06-29",
+          "pnl": 0.25
         }
       ]
     },
@@ -494,7 +502,7 @@
         "ddType": "intraday",
         "buffer": 1500
       },
-      "balance": 24987,
+      "balance": 25009.5,
       "peak": 25427.5,
       "bestDay": 267.5,
       "records": [
@@ -553,6 +561,10 @@
         {
           "date": "2026-06-25",
           "pnl": 20
+        },
+        {
+          "date": "2026-06-29",
+          "pnl": 22.5
         }
       ]
     },
@@ -572,10 +584,15 @@
         "ddType": "intraday",
         "buffer": 1500
       },
-      "balance": 25000,
+      "balance": 24987.5,
       "peak": 25000,
       "bestDay": 0,
-      "records": []
+      "records": [
+        {
+          "date": "2026-06-29",
+          "pnl": -12.5
+        }
+      ]
     },
     {
       "id": "tptpro3",
@@ -616,9 +633,9 @@
         "consistencyPct": 0.3,
         "renewalDate": "2026-07-06"
       },
-      "balance": 50596.57,
-      "peak": 50596.57,
-      "bestDay": 597.32,
+      "balance": 51465.47,
+      "peak": 51465.47,
+      "bestDay": 868.9,
       "records": [
         {
           "date": "2026-06-11",
@@ -635,6 +652,10 @@
         {
           "date": "2026-06-25",
           "pnl": 597.32
+        },
+        {
+          "date": "2026-06-29",
+          "pnl": 868.9
         }
       ]
     },
@@ -656,13 +677,17 @@
         "consistencyCapDay": 1500,
         "minDays": 2
       },
-      "balance": 51257.22,
+      "balance": 49888.5,
       "peak": 51257.22,
       "bestDay": 1257.22,
       "records": [
         {
           "date": "2026-06-25",
           "pnl": 1257.22
+        },
+        {
+          "date": "2026-06-29",
+          "pnl": -1368.72
         }
       ]
     }
