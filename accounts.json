@@ -675,7 +675,8 @@
         "ddType": "EOD trailing",
         "target": 3000,
         "consistencyCapDay": 1500,
-        "minDays": 2
+        "minDays": 2,
+        "renewalDate": "2026-07-23"
       },
       "balance": 49888.5,
       "peak": 51257.22,
