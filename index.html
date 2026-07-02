@@ -365,7 +365,7 @@
 
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 29 Jun 2026 · 12:15 PM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 2 Jul 2026 · 12:00 PM EST</div>
 
 <div div id="fee-modal-topstep" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
@@ -635,7 +635,7 @@ function renderHiddenPanel(acct) {
   var r = acct.rules;
   var isBluSkyPropel = acct.firm === 'BluSky' && r.start === 50000 && r.target === 3000 && r.consistencyPct;
   var isTpt25kChallenge = acct.firm === 'TPT' && r.start === 25000 && r.target === 1500 && r.consistencyPct;
-  var isTopStep50kTC = acct.firm === 'TopStep' && r.start === 50000 && r.dd && r.consistencyCapDay;
+  var isTopStep50kTC = acct.firm === 'TopStep' && acct.status === 'challenge' && r.start && r.dd && r.consistencyCapDay;
   var isTpt25kPro = acct.firm === 'TPT' && acct.status === 'funded' && r.start === 25000 && r.dd === 1500 && r.buffer;
   var started = acct.started.split('-').reverse().join('/').replace(/^0/,'').replace(/\/0/g,'/');
   var typeLabel = acct.status === 'funded' ? 'SIM FUNDED ACCOUNT' : 'CHALLENGE ACCOUNT';
@@ -658,7 +658,8 @@ function renderHiddenPanel(acct) {
   } else if (isTopStep50kTC) {
     var topStepRenewalDt = parseYmdLocal(r.renewalDate);
     var topStepRenewalLabel = topStepRenewalDt.getDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][topStepRenewalDt.getMonth()] + ' ' + topStepRenewalDt.getFullYear();
-    ruleBadges = '<div class="fr-badge bad">EOD Trailing Drawdown $'+r.dd.toLocaleString()+'</div>'
+    var topStepDdLabel = (r.ddType || '').toLowerCase() === 'static' ? 'Static Drawdown' : 'EOD Trailing Drawdown';
+    ruleBadges = '<div class="fr-badge bad">'+topStepDdLabel+' $'+r.dd.toLocaleString()+'</div>'
       + '<div class="fr-badge ok">Profit Target $'+r.target.toLocaleString()+'</div>'
       + '<div class="fr-badge ok">Min '+r.minDays+' Trading Days</div>'
       + '<div class="fr-badge bad">Consistency: Best Day &lt; $'+r.consistencyCapDay.toLocaleString()+'</div>'
@@ -1069,8 +1070,9 @@ function calcHidden(acct) {
     el(id+'-buf-note').textContent=totalProfit2>=r.buffer?'Buffer built - payout eligible':'$'+(r.buffer-totalProfit2).toFixed(2)+' still needed';
     el(id+'-payout-badge').style.display=totalProfit2>=r.buffer?'block':'none';
 
-  } else if(acct.firm === 'TopStep' && r.start === 50000 && r.dd && r.consistencyCapDay) {
-    var floorTs=effPeak-r.dd;
+  } else if(acct.firm === 'TopStep' && acct.status === 'challenge' && r.start && r.dd && r.consistencyCapDay) {
+    var isStaticTs=(r.ddType || '').toLowerCase() === 'static';
+    var floorTs=isStaticTs ? r.start-r.dd : effPeak-r.dd;
     var ddUsedTs=Math.max(0,effPeak-bal);
     var ddPctTs=Math.min(100,(ddUsedTs/r.dd)*100);
     var totalProfitTs=bal-r.start;
