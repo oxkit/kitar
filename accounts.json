@@ -143,7 +143,7 @@
     {
       "name": "TopStep",
       "payouts": 11044,
-      "costs": 3051.15,
+      "costs": 3221.15,
       "feeModal": "topstep",
       "feeRecords": [
         {
@@ -155,6 +155,16 @@
           "date": "2026-06-23",
           "accountNumber": "50KTC-V2-DLL-45281-96185358",
           "amount": 85
+        },
+        {
+          "date": "2026-07-02",
+          "accountNumber": "50KTC-V2-45281-56425053",
+          "amount": 95
+        },
+        {
+          "date": "2026-07-02",
+          "accountNumber": "25KTC-SKU-LAB-DL-V2-45281-98806043",
+          "amount": 75
         }
       ]
     },
@@ -548,6 +558,54 @@
           "pnl": 868.9
         }
       ]
+    },
+    {
+      "id": "ts50c3",
+      "name": "TopStep 50k TC",
+      "emoji": "🟡",
+      "firm": "TopStep",
+      "accountNumber": "50KTC-V2-45281-56425053",
+      "started": "2026-07-02",
+      "status": "challenge",
+      "method": "hidden",
+      "split": null,
+      "rules": {
+        "start": 50000,
+        "dd": 2000,
+        "ddType": "EOD trailing",
+        "target": 3000,
+        "consistencyCapDay": 1500,
+        "minDays": 2,
+        "renewalDate": "2026-08-02"
+      },
+      "balance": 50000,
+      "peak": 50000,
+      "bestDay": 0,
+      "records": []
+    },
+    {
+      "id": "ts25static1",
+      "name": "TopStep 25k Static TC",
+      "emoji": "🟡",
+      "firm": "TopStep",
+      "accountNumber": "25KTC-SKU-LAB-DL-V2-45281-98806043",
+      "started": "2026-07-02",
+      "status": "challenge",
+      "method": "hidden",
+      "split": null,
+      "rules": {
+        "start": 25000,
+        "dd": 1000,
+        "ddType": "static",
+        "target": 2000,
+        "consistencyCapDay": 1000,
+        "minDays": 2,
+        "renewalDate": "2026-08-02"
+      },
+      "balance": 25000,
+      "peak": 25000,
+      "bestDay": 0,
+      "records": []
     }
   ],
   "personalLive": {
