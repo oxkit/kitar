@@ -279,7 +279,7 @@
         "qdMinProfit": 250,
         "payoutOrderTarget": 5
       },
-      "balance": 151415.37,
+      "balance": 151476.62,
       "peak": 153362,
       "bestDay": 1772.75,
       "records": [
@@ -383,6 +383,10 @@
         {
           "date": "2026-06-29",
           "pnl": 0.25
+        },
+        {
+          "date": "2026-07-02",
+          "pnl": 61.25
         }
       ]
     },
@@ -402,7 +406,7 @@
         "ddType": "intraday",
         "buffer": 1500
       },
-      "balance": 25009.5,
+      "balance": 25015.5,
       "peak": 25427.5,
       "bestDay": 267.5,
       "records": [
@@ -465,6 +469,10 @@
         {
           "date": "2026-06-29",
           "pnl": 22.5
+        },
+        {
+          "date": "2026-07-02",
+          "pnl": 6
         }
       ]
     },
@@ -484,13 +492,17 @@
         "ddType": "intraday",
         "buffer": 1500
       },
-      "balance": 24987.5,
-      "peak": 25000,
-      "bestDay": 0,
+      "balance": 25017.5,
+      "peak": 25017.5,
+      "bestDay": 30,
       "records": [
         {
           "date": "2026-06-29",
           "pnl": -12.5
+        },
+        {
+          "date": "2026-07-02",
+          "pnl": 30
         }
       ]
     },
@@ -510,10 +522,15 @@
         "ddType": "intraday",
         "buffer": 1500
       },
-      "balance": 25000,
-      "peak": 25000,
-      "bestDay": 0,
-      "records": []
+      "balance": 25046.75,
+      "peak": 25046.75,
+      "bestDay": 46.75,
+      "records": [
+        {
+          "date": "2026-07-02",
+          "pnl": 46.75
+        }
+      ]
     },
     {
       "id": "bsk3",
@@ -533,8 +550,8 @@
         "consistencyPct": 0.3,
         "renewalDate": "2026-07-06"
       },
-      "balance": 51465.47,
-      "peak": 51465.47,
+      "balance": 51603.32,
+      "peak": 51603.32,
       "bestDay": 868.9,
       "records": [
         {
@@ -556,6 +573,10 @@
         {
           "date": "2026-06-29",
           "pnl": 868.9
+        },
+        {
+          "date": "2026-07-02",
+          "pnl": 137.85
         }
       ]
     },
@@ -578,10 +599,15 @@
         "minDays": 2,
         "renewalDate": "2026-08-02"
       },
-      "balance": 50000,
-      "peak": 50000,
-      "bestDay": 0,
-      "records": []
+      "balance": 51389.1,
+      "peak": 51389.1,
+      "bestDay": 1389.1,
+      "records": [
+        {
+          "date": "2026-07-02",
+          "pnl": 1389.1
+        }
+      ]
     },
     {
       "id": "ts25static1",
@@ -602,10 +628,15 @@
         "minDays": 2,
         "renewalDate": "2026-08-02"
       },
-      "balance": 25000,
-      "peak": 25000,
-      "bestDay": 0,
-      "records": []
+      "balance": 25438.35,
+      "peak": 25438.35,
+      "bestDay": 438.35,
+      "records": [
+        {
+          "date": "2026-07-02",
+          "pnl": 438.35
+        }
+      ]
     }
   ],
   "personalLive": {
@@ -613,7 +644,12 @@
     "name": "HyperLiquid",
     "seedBalance": 1000,
     "deposits": 1000,
-    "records": []
+    "records": [
+      {
+        "date": "2026-07-02",
+        "net": 12.1
+      }
+    ]
   },
   "archivedAccounts": [
     {
