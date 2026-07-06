@@ -549,58 +549,6 @@
       ]
     },
     {
-      "id": "bsk3",
-      "name": "BluSky PROPEL 50k",
-      "emoji": "🟣",
-      "firm": "BluSky",
-      "accountNumber": "BSKEPROPELYEE11499",
-      "started": "2026-06-06",
-      "status": "challenge",
-      "method": "hidden",
-      "split": null,
-      "rules": {
-        "start": 50000,
-        "target": 3000,
-        "dd": 2000,
-        "ddType": "EOD trailing",
-        "consistencyPct": 0.3,
-        "renewalDate": "2026-07-06"
-      },
-      "balance": 52102.07,
-      "peak": 52102.07,
-      "bestDay": 868.9,
-      "records": [
-        {
-          "date": "2026-06-11",
-          "pnl": -172
-        },
-        {
-          "date": "2026-06-22",
-          "pnl": -328.75
-        },
-        {
-          "date": "2026-06-24",
-          "pnl": 500
-        },
-        {
-          "date": "2026-06-25",
-          "pnl": 597.32
-        },
-        {
-          "date": "2026-06-29",
-          "pnl": 868.9
-        },
-        {
-          "date": "2026-07-02",
-          "pnl": 137.85
-        },
-        {
-          "date": "2026-07-03",
-          "pnl": 498.75
-        }
-      ]
-    },
-    {
       "id": "ts50c3",
       "name": "TopStep 50k TC",
       "emoji": "🟡",
@@ -684,6 +632,64 @@
     ]
   },
   "archivedAccounts": [
+    {
+      "id": "bsk3",
+      "name": "BluSky PROPEL 50k",
+      "emoji": "🟣",
+      "firm": "BluSky",
+      "accountNumber": "BSKEPROPELYEE11499",
+      "started": "2026-06-06",
+      "status": "Failed",
+      "method": "hidden",
+      "split": null,
+      "rules": {
+        "start": 50000,
+        "target": 3000,
+        "dd": 2000,
+        "ddType": "EOD trailing",
+        "consistencyPct": 0.3,
+        "renewalDate": "2026-07-06"
+      },
+      "bestDay": 868.9,
+      "records": [
+        {
+          "date": "2026-06-11",
+          "pnl": -172
+        },
+        {
+          "date": "2026-06-22",
+          "pnl": -328.75
+        },
+        {
+          "date": "2026-06-24",
+          "pnl": 500
+        },
+        {
+          "date": "2026-06-25",
+          "pnl": 597.32
+        },
+        {
+          "date": "2026-06-29",
+          "pnl": 868.9
+        },
+        {
+          "date": "2026-07-02",
+          "pnl": 137.85
+        },
+        {
+          "date": "2026-07-03",
+          "pnl": 498.75
+        },
+        {
+          "date": "2026-07-06",
+          "pnl": -2077.07
+        }
+      ],
+      "closedDate": "2026-07-06",
+      "finalBalance": 50025,
+      "peakBalance": 52102.07,
+      "description": "Account breached EOD trailing drawdown. Closed as failed."
+    },
     {
       "id": "ts50c2",
       "name": "TopStep 50k TC",
@@ -1273,6 +1279,13 @@
   ],
   "history": {
     "overview": [
+      {
+        "date": "2026-07-06",
+        "firm": "BluSky",
+        "account": "PROPEL 50K",
+        "type": "Challenge",
+        "status": "Failed"
+      },
       {
         "date": "2026-06-30",
         "firm": "TopStep",
