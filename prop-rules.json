@@ -1,182 +1,182 @@
-{
-  "meta": {
-    "version": 1,
-    "updated": "2026-07-06",
-    "purpose": "Reusable prop-firm rule templates for creating challenge and sim-funded accounts without relying on conversation history.",
-    "notes": [
-      "Renewal dates are account-specific and should be calculated from the purchase/start date unless the user says otherwise.",
-      "Payout rules marked confirmWithUser are inferred from existing dashboard data and should be verified before automation depends on them."
-    ]
-  },
-  "templates": {
-    "blusky.propel50k.challenge": {
-      "firm": "BluSky",
-      "displayName": "BluSky PROPEL 50k",
-      "accountType": "challenge",
-      "defaultMethod": "hidden",
-      "startingBalance": 50000,
-      "rules": {
-        "start": 50000,
-        "target": 3000,
-        "dd": 2000,
-        "ddType": "EOD trailing",
-        "consistencyPct": 0.3
-      },
-      "passingRules": [
-        "Profit target $3,000",
-        "EOD trailing drawdown $2,000",
-        "Best day must be less than 30% of total profit"
-      ],
-      "payoutRules": {
-        "confirmWithUser": true,
-        "notes": "No reusable payout rule has been confirmed for BluSky PROPEL 50k in this repo yet."
-      }
-    },
-    "topstep.50k-tc.challenge": {
-      "firm": "TopStep",
-      "displayName": "TopStep 50k TC",
-      "accountType": "challenge",
-      "defaultMethod": "hidden",
-      "startingBalance": 50000,
-      "rules": {
-        "start": 50000,
-        "target": 3000,
-        "dd": 2000,
-        "ddType": "EOD trailing",
-        "consistencyCapDay": 1500,
-        "minDays": 2
-      },
-      "passingRules": [
-        "Profit target $3,000",
-        "EOD trailing drawdown $2,000",
-        "Drawdown floor $48,000",
-        "Minimum 2 trading days",
-        "Consistency 50%; best day less than $1,500 cap"
-      ],
-      "payoutRules": {
-        "confirmWithUser": true,
-        "notes": "Payout rules for TopStep 50k TC are not fully confirmed in this repo yet."
-      }
-    },
-    "topstep.25k-static-tc.challenge": {
-      "firm": "TopStep",
-      "displayName": "TopStep 25k Static TC",
-      "accountType": "challenge",
-      "defaultMethod": "hidden",
-      "startingBalance": 25000,
-      "rules": {
-        "start": 25000,
-        "target": 2000,
-        "dd": 1000,
-        "ddType": "static",
-        "consistencyCapDay": 1000,
-        "minDays": 2
-      },
-      "passingRules": [
-        "Profit target $2,000",
-        "Static drawdown $1,000",
-        "Drawdown floor always $24,000",
-        "Minimum 2 trading days",
-        "Consistency 50%; best day less than $1,000 cap"
-      ],
-      "payoutRules": {
-        "confirmWithUser": true,
-        "notes": "Payout rules for TopStep 25k Static TC are not fully confirmed in this repo yet."
-      }
-    },
-    "topstep.50k-xfa-standard.sim-funded": {
-      "firm": "TopStep",
-      "displayName": "TopStep 50k XFA Standard",
-      "accountType": "sim-funded",
-      "defaultMethod": "records",
-      "rules": {
-        "dd": 2000,
-        "ddType": "EOD trailing",
-        "qdMin": 150,
-        "qdTarget": 5
-      },
-      "payoutRules": {
-        "confirmWithUser": true,
-        "notes": "Existing data tracks a QD minimum of $150 and target of 5 qualifying days."
-      }
-    },
-    "topstep.50k-xfa-consistency.sim-funded": {
-      "firm": "TopStep",
-      "displayName": "TopStep 50k XFA Consistency",
-      "accountType": "sim-funded",
-      "defaultMethod": "records",
-      "rules": {
-        "dd": 2000,
-        "ddType": "EOD trailing",
-        "consistencyCapPct": 0.4,
-        "minDays": 3,
-        "maxSinglePayout": 6000
-      },
-      "payoutRules": {
-        "confirmWithUser": true,
-        "notes": "Existing data tracks 40% consistency, minimum 3 days, and max single payout $6,000."
-      }
-    },
-    "tpt.25k.challenge": {
-      "firm": "TPT",
-      "displayName": "Take Profit Trader (TPT) 25K",
-      "accountType": "challenge",
-      "defaultMethod": "hidden",
-      "startingBalance": 25000,
-      "rules": {
-        "start": 25000,
-        "target": 1500,
-        "dd": 1500,
-        "ddType": "EOD trailing",
-        "minDays": 5,
-        "consistencyPct": 0.5
-      },
-      "passingRules": [
-        "Profit target $1,500",
-        "EOD trailing drawdown $1,500",
-        "Minimum 5 trading days",
-        "Consistency 50%"
-      ],
-      "payoutRules": {
-        "confirmWithUser": true,
-        "notes": "Challenge passing rules are known; payout rules should be confirmed separately."
-      }
-    },
-    "tpt.25k-pro.sim-funded": {
-      "firm": "TPT",
-      "displayName": "TPT 25k PRO",
-      "accountType": "sim-funded",
-      "defaultMethod": "hidden",
-      "startingBalance": 25000,
-      "rules": {
-        "start": 25000,
-        "dd": 1500,
-        "ddType": "intraday",
-        "buffer": 1500
-      },
-      "payoutRules": {
-        "confirmWithUser": true,
-        "notes": "Existing dashboard data tracks $1,500 intraday drawdown/buffer for TPT 25k PRO."
-      }
-    },
-    "lucid.150k.sim-funded": {
-      "firm": "Lucid",
-      "displayName": "Lucid 150k Sim Funded",
-      "accountType": "sim-funded",
-      "defaultMethod": "hidden",
-      "startingBalance": 150000,
-      "rules": {
-        "startingBalance": 150000,
-        "dd": 4500,
-        "ddType": "intraday",
-        "qdTarget": 5,
-        "qdMinProfit": 250,
-        "payoutOrderTarget": 5
-      },
-      "payoutRules": {
-        "confirmWithUser": true,
-        "notes": "Existing dashboard data tracks 5 qualifying days, $250 minimum profit per QD, and payout order target 5."
-      }
-    }
-  }
+﻿{
+    "meta":  {
+                 "version":  2,
+                 "updated":  "2026-07-07",
+                 "purpose":  "Reusable prop-firm rule parameters. The UI should render all challenge accounts with one challenge template and all sim-funded accounts with one sim-funded template.",
+                 "standardRuleFields":  {
+                                            "start":  "Starting account balance",
+                                            "target":  "Profit target",
+                                            "dd":  "Maximum drawdown amount",
+                                            "ddType":  "Drawdown mode, for example EOD, static, or intraday",
+                                            "consistencyPct":  "Consistency rule as a decimal percentage",
+                                            "consistencyCapDay":  "Fixed best-day cap when the rule is dollar based",
+                                            "minDays":  "Minimum trading days",
+                                            "renewalDate":  "Account-specific renewal date, not part of the reusable template"
+                                        },
+                 "notes":  [
+                               "Product presets should only provide parameters for the shared challenge or sim-funded template.",
+                               "Renewal dates are account-specific and should be calculated from the purchase/start date unless the user says otherwise.",
+                               "Payout rules marked confirmWithUser are inferred from existing dashboard data and should be verified before automation depends on them."
+                           ]
+             },
+    "templates":  {
+                      "challenge":  {
+                                        "status":  "challenge",
+                                        "defaultMethod":  "hidden",
+                                        "requiredRuleFields":  [
+                                                                   "start",
+                                                                   "target",
+                                                                   "dd",
+                                                                   "ddType"
+                                                               ],
+                                        "optionalRuleFields":  [
+                                                                   "consistencyPct",
+                                                                   "consistencyCapDay",
+                                                                   "minDays",
+                                                                   "renewalDate"
+                                                               ]
+                                    },
+                      "sim-funded":  {
+                                         "status":  "funded",
+                                         "defaultMethod":  "hidden",
+                                         "requiredRuleFields":  [
+                                                                    "start",
+                                                                    "dd",
+                                                                    "ddType"
+                                                                ],
+                                         "optionalRuleFields":  [
+                                                                    "buffer",
+                                                                    "qdTarget",
+                                                                    "qdMinProfit",
+                                                                    "payoutOrderTarget",
+                                                                    "consistencyPct",
+                                                                    "consistencyCapPct",
+                                                                    "minDays",
+                                                                    "maxSinglePayout"
+                                                                ]
+                                     }
+                  },
+    "products":  {
+                     "blusky.propel50k.challenge":  {
+                                                        "template":  "challenge",
+                                                        "firm":  "BluSky",
+                                                        "displayName":  "BluSky PROPEL 50k",
+                                                        "start":  50000,
+                                                        "target":  3000,
+                                                        "dd":  2000,
+                                                        "ddType":  "EOD",
+                                                        "consistencyPct":  0.3,
+                                                        "payoutRules":  {
+                                                                            "confirmWithUser":  true
+                                                                        }
+                                                    },
+                     "mffu.25k-rapid.challenge":  {
+                                                      "template":  "challenge",
+                                                      "firm":  "MFFU",
+                                                      "displayName":  "MFFU 25k Rapid Challenge",
+                                                      "start":  25000,
+                                                      "target":  1500,
+                                                      "dd":  1000,
+                                                      "ddType":  "EOD",
+                                                      "consistencyPct":  0.5,
+                                                      "payoutRules":  {
+                                                                          "confirmWithUser":  true
+                                                                      }
+                                                  },
+                     "topstep.50k-tc.challenge":  {
+                                                      "template":  "challenge",
+                                                      "firm":  "TopStep",
+                                                      "displayName":  "TopStep 50k TC",
+                                                      "start":  50000,
+                                                      "target":  3000,
+                                                      "dd":  2000,
+                                                      "ddType":  "EOD",
+                                                      "consistencyCapDay":  1500,
+                                                      "minDays":  2,
+                                                      "payoutRules":  {
+                                                                          "confirmWithUser":  true
+                                                                      }
+                                                  },
+                     "topstep.25k-static-tc.challenge":  {
+                                                             "template":  "challenge",
+                                                             "firm":  "TopStep",
+                                                             "displayName":  "TopStep 25k Static TC",
+                                                             "start":  25000,
+                                                             "target":  2000,
+                                                             "dd":  1000,
+                                                             "ddType":  "static",
+                                                             "consistencyCapDay":  1000,
+                                                             "minDays":  2,
+                                                             "payoutRules":  {
+                                                                                 "confirmWithUser":  true
+                                                                             }
+                                                         },
+                     "tpt.25k.challenge":  {
+                                               "template":  "challenge",
+                                               "firm":  "TPT",
+                                               "displayName":  "Take Profit Trader (TPT) 25K",
+                                               "start":  25000,
+                                               "target":  1500,
+                                               "dd":  1500,
+                                               "ddType":  "EOD",
+                                               "consistencyPct":  0.5,
+                                               "minDays":  5,
+                                               "payoutRules":  {
+                                                                   "confirmWithUser":  true
+                                                               }
+                                           },
+                     "tpt.25k-pro.sim-funded":  {
+                                                    "template":  "sim-funded",
+                                                    "firm":  "TPT",
+                                                    "displayName":  "TPT 25k PRO",
+                                                    "start":  25000,
+                                                    "dd":  1500,
+                                                    "ddType":  "intraday",
+                                                    "buffer":  1500,
+                                                    "payoutRules":  {
+                                                                        "confirmWithUser":  true
+                                                                    }
+                                                },
+                     "topstep.50k-xfa-standard.sim-funded":  {
+                                                                 "template":  "sim-funded",
+                                                                 "firm":  "TopStep",
+                                                                 "displayName":  "TopStep 50k XFA Standard",
+                                                                 "start":  50000,
+                                                                 "dd":  2000,
+                                                                 "ddType":  "EOD",
+                                                                 "qdMinProfit":  150,
+                                                                 "qdTarget":  5,
+                                                                 "payoutRules":  {
+                                                                                     "confirmWithUser":  true
+                                                                                 }
+                                                             },
+                     "topstep.50k-xfa-consistency.sim-funded":  {
+                                                                    "template":  "sim-funded",
+                                                                    "firm":  "TopStep",
+                                                                    "displayName":  "TopStep 50k XFA Consistency",
+                                                                    "start":  50000,
+                                                                    "dd":  2000,
+                                                                    "ddType":  "EOD",
+                                                                    "consistencyCapPct":  0.4,
+                                                                    "minDays":  3,
+                                                                    "maxSinglePayout":  6000,
+                                                                    "payoutRules":  {
+                                                                                        "confirmWithUser":  true
+                                                                                    }
+                                                                },
+                     "lucid.150k.flex.sim-funded":  {
+                                                        "template":  "sim-funded",
+                                                        "firm":  "Lucid",
+                                                        "displayName":  "Lucid 150k Flex Sim Funded",
+                                                        "start":  150000,
+                                                        "dd":  4500,
+                                                        "ddType":  "intraday",
+                                                        "qdTarget":  5,
+                                                        "qdMinProfit":  250,
+                                                        "payoutOrderTarget":  5,
+                                                        "payoutRules":  {
+                                                                            "confirmWithUser":  true
+                                                                        }
+                                                    }
+                 }
 }
