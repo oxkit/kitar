@@ -171,7 +171,7 @@
     {
       "name": "Blusky",
       "payouts": 7952.9,
-      "costs": 1082.5,
+      "costs": 1181.5,
       "feeModal": "blusky",
       "feeRecords": [
         {
@@ -186,6 +186,11 @@
         },
         {
           "date": "2026-06-06",
+          "accountNumber": "BSKEPROPELYEE11499",
+          "amount": 99
+        },
+        {
+          "date": "2026-07-06",
           "accountNumber": "BSKEPROPELYEE11499",
           "amount": 99
         }
@@ -563,6 +568,29 @@
           "pnl": 4.25
         }
       ]
+    },
+    {
+      "id": "bsk4",
+      "name": "BluSky PROPEL 50k",
+      "emoji": "ðŸŸ£",
+      "firm": "BluSky",
+      "accountNumber": "BSKEPROPELYEE11499",
+      "started": "2026-07-06",
+      "status": "challenge",
+      "method": "hidden",
+      "split": null,
+      "rules": {
+        "start": 50000,
+        "target": 3000,
+        "dd": 2000,
+        "ddType": "EOD trailing",
+        "consistencyPct": 0.3,
+        "renewalDate": "2026-08-06"
+      },
+      "balance": 50000,
+      "peak": 50000,
+      "bestDay": 0,
+      "records": []
     },
     {
       "id": "ts50c3",
