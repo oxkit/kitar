@@ -293,7 +293,7 @@
                                              "qdMinProfit":  250,
                                              "payoutOrderTarget":  5
                                          },
-                               "balance":  151922.62,
+                               "balance":  152174.12,
                                "peak":  153362,
                                "bestDay":  1772.75,
                                "records":  [
@@ -413,6 +413,10 @@
                                                {
                                                    "date":  "2026-07-07",
                                                    "pnl":  333.5
+                                               },
+                                               {
+                                                   "date":  "2026-07-08",
+                                                   "pnl":  251.5
                                                }
                                            ],
                                "ruleKey":  "lucid.150k.flex.sim-funded"
@@ -433,7 +437,7 @@
                                              "ddType":  "intraday",
                                              "buffer":  1500
                                          },
-                               "balance":  25111.5,
+                               "balance":  25167.75,
                                "peak":  25427.5,
                                "bestDay":  267.5,
                                "records":  [
@@ -512,6 +516,10 @@
                                                {
                                                    "date":  "2026-07-07",
                                                    "pnl":  72.25
+                                               },
+                                               {
+                                                   "date":  "2026-07-08",
+                                                   "pnl":  56.25
                                                }
                                            ],
                                "ruleKey":  "tpt.25k-pro.sim-funded"
@@ -532,8 +540,8 @@
                                              "ddType":  "intraday",
                                              "buffer":  1500
                                          },
-                               "balance":  25485,
-                               "peak":  25485,
+                               "balance":  25766.25,
+                               "peak":  25766.25,
                                "bestDay":  342.5,
                                "records":  [
                                                {
@@ -555,6 +563,10 @@
                                                {
                                                    "date":  "2026-07-07",
                                                    "pnl":  342.5
+                                               },
+                                               {
+                                                   "date":  "2026-07-08",
+                                                   "pnl":  281.25
                                                }
                                            ],
                                "ruleKey":  "tpt.25k-pro.sim-funded"
@@ -575,8 +587,8 @@
                                              "ddType":  "intraday",
                                              "buffer":  1500
                                          },
-                               "balance":  25141.5,
-                               "peak":  25141.5,
+                               "balance":  25196.5,
+                               "peak":  25196.5,
                                "bestDay":  69.75,
                                "records":  [
                                                {
@@ -594,6 +606,10 @@
                                                {
                                                    "date":  "2026-07-07",
                                                    "pnl":  69.75
+                                               },
+                                               {
+                                                   "date":  "2026-07-08",
+                                                   "pnl":  55
                                                }
                                            ],
                                "ruleKey":  "tpt.25k-pro.sim-funded"
@@ -616,13 +632,17 @@
                                              "consistencyPct":  0.3,
                                              "renewalDate":  "2026-08-06"
                                          },
-                               "balance":  50531.98,
-                               "peak":  50531.98,
-                               "bestDay":  531.98,
+                               "balance":  51085.18,
+                               "peak":  51085.18,
+                               "bestDay":  553.2,
                                "records":  [
                                                {
                                                    "date":  "2026-07-07",
                                                    "pnl":  531.98
+                                               },
+                                               {
+                                                   "date":  "2026-07-08",
+                                                   "pnl":  553.2
                                                }
                                            ],
                                "ruleKey":  "blusky.propel50k.challenge"
@@ -644,58 +664,20 @@
                                              "ddType":  "EOD",
                                              "consistencyPct":  0.5
                                          },
-                               "balance":  25015.64,
-                               "peak":  25015.64,
-                               "bestDay":  15.64,
+                               "balance":  25567.24,
+                               "peak":  25567.24,
+                               "bestDay":  551.6,
                                "records":  [
                                                {
                                                    "date":  "2026-07-07",
                                                    "pnl":  15.64
+                                               },
+                                               {
+                                                   "date":  "2026-07-08",
+                                                   "pnl":  551.6
                                                }
                                            ],
                                "ruleKey":  "mffu.25k-rapid.challenge"
-                           },
-                           {
-                               "id":  "ts50c3",
-                               "name":  "TopStep 50k TC",
-                               "emoji":  "",
-                               "firm":  "TopStep",
-                               "accountNumber":  "50KTC-V2-45281-56425053",
-                               "started":  "2026-07-02",
-                               "status":  "challenge",
-                               "method":  "hidden",
-                               "split":  null,
-                               "rules":  {
-                                             "start":  50000,
-                                             "dd":  2000,
-                                             "ddType":  "EOD",
-                                             "target":  3000,
-                                             "consistencyCapDay":  1500,
-                                             "minDays":  2,
-                                             "renewalDate":  "2026-08-02"
-                                         },
-                               "balance":  52618,
-                               "peak":  52618,
-                               "bestDay":  1389.1,
-                               "records":  [
-                                               {
-                                                   "date":  "2026-07-02",
-                                                   "pnl":  1389.1
-                                               },
-                                               {
-                                                   "date":  "2026-07-03",
-                                                   "pnl":  212.8
-                                               },
-                                               {
-                                                   "date":  "2026-07-06",
-                                                   "pnl":  -23.8
-                                               },
-                                               {
-                                                   "date":  "2026-07-07",
-                                                   "pnl":  1039.9
-                                               }
-                                           ],
-                               "ruleKey":  "topstep.50k-tc.challenge"
                            },
                            {
                                "id":  "ts25static1",
@@ -716,8 +698,8 @@
                                              "minDays":  2,
                                              "renewalDate":  "2026-08-02"
                                          },
-                               "balance":  25977.8,
-                               "peak":  25977.8,
+                               "balance":  26428.55,
+                               "peak":  26428.55,
                                "bestDay":  469.95,
                                "records":  [
                                                {
@@ -735,9 +717,31 @@
                                                {
                                                    "date":  "2026-07-07",
                                                    "pnl":  469.95
+                                               },
+                                               {
+                                                   "date":  "2026-07-08",
+                                                   "pnl":  450.75
                                                }
                                            ],
                                "ruleKey":  "topstep.25k-static-tc.challenge"
+                           },
+                           {
+                               "id":  "xfa2",
+                               "name":  "TopStep 50k XFA Consistency",
+                               "emoji":  "",
+                               "firm":  "TopStep",
+                               "accountNumber":  "EXPRESS-V2-CT-45281-12277181",
+                               "started":  "2026-07-08",
+                               "status":  "funded",
+                               "method":  "records",
+                               "split":  null,
+                               "ruleKey":  "topstep.50k-xfa-consistency.sim-funded",
+                               "rules":  {
+
+                                         },
+                               "records":  [
+
+                                           ]
                            }
                        ],
     "personalLive":  {
@@ -761,10 +765,64 @@
                                          {
                                              "date":  "2026-07-07",
                                              "net":  12.58
+                                         },
+                                         {
+                                             "date":  "2026-07-08",
+                                             "net":  9.89
                                          }
                                      ]
                      },
     "archivedAccounts":  [
+                             {
+                                 "id":  "ts50c3",
+                                 "name":  "TopStep 50k TC",
+                                 "emoji":  "",
+                                 "firm":  "TopStep",
+                                 "accountNumber":  "50KTC-V2-45281-56425053",
+                                 "started":  "2026-07-02",
+                                 "status":  "Passed",
+                                 "method":  "hidden",
+                                 "split":  null,
+                                 "rules":  {
+                                               "start":  50000,
+                                               "dd":  2000,
+                                               "ddType":  "EOD",
+                                               "target":  3000,
+                                               "consistencyCapDay":  1500,
+                                               "minDays":  2,
+                                               "renewalDate":  "2026-08-02"
+                                           },
+                                 "balance":  53000,
+                                 "peak":  53000,
+                                 "bestDay":  1389.1,
+                                 "records":  [
+                                                 {
+                                                     "date":  "2026-07-02",
+                                                     "pnl":  1389.1
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-03",
+                                                     "pnl":  212.8
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-06",
+                                                     "pnl":  -23.8
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-07",
+                                                     "pnl":  1039.9
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-08",
+                                                     "pnl":  382
+                                                 }
+                                             ],
+                                 "ruleKey":  "topstep.50k-tc.challenge",
+                                 "closedDate":  "2026-07-08",
+                                 "finalBalance":  53000,
+                                 "peakBalance":  53000,
+                                 "description":  "Challenge passed after reaching the profit target."
+                             },
                              {
                                  "id":  "bsk3",
                                  "name":  "BluSky PROPEL 50k",
@@ -1424,6 +1482,13 @@
                          ],
     "history":  {
                     "overview":  [
+                                     {
+                                         "date":  "2026-07-08",
+                                         "firm":  "TopStep",
+                                         "account":  "50k TC",
+                                         "type":  "Challenge",
+                                         "status":  "Passed"
+                                     },
                                      {
                                          "date":  "2026-07-06",
                                          "firm":  "BluSky",
