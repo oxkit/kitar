@@ -276,7 +276,7 @@
                            {
                                "id":  "inp",
                                "name":  "Lucid 150k Flex Sim Funded",
-                               "emoji":  "ðŸŸ¢",
+                               "emoji":  "",
                                "firm":  "Lucid",
                                "accountNumber":  "LFF1506245655001",
                                "started":  "2026-04-09",
@@ -287,10 +287,10 @@
                                              "startingBalance":  150000,
                                              "dd":  4500,
                                              "ddType":  "intraday",
-                                            "qdTarget":  5,
-                                            "qdBase":  2,
-                                            "qdBaseDate":  "2026-07-07",
-                                            "qdMinProfit":  250,
+                                             "qdTarget":  5,
+                                             "qdBase":  2,
+                                             "qdBaseDate":  "2026-07-07",
+                                             "qdMinProfit":  250,
                                              "payoutOrderTarget":  5
                                          },
                                "balance":  151922.62,
@@ -414,12 +414,13 @@
                                                    "date":  "2026-07-07",
                                                    "pnl":  333.5
                                                }
-                                           ]
+                                           ],
+                               "ruleKey":  "lucid.150k.flex.sim-funded"
                            },
                            {
                                "id":  "tptpro",
                                "name":  "TPT 25k PRO",
-                               "emoji":  "ðŸŸ¢",
+                               "emoji":  "",
                                "firm":  "TPT",
                                "accountNumber":  "TPPRO5351335",
                                "started":  "2026-04-22",
@@ -512,12 +513,13 @@
                                                    "date":  "2026-07-07",
                                                    "pnl":  72.25
                                                }
-                                           ]
+                                           ],
+                               "ruleKey":  "tpt.25k-pro.sim-funded"
                            },
                            {
                                "id":  "tptpro2",
                                "name":  "TPT 25k PRO",
-                               "emoji":  "ðŸŸ¢",
+                               "emoji":  "",
                                "firm":  "TPT",
                                "accountNumber":  "TAKEPROFITPRO403374427",
                                "started":  "2026-06-26",
@@ -554,12 +556,13 @@
                                                    "date":  "2026-07-07",
                                                    "pnl":  342.5
                                                }
-                                           ]
+                                           ],
+                               "ruleKey":  "tpt.25k-pro.sim-funded"
                            },
                            {
                                "id":  "tptpro3",
                                "name":  "TPT 25k PRO",
-                               "emoji":  "ðŸŸ¢",
+                               "emoji":  "",
                                "firm":  "TPT",
                                "accountNumber":  "TAKEPROFITPRO957723326",
                                "started":  "2026-06-26",
@@ -592,12 +595,13 @@
                                                    "date":  "2026-07-07",
                                                    "pnl":  69.75
                                                }
-                                           ]
+                                           ],
+                               "ruleKey":  "tpt.25k-pro.sim-funded"
                            },
                            {
                                "id":  "bsk4",
                                "name":  "BluSky PROPEL 50k",
-                               "emoji":  "Ã°Å¸Å¸Â£",
+                               "emoji":  "",
                                "firm":  "BluSky",
                                "accountNumber":  "BSKEPROPELYEE11499",
                                "started":  "2026-07-06",
@@ -620,12 +624,13 @@
                                                    "date":  "2026-07-07",
                                                    "pnl":  531.98
                                                }
-                                           ]
+                                           ],
+                               "ruleKey":  "blusky.propel50k.challenge"
                            },
                            {
                                "id":  "mffu1",
                                "name":  "MFFU 25k Rapid Challenge",
-                               "emoji":  "Ã°Å¸Å¸Â ",
+                               "emoji":  "",
                                "firm":  "MFFU",
                                "accountNumber":  "MFFUEVRPD01874034",
                                "started":  "2026-07-07",
@@ -647,12 +652,13 @@
                                                    "date":  "2026-07-07",
                                                    "pnl":  15.64
                                                }
-                                           ]
+                                           ],
+                               "ruleKey":  "mffu.25k-rapid.challenge"
                            },
                            {
                                "id":  "ts50c3",
                                "name":  "TopStep 50k TC",
-                               "emoji":  "ðŸŸ¡",
+                               "emoji":  "",
                                "firm":  "TopStep",
                                "accountNumber":  "50KTC-V2-45281-56425053",
                                "started":  "2026-07-02",
@@ -688,12 +694,13 @@
                                                    "date":  "2026-07-07",
                                                    "pnl":  1039.9
                                                }
-                                           ]
+                                           ],
+                               "ruleKey":  "topstep.50k-tc.challenge"
                            },
                            {
                                "id":  "ts25static1",
                                "name":  "TopStep 25k Static TC",
-                               "emoji":  "ðŸŸ¡",
+                               "emoji":  "",
                                "firm":  "TopStep",
                                "accountNumber":  "25KTC-SKU-LAB-DL-V2-45281-98806043",
                                "started":  "2026-07-02",
@@ -729,7 +736,8 @@
                                                    "date":  "2026-07-07",
                                                    "pnl":  469.95
                                                }
-                                           ]
+                                           ],
+                               "ruleKey":  "topstep.25k-static-tc.challenge"
                            }
                        ],
     "personalLive":  {
@@ -760,7 +768,7 @@
                              {
                                  "id":  "bsk3",
                                  "name":  "BluSky PROPEL 50k",
-                                 "emoji":  "ðŸŸ£",
+                                 "emoji":  "",
                                  "firm":  "BluSky",
                                  "accountNumber":  "BSKEPROPELYEE11499",
                                  "started":  "2026-06-06",
@@ -813,12 +821,13 @@
                                  "closedDate":  "2026-07-06",
                                  "finalBalance":  50025,
                                  "peakBalance":  52102.07,
-                                 "description":  "Account breached EOD trailing drawdown. Closed as failed."
+                                 "description":  "Account breached EOD trailing drawdown. Closed as failed.",
+                                 "ruleKey":  "blusky.propel50k.challenge"
                              },
                              {
                                  "id":  "ts50c2",
                                  "name":  "TopStep 50k TC",
-                                 "emoji":  "ðŸŸ¡",
+                                 "emoji":  "",
                                  "firm":  "TopStep",
                                  "accountNumber":  "50KTC-V2-DLL-45281-96185358",
                                  "started":  "2026-06-23",
@@ -852,12 +861,13 @@
                                  "closedDate":  "2026-06-30",
                                  "finalBalance":  49188.9,
                                  "peakBalance":  51257.22,
-                                 "description":  "Account breached the EOD trailing drawdown floor. Closed as failed."
+                                 "description":  "Account breached the EOD trailing drawdown floor. Closed as failed.",
+                                 "ruleKey":  "topstep.50k-tc.challenge"
                              },
                              {
                                  "id":  "xfa",
                                  "name":  "TopStep 50k XFA Consistency",
-                                 "emoji":  "ðŸŸ¢",
+                                 "emoji":  "",
                                  "firm":  "TopStep",
                                  "accountNumber":  "EXPRESS-V2-CT-45281-27848466",
                                  "started":  "2026-04-13",
@@ -971,12 +981,13 @@
                                  "finalBalance":  0,
                                  "peakBalance":  2008.89,
                                  "bestDay":  701.56,
-                                 "description":  "Account balance reached $0. Closed as blown."
+                                 "description":  "Account balance reached $0. Closed as blown.",
+                                 "ruleKey":  "topstep.50k-xfa-consistency.sim-funded"
                              },
                              {
                                  "id":  "tpt4",
                                  "name":  "Take Profit Trader (TPT) 25K",
-                                 "emoji":  "ðŸŸ¡",
+                                 "emoji":  "",
                                  "firm":  "TPT",
                                  "accountNumber":  "TAKEPROFIT619217658",
                                  "started":  "2026-06-18",
@@ -1010,12 +1021,13 @@
                                  "closedDate":  "2026-06-25",
                                  "finalBalance":  26541.5,
                                  "peakBalance":  26541.5,
-                                 "description":  "Profit target met. Account reached $1,541.50 profit over 3 trading days. Consistency rule maintained (best day $711.50 \u003c $750.00 cap). Passed and submitted for funded account."
+                                 "description":  "Profit target met. Account reached $1,541.50 profit over 3 trading days. Consistency rule maintained (best day $711.50 \u003c $750.00 cap). Passed and submitted for funded account.",
+                                 "ruleKey":  "tpt.25k.challenge"
                              },
                              {
                                  "id":  "tpt5",
                                  "name":  "Take Profit Trader (TPT) 25K",
-                                 "emoji":  "ðŸŸ¡",
+                                 "emoji":  "",
                                  "firm":  "TPT",
                                  "accountNumber":  "TAKEPROFIT704675169",
                                  "started":  "2026-06-18",
@@ -1049,12 +1061,13 @@
                                  "closedDate":  "2026-06-25",
                                  "finalBalance":  26554,
                                  "peakBalance":  26554,
-                                 "description":  "Profit target met. Account reached $1,554.00 profit over 3 trading days. Consistency rule maintained (best day $705.25 \u003c $750.00 cap). Passed and submitted for funded account."
+                                 "description":  "Profit target met. Account reached $1,554.00 profit over 3 trading days. Consistency rule maintained (best day $705.25 \u003c $750.00 cap). Passed and submitted for funded account.",
+                                 "ruleKey":  "tpt.25k.challenge"
                              },
                              {
                                  "id":  "xfas",
                                  "name":  "TopStep 50k XFA Standard",
-                                 "emoji":  "ðŸŸ¢",
+                                 "emoji":  "",
                                  "firm":  "TopStep",
                                  "accountNumber":  "EXPRESS-V2-45281-63007831",
                                  "started":  "2026-05-08",
@@ -1097,12 +1110,13 @@
                                                      "date":  "2026-06-22",
                                                      "pnl":  -1361.36
                                                  }
-                                             ]
+                                             ],
+                                 "ruleKey":  "topstep.50k-xfa-standard.sim-funded"
                              },
                              {
                                  "id":  "bsk2",
                                  "name":  "BluSky PROPEL 50k",
-                                 "emoji":  "ðŸŸ£",
+                                 "emoji":  "",
                                  "firm":  "BluSky",
                                  "accountNumber":  "BSKEPROPELYEE11499",
                                  "started":  "2026-05-08",
@@ -1142,12 +1156,13 @@
                                                      "date":  "2026-06-10",
                                                      "pnl":  -40.31
                                                  }
-                                             ]
+                                             ],
+                                 "ruleKey":  "blusky.propel50k.challenge"
                              },
                              {
                                  "id":  "tpt3",
                                  "name":  "Take Profit Trader (TPT) 25K",
-                                 "emoji":  "ðŸŸ¡",
+                                 "emoji":  "",
                                  "firm":  "TPT",
                                  "accountNumber":  "TAKEPROFIT795495708",
                                  "started":  "2026-05-17",
@@ -1180,12 +1195,13 @@
                                                      "date":  "2026-06-10",
                                                      "pnl":  -406.5
                                                  }
-                                             ]
+                                             ],
+                                 "ruleKey":  "tpt.25k.challenge"
                              },
                              {
                                  "id":  "tpt2",
                                  "name":  "Take Profit Trader (TPT) 25K",
-                                 "emoji":  "ðŸŸ¡",
+                                 "emoji":  "",
                                  "firm":  "TPT",
                                  "accountNumber":  "TAKEPROFIT567959509",
                                  "started":  "2026-05-17",
@@ -1218,12 +1234,13 @@
                                                      "date":  "2026-06-10",
                                                      "pnl":  -395.25
                                                  }
-                                             ]
+                                             ],
+                                 "ruleKey":  "tpt.25k.challenge"
                              },
                              {
                                  "id":  "ts50c",
                                  "name":  "TopStep 50k TC",
-                                 "emoji":  "ðŸŸ¡",
+                                 "emoji":  "",
                                  "firm":  "TopStep",
                                  "accountNumber":  "50KTC-V2-45281-51504924",
                                  "started":  "2026-04-23",
@@ -1267,12 +1284,13 @@
                                                      "date":  "2026-05-08",
                                                      "pnl":  629.75
                                                  }
-                                             ]
+                                             ],
+                                 "ruleKey":  "topstep.50k-tc.challenge"
                              },
                              {
                                  "id":  "tpt50",
                                  "name":  "Take Profit Trader (TPT) 50k",
-                                 "emoji":  "ðŸŸ¡",
+                                 "emoji":  "",
                                  "firm":  "TPT",
                                  "accountNumber":  "TPT4670917",
                                  "started":  "2026-04-21",
@@ -1308,7 +1326,7 @@
                              {
                                  "id":  "tpt",
                                  "name":  "Take Profit Trader (TPT) 25k",
-                                 "emoji":  "ðŸŸ¡",
+                                 "emoji":  "",
                                  "firm":  "TPT",
                                  "accountNumber":  "TPT2658347",
                                  "started":  "2026-03-24",
@@ -1355,12 +1373,13 @@
                                                      "date":  "2026-04-21",
                                                      "pnl":  116
                                                  }
-                                             ]
+                                             ],
+                                 "ruleKey":  "tpt.25k.challenge"
                              },
                              {
                                  "id":  "bsk1",
                                  "name":  "BluSky PROPEL 50K",
-                                 "emoji":  "ðŸŸ£",
+                                 "emoji":  "",
                                  "firm":  "BluSky",
                                  "accountNumber":  "BSKEPREMIUMYEE12937",
                                  "started":  "2026-04-08",
@@ -1399,7 +1418,8 @@
                                                      "date":  "2026-04-17",
                                                      "pnl":  -1489.35
                                                  }
-                                             ]
+                                             ],
+                                 "ruleKey":  "blusky.propel50k.challenge"
                              }
                          ],
     "history":  {
