@@ -365,7 +365,7 @@
 
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 7 Jul 2026 · 7:05 PM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 8 Jul 2026 · 7:03 AM EST</div>
 
 <div div id="fee-modal-topstep" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
@@ -549,6 +549,26 @@ function statBox(label, valueId, defaultVal, color) {
     + '</div>';
 }
 
+function iconPrefix(acct) {
+  return acct.emoji && !/[Ãð]/.test(acct.emoji) ? acct.emoji + ' ' : '';
+}
+
+function mergeRuleTemplates(data, propRules) {
+  var products = propRules && propRules.products ? propRules.products : {};
+  function mergeAccount(acct) {
+    var product = acct.ruleKey ? products[acct.ruleKey] : null;
+    if (!product) return;
+    var merged = {};
+    Object.keys(product).forEach(function(k) {
+      if (['template','firm','displayName','payoutRules'].indexOf(k) === -1) merged[k] = product[k];
+    });
+    Object.assign(merged, acct.rules || {});
+    acct.rules = merged;
+  }
+  (data.activeAccounts || []).forEach(mergeAccount);
+  (data.archivedAccounts || []).forEach(mergeAccount);
+}
+
 function progressBar(label, labelId, barId, noteId, labelColor) {
   return '<div>'
     + '<div style="display:flex; justify-content:space-between; margin-bottom:8px;">'
@@ -602,7 +622,7 @@ function renderXFAPanel(acct) {
 
   return '<div style="margin-bottom:28px;">'
     + '<div style="font-size:14px; font-weight:600; color:#8a94a3; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.09);">'
-    + '<span class="fr-dot ok live" style="margin-right:9px;"></span>' + acct.emoji + ' SIM FUNDED ACCOUNT &mdash; '+acct.name
+    + '<span class="fr-dot ok live" style="margin-right:9px;"></span>' + iconPrefix(acct) + 'SIM FUNDED ACCOUNT &mdash; '+acct.name
     + '</div>'
     + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono); letter-spacing:0.3px;">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" class="fr-btn-ghost fr-btn-xs">Records</button></div>'
     + '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;"><div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'+ruleBadges+'</div>'
@@ -636,6 +656,7 @@ function renderHiddenPanel(acct) {
   var isBluSkyPropel = acct.firm === 'BluSky' && r.start === 50000 && r.target === 3000 && r.consistencyPct;
   var isTpt25kChallenge = acct.firm === 'TPT' && r.start === 25000 && r.target === 1500 && r.consistencyPct;
   var isTopStep50kTC = acct.firm === 'TopStep' && acct.status === 'challenge' && r.start && r.dd && r.consistencyCapDay;
+  var isGenericChallenge = acct.status === 'challenge' && r.start && r.target && r.dd && r.consistencyPct && !isBluSkyPropel && !isTpt25kChallenge && !isTopStep50kTC;
   var isTpt25kPro = acct.firm === 'TPT' && acct.status === 'funded' && r.start === 25000 && r.dd === 1500 && r.buffer;
   var started = acct.started.split('-').reverse().join('/').replace(/^0/,'').replace(/\/0/g,'/');
   var typeLabel = acct.status === 'funded' ? 'SIM FUNDED ACCOUNT' : 'CHALLENGE ACCOUNT';
@@ -664,6 +685,11 @@ function renderHiddenPanel(acct) {
       + '<div class="fr-badge ok">Min '+r.minDays+' Trading Days</div>'
       + '<div class="fr-badge bad">Consistency: Best Day &lt; $'+r.consistencyCapDay.toLocaleString()+'</div>'
       + '<div class="fr-badge warn push">Renews '+topStepRenewalLabel+'</div>';
+  } else if (isGenericChallenge) {
+    ruleBadges = '<div class="fr-badge bad">'+(r.ddType || 'EOD')+' Drawdown $'+r.dd.toLocaleString()+'</div>'
+      + '<div class="fr-badge ok">Profit Target $'+r.target.toLocaleString()+'</div>'
+      + '<div class="fr-badge bad">Consistency: Best Day &lt; '+(r.consistencyPct*100)+'% of Profit</div>';
+    if (r.minDays) ruleBadges += '<div class="fr-badge ok">Min '+r.minDays+' Trading Days</div>';
   }
 
   var extraPanels = '';
@@ -690,7 +716,7 @@ function renderHiddenPanel(acct) {
 
   var header = '<div style="margin-bottom:28px;">'
     + '<div style="font-size:14px; font-weight:600; color:#8a94a3; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.09);">'
-    + '<span class="fr-dot ' + (acct.status==='funded'?'ok live':'warn') + '" style="margin-right:9px;"></span>' + acct.emoji + ' '+typeLabel+' &mdash; '+acct.name
+    + '<span class="fr-dot ' + (acct.status==='funded'?'ok live':'warn') + '" style="margin-right:9px;"></span>' + iconPrefix(acct) + typeLabel+' &mdash; '+acct.name
     + '</div>'
     + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" class="fr-btn-ghost fr-btn-xs">Records</button></div>'
     + '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;"><div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>'+ruleBadges+'</div>';
@@ -780,7 +806,7 @@ function renderHiddenPanel(acct) {
       + '</div>';
     var bsk2Hdr = '<div style="margin-bottom:28px;">'
       + '<div style="font-size:14px; font-weight:600; color:#8a94a3; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.09);">'
-      + '<span class="fr-dot warn" style="margin-right:9px;"></span>' + acct.emoji + ' Challenge Tracker &mdash; ' + acct.name
+      + '<span class="fr-dot warn" style="margin-right:9px;"></span>' + iconPrefix(acct) + 'Challenge Tracker &mdash; ' + acct.name
       + '</div>'
       + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">'+acct.accountNumber+'</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">'+started+'</span> &nbsp;&middot;&nbsp; <button data-acct-id="'+id+'" onclick="showRecordsModal(this.dataset.acctId)" class="fr-btn-ghost fr-btn-xs">Records</button></div>'
       + phasePills
@@ -902,6 +928,37 @@ function renderHiddenPanel(acct) {
   }
 
     // ── tptpro: original layout ──
+  if (isGenericChallenge) {
+    return header
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Balance</div>'
+      + '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">'
+      + statBox('Current Balance', id+'-stat-bal', '--', '#33e08a')
+      + statBox('Highest Trailing', id+'-stat-peak', '--')
+      + statBox('Best Single Day', id+'-stat-bday', '--')
+      + '</div></div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Trading Days</div>'
+      + '<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">'
+      + statBox('Total Trading Days', id+'-stat-days', '0')
+      + '<div style="background:#0e131b; border-radius:8px; padding:14px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Min Trading Days</div><div style="font-size:18px; font-weight:700; color:#59626f;">'+(r.minDays || 'N/A')+'</div></div>'
+      + '</div></div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Drawdown &amp; Consistency</div>'
+      + '<div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">'
+      + '<div>'
+      + '<div style="background:#0e131b; border-radius:8px; padding:12px 14px; margin-bottom:12px;"><div style="font-size:10px; color:#59626f; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Drawdown Floor</div><div id="'+id+'-dd-floor" style="font-size:16px; font-weight:700; color:#f5b13d;">--</div></div>'
+      + progressBar('Drawdown Used', id+'-dd-lbl', id+'-dd-bar', id+'-dd-note', '#ff5e57')
+      + '</div>'
+      + '<div>'+progressBar('Consistency Check', id+'-cons-lbl', id+'-cons-bar', id+'-cons-note', '#33e08a')+'</div>'
+      + '</div></div>'
+      + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
+      + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Profit Progress</div>'
+      + progressBar('Profit Progress', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#33e08a')
+      + '</div>'
+      + '</div>';
+  }
+
   return header
     + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;">'
     + '<div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Balance</div>'
@@ -1177,6 +1234,35 @@ function calcHidden(acct) {
     el(id+'-renewal-lbl').textContent=dLeft4>0?dLeft4+' days left':'Expired';
     el(id+'-renewal-lbl').style.color=dLeft4<=5?'#ff5e57':'#f5b13d';
     el(id+'-renewal-note').textContent='Renews '+renewalDate4.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][renewalDate4.getMonth()]+' '+renewalDate4.getFullYear();
+  } else if(acct.status === 'challenge' && r.start && r.target && r.dd && r.consistencyPct) {
+    var isStaticGeneric=(r.ddType || '').toLowerCase() === 'static';
+    var floorG=isStaticGeneric ? r.start-r.dd : effPeak-r.dd;
+    var ddUsedG=Math.max(0,effPeak-bal);
+    var ddPctG=Math.min(100,(ddUsedG/r.dd)*100);
+    var totalProfitG=bal-r.start;
+    var isBreachG=bal<=floorG;
+    var consCapG=r.target*r.consistencyPct;
+    var consViolatedG=bestDay>consCapG;
+    var consPctG=Math.min(100,(bestDay/consCapG)*100);
+    var profitPctG=Math.min(100,Math.max(0,(totalProfitG/r.target)*100));
+    el(id+'-stat-bal').textContent='$'+bal.toLocaleString('en-US',{minimumFractionDigits:2});
+    el(id+'-stat-bal').style.color=totalProfitG>=0?'#33e08a':'#ff5e57';
+    el(id+'-stat-peak').textContent='$'+effPeak.toLocaleString('en-US',{minimumFractionDigits:2});
+    el(id+'-stat-bday').textContent=fmt(bestDay);
+    el(id+'-stat-days').textContent=days;
+    el(id+'-dd-floor').textContent='$'+floorG.toFixed(2);
+    el(id+'-dd-floor').style.color=isBreachG?'#ff5e57':'#f5b13d';
+    bar(id+'-dd-bar',ddPctG,barColor(ddPctG));
+    el(id+'-dd-lbl').style.color=barColor(ddPctG);
+    el(id+'-dd-lbl').textContent='$'+ddUsedG.toFixed(0)+' / $'+r.dd.toLocaleString();
+    el(id+'-dd-note').textContent=isBreachG?'Account breached':'Floor $'+floorG.toFixed(2)+' · $'+(bal-floorG).toFixed(2)+' buffer';
+    bar(id+'-cons-bar',consPctG,consViolatedG?'#ff5e57':consPctG>80?'#f5b13d':'#33e08a');
+    el(id+'-cons-lbl').style.color=consViolatedG?'#ff5e57':consPctG>80?'#f5b13d':'#33e08a';
+    el(id+'-cons-lbl').textContent=bestDay>0?'$'+bestDay.toFixed(0)+' / $'+consCapG.toFixed(0)+' cap':'No trades yet';
+    el(id+'-cons-note').textContent=consViolatedG?'Consistency violated':bestDay>0?(consPctG>80?'Warning: ':'OK: ')+'Best day is '+consPctG.toFixed(0)+'% of $'+consCapG.toFixed(0)+' cap':'Best single day must stay below $'+consCapG.toFixed(0);
+    bar(id+'-profit-bar',profitPctG,'#33e08a');
+    el(id+'-profit-lbl').textContent='$'+Math.max(0,totalProfitG).toFixed(2)+' / $'+r.target.toLocaleString();
+    el(id+'-profit-note').textContent=totalProfitG>=r.target?'Target met!':'$'+Math.max(0,r.target-totalProfitG).toFixed(2)+' still needed';
   }
 }
 
@@ -1269,6 +1355,8 @@ async function loadDaily() {
 async function init() {
   try {
     var d = await fetch('./accounts.json').then(function(r){return r.json();});
+    var propRules = await fetch('./prop-rules.json').then(function(r){return r.json();});
+    mergeRuleTemplates(d, propRules);
     window._data = d;
     renderStats(d);
     renderTracker(d);
