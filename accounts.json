@@ -291,7 +291,8 @@
                                              "qdBase":  2,
                                              "qdBaseDate":  "2026-07-07",
                                              "qdMinProfit":  250,
-                                             "payoutOrderTarget":  5
+                                             "payoutOrderTarget":  5,
+                                             "payoutOrders":  1
                                          },
                                "balance":  152174.12,
                                "peak":  153362,
