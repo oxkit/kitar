@@ -205,7 +205,7 @@
                   },
                   {
                       "name":  "Lucid",
-                      "payouts":  3667.68,
+                      "payouts":  4806.91,
                       "costs":  436.5,
                       "feeModal":  null
                   },
@@ -292,9 +292,9 @@
                                              "qdBaseDate":  "2026-07-07",
                                              "qdMinProfit":  250,
                                              "payoutOrderTarget":  5,
-                                             "payoutOrders":  1
+                                             "payoutOrders":  2
                                          },
-                               "balance":  152174.12,
+                               "balance":  151266.19,
                                "peak":  153362,
                                "bestDay":  1772.75,
                                "records":  [
@@ -418,6 +418,15 @@
                                                {
                                                    "date":  "2026-07-08",
                                                    "pnl":  251.5
+                                               },
+                                               {
+                                                   "date":  "2026-07-09",
+                                                   "pnl":  357.88
+                                               },
+                                               {
+                                                   "date":  "2026-07-09",
+                                                   "pnl":  -1265.81,
+                                                   "payout":  true
                                                }
                                            ],
                                "ruleKey":  "lucid.150k.flex.sim-funded"
@@ -438,7 +447,7 @@
                                              "ddType":  "intraday",
                                              "buffer":  1500
                                          },
-                               "balance":  25167.75,
+                               "balance":  25247.25,
                                "peak":  25427.5,
                                "bestDay":  267.5,
                                "records":  [
@@ -521,6 +530,10 @@
                                                {
                                                    "date":  "2026-07-08",
                                                    "pnl":  56.25
+                                               },
+                                               {
+                                                   "date":  "2026-07-09",
+                                                   "pnl":  79.5
                                                }
                                            ],
                                "ruleKey":  "tpt.25k-pro.sim-funded"
@@ -541,9 +554,9 @@
                                              "ddType":  "intraday",
                                              "buffer":  1500
                                          },
-                               "balance":  25766.25,
-                               "peak":  25766.25,
-                               "bestDay":  342.5,
+                               "balance":  26151.25,
+                               "peak":  26151.25,
+                               "bestDay":  385,
                                "records":  [
                                                {
                                                    "date":  "2026-06-29",
@@ -568,6 +581,10 @@
                                                {
                                                    "date":  "2026-07-08",
                                                    "pnl":  281.25
+                                               },
+                                               {
+                                                   "date":  "2026-07-09",
+                                                   "pnl":  385
                                                }
                                            ],
                                "ruleKey":  "tpt.25k-pro.sim-funded"
@@ -588,9 +605,9 @@
                                              "ddType":  "intraday",
                                              "buffer":  1500
                                          },
-                               "balance":  25196.5,
-                               "peak":  25196.5,
-                               "bestDay":  69.75,
+                               "balance":  25272.25,
+                               "peak":  25272.25,
+                               "bestDay":  75.75,
                                "records":  [
                                                {
                                                    "date":  "2026-07-02",
@@ -611,6 +628,10 @@
                                                {
                                                    "date":  "2026-07-08",
                                                    "pnl":  55
+                                               },
+                                               {
+                                                   "date":  "2026-07-09",
+                                                   "pnl":  75.75
                                                }
                                            ],
                                "ruleKey":  "tpt.25k-pro.sim-funded"
@@ -633,9 +654,9 @@
                                              "consistencyPct":  0.3,
                                              "renewalDate":  "2026-08-06"
                                          },
-                               "balance":  51085.18,
-                               "peak":  51085.18,
-                               "bestDay":  553.2,
+                               "balance":  51899.72,
+                               "peak":  51899.72,
+                               "bestDay":  814.54,
                                "records":  [
                                                {
                                                    "date":  "2026-07-07",
@@ -644,6 +665,10 @@
                                                {
                                                    "date":  "2026-07-08",
                                                    "pnl":  553.2
+                                               },
+                                               {
+                                                   "date":  "2026-07-09",
+                                                   "pnl":  814.54
                                                }
                                            ],
                                "ruleKey":  "blusky.propel50k.challenge"
@@ -665,9 +690,9 @@
                                              "ddType":  "EOD",
                                              "consistencyPct":  0.5
                                          },
-                               "balance":  25567.24,
-                               "peak":  25567.24,
-                               "bestDay":  551.6,
+                               "balance":  26307.94,
+                               "peak":  26307.94,
+                               "bestDay":  740.7,
                                "records":  [
                                                {
                                                    "date":  "2026-07-07",
@@ -676,6 +701,10 @@
                                                {
                                                    "date":  "2026-07-08",
                                                    "pnl":  551.6
+                                               },
+                                               {
+                                                   "date":  "2026-07-09",
+                                                   "pnl":  740.7
                                                }
                                            ],
                                "ruleKey":  "mffu.25k-rapid.challenge"
@@ -699,8 +728,8 @@
                                              "minDays":  2,
                                              "renewalDate":  "2026-08-02"
                                          },
-                               "balance":  26428.55,
-                               "peak":  26428.55,
+                               "balance":  26836.45,
+                               "peak":  26836.45,
                                "bestDay":  469.95,
                                "records":  [
                                                {
@@ -722,6 +751,10 @@
                                                {
                                                    "date":  "2026-07-08",
                                                    "pnl":  450.75
+                                               },
+                                               {
+                                                   "date":  "2026-07-09",
+                                                   "pnl":  407.9
                                                }
                                            ],
                                "ruleKey":  "topstep.25k-static-tc.challenge"
@@ -741,7 +774,10 @@
 
                                          },
                                "records":  [
-
+                                               {
+                                                   "date":  "2026-07-09",
+                                                   "pnl":  420.4
+                                               }
                                            ]
                            }
                        ],
@@ -770,6 +806,10 @@
                                          {
                                              "date":  "2026-07-08",
                                              "net":  9.89
+                                         },
+                                         {
+                                             "date":  "2026-07-09",
+                                             "net":  -7.76
                                          }
                                      ]
                      },
@@ -1596,9 +1636,14 @@
                                          "status":  "Passed"
                                      }
                                  ],
-                    "payoutsTotal":  70,
-                    "payoutsGrandTotal":  96865.76,
+                    "payoutsTotal":  71,
+                    "payoutsGrandTotal":  98004.99,
                     "payouts":  [
+                                    {
+                                        "date":  "9/7/26",
+                                        "firm":  "Lucid",
+                                        "amount":  1139.23
+                                    },
                                     {
                                         "date":  "29/5/26",
                                         "firm":  "Lucid",
