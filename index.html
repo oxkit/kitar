@@ -365,7 +365,7 @@
 
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 8 Jul 2026 · 7:03 AM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 9 Jul 2026 · 1:36 AM EST</div>
 
 <div div id="fee-modal-topstep" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
@@ -1086,7 +1086,7 @@ function calcHidden(acct) {
   var days=acct.records.length;
 
   if(id==='inp') {
-    var floor=effPeak-r.dd;
+    var floor=r.payoutOrders>0?r.startingBalance:effPeak-r.dd;
     var ddUsed=Math.max(0,effPeak-bal);
     var ddPct=Math.min(100,(ddUsed/r.dd)*100);
     var totalProfit=bal-r.startingBalance;
