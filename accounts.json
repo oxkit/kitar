@@ -288,8 +288,8 @@
                                              "dd":  4500,
                                              "ddType":  "intraday",
                                              "qdTarget":  5,
-                                             "qdBase":  2,
-                                             "qdBaseDate":  "2026-07-07",
+                                             "qdBase":  0,
+                                             "qdBaseDate":  "2026-07-10",
                                              "qdMinProfit":  250,
                                              "payoutOrderTarget":  5,
                                              "payoutOrders":  2
