@@ -132,7 +132,7 @@
                       "name":  "MFFU",
                       "payouts":  23439.35,
                       "costs":  5322.14,
-                      "feeModal":  null,
+                      "feeModal":  "mffu",
                       "feeRecords":  [
                                          {
                                              "date":  "2026-07-07",
