@@ -365,7 +365,7 @@
 
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 9 Jul 2026 · 1:36 AM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 9 Jul 2026 · 6:45 AM EST</div>
 
 <div div id="fee-modal-topstep" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
@@ -380,6 +380,23 @@
         <th style="text-align:right; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
       </tr></thead>
       <tbody id="fee-modal-topstep-body"></tbody>
+    </table></div>
+  </div>
+</div>
+
+<div id="fee-modal-mffu" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <div style="font-size:14px; font-weight:700; color:#e7ecf2;">MFFU — Challenge Fees</div>
+      <button onclick="document.getElementById('fee-modal-mffu').style.display='none'" class="fr-x">✕</button>
+    </div>
+    <div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; font-size:13px;">
+      <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.09);">
+        <th style="text-align:left; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Date</th>
+        <th style="text-align:left; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Account Number</th>
+        <th style="text-align:right; padding:8px 10px; color:#59626f; font-weight:600; text-transform:uppercase; font-size:10px; letter-spacing:0.5px;">Fee</th>
+      </tr></thead>
+      <tbody id="fee-modal-mffu-body"></tbody>
     </table></div>
   </div>
 </div>
@@ -432,8 +449,28 @@ function fmtSigned(v) { return (v >= 0 ? '' : '-') + fmt(v); }
 function bar(id, pct, color) { var e = el(id); if(e){e.style.width=pct+'%'; e.style.background=color;} }
 function barColor(pct) { return pct < 50 ? '#33e08a' : pct < 75 ? '#f5b13d' : '#ff5e57'; }
 
+var AMP_TRADING_GAINS = 3495.90;
+var AMP_TRADING_LOSSES = 4791.99;
+
+function calculateSummary(d) {
+  var totalPayouts = (d.firms || []).reduce(function(sum, f) { return sum + (Number(f.payouts) || 0); }, 0);
+  var totalFees = (d.firms || []).reduce(function(sum, f) { return sum + (Number(f.costs) || 0); }, 0);
+  var netProp = totalPayouts - totalFees;
+  var hyperLiquidNet = d.personalLive && d.personalLive.records
+    ? d.personalLive.records.reduce(function(sum, r) { return sum + (Number(r.net) || 0); }, 0)
+    : 0;
+  var personalLive = (AMP_TRADING_GAINS - AMP_TRADING_LOSSES) + hyperLiquidNet;
+  return {
+    totalPayoutsReceived: totalPayouts,
+    totalFeesPaid: totalFees,
+    netPropFirmPnL: netProp,
+    personalLivePnL: personalLive,
+    overallNetPnL: netProp + personalLive
+  };
+}
+
 function renderStats(d) {
-  var sc = d.meta.summaryCards;
+  var sc = calculateSummary(d);
   var roi = Math.round(sc.totalPayoutsReceived / sc.totalFeesPaid * 100 - 100);
   var mult = (sc.totalPayoutsReceived / sc.totalFeesPaid).toFixed(1);
   el('sc-payouts').textContent = fmt(sc.totalPayoutsReceived);
@@ -486,7 +523,9 @@ function renderFeeModals(firms) {
     if (!f.feeModal) return;
     var body = el('fee-modal-' + f.feeModal + '-body');
     if (!body) return;
-    var records = f.feeRecords || [];
+    var records = (f.feeRecords || []).slice().sort(function(a,b) {
+      return parseMoneyDate(a.date) - parseMoneyDate(b.date);
+    });
     body.innerHTML = records.map(function(rec) {
       return '<tr>'
         + '<td style="padding:9px 10px; color:#8a94a3;">' + formatIsoDateShort(rec.date) + '</td>'
@@ -497,13 +536,83 @@ function renderFeeModals(firms) {
   });
 }
 
+function parseMoneyDate(dateText) {
+  if (!dateText) return null;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateText)) return parseYmdLocal(dateText);
+  var m = String(dateText).match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+  if (!m) return null;
+  var y = parseInt(m[3], 10);
+  if (y < 100) y += 2000;
+  return new Date(y, parseInt(m[2], 10) - 1, parseInt(m[1], 10));
+}
+
+function monthKeyFromDate(dt) {
+  return dt.getFullYear() + '-' + String(dt.getMonth() + 1).padStart(2, '0');
+}
+
+function monthLabelFromKey(key) {
+  var parts = key.split('-');
+  return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][parseInt(parts[1], 10) - 1] + ' ' + String(parts[0]).slice(-2);
+}
+
+function keyFromMonthLabel(label) {
+  var parts = label.split(' ');
+  var idx = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].indexOf(parts[0]);
+  if (idx < 0) return null;
+  return (2000 + parseInt(parts[1], 10)) + '-' + String(idx + 1).padStart(2, '0');
+}
+
+function buildMonthlyStats(d) {
+  var base = d.stats || {};
+  var labels = (base.monthLabels || []).slice();
+  var payouts = (base.payoutsData || []).slice();
+  var fees = (base.feesData || []).slice();
+  var lastKey = labels.length ? keyFromMonthLabel(labels[labels.length - 1]) : null;
+  var monthly = {};
+
+  function bucket(dateText) {
+    var dt = parseMoneyDate(dateText);
+    if (!dt) return null;
+    var key = monthKeyFromDate(dt);
+    if (lastKey && key <= lastKey) return null;
+    if (!monthly[key]) monthly[key] = { payouts: 0, fees: 0 };
+    return monthly[key];
+  }
+
+  ((d.history && d.history.payouts) || []).forEach(function(p) {
+    var b = bucket(p.date);
+    if (b) b.payouts += Number(p.amount) || 0;
+  });
+  (d.firms || []).forEach(function(firm) {
+    (firm.feeRecords || []).forEach(function(rec) {
+      var b = bucket(rec.date);
+      if (b) b.fees += Number(rec.amount) || 0;
+    });
+  });
+
+  Object.keys(monthly).sort().forEach(function(key) {
+    labels.push(monthLabelFromKey(key));
+    payouts.push(Number(monthly[key].payouts.toFixed(2)));
+    fees.push(Number(monthly[key].fees.toFixed(2)));
+  });
+
+  var net = payouts.map(function(v, i) { return Number((v - (fees[i] || 0)).toFixed(2)); });
+  return {
+    monthLabels: labels,
+    payoutsData: payouts,
+    feesData: fees,
+    netMonthly: net,
+    netMonthlyColors: net.map(function(v) { return v >= 0 ? 'rgba(52,211,153,0.8)' : 'rgba(248,113,113,0.8)'; })
+  };
+}
+
 function renderCharts(d) {
-  var s = d.stats;
+  var s = buildMonthlyStats(d);
   var cumNet = [], cumOverall = [], runN = 0, runO = 0;
   for (var i = 0; i < s.netMonthly.length - 1; i++) {
     runN += s.netMonthly[i]; cumNet.push(runN);
   }
-  var personalAdj = d.meta.summaryCards.personalLivePnL;
+  var personalAdj = calculateSummary(d).personalLivePnL;
   for (var i = 0; i < cumNet.length; i++) {
     cumOverall.push(cumNet[i] + (i === cumNet.length - 1 ? personalAdj : 0));
   }
@@ -536,10 +645,13 @@ function renderCharts(d) {
     { label:'Fees Paid', data:s.feesData.map(function(v){return -v;}), backgroundColor:'rgba(255,94,87,0.7)', borderRadius:3 }
   ] }, options:{...chartDefaults, plugins:{...chartDefaults.plugins, tooltip:{...chartDefaults.plugins.tooltip, callbacks:{label:function(ctx){return ' $'+Math.abs(ctx.parsed.y).toLocaleString('en-US',{minimumFractionDigits:2});}}}}} });
 
-  var firmNames = ["APEX","MFFU","Tradeify","TopStep","Blusky","Lucid"];
-  var firmPnls = [36849.4,18203.32,7959.13,7992.85,6969.4,1915.55];
-  var pieColors = ['#33e08a','#2bbf76','#1f9e63','#f5b13d','#8a94a3','#59626f'];
-  new Chart(el('firmPieChart'), { type:'doughnut', data:{ labels:firmNames, datasets:[{ data:firmPnls, backgroundColor:pieColors, borderWidth:1, borderColor:'#06080b' }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'right', labels:{ color:'#8a94a3', font:{size:11}, padding:12 } }, tooltip:{ backgroundColor:'#0e131b', borderColor:'rgba(255,255,255,0.16)', borderWidth:1, titleColor:'#e7ecf2', bodyColor:'#8a94a3', callbacks:{ label:function(ctx){ var total=ctx.dataset.data.reduce(function(a,b){return a+b;},0); var pct=((ctx.parsed/total)*100).toFixed(1); return ' $'+ctx.parsed.toLocaleString('en-US',{minimumFractionDigits:2})+' ('+pct+'%)'; } } } } } });
+  var firmRows = (d.firms || []).map(function(f) {
+    return { name: f.name, net: Number((f.payouts - f.costs).toFixed(2)) };
+  }).filter(function(f) { return f.net !== 0; }).sort(function(a,b) { return Math.abs(b.net) - Math.abs(a.net); });
+  var firmNames = firmRows.map(function(f) { return f.name; });
+  var firmPnls = firmRows.map(function(f) { return f.net; });
+  var firmColors = firmPnls.map(function(v) { return v >= 0 ? 'rgba(51,224,138,0.7)' : 'rgba(255,94,87,0.7)'; });
+  new Chart(el('firmPieChart'), { type:'bar', data:{ labels:firmNames, datasets:[{ label:'Net P&L', data:firmPnls, backgroundColor:firmColors, borderRadius:3 }] }, options:{...chartDefaults, plugins:{...chartDefaults.plugins, legend:{display:false}, tooltip:{...chartDefaults.plugins.tooltip, callbacks:{label:function(ctx){return (ctx.parsed.y>=0?' $':' -$')+Math.abs(ctx.parsed.y).toLocaleString('en-US',{minimumFractionDigits:2});}}}}} });
 }
 
 function statBox(label, valueId, defaultVal, color) {
