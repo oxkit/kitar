@@ -292,7 +292,8 @@
                                              "qdBaseDate":  "2026-07-10",
                                              "qdMinProfit":  250,
                                              "payoutOrderTarget":  5,
-                                             "payoutOrders":  2
+                                             "payoutOrders":  2,
+                                             "drawdownFloor":  150100
                                          },
                                "peak":  153362,
                                "bestDay":  1772.75,
