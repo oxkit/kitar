@@ -1,6 +1,6 @@
 ﻿{
     "meta":  {
-                 "lastUpdated":  "18 Jun 2026",
+                 "lastUpdated":  "14 Jul 2026",
                  "summaryCards":  {
                                       "totalPayoutsReceived":  96865.76,
                                       "totalFeesPaid":  20788.3,
@@ -294,7 +294,6 @@
                                              "payoutOrderTarget":  5,
                                              "payoutOrders":  2
                                          },
-                               "balance":  151266.19,
                                "peak":  153362,
                                "bestDay":  1772.75,
                                "records":  [
@@ -427,9 +426,14 @@
                                                    "date":  "2026-07-09",
                                                    "pnl":  -1265.81,
                                                    "payout":  true
+                                               },
+                                               {
+                                                   "date":  "2026-07-14",
+                                                   "pnl":  -1021.88
                                                }
                                            ],
-                               "ruleKey":  "lucid.150k.flex.sim-funded"
+                               "ruleKey":  "lucid.150k.flex.sim-funded",
+                               "balance":  150244.31
                            },
                            {
                                "id":  "tptpro",
@@ -447,7 +451,6 @@
                                              "ddType":  "intraday",
                                              "buffer":  1500
                                          },
-                               "balance":  25247.25,
                                "peak":  25427.5,
                                "bestDay":  267.5,
                                "records":  [
@@ -534,107 +537,14 @@
                                                {
                                                    "date":  "2026-07-09",
                                                    "pnl":  79.5
+                                               },
+                                               {
+                                                   "date":  "2026-07-14",
+                                                   "pnl":  9.5
                                                }
                                            ],
-                               "ruleKey":  "tpt.25k-pro.sim-funded"
-                           },
-                           {
-                               "id":  "tptpro2",
-                               "name":  "TPT 25k PRO",
-                               "emoji":  "",
-                               "firm":  "TPT",
-                               "accountNumber":  "TAKEPROFITPRO403374427",
-                               "started":  "2026-06-26",
-                               "status":  "funded",
-                               "method":  "hidden",
-                               "split":  null,
-                               "rules":  {
-                                             "start":  25000,
-                                             "dd":  1500,
-                                             "ddType":  "intraday",
-                                             "buffer":  1500
-                                         },
-                               "balance":  26151.25,
-                               "peak":  26151.25,
-                               "bestDay":  385,
-                               "records":  [
-                                               {
-                                                   "date":  "2026-06-29",
-                                                   "pnl":  -12.5
-                                               },
-                                               {
-                                                   "date":  "2026-07-02",
-                                                   "pnl":  30
-                                               },
-                                               {
-                                                   "date":  "2026-07-03",
-                                                   "pnl":  103.75
-                                               },
-                                               {
-                                                   "date":  "2026-07-06",
-                                                   "pnl":  21.25
-                                               },
-                                               {
-                                                   "date":  "2026-07-07",
-                                                   "pnl":  342.5
-                                               },
-                                               {
-                                                   "date":  "2026-07-08",
-                                                   "pnl":  281.25
-                                               },
-                                               {
-                                                   "date":  "2026-07-09",
-                                                   "pnl":  385
-                                               }
-                                           ],
-                               "ruleKey":  "tpt.25k-pro.sim-funded"
-                           },
-                           {
-                               "id":  "tptpro3",
-                               "name":  "TPT 25k PRO",
-                               "emoji":  "",
-                               "firm":  "TPT",
-                               "accountNumber":  "TAKEPROFITPRO957723326",
-                               "started":  "2026-06-26",
-                               "status":  "funded",
-                               "method":  "hidden",
-                               "split":  null,
-                               "rules":  {
-                                             "start":  25000,
-                                             "dd":  1500,
-                                             "ddType":  "intraday",
-                                             "buffer":  1500
-                                         },
-                               "balance":  25272.25,
-                               "peak":  25272.25,
-                               "bestDay":  75.75,
-                               "records":  [
-                                               {
-                                                   "date":  "2026-07-02",
-                                                   "pnl":  46.75
-                                               },
-                                               {
-                                                   "date":  "2026-07-03",
-                                                   "pnl":  20.75
-                                               },
-                                               {
-                                                   "date":  "2026-07-06",
-                                                   "pnl":  4.25
-                                               },
-                                               {
-                                                   "date":  "2026-07-07",
-                                                   "pnl":  69.75
-                                               },
-                                               {
-                                                   "date":  "2026-07-08",
-                                                   "pnl":  55
-                                               },
-                                               {
-                                                   "date":  "2026-07-09",
-                                                   "pnl":  75.75
-                                               }
-                                           ],
-                               "ruleKey":  "tpt.25k-pro.sim-funded"
+                               "ruleKey":  "tpt.25k-pro.sim-funded",
+                               "balance":  25256.75
                            },
                            {
                                "id":  "bsk4",
@@ -654,8 +564,6 @@
                                              "consistencyPct":  0.3,
                                              "renewalDate":  "2026-08-06"
                                          },
-                               "balance":  51899.72,
-                               "peak":  51899.72,
                                "bestDay":  814.54,
                                "records":  [
                                                {
@@ -669,9 +577,15 @@
                                                {
                                                    "date":  "2026-07-09",
                                                    "pnl":  814.54
+                                               },
+                                               {
+                                                   "date":  "2026-07-14",
+                                                   "pnl":  12.22
                                                }
                                            ],
-                               "ruleKey":  "blusky.propel50k.challenge"
+                               "ruleKey":  "blusky.propel50k.challenge",
+                               "balance":  51911.94,
+                               "peak":  51911.94
                            },
                            {
                                "id":  "mffu1",
@@ -690,7 +604,6 @@
                                              "ddType":  "EOD",
                                              "consistencyPct":  0.5
                                          },
-                               "balance":  26307.94,
                                "peak":  26307.94,
                                "bestDay":  740.7,
                                "records":  [
@@ -705,9 +618,14 @@
                                                {
                                                    "date":  "2026-07-09",
                                                    "pnl":  740.7
+                                               },
+                                               {
+                                                   "date":  "2026-07-14",
+                                                   "pnl":  -190.46
                                                }
                                            ],
-                               "ruleKey":  "mffu.25k-rapid.challenge"
+                               "ruleKey":  "mffu.25k-rapid.challenge",
+                               "balance":  26117.48
                            },
                            {
                                "id":  "ts25static1",
@@ -728,7 +646,6 @@
                                              "minDays":  2,
                                              "renewalDate":  "2026-08-02"
                                          },
-                               "balance":  26836.45,
                                "peak":  26836.45,
                                "bestDay":  469.95,
                                "records":  [
@@ -755,9 +672,14 @@
                                                {
                                                    "date":  "2026-07-09",
                                                    "pnl":  407.9
+                                               },
+                                               {
+                                                   "date":  "2026-07-14",
+                                                   "pnl":  -254.45
                                                }
                                            ],
-                               "ruleKey":  "topstep.25k-static-tc.challenge"
+                               "ruleKey":  "topstep.25k-static-tc.challenge",
+                               "balance":  26582
                            },
                            {
                                "id":  "xfa2",
@@ -777,8 +699,15 @@
                                                {
                                                    "date":  "2026-07-09",
                                                    "pnl":  420.4
+                                               },
+                                               {
+                                                   "date":  "2026-07-14",
+                                                   "pnl":  240.65
                                                }
-                                           ]
+                                           ],
+                               "balance":  661.05,
+                               "peak":  661.05,
+                               "bestDay":  240.65
                            }
                        ],
     "personalLive":  {
@@ -810,10 +739,118 @@
                                          {
                                              "date":  "2026-07-09",
                                              "net":  -7.76
+                                         },
+                                         {
+                                             "date":  "2026-07-14",
+                                             "net":  15.74
                                          }
                                      ]
                      },
     "archivedAccounts":  [
+                             {
+                                 "id":  "tptpro3",
+                                 "name":  "TPT 25k PRO",
+                                 "emoji":  "",
+                                 "firm":  "TPT",
+                                 "accountNumber":  "TAKEPROFITPRO957723326",
+                                 "started":  "2026-06-26",
+                                 "method":  "hidden",
+                                 "split":  null,
+                                 "rules":  {
+                                               "start":  25000,
+                                               "dd":  1500,
+                                               "ddType":  "intraday",
+                                               "buffer":  1500
+                                           },
+                                 "balance":  25272.25,
+                                 "peak":  25272.25,
+                                 "bestDay":  75.75,
+                                 "records":  [
+                                                 {
+                                                     "date":  "2026-07-02",
+                                                     "pnl":  46.75
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-03",
+                                                     "pnl":  20.75
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-06",
+                                                     "pnl":  4.25
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-07",
+                                                     "pnl":  69.75
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-08",
+                                                     "pnl":  55
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-09",
+                                                     "pnl":  75.75
+                                                 }
+                                             ],
+                                 "ruleKey":  "tpt.25k-pro.sim-funded",
+                                 "status":  "Closed",
+                                 "closedDate":  "2026-07-10",
+                                 "finalBalance":  25272.25,
+                                 "description":  "Account closed after 5s Negative Overlap during ATM Copy reversal on 2026-07-10."
+                             },
+                             {
+                                 "id":  "tptpro2",
+                                 "name":  "TPT 25k PRO",
+                                 "emoji":  "",
+                                 "firm":  "TPT",
+                                 "accountNumber":  "TAKEPROFITPRO403374427",
+                                 "started":  "2026-06-26",
+                                 "method":  "hidden",
+                                 "split":  null,
+                                 "rules":  {
+                                               "start":  25000,
+                                               "dd":  1500,
+                                               "ddType":  "intraday",
+                                               "buffer":  1500
+                                           },
+                                 "balance":  26151.25,
+                                 "peak":  26151.25,
+                                 "bestDay":  385,
+                                 "records":  [
+                                                 {
+                                                     "date":  "2026-06-29",
+                                                     "pnl":  -12.5
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-02",
+                                                     "pnl":  30
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-03",
+                                                     "pnl":  103.75
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-06",
+                                                     "pnl":  21.25
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-07",
+                                                     "pnl":  342.5
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-08",
+                                                     "pnl":  281.25
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-09",
+                                                     "pnl":  385
+                                                 }
+                                             ],
+                                 "ruleKey":  "tpt.25k-pro.sim-funded",
+                                 "status":  "Closed",
+                                 "closedDate":  "2026-07-10",
+                                 "finalBalance":  26151.25,
+                                 "description":  "Account closed after 5s Negative Overlap during ATM Copy reversal on 2026-07-10."
+                             },
                              {
                                  "id":  "ts50c3",
                                  "name":  "TopStep 50k TC",
@@ -1523,6 +1560,22 @@
                          ],
     "history":  {
                     "overview":  [
+                                     {
+                                         "date":  "2026-07-10",
+                                         "firm":  "TPT",
+                                         "account":  "25K PRO",
+                                         "type":  "Sim Funded",
+                                         "status":  "Closed",
+                                         "note":  "5s Negative Overlap during ATM Copy reversal."
+                                     },
+                                     {
+                                         "date":  "2026-07-10",
+                                         "firm":  "TPT",
+                                         "account":  "25K PRO",
+                                         "type":  "Sim Funded",
+                                         "status":  "Closed",
+                                         "note":  "5s Negative Overlap during ATM Copy reversal."
+                                     },
                                      {
                                          "date":  "2026-07-08",
                                          "firm":  "TopStep",
