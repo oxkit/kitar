@@ -1,8 +1,8 @@
-<html lang="en">
+﻿<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>kitaR — History</title>
+<title>kitaR â€” History</title>
 <link rel="icon" type="image/png" href="fresh/assets/fresh-glyph-v2.png">
 <link rel="apple-touch-icon" href="fresh/assets/fresh-glyph-v2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -228,7 +228,7 @@
   <div id="pane-payout" class="tab-pane"></div>
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 14 Jul 2026 · 3:07 AM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 14 Jul 2026 Â· 3:07 AM EST</div>
 
 <div id="records-modal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
@@ -270,7 +270,7 @@ function mergeRuleTemplates(data, propRules) {
 function closeModal() { document.getElementById('records-modal').classList.remove('open'); }
 
 function showRecords(acct) {
-  document.getElementById('modal-title-text').textContent = acct.name + ' — Records';
+  document.getElementById('modal-title-text').textContent = acct.name + ' â€” Records';
   var rows = acct.records.map(function(r) {
     var isPayout = r.payout === true;
     var cls = r.pnl >= 0 ? 'rec-pnl-pos' : 'rec-pnl-neg';
@@ -325,7 +325,7 @@ function renderDetails(d) {
   }
 
   function iconPrefix(acct) {
-    return acct.emoji && !/[Ãð]/.test(acct.emoji) ? acct.emoji + ' ' : '';
+    return acct.emoji && !/[ÃƒÃ°]/.test(acct.emoji) ? acct.emoji + ' ' : '';
   }
 
   function buildRules(rules) {
@@ -464,3 +464,4 @@ init();
 </script>
 </body>
 </html>
+
