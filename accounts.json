@@ -566,7 +566,7 @@
                                "method":  "hidden",
                                "ruleKey":  "lucid.25k-pro.challenge",
                                "rules":  {
-
+                                             "renewalDate":  "2026-08-14"
                                          },
                                "balance":  25000,
                                "peak":  25000,
@@ -586,7 +586,7 @@
                                "method":  "hidden",
                                "ruleKey":  "mffu.25k-builder.challenge",
                                "rules":  {
-
+                                             "renewalDate":  "2026-08-14"
                                          },
                                "balance":  25000,
                                "peak":  25000,
