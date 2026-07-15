@@ -87,7 +87,7 @@
                      "mffu.25k-builder.challenge":  {
                                                         "template":  "challenge",
                                                         "firm":  "MFFU",
-                                                        "displayName":  "MFFU 25k Builder Challenge",
+                                                        "displayName":  "MFFU 25k Builder",
                                                         "start":  25000,
                                                         "target":  1500,
                                                         "dd":  1000,
@@ -150,8 +150,8 @@
                      "mffu.25k-rapid.sim-funded":  {
                                                        "template":  "sim-funded",
                                                        "firm":  "MFFU",
-                                                       "displayName":  "MFFU 25k Rapid Sim Funded",
-                                                       "start":  25000,
+                                                       "displayName":  "MFFU 25k Rapid",
+                                                       "start":  0,
                                                        "dd":  1000,
                                                        "ddType":  "intraday",
                                                        "payoutDays":  1,
@@ -205,7 +205,7 @@
                      ,"lucid.25k-pro.challenge":  {
                                                        "template":  "challenge",
                                                        "firm":  "Lucid",
-                                                       "displayName":  "Lucid 25k Pro Challenge",
+                                                       "displayName":  "Lucid 25k Pro",
                                                        "start":  25000,
                                                        "target":  1250,
                                                        "dd":  1000,
