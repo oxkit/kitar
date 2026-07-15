@@ -131,13 +131,18 @@
                   {
                       "name":  "MFFU",
                       "payouts":  23439.35,
-                      "costs":  5322.14,
+                      "costs":  5374.64,
                       "feeModal":  "mffu",
                       "feeRecords":  [
                                          {
                                              "date":  "2026-07-07",
                                              "accountNumber":  "MFFUEVRPD01874034",
                                              "amount":  86.11
+                                         },
+                                         {
+                                             "date":  "2026-07-14",
+                                             "accountNumber":  "MFFUEVBLDR01874036",
+                                             "amount":  52.5
                                          }
                                      ]
                   },
@@ -206,8 +211,15 @@
                   {
                       "name":  "Lucid",
                       "payouts":  4806.91,
-                      "costs":  436.5,
-                      "feeModal":  null
+                      "costs":  504,
+                      "feeModal":  null,
+                      "feeRecords":  [
+                                         {
+                                             "date":  "2026-07-14",
+                                             "accountNumber":  "LTE02562456550001",
+                                             "amount":  67.5
+                                         }
+                                     ]
                   },
                   {
                       "name":  "GFF",
@@ -533,6 +545,46 @@
                                "status":  "funded",
                                "method":  "hidden",
                                "ruleKey":  "mffu.25k-rapid.sim-funded",
+                               "rules":  {
+
+                                         },
+                               "balance":  25000,
+                               "peak":  25000,
+                               "bestDay":  0,
+                               "records":  [
+
+                                           ]
+                           },
+                           {
+                               "id":  "lucid25p1",
+                               "name":  "Lucid 25k Pro Challenge",
+                               "emoji":  "",
+                               "firm":  "Lucid",
+                               "accountNumber":  "LTE02562456550001",
+                               "started":  "2026-07-14",
+                               "status":  "challenge",
+                               "method":  "hidden",
+                               "ruleKey":  "lucid.25k-pro.challenge",
+                               "rules":  {
+
+                                         },
+                               "balance":  25000,
+                               "peak":  25000,
+                               "bestDay":  0,
+                               "records":  [
+
+                                           ]
+                           },
+                           {
+                               "id":  "mffubuilder1",
+                               "name":  "MFFU 25k Builder Challenge",
+                               "emoji":  "",
+                               "firm":  "MFFU",
+                               "accountNumber":  "MFFUEVBLDR01874036",
+                               "started":  "2026-07-14",
+                               "status":  "challenge",
+                               "method":  "hidden",
+                               "ruleKey":  "mffu.25k-builder.challenge",
                                "rules":  {
 
                                          },
