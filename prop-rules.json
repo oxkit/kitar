@@ -84,6 +84,15 @@
                                                                           "confirmWithUser":  true
                                                                       }
                                                   },
+                     "mffu.25k-builder.challenge":  {
+                                                        "template":  "challenge",
+                                                        "firm":  "MFFU",
+                                                        "displayName":  "MFFU 25k Builder Challenge",
+                                                        "start":  25000,
+                                                        "target":  1500,
+                                                        "dd":  1000,
+                                                        "ddType":  "EOD"
+                                                    },
                      "topstep.50k-tc.challenge":  {
                                                       "template":  "challenge",
                                                       "firm":  "TopStep",
@@ -193,5 +202,14 @@
                                                                             "confirmWithUser":  true
                                                                         }
                                                     }
+                     ,"lucid.25k-pro.challenge":  {
+                                                       "template":  "challenge",
+                                                       "firm":  "Lucid",
+                                                       "displayName":  "Lucid 25k Pro Challenge",
+                                                       "start":  25000,
+                                                       "target":  1250,
+                                                       "dd":  1000,
+                                                       "ddType":  "EOD"
+                                                   }
                  }
 }
