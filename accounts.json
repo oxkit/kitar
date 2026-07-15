@@ -1,6 +1,6 @@
 ﻿{
     "meta":  {
-                 "lastUpdated":  "14 Jul 2026",
+    "lastUpdated":  "14 Jul 2026",
                  "summaryCards":  {
                                       "totalPayoutsReceived":  96865.76,
                                       "totalFeesPaid":  20788.3,
@@ -537,7 +537,7 @@
                            },
                            {
                                "id":  "mffu2",
-                               "name":  "MFFU 25k Rapid Sim Funded",
+                               "name":  "MFFU 25k Rapid",
                                "emoji":  "",
                                "firm":  "MFFU",
                                "accountNumber":  "MFFUSFRPD01874035",
@@ -548,8 +548,8 @@
                                "rules":  {
 
                                          },
-                               "balance":  25000,
-                               "peak":  25000,
+                               "balance":  0,
+                               "peak":  0,
                                "bestDay":  0,
                                "records":  [
 
@@ -557,7 +557,7 @@
                            },
                            {
                                "id":  "lucid25p1",
-                               "name":  "Lucid 25k Pro Challenge",
+                               "name":  "Lucid 25k Pro",
                                "emoji":  "",
                                "firm":  "Lucid",
                                "accountNumber":  "LTE02562456550001",
@@ -577,7 +577,7 @@
                            },
                            {
                                "id":  "mffubuilder1",
-                               "name":  "MFFU 25k Builder Challenge",
+                               "name":  "MFFU 25k Builder",
                                "emoji":  "",
                                "firm":  "MFFU",
                                "accountNumber":  "MFFUEVBLDR01874036",
