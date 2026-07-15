@@ -138,6 +138,18 @@
                                                                         "confirmWithUser":  true
                                                                     }
                                                 },
+                     "mffu.25k-rapid.sim-funded":  {
+                                                       "template":  "sim-funded",
+                                                       "firm":  "MFFU",
+                                                       "displayName":  "MFFU 25k Rapid Sim Funded",
+                                                       "start":  25000,
+                                                       "dd":  1000,
+                                                       "ddType":  "intraday",
+                                                       "payoutDays":  1,
+                                                       "minPayout":  500,
+                                                       "profitSplit":  0.9,
+                                                       "buffer":  1100
+                                                   },
                      "topstep.50k-xfa-standard.sim-funded":  {
                                                                  "template":  "sim-funded",
                                                                  "firm":  "TopStep",
