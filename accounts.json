@@ -274,169 +274,6 @@
               ],
     "activeAccounts":  [
                            {
-                               "id":  "inp",
-                               "name":  "Lucid 150k Flex Sim Funded",
-                               "emoji":  "",
-                               "firm":  "Lucid",
-                               "accountNumber":  "LFF1506245655001",
-                               "started":  "2026-04-09",
-                               "status":  "funded",
-                               "method":  "hidden",
-                               "split":  0.5,
-                               "rules":  {
-                                             "startingBalance":  150000,
-                                             "dd":  4500,
-                                             "ddType":  "intraday",
-                                             "qdTarget":  5,
-                                             "qdBase":  0,
-                                             "qdBaseDate":  "2026-07-10",
-                                             "qdMinProfit":  250,
-                                             "payoutOrderTarget":  5,
-                                             "payoutOrders":  2,
-                                             "drawdownFloor":  150100
-                                         },
-                               "peak":  153362,
-                               "bestDay":  1772.75,
-                               "records":  [
-                                               {
-                                                   "date":  "2026-04-13",
-                                                   "pnl":  445
-                                               },
-                                               {
-                                                   "date":  "2026-04-14",
-                                                   "pnl":  -388.75
-                                               },
-                                               {
-                                                   "date":  "2026-04-15",
-                                                   "pnl":  22
-                                               },
-                                               {
-                                                   "date":  "2026-04-16",
-                                                   "pnl":  134
-                                               },
-                                               {
-                                                   "date":  "2026-04-17",
-                                                   "pnl":  1772.75
-                                               },
-                                               {
-                                                   "date":  "2026-04-20",
-                                                   "pnl":  242
-                                               },
-                                               {
-                                                   "date":  "2026-04-21",
-                                                   "pnl":  110.75
-                                               },
-                                               {
-                                                   "date":  "2026-04-22",
-                                                   "pnl":  78.5
-                                               },
-                                               {
-                                                   "date":  "2026-04-24",
-                                                   "pnl":  15.75
-                                               },
-                                               {
-                                                   "date":  "2026-04-30",
-                                                   "pnl":  323
-                                               },
-                                               {
-                                                   "date":  "2026-05-01",
-                                                   "pnl":  454
-                                               },
-                                               {
-                                                   "date":  "2026-05-06",
-                                                   "pnl":  153
-                                               },
-                                               {
-                                                   "date":  "2026-05-07",
-                                                   "pnl":  -345.5
-                                               },
-                                               {
-                                                   "date":  "2026-05-08",
-                                                   "pnl":  139.5
-                                               },
-                                               {
-                                                   "date":  "2026-05-15",
-                                                   "pnl":  17.5
-                                               },
-                                               {
-                                                   "date":  "2026-05-19",
-                                                   "pnl":  -287
-                                               },
-                                               {
-                                                   "date":  "2026-05-20",
-                                                   "pnl":  -412.5
-                                               },
-                                               {
-                                                   "date":  "2026-05-27",
-                                                   "pnl":  250
-                                               },
-                                               {
-                                                   "date":  "2026-05-28",
-                                                   "pnl":  -93
-                                               },
-                                               {
-                                                   "date":  "2026-05-29",
-                                                   "pnl":  -1427,
-                                                   "payout":  true
-                                               },
-                                               {
-                                                   "date":  "2026-06-10",
-                                                   "pnl":  2.62
-                                               },
-                                               {
-                                                   "date":  "2026-06-11",
-                                                   "pnl":  -43
-                                               },
-                                               {
-                                                   "date":  "2026-06-22",
-                                                   "pnl":  -164.65
-                                               },
-                                               {
-                                                   "date":  "2026-06-25",
-                                                   "pnl":  416.15
-                                               },
-                                               {
-                                                   "date":  "2026-06-29",
-                                                   "pnl":  0.25
-                                               },
-                                               {
-                                                   "date":  "2026-07-02",
-                                                   "pnl":  61.25
-                                               },
-                                               {
-                                                   "date":  "2026-07-03",
-                                                   "pnl":  101.25
-                                               },
-                                               {
-                                                   "date":  "2026-07-06",
-                                                   "pnl":  11.25
-                                               },
-                                               {
-                                                   "date":  "2026-07-07",
-                                                   "pnl":  333.5
-                                               },
-                                               {
-                                                   "date":  "2026-07-08",
-                                                   "pnl":  251.5
-                                               },
-                                               {
-                                                   "date":  "2026-07-09",
-                                                   "pnl":  357.88
-                                               },
-                                               {
-                                                   "date":  "2026-07-09",
-                                                   "pnl":  -1265.81,
-                                                   "payout":  true
-                                               },
-                                               {
-                                                   "date":  "2026-07-14",
-                                                   "pnl":  -1021.88
-                                               }
-                                           ],
-                               "ruleKey":  "lucid.150k.flex.sim-funded",
-                               "balance":  150244.31
-                           },
-                           {
                                "id":  "tptpro",
                                "name":  "TPT 25k PRO",
                                "emoji":  "",
@@ -542,10 +379,14 @@
                                                {
                                                    "date":  "2026-07-14",
                                                    "pnl":  9.5
+                                               },
+                                               {
+                                                   "date":  "2026-07-14",
+                                                   "pnl":  -25.5
                                                }
                                            ],
                                "ruleKey":  "tpt.25k-pro.sim-funded",
-                               "balance":  25256.75
+                               "balance":  25231.25
                            },
                            {
                                "id":  "bsk4",
@@ -582,51 +423,15 @@
                                                {
                                                    "date":  "2026-07-14",
                                                    "pnl":  12.22
-                                               }
-                                           ],
-                               "ruleKey":  "blusky.propel50k.challenge",
-                               "balance":  51911.94,
-                               "peak":  51911.94
-                           },
-                           {
-                               "id":  "mffu1",
-                               "name":  "MFFU 25k Rapid Challenge",
-                               "emoji":  "",
-                               "firm":  "MFFU",
-                               "accountNumber":  "MFFUEVRPD01874034",
-                               "started":  "2026-07-07",
-                               "status":  "challenge",
-                               "method":  "hidden",
-                               "split":  null,
-                               "rules":  {
-                                             "start":  25000,
-                                             "target":  1500,
-                                             "dd":  1000,
-                                             "ddType":  "EOD",
-                                             "consistencyPct":  0.5
-                                         },
-                               "peak":  26307.94,
-                               "bestDay":  740.7,
-                               "records":  [
-                                               {
-                                                   "date":  "2026-07-07",
-                                                   "pnl":  15.64
-                                               },
-                                               {
-                                                   "date":  "2026-07-08",
-                                                   "pnl":  551.6
-                                               },
-                                               {
-                                                   "date":  "2026-07-09",
-                                                   "pnl":  740.7
                                                },
                                                {
                                                    "date":  "2026-07-14",
-                                                   "pnl":  -190.46
+                                                   "pnl":  -234.3
                                                }
                                            ],
-                               "ruleKey":  "mffu.25k-rapid.challenge",
-                               "balance":  26117.48
+                               "ruleKey":  "blusky.propel50k.challenge",
+                               "peak":  51911.94,
+                               "balance":  51677.64
                            },
                            {
                                "id":  "ts25static1",
@@ -677,10 +482,14 @@
                                                {
                                                    "date":  "2026-07-14",
                                                    "pnl":  -254.45
+                                               },
+                                               {
+                                                   "date":  "2026-07-14",
+                                                   "pnl":  -117.85
                                                }
                                            ],
                                "ruleKey":  "topstep.25k-static-tc.challenge",
-                               "balance":  26582
+                               "balance":  26464.15
                            },
                            {
                                "id":  "xfa2",
@@ -704,11 +513,35 @@
                                                {
                                                    "date":  "2026-07-14",
                                                    "pnl":  240.65
+                                               },
+                                               {
+                                                   "date":  "2026-07-14",
+                                                   "pnl":  -80.35
                                                }
                                            ],
-                               "balance":  661.05,
                                "peak":  661.05,
-                               "bestDay":  240.65
+                               "bestDay":  240.65,
+                               "balance":  580.7
+                           },
+                           {
+                               "id":  "mffu2",
+                               "name":  "MFFU 25k Rapid Sim Funded",
+                               "emoji":  "",
+                               "firm":  "MFFU",
+                               "accountNumber":  "MFFUSFRPD01874035",
+                               "started":  "2026-07-14",
+                               "status":  "funded",
+                               "method":  "hidden",
+                               "ruleKey":  "mffu.25k-rapid.sim-funded",
+                               "rules":  {
+
+                                         },
+                               "balance":  25000,
+                               "peak":  25000,
+                               "bestDay":  0,
+                               "records":  [
+
+                                           ]
                            }
                        ],
     "personalLive":  {
@@ -744,10 +577,233 @@
                                          {
                                              "date":  "2026-07-14",
                                              "net":  15.74
+                                         },
+                                         {
+                                             "date":  "2026-07-14",
+                                             "net":  -28.569999999999936
                                          }
                                      ]
                      },
     "archivedAccounts":  [
+                             {
+                                 "id":  "mffu1",
+                                 "name":  "MFFU 25k Rapid Challenge",
+                                 "emoji":  "",
+                                 "firm":  "MFFU",
+                                 "accountNumber":  "MFFUEVRPD01874034",
+                                 "started":  "2026-07-07",
+                                 "method":  "hidden",
+                                 "split":  null,
+                                 "rules":  {
+                                               "start":  25000,
+                                               "target":  1500,
+                                               "dd":  1000,
+                                               "ddType":  "EOD",
+                                               "consistencyPct":  0.5
+                                           },
+                                 "bestDay":  740.7,
+                                 "records":  [
+                                                 {
+                                                     "date":  "2026-07-07",
+                                                     "pnl":  15.64
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-08",
+                                                     "pnl":  551.6
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-09",
+                                                     "pnl":  740.7
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-14",
+                                                     "pnl":  -190.46
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-14",
+                                                     "pnl":  382.52
+                                                 }
+                                             ],
+                                 "ruleKey":  "mffu.25k-rapid.challenge",
+                                 "balance":  26500,
+                                 "peak":  26500,
+                                 "status":  "Passed",
+                                 "closedDate":  "2026-07-14",
+                                 "finalBalance":  26500,
+                                 "peakBalance":  26500,
+                                 "description":  "Challenge passed after reaching the profit target."
+                             },
+                             {
+                                 "id":  "inp",
+                                 "name":  "Lucid 150k Flex Sim Funded",
+                                 "emoji":  "",
+                                 "firm":  "Lucid",
+                                 "accountNumber":  "LFF1506245655001",
+                                 "started":  "2026-04-09",
+                                 "method":  "hidden",
+                                 "split":  0.5,
+                                 "rules":  {
+                                               "startingBalance":  150000,
+                                               "dd":  4500,
+                                               "ddType":  "intraday",
+                                               "qdTarget":  5,
+                                               "qdBase":  0,
+                                               "qdBaseDate":  "2026-07-10",
+                                               "qdMinProfit":  250,
+                                               "payoutOrderTarget":  5,
+                                               "payoutOrders":  2,
+                                               "drawdownFloor":  150100
+                                           },
+                                 "peak":  153362,
+                                 "bestDay":  1772.75,
+                                 "records":  [
+                                                 {
+                                                     "date":  "2026-04-13",
+                                                     "pnl":  445
+                                                 },
+                                                 {
+                                                     "date":  "2026-04-14",
+                                                     "pnl":  -388.75
+                                                 },
+                                                 {
+                                                     "date":  "2026-04-15",
+                                                     "pnl":  22
+                                                 },
+                                                 {
+                                                     "date":  "2026-04-16",
+                                                     "pnl":  134
+                                                 },
+                                                 {
+                                                     "date":  "2026-04-17",
+                                                     "pnl":  1772.75
+                                                 },
+                                                 {
+                                                     "date":  "2026-04-20",
+                                                     "pnl":  242
+                                                 },
+                                                 {
+                                                     "date":  "2026-04-21",
+                                                     "pnl":  110.75
+                                                 },
+                                                 {
+                                                     "date":  "2026-04-22",
+                                                     "pnl":  78.5
+                                                 },
+                                                 {
+                                                     "date":  "2026-04-24",
+                                                     "pnl":  15.75
+                                                 },
+                                                 {
+                                                     "date":  "2026-04-30",
+                                                     "pnl":  323
+                                                 },
+                                                 {
+                                                     "date":  "2026-05-01",
+                                                     "pnl":  454
+                                                 },
+                                                 {
+                                                     "date":  "2026-05-06",
+                                                     "pnl":  153
+                                                 },
+                                                 {
+                                                     "date":  "2026-05-07",
+                                                     "pnl":  -345.5
+                                                 },
+                                                 {
+                                                     "date":  "2026-05-08",
+                                                     "pnl":  139.5
+                                                 },
+                                                 {
+                                                     "date":  "2026-05-15",
+                                                     "pnl":  17.5
+                                                 },
+                                                 {
+                                                     "date":  "2026-05-19",
+                                                     "pnl":  -287
+                                                 },
+                                                 {
+                                                     "date":  "2026-05-20",
+                                                     "pnl":  -412.5
+                                                 },
+                                                 {
+                                                     "date":  "2026-05-27",
+                                                     "pnl":  250
+                                                 },
+                                                 {
+                                                     "date":  "2026-05-28",
+                                                     "pnl":  -93
+                                                 },
+                                                 {
+                                                     "date":  "2026-05-29",
+                                                     "pnl":  -1427,
+                                                     "payout":  true
+                                                 },
+                                                 {
+                                                     "date":  "2026-06-10",
+                                                     "pnl":  2.62
+                                                 },
+                                                 {
+                                                     "date":  "2026-06-11",
+                                                     "pnl":  -43
+                                                 },
+                                                 {
+                                                     "date":  "2026-06-22",
+                                                     "pnl":  -164.65
+                                                 },
+                                                 {
+                                                     "date":  "2026-06-25",
+                                                     "pnl":  416.15
+                                                 },
+                                                 {
+                                                     "date":  "2026-06-29",
+                                                     "pnl":  0.25
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-02",
+                                                     "pnl":  61.25
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-03",
+                                                     "pnl":  101.25
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-06",
+                                                     "pnl":  11.25
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-07",
+                                                     "pnl":  333.5
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-08",
+                                                     "pnl":  251.5
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-09",
+                                                     "pnl":  357.88
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-09",
+                                                     "pnl":  -1265.81,
+                                                     "payout":  true
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-14",
+                                                     "pnl":  -1021.88
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-14",
+                                                     "pnl":  -164.31
+                                                 }
+                                             ],
+                                 "ruleKey":  "lucid.150k.flex.sim-funded",
+                                 "balance":  150080,
+                                 "status":  "Blown",
+                                 "closedDate":  "2026-07-14",
+                                 "finalBalance":  150080,
+                                 "peakBalance":  153362,
+                                 "description":  "Account blown after balance fell below the drawdown floor."
+                             },
                              {
                                  "id":  "tptpro3",
                                  "name":  "TPT 25k PRO",
@@ -1561,6 +1617,20 @@
                          ],
     "history":  {
                     "overview":  [
+                                     {
+                                         "date":  "2026-07-14",
+                                         "firm":  "MFFU",
+                                         "account":  "25k Rapid",
+                                         "type":  "Challenge",
+                                         "status":  "Passed"
+                                     },
+                                     {
+                                         "date":  "2026-07-14",
+                                         "firm":  "Lucid",
+                                         "account":  "150k Flex",
+                                         "type":  "Sim Funded",
+                                         "status":  "Blown"
+                                     },
                                      {
                                          "date":  "2026-07-10",
                                          "firm":  "TPT",
