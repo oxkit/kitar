@@ -1,6 +1,6 @@
 ﻿{
     "meta":  {
-    "lastUpdated":  "14 Jul 2026",
+                 "lastUpdated":  "15 Jul 2026",
                  "summaryCards":  {
                                       "totalPayoutsReceived":  96865.76,
                                       "totalFeesPaid":  20788.3,
@@ -395,10 +395,14 @@
                                                {
                                                    "date":  "2026-07-14",
                                                    "pnl":  -25.5
+                                               },
+                                               {
+                                                   "date":  "2026-07-15",
+                                                   "pnl":  17
                                                }
                                            ],
                                "ruleKey":  "tpt.25k-pro.sim-funded",
-                               "balance":  25231.25
+                               "balance":  25248.25
                            },
                            {
                                "id":  "bsk4",
@@ -439,11 +443,15 @@
                                                {
                                                    "date":  "2026-07-14",
                                                    "pnl":  -234.3
+                                               },
+                                               {
+                                                   "date":  "2026-07-15",
+                                                   "pnl":  170.64
                                                }
                                            ],
                                "ruleKey":  "blusky.propel50k.challenge",
                                "peak":  51911.94,
-                               "balance":  51677.64
+                               "balance":  51848.28
                            },
                            {
                                "id":  "ts25static1",
@@ -498,10 +506,14 @@
                                                {
                                                    "date":  "2026-07-14",
                                                    "pnl":  -117.85
+                                               },
+                                               {
+                                                   "date":  "2026-07-15",
+                                                   "pnl":  -6.1
                                                }
                                            ],
                                "ruleKey":  "topstep.25k-static-tc.challenge",
-                               "balance":  26464.15
+                               "balance":  26458.05
                            },
                            {
                                "id":  "xfa2",
@@ -529,6 +541,10 @@
                                                {
                                                    "date":  "2026-07-14",
                                                    "pnl":  -80.35
+                                               },
+                                               {
+                                                   "date":  "2026-07-15",
+                                                   "pnl":  -6.1
                                                }
                                            ],
                                "peak":  661.05,
@@ -548,11 +564,14 @@
                                "rules":  {
 
                                          },
-                               "balance":  0,
-                               "peak":  0,
-                               "bestDay":  0,
+                               "balance":  78,
+                               "peak":  78,
+                               "bestDay":  78,
                                "records":  [
-
+                                               {
+                                                   "date":  "2026-07-15",
+                                                   "pnl":  78
+                                               }
                                            ]
                            },
                            {
@@ -568,11 +587,14 @@
                                "rules":  {
                                              "renewalDate":  "2026-08-14"
                                          },
-                               "balance":  25000,
-                               "peak":  25000,
-                               "bestDay":  0,
+                               "balance":  25171.5,
+                               "peak":  25171.5,
+                               "bestDay":  171.5,
                                "records":  [
-
+                                               {
+                                                   "date":  "2026-07-15",
+                                                   "pnl":  171.5
+                                               }
                                            ]
                            },
                            {
@@ -588,11 +610,14 @@
                                "rules":  {
                                              "renewalDate":  "2026-08-14"
                                          },
-                               "balance":  25000,
-                               "peak":  25000,
-                               "bestDay":  0,
+                               "balance":  25170.32,
+                               "peak":  25170.32,
+                               "bestDay":  170.32,
                                "records":  [
-
+                                               {
+                                                   "date":  "2026-07-15",
+                                                   "pnl":  170.32
+                                               }
                                            ]
                            }
                        ],
@@ -633,6 +658,10 @@
                                          {
                                              "date":  "2026-07-14",
                                              "net":  -28.569999999999936
+                                         },
+                                         {
+                                             "date":  "2026-07-15",
+                                             "net":  -2.61
                                          }
                                      ]
                      },
