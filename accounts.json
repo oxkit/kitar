@@ -1,6 +1,6 @@
 ﻿{
     "meta":  {
-                 "lastUpdated":  "15 Jul 2026",
+                 "lastUpdated":  "16 Jul 2026",
                  "summaryCards":  {
                                       "totalPayoutsReceived":  96865.76,
                                       "totalFeesPaid":  20788.3,
@@ -399,10 +399,14 @@
                                                {
                                                    "date":  "2026-07-15",
                                                    "pnl":  17
+                                               },
+                                               {
+                                                   "date":  "2026-07-16",
+                                                   "pnl":  -65
                                                }
                                            ],
                                "ruleKey":  "tpt.25k-pro.sim-funded",
-                               "balance":  25248.25
+                               "balance":  25183.25
                            },
                            {
                                "id":  "bsk4",
@@ -447,11 +451,15 @@
                                                {
                                                    "date":  "2026-07-15",
                                                    "pnl":  170.64
+                                               },
+                                               {
+                                                   "date":  "2026-07-16",
+                                                   "pnl":  -689.24
                                                }
                                            ],
                                "ruleKey":  "blusky.propel50k.challenge",
                                "peak":  51911.94,
-                               "balance":  51848.28
+                               "balance":  51159.04
                            },
                            {
                                "id":  "ts25static1",
@@ -510,10 +518,14 @@
                                                {
                                                    "date":  "2026-07-15",
                                                    "pnl":  -6.1
+                                               },
+                                               {
+                                                   "date":  "2026-07-16",
+                                                   "pnl":  -229.9
                                                }
                                            ],
                                "ruleKey":  "topstep.25k-static-tc.challenge",
-                               "balance":  26458.05
+                               "balance":  26228.15
                            },
                            {
                                "id":  "xfa2",
@@ -545,6 +557,10 @@
                                                {
                                                    "date":  "2026-07-15",
                                                    "pnl":  -6.1
+                                               },
+                                               {
+                                                   "date":  "2026-07-16",
+                                                   "pnl":  -217.4
                                                }
                                            ],
                                "peak":  661.05,
@@ -564,59 +580,17 @@
                                "rules":  {
 
                                          },
-                               "balance":  78,
+                               "balance":  -326.25,
                                "peak":  78,
                                "bestDay":  78,
                                "records":  [
                                                {
                                                    "date":  "2026-07-15",
                                                    "pnl":  78
-                                               }
-                                           ]
-                           },
-                           {
-                               "id":  "lucid25p1",
-                               "name":  "Lucid 25k Pro",
-                               "emoji":  "",
-                               "firm":  "Lucid",
-                               "accountNumber":  "LTE02562456550001",
-                               "started":  "2026-07-14",
-                               "status":  "challenge",
-                               "method":  "hidden",
-                               "ruleKey":  "lucid.25k-pro.challenge",
-                               "rules":  {
-                                             "renewalDate":  "2026-08-14"
-                                         },
-                               "balance":  25171.5,
-                               "peak":  25171.5,
-                               "bestDay":  171.5,
-                               "records":  [
+                                               },
                                                {
-                                                   "date":  "2026-07-15",
-                                                   "pnl":  171.5
-                                               }
-                                           ]
-                           },
-                           {
-                               "id":  "mffubuilder1",
-                               "name":  "MFFU 25k Builder",
-                               "emoji":  "",
-                               "firm":  "MFFU",
-                               "accountNumber":  "MFFUEVBLDR01874036",
-                               "started":  "2026-07-14",
-                               "status":  "challenge",
-                               "method":  "hidden",
-                               "ruleKey":  "mffu.25k-builder.challenge",
-                               "rules":  {
-                                             "renewalDate":  "2026-08-14"
-                                         },
-                               "balance":  25170.32,
-                               "peak":  25170.32,
-                               "bestDay":  170.32,
-                               "records":  [
-                                               {
-                                                   "date":  "2026-07-15",
-                                                   "pnl":  170.32
+                                                   "date":  "2026-07-16",
+                                                   "pnl":  -404.25
                                                }
                                            ]
                            }
@@ -662,10 +636,76 @@
                                          {
                                              "date":  "2026-07-15",
                                              "net":  -2.61
+                                         },
+                                         {
+                                             "date":  "2026-07-16",
+                                             "net":  -46.02
                                          }
                                      ]
                      },
     "archivedAccounts":  [
+                             {
+                                 "id":  "mffubuilder1",
+                                 "name":  "MFFU 25k Builder",
+                                 "emoji":  "",
+                                 "firm":  "MFFU",
+                                 "accountNumber":  "MFFUEVBLDR01874036",
+                                 "started":  "2026-07-14",
+                                 "method":  "hidden",
+                                 "ruleKey":  "mffu.25k-builder.challenge",
+                                 "rules":  {
+                                               "renewalDate":  "2026-08-14"
+                                           },
+                                 "balance":  24153.2,
+                                 "peak":  25170.32,
+                                 "bestDay":  170.32,
+                                 "records":  [
+                                                 {
+                                                     "date":  "2026-07-15",
+                                                     "pnl":  170.32
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-16",
+                                                     "pnl":  -1017.12
+                                                 }
+                                             ],
+                                 "status":  "Failed",
+                                 "closedDate":  "2026-07-16",
+                                 "finalBalance":  24153.2,
+                                 "peakBalance":  25170.32,
+                                 "description":  "Challenge account closed as failed."
+                             },
+                             {
+                                 "id":  "lucid25p1",
+                                 "name":  "Lucid 25k Pro",
+                                 "emoji":  "",
+                                 "firm":  "Lucid",
+                                 "accountNumber":  "LTE02562456550001",
+                                 "started":  "2026-07-14",
+                                 "method":  "hidden",
+                                 "ruleKey":  "lucid.25k-pro.challenge",
+                                 "rules":  {
+                                               "renewalDate":  "2026-08-14"
+                                           },
+                                 "balance":  24165,
+                                 "peak":  25171.5,
+                                 "bestDay":  171.5,
+                                 "records":  [
+                                                 {
+                                                     "date":  "2026-07-15",
+                                                     "pnl":  171.5
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-16",
+                                                     "pnl":  -1006.5
+                                                 }
+                                             ],
+                                 "status":  "Failed",
+                                 "closedDate":  "2026-07-16",
+                                 "finalBalance":  24165,
+                                 "peakBalance":  25171.5,
+                                 "description":  "Challenge account closed as failed."
+                             },
                              {
                                  "id":  "mffu1",
                                  "name":  "MFFU 25k Rapid Challenge",
@@ -1698,6 +1738,20 @@
                          ],
     "history":  {
                     "overview":  [
+                                     {
+                                         "date":  "2026-07-16",
+                                         "firm":  "MFFU",
+                                         "account":  "MFFU 25k Builder",
+                                         "type":  "Challenge",
+                                         "status":  "Failed"
+                                     },
+                                     {
+                                         "date":  "2026-07-16",
+                                         "firm":  "Lucid",
+                                         "account":  "Lucid 25k Pro",
+                                         "type":  "Challenge",
+                                         "status":  "Failed"
+                                     },
                                      {
                                          "date":  "2026-07-14",
                                          "firm":  "MFFU",
