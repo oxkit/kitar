@@ -1,6 +1,6 @@
 ﻿{
     "meta":  {
-                 "lastUpdated":  "16 Jul 2026",
+                 "lastUpdated":  "28 Jul 2026",
                  "summaryCards":  {
                                       "totalPayoutsReceived":  96865.76,
                                       "totalFeesPaid":  20788.3,
@@ -403,63 +403,14 @@
                                                {
                                                    "date":  "2026-07-16",
                                                    "pnl":  -65
+                                               },
+                                               {
+                                                   "date":  "2026-07-28",
+                                                   "pnl":  -412.5
                                                }
                                            ],
                                "ruleKey":  "tpt.25k-pro.sim-funded",
-                               "balance":  25183.25
-                           },
-                           {
-                               "id":  "bsk4",
-                               "name":  "BluSky PROPEL 50k",
-                               "emoji":  "",
-                               "firm":  "BluSky",
-                               "accountNumber":  "BSKEPROPELYEE11499",
-                               "started":  "2026-07-06",
-                               "status":  "challenge",
-                               "method":  "hidden",
-                               "split":  null,
-                               "rules":  {
-                                             "start":  50000,
-                                             "target":  3000,
-                                             "dd":  2000,
-                                             "ddType":  "EOD",
-                                             "consistencyPct":  0.3,
-                                             "renewalDate":  "2026-08-06"
-                                         },
-                               "bestDay":  814.54,
-                               "records":  [
-                                               {
-                                                   "date":  "2026-07-07",
-                                                   "pnl":  531.98
-                                               },
-                                               {
-                                                   "date":  "2026-07-08",
-                                                   "pnl":  553.2
-                                               },
-                                               {
-                                                   "date":  "2026-07-09",
-                                                   "pnl":  814.54
-                                               },
-                                               {
-                                                   "date":  "2026-07-14",
-                                                   "pnl":  12.22
-                                               },
-                                               {
-                                                   "date":  "2026-07-14",
-                                                   "pnl":  -234.3
-                                               },
-                                               {
-                                                   "date":  "2026-07-15",
-                                                   "pnl":  170.64
-                                               },
-                                               {
-                                                   "date":  "2026-07-16",
-                                                   "pnl":  -689.24
-                                               }
-                                           ],
-                               "ruleKey":  "blusky.propel50k.challenge",
-                               "peak":  51911.94,
-                               "balance":  51159.04
+                               "balance":  24770.75
                            },
                            {
                                "id":  "ts25static1",
@@ -522,77 +473,14 @@
                                                {
                                                    "date":  "2026-07-16",
                                                    "pnl":  -229.9
+                                               },
+                                               {
+                                                   "date":  "2026-07-28",
+                                                   "pnl":  -1478.29
                                                }
                                            ],
                                "ruleKey":  "topstep.25k-static-tc.challenge",
-                               "balance":  26228.15
-                           },
-                           {
-                               "id":  "xfa2",
-                               "name":  "TopStep 50k XFA Consistency",
-                               "emoji":  "",
-                               "firm":  "TopStep",
-                               "accountNumber":  "EXPRESS-V2-CT-45281-12277181",
-                               "started":  "2026-07-08",
-                               "status":  "funded",
-                               "method":  "records",
-                               "split":  null,
-                               "ruleKey":  "topstep.50k-xfa-consistency.sim-funded",
-                               "rules":  {
-
-                                         },
-                               "records":  [
-                                               {
-                                                   "date":  "2026-07-09",
-                                                   "pnl":  420.4
-                                               },
-                                               {
-                                                   "date":  "2026-07-14",
-                                                   "pnl":  240.65
-                                               },
-                                               {
-                                                   "date":  "2026-07-14",
-                                                   "pnl":  -80.35
-                                               },
-                                               {
-                                                   "date":  "2026-07-15",
-                                                   "pnl":  -6.1
-                                               },
-                                               {
-                                                   "date":  "2026-07-16",
-                                                   "pnl":  -217.4
-                                               }
-                                           ],
-                               "peak":  661.05,
-                               "bestDay":  240.65,
-                               "balance":  580.7
-                           },
-                           {
-                               "id":  "mffu2",
-                               "name":  "MFFU 25k Rapid",
-                               "emoji":  "",
-                               "firm":  "MFFU",
-                               "accountNumber":  "MFFUSFRPD01874035",
-                               "started":  "2026-07-14",
-                               "status":  "funded",
-                               "method":  "hidden",
-                               "ruleKey":  "mffu.25k-rapid.sim-funded",
-                               "rules":  {
-
-                                         },
-                               "balance":  -326.25,
-                               "peak":  78,
-                               "bestDay":  78,
-                               "records":  [
-                                               {
-                                                   "date":  "2026-07-15",
-                                                   "pnl":  78
-                                               },
-                                               {
-                                                   "date":  "2026-07-16",
-                                                   "pnl":  -404.25
-                                               }
-                                           ]
+                               "balance":  24749.86
                            }
                        ],
     "personalLive":  {
@@ -640,10 +528,158 @@
                                          {
                                              "date":  "2026-07-16",
                                              "net":  -46.02
+                                         },
+                                         {
+                                             "date":  "2026-07-28",
+                                             "net":  -165.66
                                          }
                                      ]
                      },
     "archivedAccounts":  [
+                             {
+                                 "id":  "mffu2",
+                                 "name":  "MFFU 25k Rapid",
+                                 "emoji":  "",
+                                 "firm":  "MFFU",
+                                 "accountNumber":  "MFFUSFRPD01874035",
+                                 "started":  "2026-07-14",
+                                 "method":  "hidden",
+                                 "ruleKey":  "mffu.25k-rapid.sim-funded",
+                                 "rules":  {
+
+                                           },
+                                 "balance":  -925,
+                                 "peak":  78,
+                                 "bestDay":  78,
+                                 "records":  [
+                                                 {
+                                                     "date":  "2026-07-15",
+                                                     "pnl":  78
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-16",
+                                                     "pnl":  -404.25
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-28",
+                                                     "pnl":  -598.75
+                                                 }
+                                             ],
+                                 "status":  "Blown",
+                                 "closedDate":  "2026-07-28",
+                                 "finalBalance":  -925,
+                                 "peakBalance":  78,
+                                 "description":  "Account closed as blown."
+                             },
+                             {
+                                 "id":  "xfa2",
+                                 "name":  "TopStep 50k XFA Consistency",
+                                 "emoji":  "",
+                                 "firm":  "TopStep",
+                                 "accountNumber":  "EXPRESS-V2-CT-45281-12277181",
+                                 "started":  "2026-07-08",
+                                 "method":  "records",
+                                 "split":  null,
+                                 "ruleKey":  "topstep.50k-xfa-consistency.sim-funded",
+                                 "rules":  {
+
+                                           },
+                                 "records":  [
+                                                 {
+                                                     "date":  "2026-07-09",
+                                                     "pnl":  420.4
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-14",
+                                                     "pnl":  240.65
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-14",
+                                                     "pnl":  -80.35
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-15",
+                                                     "pnl":  -6.1
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-16",
+                                                     "pnl":  -217.4
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-28",
+                                                     "pnl":  -1695.2
+                                                 }
+                                             ],
+                                 "peak":  661.05,
+                                 "bestDay":  240.65,
+                                 "balance":  580.7,
+                                 "status":  "Blown",
+                                 "closedDate":  "2026-07-28",
+                                 "peakBalance":  661.05,
+                                 "description":  "Account closed as blown.",
+                                 "finalBalance":  -1338
+                             },
+                             {
+                                 "id":  "bsk4",
+                                 "name":  "BluSky PROPEL 50k",
+                                 "emoji":  "",
+                                 "firm":  "BluSky",
+                                 "accountNumber":  "BSKEPROPELYEE11499",
+                                 "started":  "2026-07-06",
+                                 "method":  "hidden",
+                                 "split":  null,
+                                 "rules":  {
+                                               "start":  50000,
+                                               "target":  3000,
+                                               "dd":  2000,
+                                               "ddType":  "EOD",
+                                               "consistencyPct":  0.3,
+                                               "renewalDate":  "2026-08-06"
+                                           },
+                                 "bestDay":  814.54,
+                                 "records":  [
+                                                 {
+                                                     "date":  "2026-07-07",
+                                                     "pnl":  531.98
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-08",
+                                                     "pnl":  553.2
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-09",
+                                                     "pnl":  814.54
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-14",
+                                                     "pnl":  12.22
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-14",
+                                                     "pnl":  -234.3
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-15",
+                                                     "pnl":  170.64
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-16",
+                                                     "pnl":  -689.24
+                                                 },
+                                                 {
+                                                     "date":  "2026-07-28",
+                                                     "pnl":  -1259.04
+                                                 }
+                                             ],
+                                 "ruleKey":  "blusky.propel50k.challenge",
+                                 "peak":  51911.94,
+                                 "balance":  49900,
+                                 "status":  "Failed",
+                                 "closedDate":  "2026-07-28",
+                                 "finalBalance":  49900,
+                                 "peakBalance":  51911.94,
+                                 "description":  "Account closed as failed."
+                             },
                              {
                                  "id":  "mffubuilder1",
                                  "name":  "MFFU 25k Builder",
@@ -1738,6 +1774,27 @@
                          ],
     "history":  {
                     "overview":  [
+                                     {
+                                         "date":  "2026-07-28",
+                                         "firm":  "MFFU",
+                                         "account":  "MFFU 25k Rapid",
+                                         "type":  "Sim Funded",
+                                         "status":  "Blown"
+                                     },
+                                     {
+                                         "date":  "2026-07-28",
+                                         "firm":  "TopStep",
+                                         "account":  "TopStep 50k XFA Consistency",
+                                         "type":  "Sim Funded",
+                                         "status":  "Blown"
+                                     },
+                                     {
+                                         "date":  "2026-07-28",
+                                         "firm":  "BluSky",
+                                         "account":  "BluSky PROPEL 50k",
+                                         "type":  "Challenge",
+                                         "status":  "Failed"
+                                     },
                                      {
                                          "date":  "2026-07-16",
                                          "firm":  "MFFU",
