@@ -42,7 +42,10 @@ function calcAccountPanel(acct) {
   var id = acct.id, r = acct.rules || {};
   var bal = Number(acct.balance || 0), peak = Math.max(Number(acct.peak || bal), bal), bestDay = Number(acct.bestDay || 0), dd = Number(r.dd || 0);
   var staticFloor = String(r.ddType || '').toLowerCase() === 'static';
-  var floor = Number(r.drawdownFloor || (staticFloor ? Number(r.start || 0) - dd : peak - dd));
+  var rawFloor = staticFloor ? Number(r.start || 0) - dd : peak - dd;
+  var hasLock = !staticFloor && Number.isFinite(Number(r.trailLockOffset));
+  var lockFloor = Number(r.start || 0) + Number(r.trailLockOffset || 0);
+  var floor = Number(r.drawdownFloor || (hasLock ? Math.min(lockFloor, rawFloor) : rawFloor));
   var ddUsed = Math.max(0, peak - bal), ddPct = dd ? Math.min(100, ddUsed / dd * 100) : 0;
   el(id+'-stat-bal').textContent = '$'+bal.toLocaleString('en-US',{minimumFractionDigits:2});
   el(id+'-stat-bal').style.color = bal >= Number(r.start || 0) ? '#33e08a' : '#ff5e57';

@@ -8,6 +8,7 @@
                                             "target":  "Profit target",
                                             "dd":  "Maximum drawdown amount",
                                             "ddType":  "Drawdown mode, for example EOD, static, or intraday",
+                                            "trailLockOffset":  "Dollar offset above starting balance where a trailing floor locks; omit when not declared",
                                             "consistencyPct":  "Consistency rule as a decimal percentage",
                                             "consistencyCapDay":  "Fixed best-day cap when the rule is dollar based",
                                             "minDays":  "Minimum trading days",
@@ -46,6 +47,7 @@
                                                                     "ddType"
                                                                 ],
                                          "optionalRuleFields":  [
+                                                                    "trailLockOffset",
                                                                     "buffer",
                                                                     "qdTarget",
                                                                     "qdMinProfit",
@@ -79,6 +81,7 @@
                                                       "target":  1500,
                                                       "dd":  1000,
                                                       "ddType":  "EOD",
+                                                      "trailLockOffset":  100,
                                                       "consistencyPct":  0.5,
                                                       "payoutRules":  {
                                                                           "confirmWithUser":  true
@@ -91,7 +94,8 @@
                                                         "start":  25000,
                                                         "target":  1500,
                                                         "dd":  1000,
-                                                        "ddType":  "EOD"
+                                                        "ddType":  "EOD",
+                                                        "trailLockOffset":  100
                                                     },
                      "topstep.50k-tc.challenge":  {
                                                       "template":  "challenge",
@@ -129,6 +133,7 @@
                                                "target":  1500,
                                                "dd":  1500,
                                                "ddType":  "EOD",
+                                               "trailLockOffset":  0,
                                                "consistencyPct":  0.5,
                                                "minDays":  5,
                                                "payoutRules":  {
@@ -142,6 +147,7 @@
                                                     "start":  25000,
                                                     "dd":  1500,
                                                     "ddType":  "intraday",
+                                                    "trailLockOffset":  0,
                                                     "buffer":  1500,
                                                     "payoutRules":  {
                                                                         "confirmWithUser":  true
@@ -154,6 +160,7 @@
                                                        "start":  0,
                                                        "dd":  1000,
                                                        "ddType":  "intraday",
+                                                       "trailLockOffset":  100,
                                                        "payoutDays":  1,
                                                        "minPayout":  500,
                                                        "profitSplit":  0.9,
