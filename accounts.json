@@ -528,12 +528,16 @@
       "bestDay": 0,
       "ruleKey": "topstep.50k-tc.challenge",
       "peak": 50000.0,
-      "balance": 49290.74,
+      "balance": 49233.48,
       "status": "challenge",
       "records": [
         {
           "date": "2026-08-24",
           "pnl": -709.26
+        },
+        {
+          "date": "2026-08-24",
+          "pnl": -57.26
         }
       ],
       "rules": {
