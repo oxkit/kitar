@@ -441,10 +441,14 @@
         {
           "date": "2026-08-24",
           "pnl": -372.0
+        },
+        {
+          "date": "2026-08-25",
+          "pnl": -52.75
         }
       ],
       "ruleKey": "tpt.25k-pro.sim-funded",
-      "balance": 24398.75
+      "balance": 24346.0
     },
     {
       "id": "tpt25k1",
@@ -458,12 +462,16 @@
       "bestDay": 0,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
-      "balance": 24394.0,
+      "balance": 24277.5,
       "status": "challenge",
       "records": [
         {
           "date": "2026-08-24",
           "pnl": -606.0
+        },
+        {
+          "date": "2026-08-25",
+          "pnl": -116.5
         }
       ],
       "rules": {
@@ -482,41 +490,6 @@
       }
     },
     {
-      "id": "tpt25k2",
-      "name": "TPT 25k",
-      "emoji": "",
-      "firm": "TPT",
-      "accountNumber": "TAKEPROFIT681398927",
-      "started": "2026-08-20",
-      "method": "hidden",
-      "split": null,
-      "bestDay": 0,
-      "ruleKey": "tpt.25k.challenge",
-      "peak": 25000.0,
-      "balance": 23593.0,
-      "status": "challenge",
-      "records": [
-        {
-          "date": "2026-08-24",
-          "pnl": -1407.0
-        }
-      ],
-      "rules": {
-        "start": 25000.0,
-        "target": 1500,
-        "dd": 1500,
-        "ddType": "EOD",
-        "trailLockOffset": 0,
-        "minDays": 5,
-        "renewalDate": "2026-09-20",
-        "consistencyPct": 0.5
-      },
-      "venueRef": {
-        "venue": "NT",
-        "ref": "TAKEPROFIT681398927"
-      }
-    },
-    {
       "id": "ts50ktc1",
       "name": "TopStep 50k TC",
       "emoji": "",
@@ -528,7 +501,7 @@
       "bestDay": 0,
       "ruleKey": "topstep.50k-tc.challenge",
       "peak": 50000.0,
-      "balance": 49233.48,
+      "balance": 49126.16,
       "status": "challenge",
       "records": [
         {
@@ -538,6 +511,14 @@
         {
           "date": "2026-08-24",
           "pnl": -57.26
+        },
+        {
+          "date": "2026-08-25",
+          "pnl": -44.88
+        },
+        {
+          "date": "2026-08-25",
+          "pnl": -62.44
         }
       ],
       "rules": {
@@ -1955,6 +1936,45 @@
       "finalBalance": 25000,
       "peakBalance": 25000,
       "description": "Account closed as failed."
+    },
+    {
+      "id": "tpt25k2",
+      "name": "TPT 25k",
+      "emoji": "",
+      "firm": "TPT",
+      "accountNumber": "TAKEPROFIT681398927",
+      "started": "2026-08-20",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 0,
+      "ruleKey": "tpt.25k.challenge",
+      "peak": 25000.0,
+      "balance": 23593.0,
+      "status": "Failed",
+      "records": [
+        {
+          "date": "2026-08-24",
+          "pnl": -1407.0
+        }
+      ],
+      "rules": {
+        "start": 25000.0,
+        "target": 1500,
+        "dd": 1500,
+        "ddType": "EOD",
+        "trailLockOffset": 0,
+        "minDays": 5,
+        "renewalDate": "2026-09-20",
+        "consistencyPct": 0.5
+      },
+      "venueRef": {
+        "venue": "NT",
+        "ref": "TAKEPROFIT681398927"
+      },
+      "closedDate": "2026-08-25",
+      "finalBalance": 23593.0,
+      "peakBalance": 25000.0,
+      "description": "Resolved by Telegram inventory workflow: OUT? tpt25k2 (NT:TAKEPROFIT681398927) has no current observation"
     }
   ],
   "history": {
@@ -2154,6 +2174,13 @@
         "date": "2026-08-23",
         "firm": "MFFU",
         "account": "MFFU 25k Rapid",
+        "type": "Challenge",
+        "status": "Failed"
+      },
+      {
+        "date": "2026-08-25",
+        "firm": "TPT",
+        "account": "TPT 25k",
         "type": "Challenge",
         "status": "Failed"
       }
