@@ -131,7 +131,7 @@
     {
       "name": "MFFU",
       "payouts": 23439.35,
-      "costs": 5481.64,
+      "costs": 5534.14,
       "feeModal": "mffu",
       "feeRecords": [
         {
@@ -153,6 +153,11 @@
           "date": "2026-08-02",
           "accountNumber": "MFFUEVRPD01874041",
           "amount": 54.5
+        },
+        {
+          "date": "2026-08-26",
+          "accountNumber": "MFFUEVBLDR01874045",
+          "amount": 52.5
         }
       ]
     },
@@ -445,10 +450,14 @@
         {
           "date": "2026-08-25",
           "pnl": -52.75
+        },
+        {
+          "date": "2026-08-26",
+          "pnl": -30.0
         }
       ],
       "ruleKey": "tpt.25k-pro.sim-funded",
-      "balance": 24346.0
+      "balance": 24316.0
     },
     {
       "id": "tpt25k1",
@@ -462,7 +471,7 @@
       "bestDay": 0,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
-      "balance": 24277.5,
+      "balance": 24214.5,
       "status": "challenge",
       "records": [
         {
@@ -472,6 +481,10 @@
         {
           "date": "2026-08-25",
           "pnl": -116.5
+        },
+        {
+          "date": "2026-08-26",
+          "pnl": -63.0
         }
       ],
       "rules": {
@@ -532,6 +545,33 @@
       "venueRef": {
         "venue": "TS",
         "ref": "50KTC-V2-45281-66677947"
+      }
+    },
+    {
+      "id": "mffu25kbuilder1",
+      "name": "MFFU 25k Builder",
+      "emoji": "",
+      "firm": "MFFU",
+      "accountNumber": "MFFUEVBLDR01874045",
+      "started": "2026-08-26",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 0,
+      "ruleKey": "mffu.25k-builder.challenge",
+      "peak": 25000.0,
+      "balance": 25000.0,
+      "status": "challenge",
+      "records": [],
+      "rules": {
+        "start": 25000.0,
+        "target": 1500,
+        "dd": 1000,
+        "ddType": "EOD",
+        "renewable": false
+      },
+      "venueRef": {
+        "venue": "NT",
+        "ref": "MFFUEVBLDR01874045"
       }
     }
   ],

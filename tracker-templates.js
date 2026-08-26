@@ -19,11 +19,14 @@ function renderAccountPanel(acct) {
     if (r.profitSplit) badges += '<div class="fr-badge ok">' + (r.profitSplit * 100) + '% Profit Split</div>';
     if (r.buffer) badges += '<div class="fr-badge warn">Payout Buffer $' + Number(r.buffer).toLocaleString() + '</div>';
   }
-  if (r.renewalDate) badges += '<div class="fr-badge warn">Renews ' + r.renewalDate + '</div>';
+  if (r.renewable === false) badges += '<div class="fr-badge ok">Not renewable</div>';
+  else if (r.renewalDate) badges += '<div class="fr-badge warn">Renews ' + r.renewalDate + '</div>';
 
   var consistency = '<div id="' + id + '-cons-empty" style="background:rgba(51,224,138,0.1); border:1px solid rgba(51,224,138,0.3); border-radius:8px; padding:14px; font-size:12px; color:#33e08a;">No Consistency Rule</div>'
     + '<div id="' + id + '-cons-wrap" style="display:none;">' + progressBar('Consistency Check', id+'-cons-lbl', id+'-cons-bar', id+'-cons-note', '#33e08a') + '</div>';
-  var renewalProgress = r.renewalDate ? '<div>' + progressBar('Renewal Countdown', id+'-renewal-lbl', id+'-renewal-bar', id+'-renewal-note', '#f5b13d') + '</div>' : '';
+  var renewalProgress = r.renewable === false
+    ? '<div><div class="fr-progress-label"><span>Renewal Countdown</span><b>Not renewable</b></div></div>'
+    : (r.renewalDate ? '<div>' + progressBar('Renewal Countdown', id+'-renewal-lbl', id+'-renewal-bar', id+'-renewal-note', '#f5b13d') + '</div>' : '');
   var challengeProgress = isChallenge
     ? '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;"><div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">' + (r.renewalDate ? 'Profit Target and Renewal Countdown' : 'Profit Progress') + '</div><div style="display:grid; grid-template-columns:' + (r.renewalDate ? '1fr 1fr' : '1fr') + '; gap:24px;"><div>' + progressBar('Profit Target', id+'-profit-lbl', id+'-profit-bar', id+'-profit-note', '#33e08a') + '</div>' + renewalProgress + '</div></div>'
     : '';
@@ -74,7 +77,8 @@ function calcAccountPanel(acct) {
   if (acct.status === 'challenge' && r.renewalDate && el(id+'-renewal-lbl')) {
     var renewalDate = parseYmdLocal(r.renewalDate);
     var daysLeft = Math.ceil((renewalDate - new Date()) / 86400000);
-    var renewalPct = Math.max(0, Math.min(100, (30 - daysLeft) / 30 * 100));
+    var renewalDays = Math.max(1, Number(r.renewalEveryDays || 30));
+    var renewalPct = Math.max(0, Math.min(100, (renewalDays - daysLeft) / renewalDays * 100));
     var renewalColor = daysLeft <= 5 ? '#ff5e57' : '#f5b13d';
     bar(id+'-renewal-bar', renewalPct, renewalColor);
     el(id+'-renewal-lbl').textContent = daysLeft > 0 ? daysLeft + ' days left' : 'Expired';
