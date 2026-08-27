@@ -393,7 +393,7 @@
         },
         {
           "date": "2026-06-25",
-          "pnl": 20
+          "pnl": 20.0
         },
         {
           "date": "2026-06-29",
@@ -401,7 +401,7 @@
         },
         {
           "date": "2026-07-02",
-          "pnl": 6
+          "pnl": 6.0
         },
         {
           "date": "2026-07-03",
@@ -425,19 +425,15 @@
         },
         {
           "date": "2026-07-14",
-          "pnl": 9.5
-        },
-        {
-          "date": "2026-07-14",
-          "pnl": -25.5
+          "pnl": -16.0
         },
         {
           "date": "2026-07-15",
-          "pnl": 17
+          "pnl": 17.0
         },
         {
           "date": "2026-07-16",
-          "pnl": -65
+          "pnl": -65.0
         },
         {
           "date": "2026-07-28",
@@ -454,10 +450,14 @@
         {
           "date": "2026-08-26",
           "pnl": -30.0
+        },
+        {
+          "date": "2026-08-26",
+          "pnl": -30.0
         }
       ],
       "ruleKey": "tpt.25k-pro.sim-funded",
-      "balance": 24316.0
+      "balance": 24286.0
     },
     {
       "id": "tpt25k1",
@@ -468,10 +468,10 @@
       "started": "2026-08-20",
       "method": "hidden",
       "split": null,
-      "bestDay": 0,
+      "bestDay": 0.0,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
-      "balance": 24214.5,
+      "balance": 24145.5,
       "status": "challenge",
       "records": [
         {
@@ -485,6 +485,10 @@
         {
           "date": "2026-08-26",
           "pnl": -63.0
+        },
+        {
+          "date": "2026-08-26",
+          "pnl": -69.0
         }
       ],
       "rules": {
@@ -511,26 +515,22 @@
       "started": "2026-08-20",
       "method": "hidden",
       "split": null,
-      "bestDay": 0,
+      "bestDay": 0.0,
       "ruleKey": "topstep.50k-tc.challenge",
       "peak": 50000.0,
-      "balance": 49126.16,
+      "balance": 49063.72,
       "status": "challenge",
       "records": [
         {
           "date": "2026-08-24",
-          "pnl": -709.26
-        },
-        {
-          "date": "2026-08-24",
-          "pnl": -57.26
+          "pnl": -766.52
         },
         {
           "date": "2026-08-25",
-          "pnl": -44.88
+          "pnl": -107.32
         },
         {
-          "date": "2026-08-25",
+          "date": "2026-08-26",
           "pnl": -62.44
         }
       ],
@@ -556,12 +556,17 @@
       "started": "2026-08-26",
       "method": "hidden",
       "split": null,
-      "bestDay": 0,
+      "bestDay": 0.0,
       "ruleKey": "mffu.25k-builder.challenge",
       "peak": 25000.0,
-      "balance": 25000.0,
+      "balance": 24934.9,
       "status": "challenge",
-      "records": [],
+      "records": [
+        {
+          "date": "2026-08-26",
+          "pnl": -65.1
+        }
+      ],
       "rules": {
         "start": 25000.0,
         "target": 1500,
@@ -580,6 +585,11 @@
     "name": "HyperLiquid",
     "seedBalance": 1000,
     "deposits": 1000,
+    "venueRef": {
+      "venue": "HL",
+      "ref": "0xA36dad1d2EF8b2F7ee38ee018cBBfEae95c613AB",
+      "perpDex": "xyz"
+    },
     "records": [
       {
         "date": "2026-07-02",
@@ -607,11 +617,7 @@
       },
       {
         "date": "2026-07-14",
-        "net": 15.74
-      },
-      {
-        "date": "2026-07-14",
-        "net": -28.569999999999936
+        "net": -12.83
       },
       {
         "date": "2026-07-15",
@@ -640,11 +646,11 @@
       "rules": {},
       "balance": -925,
       "peak": 78,
-      "bestDay": 78,
+      "bestDay": 78.0,
       "records": [
         {
           "date": "2026-07-15",
-          "pnl": 78
+          "pnl": 78.0
         },
         {
           "date": "2026-07-16",
@@ -679,11 +685,7 @@
         },
         {
           "date": "2026-07-14",
-          "pnl": 240.65
-        },
-        {
-          "date": "2026-07-14",
-          "pnl": -80.35
+          "pnl": 160.3
         },
         {
           "date": "2026-07-15",
@@ -699,7 +701,7 @@
         }
       ],
       "peak": 661.05,
-      "bestDay": 240.65,
+      "bestDay": 420.4,
       "balance": 580.7,
       "status": "Blown",
       "closedDate": "2026-07-28",
@@ -740,11 +742,7 @@
         },
         {
           "date": "2026-07-14",
-          "pnl": 12.22
-        },
-        {
-          "date": "2026-07-14",
-          "pnl": -234.3
+          "pnl": -222.08
         },
         {
           "date": "2026-07-15",
@@ -862,11 +860,7 @@
         },
         {
           "date": "2026-07-14",
-          "pnl": -190.46
-        },
-        {
-          "date": "2026-07-14",
-          "pnl": 382.52
+          "pnl": 192.06
         }
       ],
       "ruleKey": "mffu.25k-rapid.challenge",
@@ -904,7 +898,7 @@
       "records": [
         {
           "date": "2026-04-13",
-          "pnl": 445
+          "pnl": 445.0
         },
         {
           "date": "2026-04-14",
@@ -912,11 +906,11 @@
         },
         {
           "date": "2026-04-15",
-          "pnl": 22
+          "pnl": 22.0
         },
         {
           "date": "2026-04-16",
-          "pnl": 134
+          "pnl": 134.0
         },
         {
           "date": "2026-04-17",
@@ -924,7 +918,7 @@
         },
         {
           "date": "2026-04-20",
-          "pnl": 242
+          "pnl": 242.0
         },
         {
           "date": "2026-04-21",
@@ -940,15 +934,15 @@
         },
         {
           "date": "2026-04-30",
-          "pnl": 323
+          "pnl": 323.0
         },
         {
           "date": "2026-05-01",
-          "pnl": 454
+          "pnl": 454.0
         },
         {
           "date": "2026-05-06",
-          "pnl": 153
+          "pnl": 153.0
         },
         {
           "date": "2026-05-07",
@@ -964,7 +958,7 @@
         },
         {
           "date": "2026-05-19",
-          "pnl": -287
+          "pnl": -287.0
         },
         {
           "date": "2026-05-20",
@@ -972,15 +966,15 @@
         },
         {
           "date": "2026-05-27",
-          "pnl": 250
+          "pnl": 250.0
         },
         {
           "date": "2026-05-28",
-          "pnl": -93
+          "pnl": -93.0
         },
         {
           "date": "2026-05-29",
-          "pnl": -1427,
+          "pnl": -1427.0,
           "payout": true
         },
         {
@@ -989,7 +983,7 @@
         },
         {
           "date": "2026-06-11",
-          "pnl": -43
+          "pnl": -43.0
         },
         {
           "date": "2026-06-22",
@@ -1025,20 +1019,12 @@
         },
         {
           "date": "2026-07-09",
-          "pnl": 357.88
-        },
-        {
-          "date": "2026-07-09",
-          "pnl": -1265.81,
+          "pnl": -907.93,
           "payout": true
         },
         {
           "date": "2026-07-14",
-          "pnl": -1021.88
-        },
-        {
-          "date": "2026-07-14",
-          "pnl": -164.31
+          "pnl": -1186.19
         }
       ],
       "ruleKey": "lucid.150k.flex.sim-funded",
@@ -1086,7 +1072,7 @@
         },
         {
           "date": "2026-07-08",
-          "pnl": 55
+          "pnl": 55.0
         },
         {
           "date": "2026-07-09",
@@ -1116,7 +1102,7 @@
       },
       "balance": 26151.25,
       "peak": 26151.25,
-      "bestDay": 385,
+      "bestDay": 385.0,
       "records": [
         {
           "date": "2026-06-29",
@@ -1124,7 +1110,7 @@
         },
         {
           "date": "2026-07-02",
-          "pnl": 30
+          "pnl": 30.0
         },
         {
           "date": "2026-07-03",
@@ -1144,7 +1130,7 @@
         },
         {
           "date": "2026-07-09",
-          "pnl": 385
+          "pnl": 385.0
         }
       ],
       "ruleKey": "tpt.25k-pro.sim-funded",
@@ -1194,7 +1180,7 @@
         },
         {
           "date": "2026-07-08",
-          "pnl": 382
+          "pnl": 382.0
         }
       ],
       "ruleKey": "topstep.50k-tc.challenge",
@@ -1225,7 +1211,7 @@
       "records": [
         {
           "date": "2026-06-11",
-          "pnl": -172
+          "pnl": -172.0
         },
         {
           "date": "2026-06-22",
@@ -1233,7 +1219,7 @@
         },
         {
           "date": "2026-06-24",
-          "pnl": 500
+          "pnl": 500.0
         },
         {
           "date": "2026-06-25",
@@ -1350,11 +1336,7 @@
         },
         {
           "date": "2026-04-25",
-          "pnl": 591.36
-        },
-        {
-          "date": "2026-04-25",
-          "pnl": -1000,
+          "pnl": -408.64,
           "payout": true
         },
         {
@@ -1375,7 +1357,7 @@
         },
         {
           "date": "2026-05-11",
-          "pnl": -1000,
+          "pnl": -1000.0,
           "payout": true
         },
         {
@@ -1449,11 +1431,11 @@
         },
         {
           "date": "2026-06-24",
-          "pnl": 140
+          "pnl": 140.0
         },
         {
           "date": "2026-06-25",
-          "pnl": 690
+          "pnl": 690.0
         }
       ],
       "closedDate": "2026-06-25",
@@ -1489,7 +1471,7 @@
         },
         {
           "date": "2026-06-24",
-          "pnl": 150
+          "pnl": 150.0
         },
         {
           "date": "2026-06-25",
@@ -1580,7 +1562,7 @@
         },
         {
           "date": "2026-05-15",
-          "pnl": 29
+          "pnl": 29.0
         },
         {
           "date": "2026-05-19",
@@ -1618,7 +1600,7 @@
       },
       "finalBalance": 23500,
       "peakBalance": 25000,
-      "bestDay": 0,
+      "bestDay": 0.0,
       "description": "Account breached drawdown limit. Closed as failed.",
       "records": [
         {
@@ -1657,7 +1639,7 @@
       },
       "finalBalance": 23500,
       "peakBalance": 25000,
-      "bestDay": 0,
+      "bestDay": 0.0,
       "description": "Account breached drawdown limit. Closed as failed.",
       "records": [
         {
@@ -1666,7 +1648,7 @@
         },
         {
           "date": "2026-05-20",
-          "pnl": -751
+          "pnl": -751.0
         },
         {
           "date": "2026-06-10",
@@ -1744,7 +1726,7 @@
       },
       "finalBalance": 49883.75,
       "peakBalance": 50066.75,
-      "bestDay": 0,
+      "bestDay": 46.5,
       "description": "Account breached drawdown limit. Closed as failed.",
       "records": [
         {
@@ -1757,7 +1739,7 @@
         },
         {
           "date": "2026-04-25",
-          "pnl": -183
+          "pnl": -183.0
         }
       ]
     },
@@ -1780,12 +1762,12 @@
       },
       "finalBalance": 26502.5,
       "peakBalance": 26502.5,
-      "bestDay": 750,
+      "bestDay": 684.25,
       "description": "Challenge passed. Profit target reached. Account closed and moved to history.",
       "records": [
         {
           "date": "2026-04-13",
-          "pnl": 27
+          "pnl": 27.0
         },
         {
           "date": "2026-04-14",
@@ -1809,7 +1791,7 @@
         },
         {
           "date": "2026-04-21",
-          "pnl": 116
+          "pnl": 116.0
         }
       ],
       "ruleKey": "tpt.25k.challenge"
@@ -1833,7 +1815,7 @@
       },
       "finalBalance": 48399.6,
       "peakBalance": 50433,
-      "bestDay": 900,
+      "bestDay": 289.6,
       "description": "Account breached EOD trailing drawdown. Closed as failed.",
       "records": [
         {
@@ -1907,11 +1889,7 @@
         },
         {
           "date": "2026-07-14",
-          "pnl": -254.45
-        },
-        {
-          "date": "2026-07-14",
-          "pnl": -117.85
+          "pnl": -372.3
         },
         {
           "date": "2026-07-15",
@@ -1948,7 +1926,7 @@
       },
       "balance": 25000,
       "peak": 25000,
-      "bestDay": 0,
+      "bestDay": 0.0,
       "records": [],
       "closedDate": "2026-08-23",
       "finalBalance": 25000,
@@ -1970,7 +1948,7 @@
       },
       "balance": 25000,
       "peak": 25000,
-      "bestDay": 0,
+      "bestDay": 0.0,
       "records": [],
       "closedDate": "2026-08-23",
       "finalBalance": 25000,
@@ -1986,7 +1964,7 @@
       "started": "2026-08-20",
       "method": "hidden",
       "split": null,
-      "bestDay": 0,
+      "bestDay": 0.0,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
       "balance": 23593.0,
