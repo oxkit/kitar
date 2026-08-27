@@ -622,6 +622,13 @@
       {
         "date": "2026-07-28",
         "net": -165.66
+      },
+      {
+        "date": "2026-08-26",
+        "net": 207.41,
+        "source": "hl_total_equity_close",
+        "equity": 1009.09,
+        "perpDex": "xyz"
       }
     ]
   },
