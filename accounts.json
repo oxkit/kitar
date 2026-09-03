@@ -170,7 +170,7 @@
     {
       "name": "TopStep",
       "payouts": 11044,
-      "costs": 3316.15,
+      "costs": 3355.15,
       "feeModal": "topstep",
       "feeRecords": [
         {
@@ -197,6 +197,11 @@
           "date": "2026-08-20",
           "accountNumber": "50KTC-V2-45281-66677947",
           "amount": 95.0
+        },
+        {
+          "date": "2026-09-03",
+          "accountNumber": "1.5KCHCR-LABS004-V2-45281-20249955",
+          "amount": 39.0
         }
       ]
     },
@@ -617,6 +622,33 @@
       "venueRef": {
         "venue": "NT",
         "ref": "MFFUEVBLDR01874045"
+      }
+    },
+    {
+      "id": "ts15kc1",
+      "name": "TopStep $1.5K Challenge",
+      "emoji": "",
+      "firm": "TopStep",
+      "accountNumber": "1.5KCHCR-LABS004-V2-45281-20249955",
+      "started": "2026-09-03",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 0,
+      "ruleKey": "topstep.1-5k.challenge",
+      "peak": 0.0,
+      "balance": 0.0,
+      "status": "challenge",
+      "records": [],
+      "rules": {
+        "start": 0.0,
+        "target": 1500,
+        "dd": 500,
+        "ddType": "static",
+        "renewable": false
+      },
+      "venueRef": {
+        "venue": "TS",
+        "ref": "1.5KCHCR-LABS004-V2-45281-20249955"
       }
     }
   ],
