@@ -825,6 +825,13 @@
         "source": "hl_total_equity_close",
         "equity": 982.71,
         "perpDex": "xyz"
+      },
+      {
+        "date": "2026-09-07",
+        "net": 1.16,
+        "source": "hl_total_equity_close",
+        "equity": 983.87,
+        "perpDex": "xyz"
       }
     ]
   },
