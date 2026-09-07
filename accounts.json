@@ -317,6 +317,17 @@
       "payouts": 1592,
       "costs": 9010,
       "feeModal": null
+    },
+    {
+      "name": "BluSky",
+      "costs": 99.0,
+      "feeRecords": [
+        {
+          "date": "2026-09-05",
+          "accountNumber": "BSKEPROPELYEE84437",
+          "amount": 99.0
+        }
+      ]
     }
   ],
   "activeAccounts": [
@@ -682,6 +693,36 @@
       "venueRef": {
         "venue": "TS",
         "ref": "1.5KCHCR-LABS004-V2-45281-20249955"
+      }
+    },
+    {
+      "id": "blusky50kpropel1",
+      "name": "BluSky PROPEL 50k",
+      "emoji": "",
+      "firm": "BluSky",
+      "accountNumber": "BSKEPROPELYEE84437",
+      "started": "2026-09-05",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 0,
+      "ruleKey": "blusky.propel50k.challenge",
+      "peak": 50000.0,
+      "balance": 50000.0,
+      "status": "challenge",
+      "records": [],
+      "rules": {
+        "start": 50000.0,
+        "target": 3000,
+        "dd": 2000,
+        "ddType": "EOD",
+        "renewable": true,
+        "renewalDate": "2026-10-05",
+        "renewalEveryDays": 30,
+        "consistencyPct": 0.3
+      },
+      "venueRef": {
+        "venue": "NT",
+        "ref": "BSKEPROPELYEE84437"
       }
     }
   ],
