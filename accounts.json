@@ -483,7 +483,7 @@
       "bestDay": 71.0,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
-      "balance": 23797.0,
+      "balance": 23783.5,
       "status": "challenge",
       "records": [
         {
@@ -525,6 +525,10 @@
         {
           "date": "2026-09-08",
           "pnl": 71.0
+        },
+        {
+          "date": "2026-09-09",
+          "pnl": -13.5
         }
       ],
       "rules": {
@@ -554,7 +558,7 @@
       "bestDay": 0.0,
       "ruleKey": "topstep.50k-tc.challenge",
       "peak": 50000.0,
-      "balance": 48805.34,
+      "balance": 48790.7,
       "status": "challenge",
       "records": [
         {
@@ -592,6 +596,10 @@
         {
           "date": "2026-09-04",
           "pnl": -29.76
+        },
+        {
+          "date": "2026-09-09",
+          "pnl": -14.64
         }
       ],
       "rules": {
@@ -619,7 +627,7 @@
       "bestDay": 58.6,
       "ruleKey": "mffu.25k-builder.challenge",
       "peak": 25000.0,
-      "balance": 24577.3,
+      "balance": 24562.2,
       "status": "challenge",
       "records": [
         {
@@ -653,6 +661,10 @@
         {
           "date": "2026-09-08",
           "pnl": 58.6
+        },
+        {
+          "date": "2026-09-09",
+          "pnl": -15.1
         }
       ],
       "rules": {
@@ -679,7 +691,7 @@
       "bestDay": 0.0,
       "ruleKey": "topstep.1-5k.challenge",
       "peak": 0.0,
-      "balance": -52.02,
+      "balance": -56.9,
       "status": "challenge",
       "records": [
         {
@@ -689,6 +701,10 @@
         {
           "date": "2026-09-04",
           "pnl": -29.76
+        },
+        {
+          "date": "2026-09-09",
+          "pnl": -4.88
         }
       ],
       "rules": {
@@ -715,12 +731,16 @@
       "bestDay": 72.2,
       "ruleKey": "blusky.propel50k.challenge",
       "peak": 50072.2,
-      "balance": 50072.2,
+      "balance": 50056.6,
       "status": "challenge",
       "records": [
         {
           "date": "2026-09-08",
           "pnl": 72.2
+        },
+        {
+          "date": "2026-09-09",
+          "pnl": -15.6
         }
       ],
       "rules": {
@@ -851,6 +871,13 @@
         "net": 1.96,
         "source": "hl_total_equity_close",
         "equity": 985.83,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-09-09",
+        "net": -0.33,
+        "source": "hl_total_equity_close",
+        "equity": 985.5,
         "perpDex": "xyz"
       }
     ]
