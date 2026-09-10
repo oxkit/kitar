@@ -483,7 +483,7 @@
       "bestDay": 71.0,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
-      "balance": 23783.5,
+      "balance": 23682.5,
       "status": "challenge",
       "records": [
         {
@@ -529,6 +529,10 @@
         {
           "date": "2026-09-09",
           "pnl": -13.5
+        },
+        {
+          "date": "2026-09-10",
+          "pnl": -101.0
         }
       ],
       "rules": {
@@ -555,10 +559,10 @@
       "started": "2026-08-20",
       "method": "hidden",
       "split": null,
-      "bestDay": 0.0,
+      "bestDay": 315.36,
       "ruleKey": "topstep.50k-tc.challenge",
       "peak": 50000.0,
-      "balance": 48790.7,
+      "balance": 49106.06,
       "status": "challenge",
       "records": [
         {
@@ -600,6 +604,10 @@
         {
           "date": "2026-09-09",
           "pnl": -14.64
+        },
+        {
+          "date": "2026-09-10",
+          "pnl": 315.36
         }
       ],
       "rules": {
@@ -627,7 +635,7 @@
       "bestDay": 58.6,
       "ruleKey": "mffu.25k-builder.challenge",
       "peak": 25000.0,
-      "balance": 24562.2,
+      "balance": 24447.1,
       "status": "challenge",
       "records": [
         {
@@ -665,6 +673,10 @@
         {
           "date": "2026-09-09",
           "pnl": -15.1
+        },
+        {
+          "date": "2026-09-10",
+          "pnl": -115.1
         }
       ],
       "rules": {
@@ -688,10 +700,10 @@
       "started": "2026-09-03",
       "method": "hidden",
       "split": null,
-      "bestDay": 0.0,
+      "bestDay": 105.12,
       "ruleKey": "topstep.1-5k.challenge",
-      "peak": 0.0,
-      "balance": -56.9,
+      "peak": 48.22,
+      "balance": 48.22,
       "status": "challenge",
       "records": [
         {
@@ -705,6 +717,10 @@
         {
           "date": "2026-09-09",
           "pnl": -4.88
+        },
+        {
+          "date": "2026-09-10",
+          "pnl": 105.12
         }
       ],
       "rules": {
@@ -731,7 +747,7 @@
       "bestDay": 72.2,
       "ruleKey": "blusky.propel50k.challenge",
       "peak": 50072.2,
-      "balance": 50056.6,
+      "balance": 49666.0,
       "status": "challenge",
       "records": [
         {
@@ -741,6 +757,10 @@
         {
           "date": "2026-09-09",
           "pnl": -15.6
+        },
+        {
+          "date": "2026-09-10",
+          "pnl": -390.6
         }
       ],
       "rules": {
@@ -878,6 +898,13 @@
         "net": -0.33,
         "source": "hl_total_equity_close",
         "equity": 985.5,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-09-10",
+        "net": -0.92,
+        "source": "hl_total_equity_close",
+        "equity": 984.58,
         "perpDex": "xyz"
       }
     ]
