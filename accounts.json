@@ -483,7 +483,7 @@
       "bestDay": 71.0,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
-      "balance": 23682.5,
+      "balance": 23728.5,
       "status": "challenge",
       "records": [
         {
@@ -533,6 +533,10 @@
         {
           "date": "2026-09-10",
           "pnl": -101.0
+        },
+        {
+          "date": "2026-09-11",
+          "pnl": 46.0
         }
       ],
       "rules": {
@@ -562,7 +566,7 @@
       "bestDay": 315.36,
       "ruleKey": "topstep.50k-tc.challenge",
       "peak": 50000.0,
-      "balance": 49106.06,
+      "balance": 49256.6,
       "status": "challenge",
       "records": [
         {
@@ -608,6 +612,10 @@
         {
           "date": "2026-09-10",
           "pnl": 315.36
+        },
+        {
+          "date": "2026-09-11",
+          "pnl": 150.54
         }
       ],
       "rules": {
@@ -635,7 +643,7 @@
       "bestDay": 58.6,
       "ruleKey": "mffu.25k-builder.challenge",
       "peak": 25000.0,
-      "balance": 24447.1,
+      "balance": 24490.7,
       "status": "challenge",
       "records": [
         {
@@ -677,6 +685,10 @@
         {
           "date": "2026-09-10",
           "pnl": -115.1
+        },
+        {
+          "date": "2026-09-11",
+          "pnl": 43.6
         }
       ],
       "rules": {
@@ -702,8 +714,8 @@
       "split": null,
       "bestDay": 105.12,
       "ruleKey": "topstep.1-5k.challenge",
-      "peak": 48.22,
-      "balance": 48.22,
+      "peak": 93.4,
+      "balance": 93.4,
       "status": "challenge",
       "records": [
         {
@@ -721,6 +733,10 @@
         {
           "date": "2026-09-10",
           "pnl": 105.12
+        },
+        {
+          "date": "2026-09-11",
+          "pnl": 45.18
         }
       ],
       "rules": {
@@ -744,10 +760,10 @@
       "started": "2026-09-05",
       "method": "hidden",
       "split": null,
-      "bestDay": 72.2,
+      "bestDay": 149.1,
       "ruleKey": "blusky.propel50k.challenge",
       "peak": 50072.2,
-      "balance": 49666.0,
+      "balance": 49815.1,
       "status": "challenge",
       "records": [
         {
@@ -761,6 +777,10 @@
         {
           "date": "2026-09-10",
           "pnl": -390.6
+        },
+        {
+          "date": "2026-09-11",
+          "pnl": 149.1
         }
       ],
       "rules": {
@@ -905,6 +925,13 @@
         "net": -0.92,
         "source": "hl_total_equity_close",
         "equity": 984.58,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-09-11",
+        "net": -12.48,
+        "source": "hl_total_equity_close",
+        "equity": 972.1,
         "perpDex": "xyz"
       }
     ]
