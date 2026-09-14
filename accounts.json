@@ -332,146 +332,6 @@
   ],
   "activeAccounts": [
     {
-      "id": "tptpro",
-      "name": "TPT 25k PRO",
-      "emoji": "",
-      "firm": "TPT",
-      "accountNumber": "TPPRO5351335",
-      "venueRef": {
-        "venue": "NT",
-        "ref": "TPPRO5351335"
-      },
-      "started": "2026-04-22",
-      "status": "funded",
-      "method": "hidden",
-      "split": null,
-      "rules": {
-        "start": 25000,
-        "dd": 1500,
-        "ddType": "intraday",
-        "trailLockOffset": 0,
-        "buffer": 1500
-      },
-      "peak": 25427.5,
-      "bestDay": 267.5,
-      "records": [
-        {
-          "date": "2026-04-22",
-          "pnl": 36.5
-        },
-        {
-          "date": "2026-04-24",
-          "pnl": 16.5
-        },
-        {
-          "date": "2026-04-30",
-          "pnl": 47.75
-        },
-        {
-          "date": "2026-05-01",
-          "pnl": 267.5
-        },
-        {
-          "date": "2026-05-06",
-          "pnl": 59.25
-        },
-        {
-          "date": "2026-05-07",
-          "pnl": -163.5
-        },
-        {
-          "date": "2026-05-08",
-          "pnl": 81.75
-        },
-        {
-          "date": "2026-05-15",
-          "pnl": 22.5
-        },
-        {
-          "date": "2026-05-19",
-          "pnl": -129.25
-        },
-        {
-          "date": "2026-05-20",
-          "pnl": -197.5
-        },
-        {
-          "date": "2026-05-27",
-          "pnl": -137.75
-        },
-        {
-          "date": "2026-06-11",
-          "pnl": -25.25
-        },
-        {
-          "date": "2026-06-22",
-          "pnl": 88.5
-        },
-        {
-          "date": "2026-06-25",
-          "pnl": 20.0
-        },
-        {
-          "date": "2026-06-29",
-          "pnl": 22.5
-        },
-        {
-          "date": "2026-07-02",
-          "pnl": 6.0
-        },
-        {
-          "date": "2026-07-03",
-          "pnl": 21.25
-        },
-        {
-          "date": "2026-07-06",
-          "pnl": 2.5
-        },
-        {
-          "date": "2026-07-07",
-          "pnl": 72.25
-        },
-        {
-          "date": "2026-07-08",
-          "pnl": 56.25
-        },
-        {
-          "date": "2026-07-09",
-          "pnl": 79.5
-        },
-        {
-          "date": "2026-07-14",
-          "pnl": -16.0
-        },
-        {
-          "date": "2026-07-15",
-          "pnl": 17.0
-        },
-        {
-          "date": "2026-07-16",
-          "pnl": -65.0
-        },
-        {
-          "date": "2026-07-28",
-          "pnl": -412.5
-        },
-        {
-          "date": "2026-08-24",
-          "pnl": -372.0
-        },
-        {
-          "date": "2026-08-25",
-          "pnl": -52.75
-        },
-        {
-          "date": "2026-08-26",
-          "pnl": -60.0
-        }
-      ],
-      "ruleKey": "tpt.25k-pro.sim-funded",
-      "balance": 24286.0
-    },
-    {
       "id": "tpt25k1",
       "name": "TPT 25k",
       "emoji": "",
@@ -563,10 +423,10 @@
       "started": "2026-08-20",
       "method": "hidden",
       "split": null,
-      "bestDay": 315.36,
+      "bestDay": 1491.22,
       "ruleKey": "topstep.50k-tc.challenge",
-      "peak": 50000.0,
-      "balance": 49256.6,
+      "peak": 50747.82,
+      "balance": 50747.82,
       "status": "challenge",
       "records": [
         {
@@ -616,6 +476,10 @@
         {
           "date": "2026-09-11",
           "pnl": 150.54
+        },
+        {
+          "date": "2026-09-14",
+          "pnl": 1491.22
         }
       ],
       "rules": {
@@ -930,6 +794,13 @@
       {
         "date": "2026-09-11",
         "net": -12.48,
+        "source": "hl_total_equity_close",
+        "equity": 972.1,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-09-14",
+        "net": 0.0,
         "source": "hl_total_equity_close",
         "equity": 972.1,
         "perpDex": "xyz"
@@ -2296,6 +2167,150 @@
       "finalBalance": 23593.0,
       "peakBalance": 25000.0,
       "description": "Resolved by Telegram inventory workflow: OUT? tpt25k2 (NT:TAKEPROFIT681398927) has no current observation"
+    },
+    {
+      "id": "tptpro",
+      "name": "TPT 25k PRO",
+      "emoji": "",
+      "firm": "TPT",
+      "accountNumber": "TPPRO5351335",
+      "venueRef": {
+        "venue": "NT",
+        "ref": "TPPRO5351335"
+      },
+      "started": "2026-04-22",
+      "status": "Blown",
+      "method": "hidden",
+      "split": null,
+      "rules": {
+        "start": 25000,
+        "dd": 1500,
+        "ddType": "intraday",
+        "trailLockOffset": 0,
+        "buffer": 1500
+      },
+      "peak": 25427.5,
+      "bestDay": 267.5,
+      "records": [
+        {
+          "date": "2026-04-22",
+          "pnl": 36.5
+        },
+        {
+          "date": "2026-04-24",
+          "pnl": 16.5
+        },
+        {
+          "date": "2026-04-30",
+          "pnl": 47.75
+        },
+        {
+          "date": "2026-05-01",
+          "pnl": 267.5
+        },
+        {
+          "date": "2026-05-06",
+          "pnl": 59.25
+        },
+        {
+          "date": "2026-05-07",
+          "pnl": -163.5
+        },
+        {
+          "date": "2026-05-08",
+          "pnl": 81.75
+        },
+        {
+          "date": "2026-05-15",
+          "pnl": 22.5
+        },
+        {
+          "date": "2026-05-19",
+          "pnl": -129.25
+        },
+        {
+          "date": "2026-05-20",
+          "pnl": -197.5
+        },
+        {
+          "date": "2026-05-27",
+          "pnl": -137.75
+        },
+        {
+          "date": "2026-06-11",
+          "pnl": -25.25
+        },
+        {
+          "date": "2026-06-22",
+          "pnl": 88.5
+        },
+        {
+          "date": "2026-06-25",
+          "pnl": 20.0
+        },
+        {
+          "date": "2026-06-29",
+          "pnl": 22.5
+        },
+        {
+          "date": "2026-07-02",
+          "pnl": 6.0
+        },
+        {
+          "date": "2026-07-03",
+          "pnl": 21.25
+        },
+        {
+          "date": "2026-07-06",
+          "pnl": 2.5
+        },
+        {
+          "date": "2026-07-07",
+          "pnl": 72.25
+        },
+        {
+          "date": "2026-07-08",
+          "pnl": 56.25
+        },
+        {
+          "date": "2026-07-09",
+          "pnl": 79.5
+        },
+        {
+          "date": "2026-07-14",
+          "pnl": -16.0
+        },
+        {
+          "date": "2026-07-15",
+          "pnl": 17.0
+        },
+        {
+          "date": "2026-07-16",
+          "pnl": -65.0
+        },
+        {
+          "date": "2026-07-28",
+          "pnl": -412.5
+        },
+        {
+          "date": "2026-08-24",
+          "pnl": -372.0
+        },
+        {
+          "date": "2026-08-25",
+          "pnl": -52.75
+        },
+        {
+          "date": "2026-08-26",
+          "pnl": -60.0
+        }
+      ],
+      "ruleKey": "tpt.25k-pro.sim-funded",
+      "balance": 24286.0,
+      "closedDate": "2026-09-14",
+      "finalBalance": 24286.0,
+      "peakBalance": 25427.5,
+      "description": "Resolved by Telegram inventory workflow: OUT? tptpro (NT:TPPRO5351335) has no current observation"
     }
   ],
   "history": {
@@ -2504,6 +2519,13 @@
         "account": "TPT 25k",
         "type": "Challenge",
         "status": "Failed"
+      },
+      {
+        "date": "2026-09-14",
+        "firm": "TPT",
+        "account": "TPT 25k PRO",
+        "type": "Sim Funded",
+        "status": "Blown"
       }
     ],
     "payoutsTotal": 71,
