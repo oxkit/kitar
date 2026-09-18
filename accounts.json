@@ -267,7 +267,7 @@
     {
       "name": "TPT",
       "payouts": 0,
-      "costs": 1211.0,
+      "costs": 1286.0,
       "feeModal": "tpt",
       "feeRecords": [
         {
@@ -308,6 +308,11 @@
         {
           "date": "2026-08-20",
           "accountNumber": "TAKEPROFIT681398927",
+          "amount": 75.0
+        },
+        {
+          "date": "2026-09-18",
+          "accountNumber": "TAKEPROFIT780292581",
           "amount": 75.0
         }
       ]
@@ -611,6 +616,37 @@
       "venueRef": {
         "venue": "NT",
         "ref": "BSKEPROPELYEE84437"
+      }
+    },
+    {
+      "id": "tpt25ktakeprofittrad1",
+      "name": "Take Profit Trader (TPT) 25K",
+      "emoji": "",
+      "firm": "TPT",
+      "accountNumber": "TAKEPROFIT780292581",
+      "started": "2026-09-18",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 0,
+      "ruleKey": "tpt.25k.challenge",
+      "peak": 25000.0,
+      "balance": 25000.0,
+      "status": "challenge",
+      "records": [],
+      "rules": {
+        "start": 25000.0,
+        "target": 1500,
+        "dd": 1500,
+        "ddType": "EOD",
+        "minDays": 5,
+        "renewable": true,
+        "renewalDate": "2026-10-18",
+        "renewalEveryDays": 30,
+        "consistencyPct": 0.5
+      },
+      "venueRef": {
+        "venue": "NT",
+        "ref": "TAKEPROFIT780292581"
       }
     }
   ],
