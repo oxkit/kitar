@@ -423,95 +423,6 @@
       }
     },
     {
-      "id": "ts50ktc1",
-      "name": "TopStep 50k TC",
-      "emoji": "",
-      "firm": "TopStep",
-      "accountNumber": "50KTC-V2-45281-66677947",
-      "started": "2026-08-20",
-      "method": "hidden",
-      "split": null,
-      "bestDay": 1491.22,
-      "ruleKey": "topstep.50k-tc.challenge",
-      "peak": 50747.82,
-      "balance": 48545.44,
-      "status": "challenge",
-      "records": [
-        {
-          "date": "2026-08-24",
-          "pnl": -766.52
-        },
-        {
-          "date": "2026-08-25",
-          "pnl": -107.32
-        },
-        {
-          "date": "2026-08-26",
-          "pnl": -62.44
-        },
-        {
-          "date": "2026-08-28",
-          "pnl": -79.28
-        },
-        {
-          "date": "2026-08-31",
-          "pnl": -62.44
-        },
-        {
-          "date": "2026-09-01",
-          "pnl": -44.88
-        },
-        {
-          "date": "2026-09-02",
-          "pnl": -17.32
-        },
-        {
-          "date": "2026-09-03",
-          "pnl": -24.7
-        },
-        {
-          "date": "2026-09-04",
-          "pnl": -29.76
-        },
-        {
-          "date": "2026-09-09",
-          "pnl": -14.64
-        },
-        {
-          "date": "2026-09-10",
-          "pnl": 315.36
-        },
-        {
-          "date": "2026-09-11",
-          "pnl": 150.54
-        },
-        {
-          "date": "2026-09-14",
-          "pnl": 1491.22
-        },
-        {
-          "date": "2026-09-15",
-          "pnl": -2060.06
-        },
-        {
-          "date": "2026-09-16",
-          "pnl": -142.32
-        }
-      ],
-      "rules": {
-        "start": 50000.0,
-        "target": 3000,
-        "dd": 2000,
-        "ddType": "EOD",
-        "minDays": 2,
-        "renewalDate": "2026-09-20"
-      },
-      "venueRef": {
-        "venue": "TS",
-        "ref": "50KTC-V2-45281-66677947"
-      }
-    },
-    {
       "id": "mffu25kbuilder1",
       "name": "MFFU 25k Builder",
       "emoji": "",
@@ -2372,6 +2283,99 @@
       "finalBalance": 24286.0,
       "peakBalance": 25427.5,
       "description": "Resolved by Telegram inventory workflow: OUT? tptpro (NT:TPPRO5351335) has no current observation"
+    },
+    {
+      "id": "ts50ktc1",
+      "name": "TopStep 50k TC",
+      "emoji": "",
+      "firm": "TopStep",
+      "accountNumber": "50KTC-V2-45281-66677947",
+      "started": "2026-08-20",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 1491.22,
+      "ruleKey": "topstep.50k-tc.challenge",
+      "peak": 50747.82,
+      "balance": 48545.44,
+      "status": "Failed",
+      "records": [
+        {
+          "date": "2026-08-24",
+          "pnl": -766.52
+        },
+        {
+          "date": "2026-08-25",
+          "pnl": -107.32
+        },
+        {
+          "date": "2026-08-26",
+          "pnl": -62.44
+        },
+        {
+          "date": "2026-08-28",
+          "pnl": -79.28
+        },
+        {
+          "date": "2026-08-31",
+          "pnl": -62.44
+        },
+        {
+          "date": "2026-09-01",
+          "pnl": -44.88
+        },
+        {
+          "date": "2026-09-02",
+          "pnl": -17.32
+        },
+        {
+          "date": "2026-09-03",
+          "pnl": -24.7
+        },
+        {
+          "date": "2026-09-04",
+          "pnl": -29.76
+        },
+        {
+          "date": "2026-09-09",
+          "pnl": -14.64
+        },
+        {
+          "date": "2026-09-10",
+          "pnl": 315.36
+        },
+        {
+          "date": "2026-09-11",
+          "pnl": 150.54
+        },
+        {
+          "date": "2026-09-14",
+          "pnl": 1491.22
+        },
+        {
+          "date": "2026-09-15",
+          "pnl": -2060.06
+        },
+        {
+          "date": "2026-09-16",
+          "pnl": -142.32
+        }
+      ],
+      "rules": {
+        "start": 50000.0,
+        "target": 3000,
+        "dd": 2000,
+        "ddType": "EOD",
+        "minDays": 2,
+        "renewalDate": "2026-09-20"
+      },
+      "venueRef": {
+        "venue": "TS",
+        "ref": "50KTC-V2-45281-66677947"
+      },
+      "closedDate": "2026-09-16",
+      "finalBalance": 48545.44,
+      "peakBalance": 50747.82,
+      "description": "Operator-confirmed: TopStep 50k TC challenge blown."
     }
   ],
   "history": {
