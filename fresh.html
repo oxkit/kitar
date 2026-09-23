@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>FRESH - Futures Research, Execution &amp; Strategy Hub</title>
-<link rel="icon" type="image/png" href="fresh/assets/fresh-glyph-v2.png" />
+<link rel="icon" type="image/png" href="assets/oxkit-mascot-fresh.png" />
 <meta name="description" content="FRESH — a local trading operations platform. Wires your MotiveWave strategy into NinjaTrader, TopStepX and HyperLiquid, safely. It does not pick your trades." />
 <link rel="canonical" href="https://kitar.co/fresh.html">
 <meta property="og:type" content="website">
@@ -133,10 +133,10 @@
   .nav.scrolled{background:rgba(29,24,40,.88);-webkit-backdrop-filter:blur(14px);
     backdrop-filter:blur(14px);border-bottom-color:var(--line);padding:11px 32px;}
   .wordmark{display:flex;align-items:center;gap:11px;}
-  .wordmark .wm-glyph{width:30px;height:30px;flex:0 0 auto;border-radius:7px;display:block;}
-  .wordmark .wm-text{height:17px;width:auto;display:block;}
-  .nav.scrolled .wordmark .wm-glyph{width:27px;height:27px;}
-  .nav.scrolled .wordmark .wm-text{height:16px;}
+  .wordmark .wm-glyph{width:40px;height:40px;flex:0 0 auto;border-radius:9px;display:block;object-fit:cover;}
+  .wordmark .wm-text{font-family:var(--sans);font-size:17px;font-weight:600;letter-spacing:.2em;color:#efe4d2;line-height:1;}
+  .nav.scrolled .wordmark .wm-glyph{width:34px;height:34px;}
+  .nav.scrolled .wordmark .wm-text{font-size:16px;}
   .nav-right{display:flex;align-items:center;gap:22px;}
   .nav-stat{display:none;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;
     color:var(--tx-mut);letter-spacing:.04em;}
@@ -499,8 +499,8 @@
     function Wordmark(){
       return (
         <a className="wordmark" href="#top" aria-label="FRESH home">
-          <img className="wm-glyph" src="fresh/assets/fresh-glyph-v2.png" alt="" />
-          <img className="wm-text" src="fresh/assets/fresh-wordmark.png" alt="FRESH" />
+        <img className="wm-glyph" src="assets/oxkit-mascot-fresh.png" alt="oxkit mascot" />
+          <span className="wm-text">FRESH</span>
         </a>
       );
     }
