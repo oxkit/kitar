@@ -20,31 +20,29 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Poppins:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#06080b;
-    --bg-2:#0a0e14;
-    --bg-3:#0e131b;
-    --line:rgba(255,255,255,.09);
-    --line-2:rgba(255,255,255,.16);
-    --tx:#e7ecf2;
-    --tx-mut:#8a94a3;
-    --tx-dim:#59626f;
+    --bg:#14101d;
+    --bg-2:#1d1828;
+    --bg-3:#221f2e;
+    --line:rgba(200,169,122,.18);
+    --line-2:rgba(200,169,122,.34);
+    --tx:#d8d2e4;
+    --tx-mut:#a79fbc;
+    --tx-dim:#8f89a3;
     --ok:#33e08a;
     --ok-dim:rgba(51,224,138,.16);
     --warn:#f5b13d;
     --warn-dim:rgba(245,177,61,.16);
     --bad:#ff5e57;
-    --accent:var(--ok);
-    --accent-dim:var(--ok-dim);
+    --accent:#c8a97a;
+    --accent-dim:rgba(200,169,122,.14);
     --max:1180px;
     --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-    --sans:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;
+    --sans:"Poppins",ui-sans-serif,system-ui,sans-serif;
   }
-  [data-accent="green"]{--accent:var(--ok);--accent-dim:var(--ok-dim);}
-  [data-accent="amber"]{--accent:var(--warn);--accent-dim:var(--warn-dim);}
-  [data-accent="both"]{--accent:var(--ok);--accent-dim:var(--ok-dim);}
+  [data-accent="green"],[data-accent="amber"],[data-accent="both"]{--accent:#c8a97a;--accent-dim:rgba(200,169,122,.14);}
 
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -62,9 +60,10 @@
     background-size:64px 64px;
     mask-image:radial-gradient(ellipse 120% 90% at 50% 0%,#000 30%,transparent 80%);
   }
-  ::selection{background:rgba(51,224,138,.28);color:#fff;}
+  ::selection{background:rgba(200,169,122,.32);color:#efe4d2;}
   a{color:inherit;text-decoration:none;}
   h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.05;}
+  h1,h2{font-family:"Fraunces",Georgia,serif;color:#efe4d2;}
   p{margin:0;}
   .mono{font-family:var(--mono);}
   .tnum{font-variant-numeric:tabular-nums;}
@@ -104,7 +103,7 @@
     display:inline-flex;align-items:center;gap:10px;cursor:pointer;
     padding:14px 22px;border-radius:8px;border:1px solid transparent;transition:.18s ease;
   }
-  .btn-primary{background:var(--accent);color:#04140c;border-color:var(--accent);}
+  .btn-primary{background:var(--accent);color:#14101d;border-color:var(--accent);}
   .btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px);
     box-shadow:0 8px 30px -8px var(--accent);}
   [data-accent="amber"] .btn-primary{color:#1a1204;}
@@ -131,7 +130,7 @@
     display:flex;align-items:center;justify-content:space-between;
     padding:16px 32px;transition:background .3s ease,border-color .3s ease,padding .3s ease;
     border-bottom:1px solid transparent;}
-  .nav.scrolled{background:rgba(6,8,11,.82);-webkit-backdrop-filter:blur(14px);
+  .nav.scrolled{background:rgba(29,24,40,.88);-webkit-backdrop-filter:blur(14px);
     backdrop-filter:blur(14px);border-bottom-color:var(--line);padding:11px 32px;}
   .wordmark{display:flex;align-items:center;gap:11px;}
   .wordmark .wm-glyph{width:30px;height:30px;flex:0 0 auto;border-radius:7px;display:block;}
