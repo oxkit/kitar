@@ -337,205 +337,6 @@
   ],
   "activeAccounts": [
     {
-      "id": "tpt25k1",
-      "name": "TPT 25k",
-      "emoji": "",
-      "firm": "TPT",
-      "accountNumber": "TAKEPROFIT446553122",
-      "started": "2026-08-20",
-      "method": "hidden",
-      "split": null,
-      "bestDay": 76.0,
-      "ruleKey": "tpt.25k.challenge",
-      "peak": 25000.0,
-      "balance": 23496.5,
-      "status": "challenge",
-      "records": [
-        {
-          "date": "2026-08-24",
-          "pnl": -606.0
-        },
-        {
-          "date": "2026-08-25",
-          "pnl": -116.5
-        },
-        {
-          "date": "2026-08-26",
-          "pnl": -132.0
-        },
-        {
-          "date": "2026-08-28",
-          "pnl": -208.0
-        },
-        {
-          "date": "2026-08-31",
-          "pnl": -83.0
-        },
-        {
-          "date": "2026-09-01",
-          "pnl": -83.0
-        },
-        {
-          "date": "2026-09-02",
-          "pnl": -41.5
-        },
-        {
-          "date": "2026-09-03",
-          "pnl": 30.5
-        },
-        {
-          "date": "2026-09-04",
-          "pnl": -34.5
-        },
-        {
-          "date": "2026-09-08",
-          "pnl": 71.0
-        },
-        {
-          "date": "2026-09-09",
-          "pnl": -13.5
-        },
-        {
-          "date": "2026-09-10",
-          "pnl": -101.0
-        },
-        {
-          "date": "2026-09-11",
-          "pnl": 46.0
-        },
-        {
-          "date": "2026-09-15",
-          "pnl": 76.0
-        },
-        {
-          "date": "2026-09-16",
-          "pnl": -184.0
-        },
-        {
-          "date": "2026-09-18",
-          "pnl": -53.0
-        },
-        {
-          "date": "2026-09-21",
-          "pnl": -60.5
-        },
-        {
-          "date": "2026-09-22",
-          "pnl": -10.5
-        }
-      ],
-      "rules": {
-        "start": 25000.0,
-        "target": 1500,
-        "dd": 1500,
-        "ddType": "EOD",
-        "trailLockOffset": 0,
-        "minDays": 5,
-        "renewalDate": "2026-09-20",
-        "consistencyPct": 0.5
-      },
-      "venueRef": {
-        "venue": "NT",
-        "ref": "TAKEPROFIT446553122"
-      }
-    },
-    {
-      "id": "mffu25kbuilder1",
-      "name": "MFFU 25k Builder",
-      "emoji": "",
-      "firm": "MFFU",
-      "accountNumber": "MFFUEVBLDR01874045",
-      "started": "2026-08-26",
-      "method": "hidden",
-      "split": null,
-      "bestDay": 66.1,
-      "ruleKey": "mffu.25k-builder.challenge",
-      "peak": 25000.0,
-      "balance": 23970.1,
-      "status": "challenge",
-      "records": [
-        {
-          "date": "2026-08-26",
-          "pnl": -65.1
-        },
-        {
-          "date": "2026-08-28",
-          "pnl": -234.3
-        },
-        {
-          "date": "2026-08-31",
-          "pnl": -83.8
-        },
-        {
-          "date": "2026-09-01",
-          "pnl": -83.8
-        },
-        {
-          "date": "2026-09-02",
-          "pnl": -6.4
-        },
-        {
-          "date": "2026-09-03",
-          "pnl": 34.8
-        },
-        {
-          "date": "2026-09-04",
-          "pnl": -42.7
-        },
-        {
-          "date": "2026-09-08",
-          "pnl": 58.6
-        },
-        {
-          "date": "2026-09-09",
-          "pnl": -15.1
-        },
-        {
-          "date": "2026-09-10",
-          "pnl": -115.1
-        },
-        {
-          "date": "2026-09-11",
-          "pnl": 43.6
-        },
-        {
-          "date": "2026-09-15",
-          "pnl": 66.1
-        },
-        {
-          "date": "2026-09-16",
-          "pnl": -191.4
-        },
-        {
-          "date": "2026-09-18",
-          "pnl": -58.8
-        },
-        {
-          "date": "2026-09-21",
-          "pnl": -56.3
-        },
-        {
-          "date": "2026-09-22",
-          "pnl": -43.8
-        },
-        {
-          "date": "2026-09-23",
-          "pnl": -236.4
-        }
-      ],
-      "rules": {
-        "start": 25000.0,
-        "target": 1500,
-        "dd": 1000,
-        "ddType": "EOD",
-        "renewable": false
-      },
-      "venueRef": {
-        "venue": "NT",
-        "ref": "MFFUEVBLDR01874045"
-      }
-    },
-    {
       "id": "ts15kc1",
       "name": "TopStep $1.5K Challenge",
       "emoji": "",
@@ -2517,6 +2318,213 @@
       "finalBalance": 48545.44,
       "peakBalance": 50747.82,
       "description": "Operator-confirmed: TopStep 50k TC challenge blown."
+    },
+    {
+      "id": "mffu25kbuilder1",
+      "name": "MFFU 25k Builder",
+      "emoji": "",
+      "firm": "MFFU",
+      "accountNumber": "MFFUEVBLDR01874045",
+      "started": "2026-08-26",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 66.1,
+      "ruleKey": "mffu.25k-builder.challenge",
+      "peak": 25000.0,
+      "balance": 23970.1,
+      "status": "Failed",
+      "records": [
+        {
+          "date": "2026-08-26",
+          "pnl": -65.1
+        },
+        {
+          "date": "2026-08-28",
+          "pnl": -234.3
+        },
+        {
+          "date": "2026-08-31",
+          "pnl": -83.8
+        },
+        {
+          "date": "2026-09-01",
+          "pnl": -83.8
+        },
+        {
+          "date": "2026-09-02",
+          "pnl": -6.4
+        },
+        {
+          "date": "2026-09-03",
+          "pnl": 34.8
+        },
+        {
+          "date": "2026-09-04",
+          "pnl": -42.7
+        },
+        {
+          "date": "2026-09-08",
+          "pnl": 58.6
+        },
+        {
+          "date": "2026-09-09",
+          "pnl": -15.1
+        },
+        {
+          "date": "2026-09-10",
+          "pnl": -115.1
+        },
+        {
+          "date": "2026-09-11",
+          "pnl": 43.6
+        },
+        {
+          "date": "2026-09-15",
+          "pnl": 66.1
+        },
+        {
+          "date": "2026-09-16",
+          "pnl": -191.4
+        },
+        {
+          "date": "2026-09-18",
+          "pnl": -58.8
+        },
+        {
+          "date": "2026-09-21",
+          "pnl": -56.3
+        },
+        {
+          "date": "2026-09-22",
+          "pnl": -43.8
+        },
+        {
+          "date": "2026-09-23",
+          "pnl": -236.4
+        }
+      ],
+      "rules": {
+        "start": 25000.0,
+        "target": 1500,
+        "dd": 1000,
+        "ddType": "EOD",
+        "renewable": false
+      },
+      "venueRef": {
+        "venue": "NT",
+        "ref": "MFFUEVBLDR01874045"
+      },
+      "closedDate": "2026-09-24",
+      "finalBalance": 23970.1,
+      "peakBalance": 25000.0,
+      "description": "Resolved by Telegram inventory workflow: OUT? mffu25kbuilder1 (NT:MFFUEVBLDR01874045) disconnected in fresh NT census; verify broker status"
+    },
+    {
+      "id": "tpt25k1",
+      "name": "TPT 25k",
+      "emoji": "",
+      "firm": "TPT",
+      "accountNumber": "TAKEPROFIT446553122",
+      "started": "2026-08-20",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 76.0,
+      "ruleKey": "tpt.25k.challenge",
+      "peak": 25000.0,
+      "balance": 23496.5,
+      "status": "Failed",
+      "records": [
+        {
+          "date": "2026-08-24",
+          "pnl": -606.0
+        },
+        {
+          "date": "2026-08-25",
+          "pnl": -116.5
+        },
+        {
+          "date": "2026-08-26",
+          "pnl": -132.0
+        },
+        {
+          "date": "2026-08-28",
+          "pnl": -208.0
+        },
+        {
+          "date": "2026-08-31",
+          "pnl": -83.0
+        },
+        {
+          "date": "2026-09-01",
+          "pnl": -83.0
+        },
+        {
+          "date": "2026-09-02",
+          "pnl": -41.5
+        },
+        {
+          "date": "2026-09-03",
+          "pnl": 30.5
+        },
+        {
+          "date": "2026-09-04",
+          "pnl": -34.5
+        },
+        {
+          "date": "2026-09-08",
+          "pnl": 71.0
+        },
+        {
+          "date": "2026-09-09",
+          "pnl": -13.5
+        },
+        {
+          "date": "2026-09-10",
+          "pnl": -101.0
+        },
+        {
+          "date": "2026-09-11",
+          "pnl": 46.0
+        },
+        {
+          "date": "2026-09-15",
+          "pnl": 76.0
+        },
+        {
+          "date": "2026-09-16",
+          "pnl": -184.0
+        },
+        {
+          "date": "2026-09-18",
+          "pnl": -53.0
+        },
+        {
+          "date": "2026-09-21",
+          "pnl": -60.5
+        },
+        {
+          "date": "2026-09-22",
+          "pnl": -10.5
+        }
+      ],
+      "rules": {
+        "start": 25000.0,
+        "target": 1500,
+        "dd": 1500,
+        "ddType": "EOD",
+        "trailLockOffset": 0,
+        "minDays": 5,
+        "renewalDate": "2026-09-20",
+        "consistencyPct": 0.5
+      },
+      "venueRef": {
+        "venue": "NT",
+        "ref": "TAKEPROFIT446553122"
+      },
+      "closedDate": "2026-09-24",
+      "finalBalance": 23496.5,
+      "peakBalance": 25000.0,
+      "description": "Resolved by Telegram inventory workflow: OUT? tpt25k1 (NT:TAKEPROFIT446553122) disconnected in fresh NT census; verify broker status"
     }
   ],
   "history": {
@@ -2732,6 +2740,20 @@
         "account": "TPT 25k PRO",
         "type": "Sim Funded",
         "status": "Blown"
+      },
+      {
+        "date": "2026-09-24",
+        "firm": "MFFU",
+        "account": "MFFU 25k Builder",
+        "type": "Challenge",
+        "status": "Failed"
+      },
+      {
+        "date": "2026-09-24",
+        "firm": "TPT",
+        "account": "TPT 25k",
+        "type": "Challenge",
+        "status": "Failed"
       }
     ],
     "payoutsTotal": 71,
