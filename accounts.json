@@ -348,7 +348,7 @@
       "bestDay": 105.12,
       "ruleKey": "topstep.1-5k.challenge",
       "peak": 181.08,
-      "balance": -221.0,
+      "balance": -480.71,
       "status": "challenge",
       "records": [
         {
@@ -394,6 +394,10 @@
         {
           "date": "2026-09-23",
           "pnl": -139.88
+        },
+        {
+          "date": "2026-09-25",
+          "pnl": -259.71
         }
       ],
       "rules": {
@@ -420,7 +424,7 @@
       "bestDay": 201.6,
       "ruleKey": "blusky.propel50k.challenge",
       "peak": 50072.2,
-      "balance": 48366.3,
+      "balance": 48361.2,
       "status": "challenge",
       "records": [
         {
@@ -462,6 +466,10 @@
         {
           "date": "2026-09-23",
           "pnl": -413.1
+        },
+        {
+          "date": "2026-09-25",
+          "pnl": -5.1
         }
       ],
       "rules": {
@@ -491,7 +499,7 @@
       "bestDay": 0.0,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
-      "balance": 24334.75,
+      "balance": 24329.25,
       "status": "challenge",
       "records": [
         {
@@ -509,6 +517,10 @@
         {
           "date": "2026-09-23",
           "pnl": -423.0
+        },
+        {
+          "date": "2026-09-25",
+          "pnl": -5.5
         }
       ],
       "rules": {
@@ -724,6 +736,13 @@
         "net": 12.12,
         "source": "hl_total_equity_close",
         "equity": 993.15,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-09-25",
+        "net": -25.5,
+        "source": "hl_total_equity_close",
+        "equity": 967.65,
         "perpDex": "xyz"
       }
     ]
