@@ -227,6 +227,18 @@
       "target": 1500,
       "dd": 500,
       "template": "challenge"
+    },
+    "lucid.25k-flex.challenge": {
+      "template": "challenge",
+      "firm": "Lucid",
+      "displayName": "Lucid 25k Flex",
+      "accountSize": 25000,
+      "start": 25000,
+      "target": 1250,
+      "dd": 1000,
+      "ddType": "EOD",
+      "consistencyPct": 0.5,
+      "minDays": 2
     }
   }
 }

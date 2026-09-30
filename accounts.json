@@ -236,13 +236,18 @@
     {
       "name": "Lucid",
       "payouts": 4806.91,
-      "costs": 504,
+      "costs": 554.3,
       "feeModal": null,
       "feeRecords": [
         {
           "date": "2026-07-14",
           "accountNumber": "LTE02562456550001",
           "amount": 67.5
+        },
+        {
+          "date": "2026-09-14",
+          "accountNumber": "qt_c7af0433d1058c5a4c8c9972fd2268a18f5a7a2b8ecbd13a80024ec8093a3c48",
+          "amount": 50.3
         }
       ]
     },
@@ -537,6 +542,36 @@
       "venueRef": {
         "venue": "NT",
         "ref": "TAKEPROFIT780292581"
+      }
+    },
+    {
+      "id": "lucid25kflex1",
+      "name": "Lucid 25k Flex",
+      "emoji": "",
+      "firm": "Lucid",
+      "accountNumber": "qt_c7af0433d1058c5a4c8c9972fd2268a18f5a7a2b8ecbd13a80024ec8093a3c48",
+      "started": "2026-09-14",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 0,
+      "ruleKey": "lucid.25k-flex.challenge",
+      "peak": 25000.0,
+      "balance": 25000.0,
+      "status": "challenge",
+      "records": [],
+      "rules": {
+        "start": 25000.0,
+        "target": 1250,
+        "dd": 1000,
+        "ddType": "EOD",
+        "minDays": 2,
+        "renewable": false,
+        "consistencyPct": 0.5
+      },
+      "venueRef": {
+        "venue": "QT",
+        "ref": "qt_c7af0433d1058c5a4c8c9972fd2268a18f5a7a2b8ecbd13a80024ec8093a3c48",
+        "binding_sha256": "fef0ed0d2c05aba222380e77e86f259dceab526cf78674194ec6c19fef561e21"
       }
     }
   ],
