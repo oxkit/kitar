@@ -342,86 +342,6 @@
   ],
   "activeAccounts": [
     {
-      "id": "ts15kc1",
-      "name": "TopStep $1.5K Challenge",
-      "emoji": "",
-      "firm": "TopStep",
-      "accountNumber": "1.5KCHCR-LABS004-V2-45281-20249955",
-      "started": "2026-09-03",
-      "method": "hidden",
-      "split": null,
-      "bestDay": 105.12,
-      "ruleKey": "topstep.1-5k.challenge",
-      "peak": 181.08,
-      "balance": -500.93,
-      "status": "challenge",
-      "records": [
-        {
-          "date": "2026-09-03",
-          "pnl": -22.26
-        },
-        {
-          "date": "2026-09-04",
-          "pnl": -29.76
-        },
-        {
-          "date": "2026-09-09",
-          "pnl": -4.88
-        },
-        {
-          "date": "2026-09-10",
-          "pnl": 105.12
-        },
-        {
-          "date": "2026-09-11",
-          "pnl": 45.18
-        },
-        {
-          "date": "2026-09-15",
-          "pnl": 87.68
-        },
-        {
-          "date": "2026-09-16",
-          "pnl": -112.38
-        },
-        {
-          "date": "2026-09-18",
-          "pnl": -52.44
-        },
-        {
-          "date": "2026-09-21",
-          "pnl": -59.94
-        },
-        {
-          "date": "2026-09-22",
-          "pnl": -37.44
-        },
-        {
-          "date": "2026-09-23",
-          "pnl": -139.88
-        },
-        {
-          "date": "2026-09-25",
-          "pnl": -259.71
-        },
-        {
-          "date": "2026-09-30",
-          "pnl": -20.22
-        }
-      ],
-      "rules": {
-        "start": 0.0,
-        "target": 1500,
-        "dd": 500,
-        "ddType": "static",
-        "renewable": false
-      },
-      "venueRef": {
-        "venue": "TS",
-        "ref": "1.5KCHCR-LABS004-V2-45281-20249955"
-      }
-    },
-    {
       "id": "blusky50kpropel1",
       "name": "BluSky PROPEL 50k",
       "emoji": "",
@@ -2642,6 +2562,99 @@
       "finalBalance": 23496.5,
       "peakBalance": 25000.0,
       "description": "Resolved by Telegram inventory workflow: OUT? tpt25k1 (NT:TAKEPROFIT446553122) disconnected in fresh NT census; verify broker status"
+    },
+    {
+      "id": "ts15kc1",
+      "name": "TopStep $1.5K Challenge",
+      "emoji": "",
+      "firm": "TopStep",
+      "accountNumber": "1.5KCHCR-LABS004-V2-45281-20249955",
+      "started": "2026-09-03",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 105.12,
+      "ruleKey": "topstep.1-5k.challenge",
+      "peak": 181.08,
+      "balance": -500.93,
+      "status": "Failed",
+      "records": [
+        {
+          "date": "2026-09-03",
+          "pnl": -22.26
+        },
+        {
+          "date": "2026-09-04",
+          "pnl": -29.76
+        },
+        {
+          "date": "2026-09-09",
+          "pnl": -4.88
+        },
+        {
+          "date": "2026-09-10",
+          "pnl": 105.12
+        },
+        {
+          "date": "2026-09-11",
+          "pnl": 45.18
+        },
+        {
+          "date": "2026-09-15",
+          "pnl": 87.68
+        },
+        {
+          "date": "2026-09-16",
+          "pnl": -112.38
+        },
+        {
+          "date": "2026-09-18",
+          "pnl": -52.44
+        },
+        {
+          "date": "2026-09-21",
+          "pnl": -59.94
+        },
+        {
+          "date": "2026-09-22",
+          "pnl": -37.44
+        },
+        {
+          "date": "2026-09-23",
+          "pnl": -139.88
+        },
+        {
+          "date": "2026-09-25",
+          "pnl": -259.71
+        },
+        {
+          "date": "2026-09-30",
+          "pnl": -20.22
+        }
+      ],
+      "rules": {
+        "start": 0.0,
+        "target": 1500,
+        "dd": 500,
+        "ddType": "static",
+        "renewable": false
+      },
+      "venueRef": {
+        "venue": "TS",
+        "ref": "1.5KCHCR-LABS004-V2-45281-20249955"
+      },
+      "closedDate": "2026-10-02",
+      "finalBalance": -500.93,
+      "peakBalance": 181.08,
+      "description": "Account closed as failed.",
+      "inventoryOut": {
+        "actor": "terminal-settings-operator",
+        "selection_kind": "manual",
+        "preview_id": "914b222003e131dd649d58cf6a42fd7c39911e4dce4e1b8efb247fcc1ec83312",
+        "tracker_sha256": "2e514bc952b67ceb3c9abd1d8581b9482ea3c0d2985784089d7fd2cf7fb612b6",
+        "at": "2026-10-02T08:43:12.246590-04:00",
+        "closure_authority": "PROJECTX_ACCOUNT_FLAT_CONFIRMED",
+        "operator_attested_no_exposure": true
+      }
     }
   ],
   "history": {
@@ -2869,6 +2882,13 @@
         "date": "2026-09-24",
         "firm": "TPT",
         "account": "TPT 25k",
+        "type": "Challenge",
+        "status": "Failed"
+      },
+      {
+        "date": "2026-10-02",
+        "firm": "TopStep",
+        "account": "TopStep $1.5K Challenge",
         "type": "Challenge",
         "status": "Failed"
       }
