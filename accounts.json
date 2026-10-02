@@ -567,6 +567,7 @@
     {
       "id": "lucid25kflex1",
       "name": "Lucid 25k Flex",
+      "accountDisplay": "LFE025",
       "emoji": "",
       "firm": "Lucid",
       "accountNumber": "qt_c7af0433d1058c5a4c8c9972fd2268a18f5a7a2b8ecbd13a80024ec8093a3c48",
@@ -576,9 +577,16 @@
       "bestDay": 0,
       "ruleKey": "lucid.25k-flex.challenge",
       "peak": 25000.0,
-      "balance": 25000.0,
+      "balance": 24292.25,
       "status": "challenge",
-      "records": [],
+      "records": [
+        {
+          "date": "2026-09-25",
+          "pnl": -707.75,
+          "balanceAdjustment": true,
+          "source": "operator_reported_balance_adjustment"
+        }
+      ],
       "rules": {
         "start": 25000.0,
         "target": 1250,

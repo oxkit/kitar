@@ -228,7 +228,7 @@
   <div id="pane-payout" class="tab-pane"></div>
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 11 Aug 2026 - 4:11 AM EST</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 2 Oct 2026 - 07:15 AM ET</div>
 
 <div id="records-modal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
@@ -274,7 +274,7 @@ function showRecords(acct) {
   var rows = acct.records.map(function(r) {
     var isPayout = r.payout === true;
     var cls = r.pnl >= 0 ? 'rec-pnl-pos' : 'rec-pnl-neg';
-    var badge = isPayout ? '<span class="rec-payout-badge">PAYOUT</span>' : '';
+    var badge = r.balanceAdjustment === true ? '<span class="rec-payout-badge">OPERATOR ADJUSTMENT</span>' : isPayout ? '<span class="rec-payout-badge">PAYOUT</span>' : '';
     return '<div class="rec-row"><span class="rec-date">' + r.date + '</span><span class="' + cls + '">' + fmtSigned(r.pnl) + badge + '</span></div>';
   }).join('');
   document.getElementById('modal-body').innerHTML = rows || '<div style="color:#59626f;text-align:center;padding:20px;">No records</div>';
@@ -355,7 +355,7 @@ function renderDetails(d) {
     var col = sc[acct.status] || sc['Failed'];
     var acctIdx = d.archivedAccounts.indexOf(acct);
     var totalPnl = acct.records.reduce(function(s, r) { return s + r.pnl; }, 0);
-    var days = acct.records.length;
+    var days = acct.records.filter(function(r) { return r.balanceAdjustment !== true; }).length;
     var isPassed = acct.status === 'Passed';
     var typeLabel = acct.method === 'records' || acct.split ? 'SIM FUNDED ACCOUNT' : 'CHALLENGE ACCOUNT';
     var prefix = isPassed ? '&#x2705;' : '&#x274C;';
