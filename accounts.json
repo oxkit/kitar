@@ -330,12 +330,18 @@
     },
     {
       "name": "BluSky",
-      "costs": 99.0,
+      "costs": 189.0,
       "feeRecords": [
         {
           "date": "2026-09-05",
           "accountNumber": "BSKEPROPELYEE84437",
           "amount": 99.0
+        },
+        {
+          "date": "2026-10-05",
+          "accountNumber": "BSKEPROPELYEE84437",
+          "amount": 90.0,
+          "accountId": "blusky50kpropel2"
         }
       ]
     }
@@ -446,6 +452,37 @@
         "ref": "qt_c7af0433d1058c5a4c8c9972fd2268a18f5a7a2b8ecbd13a80024ec8093a3c48",
         "binding_sha256": "fef0ed0d2c05aba222380e77e86f259dceab526cf78674194ec6c19fef561e21"
       }
+    },
+    {
+      "id": "blusky50kpropel2",
+      "name": "BluSky PROPEL 50k",
+      "emoji": "",
+      "firm": "BluSky",
+      "accountNumber": "BSKEPROPELYEE84437",
+      "started": "2026-10-05",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 0,
+      "ruleKey": "blusky.propel50k.challenge",
+      "peak": 50000.0,
+      "balance": 50000.0,
+      "status": "challenge",
+      "records": [],
+      "rules": {
+        "start": 50000.0,
+        "target": 3000,
+        "dd": 2000,
+        "ddType": "EOD",
+        "renewable": true,
+        "renewalDate": "2026-11-04",
+        "renewalEveryDays": 30,
+        "consistencyPct": 0.3
+      },
+      "venueRef": {
+        "venue": "NT",
+        "ref": "BSKEPROPELYEE84437"
+      },
+      "renewalOf": "blusky50kpropel1"
     }
   ],
   "personalLive": {
