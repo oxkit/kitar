@@ -245,6 +245,26 @@
     .tab-btn{ flex:none; padding:10px 12px; }
     .container{ padding:20px 16px; }
   }
+  #daily-content{ font-family:var(--sans); font-size:14px; line-height:1.65; }
+  #daily-content [style*="font-size"]{ font-size:14px!important; }
+  #daily-content > div > div:first-child{ font-family:var(--serif); font-size:26px!important; line-height:1.25; margin-bottom:8px; }
+  #daily-content > div > div:nth-child(2){ font-family:var(--mono); font-size:12px!important; }
+  #daily-content > div > div[style*="display:flex"]{ gap:8px!important; margin-top:12px!important; }
+  #daily-content > div > div[style*="display:flex"] > span{ font-family:var(--mono); font-size:12px!important; padding:6px 10px; border:1px solid var(--line-2); border-radius:6px; background:var(--panel-2); }
+  #daily-content section{ padding:20px!important; margin-bottom:16px!important; }
+  #daily-content section > div:first-child{ font-family:var(--mono); font-size:13px!important; margin-bottom:12px!important; }
+  #daily-content table{ min-width:640px; }
+  #daily-content th,#daily-content td{ font-family:var(--sans); font-size:14px!important; text-align:left!important; padding:10px 12px!important; line-height:1.55; }
+  #daily-content th{ font-family:var(--mono); font-size:12px!important; letter-spacing:.04em; }
+  #daily-content td:first-child{ font-family:var(--mono); font-size:12px!important; }
+  #daily-content td div{ font-size:12px!important; line-height:1.5; margin-top:4px; }
+  #daily-content [aria-label$=" impact"]{ font-family:var(--mono); font-size:11px!important; padding:4px 8px!important; }
+  #daily-content [aria-label="High impact"]{ color:var(--bad)!important; border-color:var(--bad)!important; }
+  #daily-content [aria-label="Medium impact"]{ color:var(--warn)!important; border-color:var(--warn)!important; }
+  #daily-content [aria-label="Low impact"]{ color:var(--purple-200)!important; border-color:var(--purple-400)!important; }
+  #daily-content a{ color:var(--gold-300); text-underline-offset:3px; overflow-wrap:anywhere; }
+  #daily-content li + li{ margin-top:8px; }
+  @media (max-width:640px){ #daily-content section{ padding:14px!important; } }
 </style>
 </head>
 <body>
@@ -418,7 +438,7 @@
 
 </div>
 
-<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 2 Oct 2026 - 07:15 AM ET</div>
+<div class="footer"><span class="fr-dot ok live" style="margin-right:7px;"></span>Last updated: 10 Oct 2026 - 01:27 AM EST</div>
 
 <div id="fee-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
   <div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.16); border-radius:14px; padding:28px; max-width:480px; width:92%;">
