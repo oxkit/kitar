@@ -131,7 +131,7 @@
     {
       "name": "MFFU",
       "payouts": 23439.35,
-      "costs": 5534.14,
+      "costs": 5610.64,
       "feeModal": "mffu",
       "feeRecords": [
         {
@@ -158,6 +158,11 @@
           "date": "2026-08-26",
           "accountNumber": "MFFUEVBLDR01874045",
           "amount": 52.5
+        },
+        {
+          "date": "2026-10-14",
+          "accountNumber": "MFFUEVBLDR01874046",
+          "amount": 76.5
         }
       ]
     },
@@ -348,94 +353,6 @@
   ],
   "activeAccounts": [
     {
-      "id": "tpt25ktakeprofittrad1",
-      "name": "Take Profit Trader (TPT) 25K",
-      "emoji": "",
-      "firm": "TPT",
-      "accountNumber": "TAKEPROFIT780292581",
-      "started": "2026-09-18",
-      "method": "hidden",
-      "split": null,
-      "bestDay": 752.5,
-      "ruleKey": "tpt.25k.challenge",
-      "peak": 25386.75,
-      "balance": 23867.25,
-      "status": "challenge",
-      "records": [
-        {
-          "date": "2026-09-18",
-          "pnl": -138.75
-        },
-        {
-          "date": "2026-09-21",
-          "pnl": -63.0
-        },
-        {
-          "date": "2026-09-22",
-          "pnl": -40.5
-        },
-        {
-          "date": "2026-09-23",
-          "pnl": -423.0
-        },
-        {
-          "date": "2026-09-25",
-          "pnl": -5.5
-        },
-        {
-          "date": "2026-09-30",
-          "pnl": 73.5
-        },
-        {
-          "date": "2026-10-01",
-          "pnl": 52.0
-        },
-        {
-          "date": "2026-10-02",
-          "pnl": 31.0
-        },
-        {
-          "date": "2026-10-05",
-          "pnl": 148.5
-        },
-        {
-          "date": "2026-10-06",
-          "pnl": 752.5
-        },
-        {
-          "date": "2026-10-07",
-          "pnl": -26.0
-        },
-        {
-          "date": "2026-10-08",
-          "pnl": -474.0
-        },
-        {
-          "date": "2026-10-09",
-          "pnl": -104.5
-        },
-        {
-          "date": "2026-10-13",
-          "pnl": -915.0
-        }
-      ],
-      "rules": {
-        "start": 25000.0,
-        "target": 1500,
-        "dd": 1500,
-        "ddType": "EOD",
-        "minDays": 5,
-        "renewable": true,
-        "renewalDate": "2026-10-18",
-        "renewalEveryDays": 30,
-        "consistencyPct": 0.5
-      },
-      "venueRef": {
-        "venue": "NT",
-        "ref": "TAKEPROFIT780292581"
-      }
-    },
-    {
       "id": "lucid25kflex1",
       "name": "Lucid 25k Flex",
       "accountDisplay": "LFE025",
@@ -445,10 +362,10 @@
       "started": "2026-09-14",
       "method": "hidden",
       "split": null,
-      "bestDay": 0,
+      "bestDay": 55.75,
       "ruleKey": "lucid.25k-flex.challenge",
       "peak": 25000.0,
-      "balance": 24292.25,
+      "balance": 24348.0,
       "status": "challenge",
       "records": [
         {
@@ -456,6 +373,10 @@
           "pnl": -707.75,
           "balanceAdjustment": true,
           "source": "operator_reported_balance_adjustment"
+        },
+        {
+          "date": "2026-10-14",
+          "pnl": 55.75
         }
       ],
       "rules": {
@@ -474,56 +395,31 @@
       }
     },
     {
-      "id": "blusky50kpropel2",
-      "name": "BluSky PROPEL 50k",
+      "id": "mffu50kbuilder1",
+      "name": "MFFU 50k Builder",
       "emoji": "",
-      "firm": "BluSky",
-      "accountNumber": "BSKEPROPELYEE84437",
-      "started": "2026-10-05",
+      "firm": "MFFU",
+      "accountNumber": "MFFUEVBLDR01874046",
+      "started": "2026-10-14",
       "method": "hidden",
       "split": null,
-      "bestDay": 311.5,
-      "ruleKey": "blusky.propel50k.challenge",
-      "peak": 50311.5,
-      "balance": 48664.65,
+      "bestDay": 0,
+      "ruleKey": "mffu.50k-builder.challenge",
+      "peak": 50000.0,
+      "balance": 50000.0,
       "status": "challenge",
-      "records": [
-        {
-          "date": "2026-10-06",
-          "pnl": 311.5
-        },
-        {
-          "date": "2026-10-07",
-          "pnl": -28.2
-        },
-        {
-          "date": "2026-10-08",
-          "pnl": -491.9
-        },
-        {
-          "date": "2026-10-09",
-          "pnl": -209.95
-        },
-        {
-          "date": "2026-10-13",
-          "pnl": -916.8
-        }
-      ],
+      "records": [],
       "rules": {
         "start": 50000.0,
         "target": 3000,
         "dd": 2000,
         "ddType": "EOD",
-        "renewable": true,
-        "renewalDate": "2026-11-04",
-        "renewalEveryDays": 30,
-        "consistencyPct": 0.3
+        "renewable": false
       },
       "venueRef": {
         "venue": "NT",
-        "ref": "BSKEPROPELYEE84437"
-      },
-      "renewalOf": "blusky50kpropel1"
+        "ref": "MFFUEVBLDR01874046"
+      }
     }
   ],
   "personalLive": {
@@ -806,6 +702,13 @@
         "net": -31.34,
         "source": "hl_total_equity_close",
         "equity": 868.21,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-10-14",
+        "net": -19.68,
+        "source": "hl_total_equity_close",
+        "equity": 848.53,
         "perpDex": "xyz"
       }
     ]
@@ -2798,6 +2701,176 @@
       "finalBalance": 50606.5,
       "peakBalance": 50606.5,
       "description": "Resolved by Telegram inventory workflow: OUT? blusky50kpropel1 (NT:BSKEPROPELYEE84437) disconnected in fresh NT census; verify broker status"
+    },
+    {
+      "id": "blusky50kpropel2",
+      "name": "BluSky PROPEL 50k",
+      "emoji": "",
+      "firm": "BluSky",
+      "accountNumber": "BSKEPROPELYEE84437",
+      "started": "2026-10-05",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 311.5,
+      "ruleKey": "blusky.propel50k.challenge",
+      "peak": 50311.5,
+      "balance": 48311.75,
+      "status": "Failed",
+      "records": [
+        {
+          "date": "2026-10-06",
+          "pnl": 311.5
+        },
+        {
+          "date": "2026-10-07",
+          "pnl": -28.2
+        },
+        {
+          "date": "2026-10-08",
+          "pnl": -491.9
+        },
+        {
+          "date": "2026-10-09",
+          "pnl": -209.95
+        },
+        {
+          "date": "2026-10-13",
+          "pnl": -916.8
+        },
+        {
+          "date": "2026-10-14",
+          "pnl": -352.9
+        }
+      ],
+      "rules": {
+        "start": 50000.0,
+        "target": 3000,
+        "dd": 2000,
+        "ddType": "EOD",
+        "renewable": true,
+        "renewalDate": "2026-11-04",
+        "renewalEveryDays": 30,
+        "consistencyPct": 0.3
+      },
+      "venueRef": {
+        "venue": "NT",
+        "ref": "BSKEPROPELYEE84437"
+      },
+      "renewalOf": "blusky50kpropel1",
+      "closedDate": "2026-10-14",
+      "finalBalance": 48311.75,
+      "peakBalance": 50311.5,
+      "description": "Trailing drawdown exhausted 2026-10-14 ~16:30 ET (room 0.25); 18:15 ET order refused 'Access is denied'.",
+      "inventoryOut": {
+        "actor": "terminal-settings-operator",
+        "selection_kind": "manual",
+        "preview_id": "eb1f362d8c06861be3c9ead7fbfff7c5483c18433422d610d685ded735e38f34",
+        "tracker_sha256": "f5818b3fcad03435e5aa38a7fa1471c9a41050ce121c39f21dea83b5e67dba12",
+        "at": "2026-10-14T19:23:39.130220-04:00",
+        "closure_authority": "NATIVE_ACCOUNT_ROOTS_FLAT_CONFIRMED",
+        "operator_attested_no_exposure": true
+      }
+    },
+    {
+      "id": "tpt25ktakeprofittrad1",
+      "name": "Take Profit Trader (TPT) 25K",
+      "emoji": "",
+      "firm": "TPT",
+      "accountNumber": "TAKEPROFIT780292581",
+      "started": "2026-09-18",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 752.5,
+      "ruleKey": "tpt.25k.challenge",
+      "peak": 25386.75,
+      "balance": 23867.25,
+      "status": "Failed",
+      "records": [
+        {
+          "date": "2026-09-18",
+          "pnl": -138.75
+        },
+        {
+          "date": "2026-09-21",
+          "pnl": -63.0
+        },
+        {
+          "date": "2026-09-22",
+          "pnl": -40.5
+        },
+        {
+          "date": "2026-09-23",
+          "pnl": -423.0
+        },
+        {
+          "date": "2026-09-25",
+          "pnl": -5.5
+        },
+        {
+          "date": "2026-09-30",
+          "pnl": 73.5
+        },
+        {
+          "date": "2026-10-01",
+          "pnl": 52.0
+        },
+        {
+          "date": "2026-10-02",
+          "pnl": 31.0
+        },
+        {
+          "date": "2026-10-05",
+          "pnl": 148.5
+        },
+        {
+          "date": "2026-10-06",
+          "pnl": 752.5
+        },
+        {
+          "date": "2026-10-07",
+          "pnl": -26.0
+        },
+        {
+          "date": "2026-10-08",
+          "pnl": -474.0
+        },
+        {
+          "date": "2026-10-09",
+          "pnl": -104.5
+        },
+        {
+          "date": "2026-10-13",
+          "pnl": -915.0
+        }
+      ],
+      "rules": {
+        "start": 25000.0,
+        "target": 1500,
+        "dd": 1500,
+        "ddType": "EOD",
+        "minDays": 5,
+        "renewable": true,
+        "renewalDate": "2026-10-18",
+        "renewalEveryDays": 30,
+        "consistencyPct": 0.5
+      },
+      "venueRef": {
+        "venue": "NT",
+        "ref": "TAKEPROFIT780292581"
+      },
+      "closedDate": "2026-10-14",
+      "finalBalance": 23867.25,
+      "peakBalance": 25386.75,
+      "description": "Account failed 2026-10-13 (TPT); disconnected and disabled; operator confirmed no exposure 2026-10-14.",
+      "inventoryOut": {
+        "actor": "terminal-settings-operator",
+        "selection_kind": "question",
+        "preview_id": "f31e5e03496ef242ad7c8d21e51664bf72e588af36edc4517c927e047f7e3a19",
+        "tracker_sha256": "0c1cfb2318604821bbd1347fe2be1e7a403099cf01045364d528568c5e8c349c",
+        "at": "2026-10-14T19:24:49.874068-04:00",
+        "closure_authority": "OPERATOR_ATTESTED_NO_EXPOSURE",
+        "operator_attested_no_exposure": true
+      }
     }
   ],
   "history": {
@@ -3039,6 +3112,20 @@
         "date": "2026-10-05",
         "firm": "BluSky",
         "account": "BluSky PROPEL 50k",
+        "type": "Challenge",
+        "status": "Failed"
+      },
+      {
+        "date": "2026-10-14",
+        "firm": "BluSky",
+        "account": "BluSky PROPEL 50k",
+        "type": "Challenge",
+        "status": "Failed"
+      },
+      {
+        "date": "2026-10-14",
+        "firm": "TPT",
+        "account": "Take Profit Trader (TPT) 25K",
         "type": "Challenge",
         "status": "Failed"
       }

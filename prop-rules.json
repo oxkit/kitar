@@ -239,6 +239,17 @@
       "ddType": "EOD",
       "consistencyPct": 0.5,
       "minDays": 2
+    },
+    "mffu.50k-builder.challenge": {
+      "template": "challenge",
+      "firm": "MFFU",
+      "displayName": "MFFU 50k Builder",
+      "accountSize": 50000,
+      "start": 50000,
+      "target": 3000,
+      "dd": 2000,
+      "ddType": "EOD",
+      "trailLockOffset": 100
     }
   }
 }
