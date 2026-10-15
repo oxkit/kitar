@@ -250,6 +250,22 @@
       "dd": 2000,
       "ddType": "EOD",
       "trailLockOffset": 100
+    },
+    "topstep.50k-tc-v2-dll-1k.challenge": {
+      "template": "challenge",
+      "firm": "TopStep",
+      "displayName": "TopStep 50k TC V2 (DLL $1K)",
+      "accountSize": 50000,
+      "start": 50000,
+      "target": 3000,
+      "dd": 2000,
+      "ddType": "EOD",
+      "trailLockOffset": 0,
+      "minDays": 2,
+      "consistencyPct": 0.55,
+      "payoutRules": {
+        "confirmWithUser": true
+      }
     }
   }
 }

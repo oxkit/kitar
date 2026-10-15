@@ -175,7 +175,7 @@
     {
       "name": "TopStep",
       "payouts": 11044,
-      "costs": 3355.15,
+      "costs": 3440.15,
       "feeModal": "topstep",
       "feeRecords": [
         {
@@ -207,6 +207,11 @@
           "date": "2026-09-03",
           "accountNumber": "1.5KCHCR-LABS004-V2-45281-20249955",
           "amount": 39.0
+        },
+        {
+          "date": "2026-10-14",
+          "accountNumber": "50KTC-SKU-V2-DLL-45281-78997808",
+          "amount": 85.0
         }
       ]
     },
@@ -419,6 +424,37 @@
       "venueRef": {
         "venue": "NT",
         "ref": "MFFUEVBLDR01874046"
+      }
+    },
+    {
+      "id": "ts50ktcvdll1",
+      "name": "TopStep 50k TC V2 (DLL $1K)",
+      "emoji": "",
+      "firm": "TopStep",
+      "accountNumber": "50KTC-SKU-V2-DLL-45281-78997808",
+      "started": "2026-10-14",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 0,
+      "ruleKey": "topstep.50k-tc-v2-dll-1k.challenge",
+      "peak": 50000.0,
+      "balance": 50000.0,
+      "status": "challenge",
+      "records": [],
+      "rules": {
+        "start": 50000.0,
+        "target": 3000,
+        "dd": 2000,
+        "ddType": "EOD",
+        "minDays": 2,
+        "renewable": true,
+        "renewalDate": "2026-11-13",
+        "renewalEveryDays": 30,
+        "consistencyPct": 0.55
+      },
+      "venueRef": {
+        "venue": "TS",
+        "ref": "50KTC-SKU-V2-DLL-45281-78997808"
       }
     }
   ],
