@@ -3,6 +3,8 @@
 /* Shared Tracker templates: one for every challenge and one for every sim-funded account. */
 function renderAccountPanel(acct) {
   var id = acct.id, r = acct.rules || {};
+  var accountDisplay = String(acct.accountDisplay || '').trim() || String(acct.accountNumber || '');
+  accountDisplay = accountDisplay.replace(/[&<>"']/g, function(c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; });
   var isChallenge = acct.status === 'challenge';
   var started = acct.started.split('-').reverse().join('/').replace(/^0/,'').replace(/\/0/g,'/');
   var ddLabel = (r.ddType || 'EOD').toUpperCase() + ' Drawdown';
@@ -33,7 +35,7 @@ function renderAccountPanel(acct) {
 
   return '<div style="margin-bottom:28px;">'
     + '<div style="font-size:14px; font-weight:600; color:#8a94a3; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.09);"><span class="fr-dot ' + (isChallenge ? 'warn' : 'ok live') + '" style="margin-right:9px;"></span>' + (isChallenge ? 'CHALLENGE ACCOUNT' : 'SIM FUNDED ACCOUNT') + ' &mdash; ' + acct.name + '</div>'
-    + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">' + acct.accountNumber + '</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">' + started + '</span> &nbsp;&middot;&nbsp; <button data-acct-id="' + id + '" onclick="showRecordsModal(this.dataset.acctId)" class="fr-btn-ghost fr-btn-xs">Records</button></div>'
+    + '<div style="font-size:11px; color:#59626f; margin-bottom:8px; padding-left:2px;">Account: <span style="color:#8a94a3; font-weight:600; font-family:var(--mono);">' + accountDisplay + '</span> &nbsp;&middot;&nbsp; Started: <span style="color:#8a94a3; font-weight:600;">' + started + '</span> &nbsp;&middot;&nbsp; <button data-acct-id="' + id + '" onclick="showRecordsModal(this.dataset.acctId)" class="fr-btn-ghost fr-btn-xs">Records</button></div>'
     + '<div style="background:#0e131b; border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 20px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;"><div style="font-size:11px; color:#59626f; text-transform:uppercase; letter-spacing:0.6px; margin-right:4px;">Rules:</div>' + badges + '</div>'
     + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;"><div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Balance</div><div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">' + statBox('Current Balance', id+'-stat-bal', '--', '#33e08a') + statBox('Highest Trailing', id+'-stat-peak', '--') + statBox('Best Single Day', id+'-stat-bday', '--') + '</div></div>'
     + '<div style="background:#0a0e14; border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:20px; margin-bottom:16px;"><div style="font-size:10px; font-weight:700; color:#59626f; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.07);">Trading Days</div><div style="display:grid; grid-template-columns:repeat(2,1fr); gap:12px;">' + statBox('Total Trading Days', id+'-stat-days', '0') + statBox('Minimum Days', '', r.minDays || 'None', '#f5b13d') + '</div></div>'
@@ -54,7 +56,7 @@ function calcAccountPanel(acct) {
   el(id+'-stat-bal').style.color = bal >= Number(r.start || 0) ? '#33e08a' : '#ff5e57';
   el(id+'-stat-peak').textContent = '$'+peak.toLocaleString('en-US',{minimumFractionDigits:2});
   el(id+'-stat-bday').textContent = fmt(bestDay);
-  el(id+'-stat-days').textContent = (acct.records || []).length;
+  el(id+'-stat-days').textContent = (acct.records || []).filter(function(record) { return record.balanceAdjustment !== true; }).length;
   el(id+'-dd-floor').textContent = '$'+floor.toLocaleString('en-US',{minimumFractionDigits:2});
   el(id+'-dd-floor').style.color = bal <= floor ? '#ff5e57' : '#f5b13d';
   bar(id+'-dd-bar', ddPct, barColor(ddPct));
