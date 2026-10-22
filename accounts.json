@@ -375,7 +375,7 @@
       "bestDay": 55.75,
       "ruleKey": "lucid.25k-flex.challenge",
       "peak": 25000.0,
-      "balance": 24085.25,
+      "balance": 23998.5,
       "status": "challenge",
       "records": [
         {
@@ -399,6 +399,10 @@
         {
           "date": "2026-10-20",
           "pnl": 41.5
+        },
+        {
+          "date": "2026-10-22",
+          "pnl": -86.75
         }
       ],
       "rules": {
@@ -428,7 +432,7 @@
       "bestDay": 115.1,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50055.3,
-      "balance": 49438.8,
+      "balance": 49201.3,
       "status": "challenge",
       "records": [
         {
@@ -450,6 +454,10 @@
         {
           "date": "2026-10-21",
           "pnl": 115.1
+        },
+        {
+          "date": "2026-10-22",
+          "pnl": -237.5
         }
       ],
       "rules": {
@@ -476,7 +484,7 @@
       "bestDay": 162.22,
       "ruleKey": "topstep.50k-tc-v2-dll-1k.challenge",
       "peak": 50162.22,
-      "balance": 48848.84,
+      "balance": 48498.96,
       "status": "challenge",
       "records": [
         {
@@ -498,6 +506,10 @@
         {
           "date": "2026-10-21",
           "pnl": -472.76
+        },
+        {
+          "date": "2026-10-22",
+          "pnl": -349.88
         }
       ],
       "rules": {
@@ -528,7 +540,7 @@
       "bestDay": 241.5,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
-      "balance": 24523.0,
+      "balance": 24289.0,
       "status": "challenge",
       "records": [
         {
@@ -542,6 +554,10 @@
         {
           "date": "2026-10-21",
           "pnl": 241.5
+        },
+        {
+          "date": "2026-10-22",
+          "pnl": -234.0
         }
       ],
       "rules": {
@@ -883,6 +899,13 @@
         "net": 6.55,
         "source": "hl_total_equity_close",
         "equity": 828.02,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-10-22",
+        "net": -29.11,
+        "source": "hl_total_equity_close",
+        "equity": 798.91,
         "perpDex": "xyz"
       }
     ]
