@@ -379,7 +379,7 @@
       "bestDay": 115.1,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50055.3,
-      "balance": 49201.3,
+      "balance": 48706.9,
       "status": "challenge",
       "records": [
         {
@@ -405,6 +405,10 @@
         {
           "date": "2026-10-22",
           "pnl": -237.5
+        },
+        {
+          "date": "2026-10-23",
+          "pnl": -494.4
         }
       ],
       "rules": {
@@ -431,7 +435,7 @@
       "bestDay": 162.22,
       "ruleKey": "topstep.50k-tc-v2-dll-1k.challenge",
       "peak": 50162.22,
-      "balance": 48498.96,
+      "balance": 48159.64,
       "status": "challenge",
       "records": [
         {
@@ -457,6 +461,10 @@
         {
           "date": "2026-10-22",
           "pnl": -349.88
+        },
+        {
+          "date": "2026-10-23",
+          "pnl": -339.32
         }
       ],
       "rules": {
@@ -487,7 +495,7 @@
       "bestDay": 241.5,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
-      "balance": 24289.0,
+      "balance": 24004.5,
       "status": "challenge",
       "records": [
         {
@@ -505,6 +513,10 @@
         {
           "date": "2026-10-22",
           "pnl": -234.0
+        },
+        {
+          "date": "2026-10-23",
+          "pnl": -284.5
         }
       ],
       "rules": {
@@ -533,12 +545,17 @@
       "started": "2026-10-22",
       "method": "hidden",
       "split": null,
-      "bestDay": 0,
+      "bestDay": 0.0,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50000.0,
-      "balance": 50000.0,
+      "balance": 49673.6,
       "status": "challenge",
-      "records": [],
+      "records": [
+        {
+          "date": "2026-10-23",
+          "pnl": -326.4
+        }
+      ],
       "rules": {
         "start": 50000.0,
         "target": 3000,
@@ -882,6 +899,13 @@
         "net": -29.11,
         "source": "hl_total_equity_close",
         "equity": 798.91,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-10-23",
+        "net": -29.8,
+        "source": "hl_total_equity_close",
+        "equity": 769.11,
         "perpDex": "xyz"
       }
     ]
