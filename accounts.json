@@ -368,64 +368,6 @@
   ],
   "activeAccounts": [
     {
-      "id": "lucid25kflex1",
-      "name": "Lucid 25k Flex",
-      "accountDisplay": "LFE025-861VRWE8-TEST003",
-      "emoji": "",
-      "firm": "Lucid",
-      "accountNumber": "qt_c7af0433d1058c5a4c8c9972fd2268a18f5a7a2b8ecbd13a80024ec8093a3c48",
-      "started": "2026-09-14",
-      "method": "hidden",
-      "split": null,
-      "bestDay": 55.75,
-      "ruleKey": "lucid.25k-flex.challenge",
-      "peak": 25000.0,
-      "balance": 23998.5,
-      "status": "challenge",
-      "records": [
-        {
-          "date": "2026-09-25",
-          "pnl": -707.75,
-          "balanceAdjustment": true,
-          "source": "operator_reported_balance_adjustment"
-        },
-        {
-          "date": "2026-10-14",
-          "pnl": 55.75
-        },
-        {
-          "date": "2026-10-15",
-          "pnl": -280.75
-        },
-        {
-          "date": "2026-10-16",
-          "pnl": -23.5
-        },
-        {
-          "date": "2026-10-20",
-          "pnl": 41.5
-        },
-        {
-          "date": "2026-10-22",
-          "pnl": -86.75
-        }
-      ],
-      "rules": {
-        "start": 25000.0,
-        "target": 1250,
-        "dd": 1000,
-        "ddType": "EOD",
-        "minDays": 2,
-        "renewable": false,
-        "consistencyPct": 0.5
-      },
-      "venueRef": {
-        "venue": "QT",
-        "ref": "qt_c7af0433d1058c5a4c8c9972fd2268a18f5a7a2b8ecbd13a80024ec8093a3c48",
-        "binding_sha256": "fef0ed0d2c05aba222380e77e86f259dceab526cf78674194ec6c19fef561e21"
-      }
-    },
-    {
       "id": "mffu50kbuilder1",
       "name": "MFFU 50k Builder",
       "emoji": "",
@@ -3101,6 +3043,77 @@
         "closure_authority": "OPERATOR_ATTESTED_NO_EXPOSURE",
         "operator_attested_no_exposure": true
       }
+    },
+    {
+      "id": "lucid25kflex1",
+      "name": "Lucid 25k Flex",
+      "accountDisplay": "LFE025-861VRWE8-TEST003",
+      "emoji": "",
+      "firm": "Lucid",
+      "accountNumber": "qt_c7af0433d1058c5a4c8c9972fd2268a18f5a7a2b8ecbd13a80024ec8093a3c48",
+      "started": "2026-09-14",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 55.75,
+      "ruleKey": "lucid.25k-flex.challenge",
+      "peak": 25000.0,
+      "balance": 23998.5,
+      "status": "Failed",
+      "records": [
+        {
+          "date": "2026-09-25",
+          "pnl": -707.75,
+          "balanceAdjustment": true,
+          "source": "operator_reported_balance_adjustment"
+        },
+        {
+          "date": "2026-10-14",
+          "pnl": 55.75
+        },
+        {
+          "date": "2026-10-15",
+          "pnl": -280.75
+        },
+        {
+          "date": "2026-10-16",
+          "pnl": -23.5
+        },
+        {
+          "date": "2026-10-20",
+          "pnl": 41.5
+        },
+        {
+          "date": "2026-10-22",
+          "pnl": -86.75
+        }
+      ],
+      "rules": {
+        "start": 25000.0,
+        "target": 1250,
+        "dd": 1000,
+        "ddType": "EOD",
+        "minDays": 2,
+        "renewable": false,
+        "consistencyPct": 0.5
+      },
+      "venueRef": {
+        "venue": "QT",
+        "ref": "qt_c7af0433d1058c5a4c8c9972fd2268a18f5a7a2b8ecbd13a80024ec8093a3c48",
+        "binding_sha256": "fef0ed0d2c05aba222380e77e86f259dceab526cf78674194ec6c19fef561e21"
+      },
+      "closedDate": "2026-10-23",
+      "finalBalance": 23998.5,
+      "peakBalance": 25000.0,
+      "description": "Account closed as failed.",
+      "inventoryOut": {
+        "actor": "terminal-settings-operator",
+        "selection_kind": "manual",
+        "preview_id": "b23419f2e77d5b5579ff2f03f63b5d6d6164d65ab94032fec4fc1ae7b4b58fcd",
+        "tracker_sha256": "25edfbd96e53b31ec31d4b6c867ce56a02045960255eddc4989c76d3db0a3b93",
+        "at": "2026-10-23T01:22:07.981484-04:00",
+        "closure_authority": "QT_OPERATOR_ATTESTED_ABSENT_FROM_CURRENT_DISCOVERY",
+        "operator_attested_no_exposure": true
+      }
     }
   ],
   "history": {
@@ -3356,6 +3369,13 @@
         "date": "2026-10-14",
         "firm": "TPT",
         "account": "Take Profit Trader (TPT) 25K",
+        "type": "Challenge",
+        "status": "Failed"
+      },
+      {
+        "date": "2026-10-23",
+        "firm": "Lucid",
+        "account": "Lucid 25k Flex",
         "type": "Challenge",
         "status": "Failed"
       }
