@@ -368,74 +368,6 @@
   ],
   "activeAccounts": [
     {
-      "id": "tpt25ktakeprofittrad2",
-      "name": "Take Profit Trader (TPT) 25K",
-      "emoji": "",
-      "firm": "TPT",
-      "accountNumber": "TAKEPROFIT910853459",
-      "started": "2026-10-17",
-      "method": "hidden",
-      "split": null,
-      "bestDay": 286.0,
-      "ruleKey": "tpt.25k.challenge",
-      "peak": 25000.0,
-      "balance": 23496.75,
-      "status": "challenge",
-      "records": [
-        {
-          "date": "2026-10-19",
-          "pnl": -242.0
-        },
-        {
-          "date": "2026-10-20",
-          "pnl": -476.5
-        },
-        {
-          "date": "2026-10-21",
-          "pnl": 241.5
-        },
-        {
-          "date": "2026-10-22",
-          "pnl": -234.0
-        },
-        {
-          "date": "2026-10-23",
-          "pnl": -284.5
-        },
-        {
-          "date": "2026-10-26",
-          "pnl": 73.0
-        },
-        {
-          "date": "2026-10-27",
-          "pnl": 286.0
-        },
-        {
-          "date": "2026-10-28",
-          "pnl": -136.5
-        },
-        {
-          "date": "2026-10-29",
-          "pnl": -730.25
-        }
-      ],
-      "rules": {
-        "start": 25000.0,
-        "target": 1500,
-        "dd": 1500,
-        "ddType": "EOD",
-        "minDays": 5,
-        "renewable": true,
-        "renewalDate": "2026-11-16",
-        "renewalEveryDays": 30,
-        "consistencyPct": 0.5
-      },
-      "venueRef": {
-        "venue": "NT",
-        "ref": "TAKEPROFIT910853459"
-      }
-    },
-    {
       "id": "mffu50kbuilder2",
       "name": "MFFU 50k Builder",
       "accountDisplay": "MFFUEVBLDR01874047",
@@ -3237,6 +3169,87 @@
         "closure_authority": "NATIVE_ACCOUNT_ROOTS_FLAT_CONFIRMED",
         "operator_attested_no_exposure": true
       }
+    },
+    {
+      "id": "tpt25ktakeprofittrad2",
+      "name": "Take Profit Trader (TPT) 25K",
+      "emoji": "",
+      "firm": "TPT",
+      "accountNumber": "TAKEPROFIT910853459",
+      "started": "2026-10-17",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 286.0,
+      "ruleKey": "tpt.25k.challenge",
+      "peak": 25000.0,
+      "balance": 23496.75,
+      "status": "Failed",
+      "records": [
+        {
+          "date": "2026-10-19",
+          "pnl": -242.0
+        },
+        {
+          "date": "2026-10-20",
+          "pnl": -476.5
+        },
+        {
+          "date": "2026-10-21",
+          "pnl": 241.5
+        },
+        {
+          "date": "2026-10-22",
+          "pnl": -234.0
+        },
+        {
+          "date": "2026-10-23",
+          "pnl": -284.5
+        },
+        {
+          "date": "2026-10-26",
+          "pnl": 73.0
+        },
+        {
+          "date": "2026-10-27",
+          "pnl": 286.0
+        },
+        {
+          "date": "2026-10-28",
+          "pnl": -136.5
+        },
+        {
+          "date": "2026-10-29",
+          "pnl": -730.25
+        }
+      ],
+      "rules": {
+        "start": 25000.0,
+        "target": 1500,
+        "dd": 1500,
+        "ddType": "EOD",
+        "minDays": 5,
+        "renewable": true,
+        "renewalDate": "2026-11-16",
+        "renewalEveryDays": 30,
+        "consistencyPct": 0.5
+      },
+      "venueRef": {
+        "venue": "NT",
+        "ref": "TAKEPROFIT910853459"
+      },
+      "closedDate": "2026-10-29",
+      "finalBalance": 23496.75,
+      "peakBalance": 25000.0,
+      "description": "Account closed as failed.",
+      "inventoryOut": {
+        "actor": "terminal-settings-operator",
+        "selection_kind": "manual",
+        "preview_id": "ae4b5edc028a073a398d12b4cca5911a9a654f27df918df9dea0b7e9307a97ec",
+        "tracker_sha256": "8c766ea44830b6a4c589b5c800b58c81085bc8e605aa9d02b163f6b7c53c18a9",
+        "at": "2026-10-29T18:34:25.307326-04:00",
+        "closure_authority": "NATIVE_ACCOUNT_ROOTS_FLAT_CONFIRMED",
+        "operator_attested_no_exposure": true
+      }
     }
   ],
   "history": {
@@ -3513,6 +3526,13 @@
         "date": "2026-10-29",
         "firm": "MFFU",
         "account": "MFFU 50k Builder",
+        "type": "Challenge",
+        "status": "Failed"
+      },
+      {
+        "date": "2026-10-29",
+        "firm": "TPT",
+        "account": "Take Profit Trader (TPT) 25K",
         "type": "Challenge",
         "status": "Failed"
       }
