@@ -266,6 +266,21 @@
       "payoutRules": {
         "confirmWithUser": true
       }
+    },
+    "topstep.50k-static-tc.challenge": {
+      "template": "challenge",
+      "firm": "TopStep",
+      "displayName": "TopStep 50k Static TC",
+      "accountSize": 50000,
+      "start": 50000,
+      "target": 4000,
+      "dd": 2000,
+      "ddType": "static",
+      "minDays": 2,
+      "consistencyPct": 0.55,
+      "payoutRules": {
+        "confirmWithUser": true
+      }
     }
   }
 }
