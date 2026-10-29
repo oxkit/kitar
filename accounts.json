@@ -131,7 +131,7 @@
     {
       "name": "MFFU",
       "payouts": 23439.35,
-      "costs": 5771.29,
+      "costs": 5855.44,
       "feeModal": "mffu",
       "feeRecords": [
         {
@@ -172,6 +172,11 @@
         {
           "date": "2026-10-29",
           "accountNumber": "qt_fcc654143a14a1b73b17a09d18cdf9cd825a3b75d52f756ad05199a336def716",
+          "amount": 84.15
+        },
+        {
+          "date": "2026-10-29",
+          "accountNumber": "MFFUEVBLDR01874049",
           "amount": 84.15
         }
       ]
@@ -355,7 +360,7 @@
     },
     {
       "name": "BluSky",
-      "costs": 273.15,
+      "costs": 189.0,
       "feeRecords": [
         {
           "date": "2026-09-05",
@@ -367,11 +372,6 @@
           "accountNumber": "BSKEPROPELYEE84437",
           "amount": 90.0,
           "accountId": "blusky50kpropel2"
-        },
-        {
-          "date": "2026-10-29",
-          "accountNumber": "MFFUEVBLDR01874049",
-          "amount": 84.15
         }
       ]
     }
@@ -425,15 +425,15 @@
     },
     {
       "id": "blusky50kpropel3",
-      "name": "BluSky PROPEL 50k",
+      "name": "MFFU 50k Builder",
       "emoji": "",
-      "firm": "BluSky",
+      "firm": "MFFU",
       "accountNumber": "MFFUEVBLDR01874049",
       "started": "2026-10-29",
       "method": "hidden",
       "split": null,
       "bestDay": 0,
-      "ruleKey": "blusky.propel50k.challenge",
+      "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50000.0,
       "balance": 50000.0,
       "status": "challenge",
@@ -443,8 +443,7 @@
         "target": 3000,
         "dd": 2000,
         "ddType": "EOD",
-        "renewable": false,
-        "consistencyPct": 0.3
+        "renewable": false
       },
       "venueRef": {
         "venue": "NT",
