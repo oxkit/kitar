@@ -131,7 +131,7 @@
     {
       "name": "MFFU",
       "payouts": 23439.35,
-      "costs": 5687.14,
+      "costs": 5771.29,
       "feeModal": "mffu",
       "feeRecords": [
         {
@@ -168,6 +168,11 @@
           "date": "2026-10-22",
           "accountNumber": "qt_1fa102df14da73bdeeda7b5bccb563e2e3f486f0d275b5e73e7948dfb41435de",
           "amount": 76.5
+        },
+        {
+          "date": "2026-10-29",
+          "accountNumber": "qt_fcc654143a14a1b73b17a09d18cdf9cd825a3b75d52f756ad05199a336def716",
+          "amount": 84.15
         }
       ]
     },
@@ -445,6 +450,35 @@
         "venue": "NT",
         "ref": "MFFUEVBLDR01874049"
       }
+    },
+    {
+      "id": "mffu50kbuilder3",
+      "name": "MFFU 50k Builder",
+      "emoji": "",
+      "firm": "MFFU",
+      "accountNumber": "qt_fcc654143a14a1b73b17a09d18cdf9cd825a3b75d52f756ad05199a336def716",
+      "started": "2026-10-29",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 0,
+      "ruleKey": "mffu.50k-builder.challenge",
+      "peak": 50000.0,
+      "balance": 50000.0,
+      "status": "challenge",
+      "records": [],
+      "rules": {
+        "start": 50000.0,
+        "target": 3000,
+        "dd": 2000,
+        "ddType": "EOD",
+        "renewable": false
+      },
+      "venueRef": {
+        "venue": "QT",
+        "ref": "qt_fcc654143a14a1b73b17a09d18cdf9cd825a3b75d52f756ad05199a336def716",
+        "binding_sha256": "3af1130425ff4c78061d6b4f0a1789cc875c2ff673c33fc39e5d87c23b3e3752"
+      },
+      "accountDisplay": "MFFUEVBLDR01874048"
     }
   ],
   "personalLive": {
