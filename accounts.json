@@ -190,7 +190,7 @@
     {
       "name": "TopStep",
       "payouts": 11044,
-      "costs": 3440.15,
+      "costs": 3589.15,
       "feeModal": "topstep",
       "feeRecords": [
         {
@@ -227,6 +227,11 @@
           "date": "2026-10-14",
           "accountNumber": "50KTC-SKU-V2-DLL-45281-78997808",
           "amount": 85.0
+        },
+        {
+          "date": "2026-10-29",
+          "accountNumber": "50KSDTC-LABS006-V2-DLL-45281-98642482",
+          "amount": 149.0
         }
       ]
     },
@@ -478,6 +483,35 @@
         "binding_sha256": "3af1130425ff4c78061d6b4f0a1789cc875c2ff673c33fc39e5d87c23b3e3752"
       },
       "accountDisplay": "MFFUEVBLDR01874048"
+    },
+    {
+      "id": "ts50kstatictc1",
+      "name": "TopStep 50k Static TC",
+      "emoji": "",
+      "firm": "TopStep",
+      "accountNumber": "50KSDTC-LABS006-V2-DLL-45281-98642482",
+      "started": "2026-10-29",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 0,
+      "ruleKey": "topstep.50k-static-tc.challenge",
+      "peak": 50000.0,
+      "balance": 50000.0,
+      "status": "challenge",
+      "records": [],
+      "rules": {
+        "start": 50000.0,
+        "target": 4000,
+        "dd": 2000,
+        "ddType": "static",
+        "minDays": 2,
+        "renewable": false,
+        "consistencyPct": 0.55
+      },
+      "venueRef": {
+        "venue": "TS",
+        "ref": "50KSDTC-LABS006-V2-DLL-45281-98642482"
+      }
     }
   ],
   "personalLive": {
