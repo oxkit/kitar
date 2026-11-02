@@ -395,7 +395,7 @@
       "bestDay": 159.42,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50000.0,
-      "balance": 48935.57,
+      "balance": 48835.03,
       "status": "challenge",
       "records": [
         {
@@ -417,6 +417,10 @@
         {
           "date": "2026-10-30",
           "pnl": -490.48
+        },
+        {
+          "date": "2026-11-02",
+          "pnl": -100.54
         }
       ],
       "rules": {
@@ -444,12 +448,16 @@
       "bestDay": 0.0,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50000.0,
-      "balance": 49473.15,
+      "balance": 49315.15,
       "status": "challenge",
       "records": [
         {
           "date": "2026-10-30",
           "pnl": -526.85
+        },
+        {
+          "date": "2026-11-02",
+          "pnl": -158.0
         }
       ],
       "rules": {
@@ -475,13 +483,17 @@
       "split": null,
       "bestDay": 29.51,
       "ruleKey": "mffu.50k-builder.challenge",
-      "peak": 50029.51,
-      "balance": 50029.51,
+      "peak": 50029.78,
+      "balance": 50029.78,
       "status": "challenge",
       "records": [
         {
           "date": "2026-10-30",
           "pnl": 29.51
+        },
+        {
+          "date": "2026-11-02",
+          "pnl": 0.27
         }
       ],
       "rules": {
@@ -510,12 +522,16 @@
       "bestDay": 0.0,
       "ruleKey": "topstep.50k-static-tc.challenge",
       "peak": 50000.0,
-      "balance": 49521.15,
+      "balance": 49411.53,
       "status": "challenge",
       "records": [
         {
           "date": "2026-10-30",
           "pnl": -478.85
+        },
+        {
+          "date": "2026-11-02",
+          "pnl": -109.62
         }
       ],
       "rules": {
@@ -904,6 +920,13 @@
         "net": -17.1,
         "source": "hl_total_equity_close",
         "equity": 734.51,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-11-02",
+        "net": -1.21,
+        "source": "hl_total_equity_close",
+        "equity": 733.3,
         "perpDex": "xyz"
       }
     ]
