@@ -365,7 +365,7 @@
     },
     {
       "name": "BluSky",
-      "costs": 189.0,
+      "costs": 288.0,
       "feeRecords": [
         {
           "date": "2026-09-05",
@@ -377,6 +377,11 @@
           "accountNumber": "BSKEPROPELYEE84437",
           "amount": 90.0,
           "accountId": "blusky50kpropel2"
+        },
+        {
+          "date": "2026-11-04",
+          "accountNumber": "BSKEPROPELYEE21676",
+          "amount": 99.0
         }
       ]
     }
@@ -562,6 +567,36 @@
       "venueRef": {
         "venue": "TS",
         "ref": "50KSDTC-LABS006-V2-DLL-45281-98642482"
+      }
+    },
+    {
+      "id": "blusky50kpropel3",
+      "name": "BluSky PROPEL 50k",
+      "emoji": "",
+      "firm": "BluSky",
+      "accountNumber": "BSKEPROPELYEE21676",
+      "started": "2026-11-04",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 0,
+      "ruleKey": "blusky.propel50k.challenge",
+      "peak": 50000.0,
+      "balance": 50000.0,
+      "status": "challenge",
+      "records": [],
+      "rules": {
+        "start": 50000.0,
+        "target": 3000,
+        "dd": 2000,
+        "ddType": "EOD",
+        "renewable": true,
+        "renewalDate": "2026-12-04",
+        "renewalEveryDays": 30,
+        "consistencyPct": 0.3
+      },
+      "venueRef": {
+        "venue": "NT",
+        "ref": "BSKEPROPELYEE21676"
       }
     }
   ],
