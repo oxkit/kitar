@@ -400,7 +400,7 @@
       "bestDay": 159.42,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50000.0,
-      "balance": 48387.66,
+      "balance": 48013.72,
       "status": "challenge",
       "records": [
         {
@@ -430,6 +430,10 @@
         {
           "date": "2026-11-04",
           "pnl": -447.37
+        },
+        {
+          "date": "2026-11-05",
+          "pnl": -373.94
         }
       ],
       "rules": {
@@ -501,7 +505,7 @@
       "bestDay": 29.51,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50029.78,
-      "balance": 50024.56,
+      "balance": 49927.87,
       "status": "challenge",
       "records": [
         {
@@ -515,6 +519,10 @@
         {
           "date": "2026-11-04",
           "pnl": -5.22
+        },
+        {
+          "date": "2026-11-05",
+          "pnl": -96.69
         }
       ],
       "rules": {
