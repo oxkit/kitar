@@ -629,7 +629,7 @@
       "bestDay": 218.61,
       "ruleKey": "blusky.propel50k.challenge",
       "peak": 50000.0,
-      "balance": 49345.97,
+      "balance": 49355.07,
       "status": "challenge",
       "records": [
         {
@@ -647,6 +647,10 @@
         {
           "date": "2026-11-09",
           "pnl": 218.61
+        },
+        {
+          "date": "2026-11-10",
+          "pnl": 9.1
         }
       ],
       "rules": {
@@ -1078,6 +1082,13 @@
         "net": -2.08,
         "source": "hl_total_equity_close",
         "equity": 670.88,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-11-10",
+        "net": -0.01,
+        "source": "hl_total_equity_close",
+        "equity": 670.87,
         "perpDex": "xyz"
       }
     ]
