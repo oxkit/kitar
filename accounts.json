@@ -521,7 +521,7 @@
       "bestDay": 29.51,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50029.78,
-      "balance": 49886.72,
+      "balance": 49868.24,
       "status": "challenge",
       "records": [
         {
@@ -547,6 +547,10 @@
         {
           "date": "2026-11-09",
           "pnl": 29.51
+        },
+        {
+          "date": "2026-11-12",
+          "pnl": -18.48
         }
       ],
       "rules": {
@@ -637,7 +641,7 @@
       "bestDay": 218.61,
       "ruleKey": "blusky.propel50k.challenge",
       "peak": 50000.0,
-      "balance": 49248.68,
+      "balance": 49250.34,
       "status": "challenge",
       "records": [
         {
@@ -663,6 +667,10 @@
         {
           "date": "2026-11-11",
           "pnl": -106.39
+        },
+        {
+          "date": "2026-11-12",
+          "pnl": 1.66
         }
       ],
       "rules": {
@@ -1108,6 +1116,13 @@
         "net": -6.98,
         "source": "hl_total_equity_close",
         "equity": 663.89,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-11-12",
+        "net": -1.65,
+        "source": "hl_total_equity_close",
+        "equity": 662.24,
         "perpDex": "xyz"
       }
     ]
