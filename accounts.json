@@ -399,7 +399,7 @@
       "bestDay": 132.38,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50000.0,
-      "balance": 48227.59,
+      "balance": 48183.21,
       "status": "challenge",
       "records": [
         {
@@ -441,6 +441,10 @@
         {
           "date": "2026-11-16",
           "pnl": -19.39
+        },
+        {
+          "date": "2026-11-17",
+          "pnl": -44.38
         }
       ],
       "rules": {
@@ -467,7 +471,7 @@
       "bestDay": 29.51,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50029.78,
-      "balance": 49810.79,
+      "balance": 49765.3,
       "status": "challenge",
       "records": [
         {
@@ -501,6 +505,10 @@
         {
           "date": "2026-11-16",
           "pnl": -57.45
+        },
+        {
+          "date": "2026-11-17",
+          "pnl": -45.49
         }
       ],
       "rules": {
@@ -529,7 +537,7 @@
       "bestDay": 28.78,
       "ruleKey": "topstep.50k-static-tc.challenge",
       "peak": 50000.0,
-      "balance": 48062.77,
+      "balance": 48017.8,
       "status": "challenge",
       "records": [
         {
@@ -571,6 +579,10 @@
         {
           "date": "2026-11-16",
           "pnl": -14.91
+        },
+        {
+          "date": "2026-11-17",
+          "pnl": -44.97
         }
       ],
       "rules": {
@@ -599,7 +611,7 @@
       "bestDay": 218.61,
       "ruleKey": "blusky.propel50k.challenge",
       "peak": 50000.0,
-      "balance": 49157.79,
+      "balance": 49095.52,
       "status": "challenge",
       "records": [
         {
@@ -637,6 +649,10 @@
         {
           "date": "2026-11-16",
           "pnl": 56.77
+        },
+        {
+          "date": "2026-11-17",
+          "pnl": -62.27
         }
       ],
       "rules": {
@@ -1103,6 +1119,13 @@
         "net": 1.79,
         "source": "hl_total_equity_close",
         "equity": 659.16,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-11-17",
+        "net": -0.01,
+        "source": "hl_total_equity_close",
+        "equity": 659.15,
         "perpDex": "xyz"
       }
     ]
