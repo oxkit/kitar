@@ -404,7 +404,7 @@
       "bestDay": 132.38,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50000.0,
-      "balance": 48183.21,
+      "balance": 48226.95,
       "status": "challenge",
       "records": [
         {
@@ -450,6 +450,10 @@
         {
           "date": "2026-11-17",
           "pnl": -44.38
+        },
+        {
+          "date": "2026-11-18",
+          "pnl": 43.74
         }
       ],
       "rules": {
@@ -473,10 +477,10 @@
       "started": "2026-10-29",
       "method": "hidden",
       "split": null,
-      "bestDay": 29.51,
+      "bestDay": 49.02,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50029.78,
-      "balance": 49765.3,
+      "balance": 49814.32,
       "status": "challenge",
       "records": [
         {
@@ -514,6 +518,10 @@
         {
           "date": "2026-11-17",
           "pnl": -45.49
+        },
+        {
+          "date": "2026-11-18",
+          "pnl": 49.02
         }
       ],
       "rules": {
@@ -616,7 +624,7 @@
       "bestDay": 218.61,
       "ruleKey": "blusky.propel50k.challenge",
       "peak": 50000.0,
-      "balance": 49095.52,
+      "balance": 48908.55,
       "status": "challenge",
       "records": [
         {
@@ -658,6 +666,10 @@
         {
           "date": "2026-11-17",
           "pnl": -62.27
+        },
+        {
+          "date": "2026-11-18",
+          "pnl": -186.97
         }
       ],
       "rules": {
@@ -684,12 +696,17 @@
       "started": "2026-11-18",
       "method": "hidden",
       "split": null,
-      "bestDay": 0,
+      "bestDay": 0.0,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
-      "balance": 25000.0,
+      "balance": 24800.0,
       "status": "challenge",
-      "records": [],
+      "records": [
+        {
+          "date": "2026-11-18",
+          "pnl": -200.0
+        }
+      ],
       "rules": {
         "start": 25000.0,
         "target": 1500,
@@ -1162,6 +1179,13 @@
         "net": -0.01,
         "source": "hl_total_equity_close",
         "equity": 659.15,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-11-18",
+        "net": -11.33,
+        "source": "hl_total_equity_close",
+        "equity": 647.82,
         "perpDex": "xyz"
       }
     ]
