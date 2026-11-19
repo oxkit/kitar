@@ -404,7 +404,7 @@
       "bestDay": 132.38,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50000.0,
-      "balance": 48226.95,
+      "balance": 48159.42,
       "status": "challenge",
       "records": [
         {
@@ -454,6 +454,10 @@
         {
           "date": "2026-11-18",
           "pnl": 43.74
+        },
+        {
+          "date": "2026-11-19",
+          "pnl": -67.53
         }
       ],
       "rules": {
@@ -480,7 +484,7 @@
       "bestDay": 49.02,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50029.78,
-      "balance": 49814.32,
+      "balance": 49752.63,
       "status": "challenge",
       "records": [
         {
@@ -522,6 +526,10 @@
         {
           "date": "2026-11-18",
           "pnl": 49.02
+        },
+        {
+          "date": "2026-11-19",
+          "pnl": -61.69
         }
       ],
       "rules": {
@@ -624,7 +632,7 @@
       "bestDay": 218.61,
       "ruleKey": "blusky.propel50k.challenge",
       "peak": 50000.0,
-      "balance": 48908.55,
+      "balance": 48451.23,
       "status": "challenge",
       "records": [
         {
@@ -670,6 +678,10 @@
         {
           "date": "2026-11-18",
           "pnl": -186.97
+        },
+        {
+          "date": "2026-11-19",
+          "pnl": -457.32
         }
       ],
       "rules": {
@@ -699,12 +711,16 @@
       "bestDay": 0.0,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
-      "balance": 24800.0,
+      "balance": 24320.75,
       "status": "challenge",
       "records": [
         {
           "date": "2026-11-18",
           "pnl": -200.0
+        },
+        {
+          "date": "2026-11-19",
+          "pnl": -479.25
         }
       ],
       "rules": {
@@ -1186,6 +1202,13 @@
         "net": -11.33,
         "source": "hl_total_equity_close",
         "equity": 647.82,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-11-19",
+        "net": -10.64,
+        "source": "hl_total_equity_close",
+        "equity": 637.18,
         "perpDex": "xyz"
       }
     ]
