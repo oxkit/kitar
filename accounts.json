@@ -648,7 +648,7 @@
       "bestDay": 380.75,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
-      "balance": 24130.25,
+      "balance": 24536.5,
       "status": "challenge",
       "records": [
         {
@@ -665,7 +665,7 @@
         },
         {
           "date": "2026-11-23",
-          "pnl": -571.25
+          "pnl": -165.0
         }
       ],
       "rules": {
@@ -1161,6 +1161,13 @@
         "net": 1.96,
         "source": "hl_total_equity_close",
         "equity": 639.14,
+        "perpDex": "xyz"
+      },
+      {
+        "date": "2026-11-23",
+        "net": -7.07,
+        "source": "hl_total_equity_close",
+        "equity": 632.07,
         "perpDex": "xyz"
       }
     ]
