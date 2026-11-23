@@ -404,7 +404,7 @@
       "bestDay": 132.38,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50000.0,
-      "balance": 48259.39,
+      "balance": 48231.26,
       "status": "challenge",
       "records": [
         {
@@ -462,6 +462,10 @@
         {
           "date": "2026-11-20",
           "pnl": 99.97
+        },
+        {
+          "date": "2026-11-23",
+          "pnl": -28.13
         }
       ],
       "rules": {
@@ -488,7 +492,7 @@
       "bestDay": 49.56,
       "ruleKey": "mffu.50k-builder.challenge",
       "peak": 50029.78,
-      "balance": 49802.19,
+      "balance": 49772.95,
       "status": "challenge",
       "records": [
         {
@@ -538,6 +542,10 @@
         {
           "date": "2026-11-20",
           "pnl": 49.56
+        },
+        {
+          "date": "2026-11-23",
+          "pnl": -29.24
         }
       ],
       "rules": {
@@ -640,7 +648,7 @@
       "bestDay": 401.72,
       "ruleKey": "blusky.propel50k.challenge",
       "peak": 50000.0,
-      "balance": 48852.95,
+      "balance": 47996.33,
       "status": "challenge",
       "records": [
         {
@@ -694,6 +702,10 @@
         {
           "date": "2026-11-20",
           "pnl": 401.72
+        },
+        {
+          "date": "2026-11-23",
+          "pnl": -856.62
         }
       ],
       "rules": {
@@ -723,7 +735,7 @@
       "bestDay": 380.75,
       "ruleKey": "tpt.25k.challenge",
       "peak": 25000.0,
-      "balance": 24701.5,
+      "balance": 24130.25,
       "status": "challenge",
       "records": [
         {
@@ -737,6 +749,10 @@
         {
           "date": "2026-11-20",
           "pnl": 380.75
+        },
+        {
+          "date": "2026-11-23",
+          "pnl": -571.25
         }
       ],
       "rules": {
