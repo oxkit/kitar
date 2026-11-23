@@ -637,93 +637,6 @@
       }
     },
     {
-      "id": "blusky50kpropel3",
-      "name": "BluSky PROPEL 50k",
-      "emoji": "",
-      "firm": "BluSky",
-      "accountNumber": "BSKEPROPELYEE21676",
-      "started": "2026-11-04",
-      "method": "hidden",
-      "split": null,
-      "bestDay": 401.72,
-      "ruleKey": "blusky.propel50k.challenge",
-      "peak": 50000.0,
-      "balance": 47996.33,
-      "status": "challenge",
-      "records": [
-        {
-          "date": "2026-11-04",
-          "pnl": -405.44
-        },
-        {
-          "date": "2026-11-05",
-          "pnl": 21.94
-        },
-        {
-          "date": "2026-11-06",
-          "pnl": -489.14
-        },
-        {
-          "date": "2026-11-09",
-          "pnl": 218.61
-        },
-        {
-          "date": "2026-11-10",
-          "pnl": 9.1
-        },
-        {
-          "date": "2026-11-11",
-          "pnl": -106.39
-        },
-        {
-          "date": "2026-11-12",
-          "pnl": 1.66
-        },
-        {
-          "date": "2026-11-13",
-          "pnl": -149.32
-        },
-        {
-          "date": "2026-11-16",
-          "pnl": 56.77
-        },
-        {
-          "date": "2026-11-17",
-          "pnl": -62.27
-        },
-        {
-          "date": "2026-11-18",
-          "pnl": -186.97
-        },
-        {
-          "date": "2026-11-19",
-          "pnl": -457.32
-        },
-        {
-          "date": "2026-11-20",
-          "pnl": 401.72
-        },
-        {
-          "date": "2026-11-23",
-          "pnl": -856.62
-        }
-      ],
-      "rules": {
-        "start": 50000.0,
-        "target": 3000,
-        "dd": 2000,
-        "ddType": "EOD",
-        "renewable": true,
-        "renewalDate": "2026-12-04",
-        "renewalEveryDays": 30,
-        "consistencyPct": 0.3
-      },
-      "venueRef": {
-        "venue": "NT",
-        "ref": "BSKEPROPELYEE21676"
-      }
-    },
-    {
       "id": "tpt25ktakeprofittrad3",
       "name": "Take Profit Trader (TPT) 25K",
       "emoji": "",
@@ -3795,6 +3708,106 @@
         "closure_authority": "QT_OPERATOR_ATTESTED_ABSENT_FROM_CURRENT_DISCOVERY",
         "operator_attested_no_exposure": true
       }
+    },
+    {
+      "id": "blusky50kpropel3",
+      "name": "BluSky PROPEL 50k",
+      "emoji": "",
+      "firm": "BluSky",
+      "accountNumber": "BSKEPROPELYEE21676",
+      "started": "2026-11-04",
+      "method": "hidden",
+      "split": null,
+      "bestDay": 401.72,
+      "ruleKey": "blusky.propel50k.challenge",
+      "peak": 50000.0,
+      "balance": 47996.33,
+      "status": "Failed",
+      "records": [
+        {
+          "date": "2026-11-04",
+          "pnl": -405.44
+        },
+        {
+          "date": "2026-11-05",
+          "pnl": 21.94
+        },
+        {
+          "date": "2026-11-06",
+          "pnl": -489.14
+        },
+        {
+          "date": "2026-11-09",
+          "pnl": 218.61
+        },
+        {
+          "date": "2026-11-10",
+          "pnl": 9.1
+        },
+        {
+          "date": "2026-11-11",
+          "pnl": -106.39
+        },
+        {
+          "date": "2026-11-12",
+          "pnl": 1.66
+        },
+        {
+          "date": "2026-11-13",
+          "pnl": -149.32
+        },
+        {
+          "date": "2026-11-16",
+          "pnl": 56.77
+        },
+        {
+          "date": "2026-11-17",
+          "pnl": -62.27
+        },
+        {
+          "date": "2026-11-18",
+          "pnl": -186.97
+        },
+        {
+          "date": "2026-11-19",
+          "pnl": -457.32
+        },
+        {
+          "date": "2026-11-20",
+          "pnl": 401.72
+        },
+        {
+          "date": "2026-11-23",
+          "pnl": -856.62
+        }
+      ],
+      "rules": {
+        "start": 50000.0,
+        "target": 3000,
+        "dd": 2000,
+        "ddType": "EOD",
+        "renewable": true,
+        "renewalDate": "2026-12-04",
+        "renewalEveryDays": 30,
+        "consistencyPct": 0.3
+      },
+      "venueRef": {
+        "venue": "NT",
+        "ref": "BSKEPROPELYEE21676"
+      },
+      "closedDate": "2026-11-23",
+      "finalBalance": 47996.33,
+      "peakBalance": 50000.0,
+      "description": "Account closed as failed.",
+      "inventoryOut": {
+        "actor": "terminal-settings-operator",
+        "selection_kind": "manual",
+        "preview_id": "6e3887872016c7d5775e2b06bee3afb96f27db91c3e2f84efb50b48caded3295",
+        "tracker_sha256": "3a171165b677b0d2df361ab4eedceb43c34d372c63ba6cb5416e5fe3baaca099",
+        "at": "2026-11-23T16:48:15.113477-05:00",
+        "closure_authority": "NATIVE_ACCOUNT_ROOTS_FLAT_CONFIRMED",
+        "operator_attested_no_exposure": true
+      }
     }
   ],
   "history": {
@@ -4085,6 +4098,13 @@
         "date": "2026-11-13",
         "firm": "MFFU",
         "account": "MFFU 50k Builder",
+        "type": "Challenge",
+        "status": "Failed"
+      },
+      {
+        "date": "2026-11-23",
+        "firm": "BluSky",
+        "account": "BluSky PROPEL 50k",
         "type": "Challenge",
         "status": "Failed"
       }
